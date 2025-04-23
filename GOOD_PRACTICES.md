@@ -3,13 +3,30 @@
 ## Table of Contents <!-- omit in toc -->
 
 - [Introduction](#introduction)
+- [New Project](#new-project)
 - [Libraries](#libraries)
+- [Git hooks](#git-hooks)
 - [Coding practices](#coding-practices)
 - [Future enhancements](#future-enhancements)
 
 ## Introduction
 
 This document lists and describes all the good practices when it comes to code in Python.
+
+## New Project
+
+Here are the steps you need to follow when starting a new coding project from this boilerplate:
+
+- Clone the repository
+- Delete the .git directory
+- Update the following files
+  - pyproject.toml and its fields
+    - project.name
+    - project.description
+    - project.authors
+    - project.maintainers
+    - project.classifiers (full list of possibilities available [here](https://pypi.org/classifiers))
+- Run the following uv command: `uv init --app --package --python >=3.11.8 --vcs git`
 
 ## Libraries
 
@@ -21,23 +38,38 @@ Here are the useful libraries and modules used across all of my Python projects:
   - [commitizen](https://github.com/commitizen/cz-cli): commitizen command line utility.
   - [csv2md](https://github.com/lzakharov/csv2md): command line tool for converting CSV files into Markdown tables.
   - [mypy](https://github.com/python/mypy): static typing for Python.
-  - [poetry](https://github.com/python-poetry/poetry): Python packaging and dependency management made easy.
   - [pre-commit](https://github.com/pre-commit/pre-commit): framework for managing and maintaining multi-language pre-commit hooks.
-  - [pyenv](https://github.com/pyenv/pyenv): Python version management.
   - [ruff](https://github.com/astral-sh/ruff): extremely fast Python linter and code formatter, written in Rust.
   - [snakeviz](https://github.com/jiffyclub/snakeviz): in-browser Python profile viewer.
   - [yapf](https://github.com/google/yapf): formatter for Python files.
 
+Not using anymore:
+
+- [poetry](https://github.com/python-poetry/poetry): Python packaging and dependency management made easy.
+- [pyenv](https://github.com/pyenv/pyenv): Python version management.
+
 Aa well as the corresponding Visual Studio Code extensions for some of them:
 
 - [mypy](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
-- [poetry](https://marketplace.visualstudio.com/items?itemName=zeshuaro.vscode-python-poetry)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
 - [ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
 
+Not using anymore:
+
+- [poetry](https://marketplace.visualstudio.com/items?itemName=zeshuaro.vscode-python-poetry)
+
+## Git hooks
+
+Here are the useful git hooks used across all of my Python projects:
+
+- [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
+- [gitleaks](https://github.com/gitleaks/gitleaks)
+- [ruff](https://github.com/astral-sh/ruff-pre-commit)
+- [uv](https://github.com/astral-sh/uv-pre-commit)
+
 ## Coding practices
 
-Here is a list of tips to make Python faster:
+Here are the useful tips to make Python faster:
 
 - apply multi-assignments
 - avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)

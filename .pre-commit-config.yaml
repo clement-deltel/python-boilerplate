@@ -1,0 +1,53 @@
+default_install_hook_types: [pre-commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-toml
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: debug-statements
+      - id: detect-aws-credentials
+        args: ["--allow-missing-credentials"]
+      - id: detect-private-key
+      - id: end-of-file-fixer
+
+  # Local: pre_validate_user_email
+  - repo: local
+    hooks:
+      - id: pre-validate-user-email
+        name: Check the user email against company approved domains
+        entry: .githooks/pre-validate-user-email.sh
+        language: script
+        pass_filenames: false
+
+  # Dependency Management - uv
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.6.16
+    hooks:
+      - id: uv-lock
+      - id: uv-export
+
+  # Linter & Formatter - ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.6
+    hooks:
+      - id: ruff
+        types_or: [python, pyi]
+        args: [--fix]
+      - id: ruff-format
+        types_or: [python, pyi]
+
+  # Secret Leak Detection - gitleaks
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.23.3
+    hooks:
+      - id: gitleaks
+        name: Detect hardcoded secrets
+        description: Detect hardcoded secrets using Gitleaks
+        entry: gitleaks git --pre-commit --redact --staged --verbose
+        language: golang
+        pass_filenames: false

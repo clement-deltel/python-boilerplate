@@ -1,15 +1,28 @@
 {
     "folders": [
         {
+            // Source code
             "name": "Application",
             "path": "."
         }
     ],
     "extensions": {
         "recommendations": [
+            // DotENV
+            "mikestead.dotenv",
+            // Git
+            "donjayamanne.git-extension-pack",
+            // Markdown
+            "davidanson.vscode-markdownlint",
+            "yzhang.markdown-all-in-one",
+            // Python
+            "charliermarsh.ruff",
+            "kevinrose.vsc-python-indent",
             "ms-python.python",
             "ms-python.debugpy",
-            "charliermarsh.ruff"
+            "njpwerner.autodocstring",
+            // TOML
+            "tamasfe.even-better-toml"
         ]
     },
     "settings": {

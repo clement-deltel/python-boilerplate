@@ -1,4 +1,5 @@
-# .gitignore
+# .dockerignore
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
 #==============================================================================#
 #               ------- Windows ------
 #==============================================================================#
@@ -220,7 +221,41 @@ ipython_config.py
 #               ------- Repository ------
 #==============================================================================#
 
+# Common
+**/.*
+**/*.pdf
+
 # Local directories used for testing purposes
-input/
-log/
-output/
+input/*
+log/*
+output/*
+
+# Azure DevOps
+.azuredevops*
+.pipelines*
+
+# Docker
+compose.yaml
+# Dockerfile
+
+# Documentation
+doc/
+
+# Git
+.git*
+.pre-commit*
+
+# Makefile
+Makefile
+
+# Markdown
+**/*.md
+LICENSE*
+# CHANGELOG.md
+# README.md
+
+# Tests
+test/
+
+# Visual Studio Code
+*.code-workspace

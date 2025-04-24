@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: app
+    env_file: ../.env
+    hostname: app
+    image: app:latest
+    logging:
+      driver: json-file
+      options:
+        max-file: 5
+        max-size: 10m
+    restart: unless-stopped
+    stop_grace_period: 30s
+    volumes:
+      - ../input:/home/app/input
+      - ../log:/home/app/log
+      - ../output:/home/app/output

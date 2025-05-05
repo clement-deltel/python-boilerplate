@@ -1,11 +1,14 @@
 init:
   uv sync --no-default-groups --no-install-project
+  source .venv/bin/activate
 
-init-dev
+init-dev:
   uv sync --no-install-project
+  source .venv/bin/activate
 
 init-test:
   uv sync --group test --no-default-groups --no-install-project
+  source .venv/bin/activate
 
 run:
   python -m src.main

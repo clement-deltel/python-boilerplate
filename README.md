@@ -57,6 +57,22 @@ Some extra utilities are:
 
 This project's dependencies are managed with [uv](https://docs.astral.sh/uv/). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation/). It is recommended to install and use it, even still requirements files are available and can be used.
 
+```text
+app v0.1.0
+├── pandas v2.2.3
+│   ├── numpy v2.2.5
+│   ├── python-dateutil v2.9.0.post0
+│   │   └── six v1.17.0
+│   ├── pytz v2025.2
+│   └── tzdata v2025.2
+├── python-dotenv v1.1.0
+└── requests v2.32.3
+    ├── certifi v2025.4.26
+    ├── charset-normalizer v3.4.2
+    ├── idna v3.10
+    └── urllib3 v2.4.0
+```
+
 ## Configuration
 
 The application configuration can be loaded as a set of environment variables in the Docker image. A file mounted on /home/app/.env can also override those values for testing purposes.

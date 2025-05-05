@@ -71,6 +71,7 @@ Every time you push some code and consequently open a merge request, do not forg
 
 - Build an image of the app and scan it using [trivy](#trivy)
 - Update the code statistics table in the [README.md](README.md) file using [tokei](#tokei)
+- Update the dependency tree in the [README.md](README.md) file using [uv](#uv)
 - If needed
   - Update the environment variables table in the [README.md](README.md) file using [csv2md](#csv2md)
 
@@ -84,6 +85,12 @@ Ensures that all project dependencies (listed in `pyproject.toml`) are installed
 
 ```bash
 uv sync
+```
+
+Visualize the dependency tree?
+
+```bash
+uv tree --no-default-groups
 ```
 
 Add a new dependency...

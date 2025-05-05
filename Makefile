@@ -18,6 +18,9 @@ coverage:
 build-container:
   docker build --file docker/Dockerfile --tag <app> .
 
+create-container:
+  docker create --env-file .env --name <app> <app>:latest
+
 pull-container:
   docker pull <app>:latest
 

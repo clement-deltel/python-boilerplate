@@ -32,7 +32,7 @@ Here are the steps you need to follow when starting a new coding project from th
   - **Makefile**
     - all `<app>` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your project
-    - update the *(build|pull|run)-container* tasks based on your project's requirements
+    - update the *(build|create|pull|run)-container* tasks based on your project's requirements
   - **pyproject.toml**
     - all `<app>` occurrences
     - project.description

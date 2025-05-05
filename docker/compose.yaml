@@ -3,10 +3,10 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: <app>
+    container_name: app
     env_file: ../.env
-    hostname: <app>
-    image: <app>:latest
+    hostname: app
+    image: app:latest
     logging:
       driver: json-file
       options:

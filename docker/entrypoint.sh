@@ -4,5 +4,5 @@ if [[ "$DEBUG_ENTRYPOINT" = "true" ]]; then
     DEBUG_COMMAND=${DEBUG_COMMAND:-"tail -f /dev/null"}
     exec ${DEBUG_COMMAND}
 else
-    exec python -m src.main
+    exec python -m src.app.main
 fi

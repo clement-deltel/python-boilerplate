@@ -9,8 +9,8 @@ packages = ["src/app"]
 
 [project]
 name = "app"
+description = "app"
 version = "0.1.0"
-description = ""
 authors = [{ name = "", email = "support@company.com" }]
 maintainers = [{ name = "", email = "support@company.com" }]
 readme = "README.md"

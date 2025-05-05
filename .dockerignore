@@ -226,17 +226,17 @@ ipython_config.py
 **/*.pdf
 
 # Local directories used for testing purposes
-input/*
-log/*
-output/*
+input/
+log/
+output/
 
 # Azure DevOps
 .azuredevops*
 .pipelines*
 
 # Docker
-compose.yaml
-# Dockerfile
+docker/
+!docker/entrypoint.sh
 
 # Documentation
 doc/
@@ -251,8 +251,11 @@ Makefile
 # Markdown
 **/*.md
 LICENSE*
-# CHANGELOG.md
-# README.md
+# !CHANGELOG.md
+!README.md
+
+# Requirements
+requirements*
 
 # Tests
 test/

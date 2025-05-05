@@ -19,31 +19,41 @@ Here are the steps you need to follow when starting a new coding project from th
 
 - Clone the repository
 - Delete the .git directory
-- Update the following files and their fields (press `Ctrl+Shift+F` and search for the string `<app>` to update most of those at once)
-  - *.githooks*
+- Update the following directories, files and their fields
+  - *.githooks directory*
     - **pre-validate-user-email.sh**
-      - all `company.com` occurrences
+      - 2 `company.com` occurrences
   - *docker directory*
     - **compose.yaml**
-      - all `<app>` occurrences
+      - container_name
+      - hostname
+      - image
     - **Dockerfile**
       - image.title
       - image.description
+      - image.authors
+      - image.vendor
+    - **entrypoint.sh**
+      - 1 `app` occurrence
+  - *src directory*
+    - rename the `app` directory
+    - all `src.app.*` imports in the Python files
   - **LICENSE**: delete this file
   - **Makefile**
-    - all `<app>` occurrences
+    - 8 `app` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your project
     - update the *(build|create|pull|run)-container* tasks based on your project's requirements
   - **pyproject.toml**
+    - tool.hatch.build.targets.wheel.packages
     - project.name
     - project.description
     - project.authors
     - project.maintainers
     - project.classifiers (full list of possibilities available [here](https://pypi.org/classifiers))
-    - tool.uv.environments: switch to Windows if needed
-    - tool.uv.required-environments: switch to Windows if needed
+    - tool.uv.environments (switch to Windows if needed)
+    - tool.uv.required-environments (switch to Windows if needed)
   - **README.md**
-    - all `<app>` occurrences
+    - 4 `<app>` occurrences
     - Introduction section
 - Run the following uv command: `make init-dev`
 

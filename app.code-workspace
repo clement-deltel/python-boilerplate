@@ -21,6 +21,8 @@
             "ms-python.python",
             "ms-python.debugpy",
             "njpwerner.autodocstring",
+            // Spell Checker
+            "streetsidesoftware.code-spell-checker",
             // TOML
             "tamasfe.even-better-toml"
         ]

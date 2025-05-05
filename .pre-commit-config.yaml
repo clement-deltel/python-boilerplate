@@ -26,7 +26,7 @@ repos:
 
   # Dependency Management - uv
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.6.16
+    rev: 0.7.2
     hooks:
       - id: uv-lock
       - id: uv-export
@@ -34,7 +34,7 @@ repos:
 
   # Linter & Formatter - ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.6
+    rev: v0.11.8
     hooks:
       - id: ruff
         types_or: [python, pyi]
@@ -44,7 +44,7 @@ repos:
 
   # Secret Leak Detection - gitleaks
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.23.3
+    rev: v8.25.1
     hooks:
       - id: gitleaks
         name: Detect hardcoded secrets
@@ -55,10 +55,10 @@ repos:
 
   # YAML configuration files lint - yamllint
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.29.0
+    rev: v1.37.1
     hooks:
       - id: yamllint
-        args: [--strict, -c=.yamllint, --ignore-from-file=.gitignore]
+        args: [--strict, --config-file, .yamllint]
 
   # Shell scripts - shellcheck
   - repo: https://github.com/shellcheck-py/shellcheck-py
@@ -68,6 +68,6 @@ repos:
 
   # Typos - typos
   - repo: https://github.com/crate-ci/typos
-    rev: v1.32.0
+    rev: v1
     hooks:
       - id: typos

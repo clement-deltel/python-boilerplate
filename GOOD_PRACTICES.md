@@ -60,6 +60,7 @@ Here are the useful libraries and modules used across all of my Python projects:
   - [pre-commit](https://github.com/pre-commit/pre-commit): framework for managing and maintaining multi-language pre-commit hooks.
   - [ruff](https://github.com/astral-sh/ruff): extremely fast Python linter and code formatter, written in Rust.
   - [snakeviz](https://github.com/jiffyclub/snakeviz): in-browser Python profile viewer.
+  - [uv](https://github.com/astral-sh/uv): extremely fast Python package and project manager, written in Rust.
   - [yapf](https://github.com/google/yapf): formatter for Python files.
 
 Not using anymore:
@@ -84,7 +85,10 @@ Here are the useful git hooks used across all of my Python projects:
 - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
 - [gitleaks](https://github.com/gitleaks/gitleaks)
 - [ruff](https://github.com/astral-sh/ruff-pre-commit)
+- [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
+- [typos](https://github.com/crate-ci/typos)
 - [uv](https://github.com/astral-sh/uv-pre-commit)
+- [yamllint](https://github.com/adrienverge/yamllint)
 
 ## Coding practices
 
@@ -114,8 +118,6 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - [pydantic](https://github.com/pydantic/pydantic): data validation using Python type hints.
 - [pylyzer](https://github.com/mtshiba/pylyzer): fast, feature-rich static code analyzer & language server for Python.
 - [pyright](https://github.com/microsoft/pyright): static type checker for Python.
-- [uv](https://github.com/astral-sh/uv): extremely fast Python package and project manager, written in Rust.
-- [uv-pre-commit](https://github.com/astral-sh/uv-pre-commit)
 
 And specifically to make Python faster:
 

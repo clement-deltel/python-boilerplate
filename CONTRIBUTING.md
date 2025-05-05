@@ -31,7 +31,7 @@ Here are the steps to set up a development environment to run this application.
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
-uv init
+uv sync
 ```
 
 3. Install the pre-commit hooks:
@@ -40,8 +40,8 @@ uv init
 pre-commit install --install-hooks
 ```
 
-4. Fill in the .env.template file with your configuration.
-5. Rename the file to .env.
+4. Fill in the `.env.template` file with your configuration.
+5. Rename the file to `.env`.
 6. Run the application:
 
 ```bash

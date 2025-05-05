@@ -1,5 +1,5 @@
 init:
-  uv init
+  uv sync
 
 run:
   python -m src.main

@@ -15,11 +15,12 @@ The following is a set of guidelines for contributing. These are mostly guidelin
   - [ruff](#ruff)
   - [gitleaks](#gitleaks)
   - [pre-commit](#pre-commit)
-  - [cProfile](#cprofile)
-  - [tokei](#tokei)
   - [docker](#docker)
+  - [trivy](#trivy)
+  - [tokei](#tokei)
   - [csv2md](#csv2md)
   - [readme-generator-for-helm](#readme-generator-for-helm)
+  - [cProfile](#cprofile)
 
 ## Development Deployment
 
@@ -208,16 +209,24 @@ Uninstall hooks?
 pre-commit uninstall
 ```
 
-### cProfile
+### docker
 
-Here are useful commands to analyze the code performance and identify bottlenecks using [cProfile](https://docs.python.org/3/library/profile.html).
+Here are useful commands to manage the Docker configuration. Do you want to:
 
-- Set the environment variable **PROFILING** to "true" to enable this functionality.
-- Once you run the application, it should generate a report named "{date}_{app_name}.prof" to the output path by the time it finishes
-- Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz/):
+- Test the `dockerignore` file?
 
 ```bash
-snakeviz {date}_{app_name}.prof
+rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
+```
+
+### trivy
+
+Here are useful commands to scan an image using [trivy](https://trivy.dev/latest/). The source code of this tool is available [here](https://github.com/aquasecurity/trivy). Do you want to:
+
+Find vulnerabilities, misconfigurations, secrets in an image?
+
+```bash
+trivy image --image-config-scanners misconfig,secret --scanners vuln,secret <app>:latest
 ```
 
 ### tokei
@@ -231,16 +240,6 @@ tokei .
 ```
 
 - Copy the table from stdout to `README.md` in a code block
-
-### docker
-
-Here are useful commands to manage the Docker configuration. Do you want to:
-
-- Test the `dockerignore` file?
-
-```bash
-rsync --archive --dry-run --exclude-from docker/.dockerignore --verbose . /dev/shm
-```
 
 ### csv2md
 
@@ -268,3 +267,15 @@ readme-generator --values helm_chart/values.yaml --readme helm_chart/README.md
 ```
 
 > Note: For any documentation related contribution, please use a spell checking tool like [Grammarly](https://www.grammarly.com) to avoid typographical and any other type of errors.
+
+### cProfile
+
+Here are useful commands to analyze the code performance and identify bottlenecks using [cProfile](https://docs.python.org/3/library/profile.html).
+
+- Set the environment variable **PROFILING** to "true" to enable this functionality.
+- Once you run the application, it should generate a report named "{date}_{app_name}.prof" to the output path by the time it finishes
+- Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz/):
+
+```bash
+snakeviz {date}_{app_name}.prof
+```

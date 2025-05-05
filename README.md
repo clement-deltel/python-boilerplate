@@ -75,7 +75,7 @@ There are four ways to run this application:
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
-uv sync --no-default-groups
+make init
 ```
 
 If using pip, you have to manually:
@@ -194,7 +194,7 @@ Otherwise, for more in-depth testing and a peak at the code, follow the steps be
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
-uv sync --group test --no-default-groups
+make init-test
 ```
 
 If using pip, you have to manually:

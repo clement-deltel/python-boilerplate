@@ -31,7 +31,7 @@ Here are the steps to set up a development environment to run this application.
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
-uv sync
+make init-dev
 ```
 
 3. Install the pre-commit hooks:

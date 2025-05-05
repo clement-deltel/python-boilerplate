@@ -1,5 +1,11 @@
 init:
-  uv sync
+  uv sync --no-default-groups --no-install-project
+
+init-dev
+  uv sync --no-install-project
+
+init-test:
+  uv sync --group test --no-default-groups --no-install-project
 
 run:
   python -m src.main

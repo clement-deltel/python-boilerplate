@@ -39,7 +39,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - project.authors
     - project.maintainers
     - project.classifiers (full list of possibilities available [here](https://pypi.org/classifiers))
-- Run the following uv command: `uv sync`
+- Run the following uv command: `make init-dev`
 
 ## Libraries
 

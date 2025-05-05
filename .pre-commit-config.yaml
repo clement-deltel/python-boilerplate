@@ -51,3 +51,22 @@ repos:
         entry: gitleaks git --pre-commit --redact --staged --verbose
         language: golang
         pass_filenames: false
+
+  # YAML configuration files lint - yamllint
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.29.0
+    hooks:
+      - id: yamllint
+        args: [--strict, -c=.yamllint, --ignore-from-file=.gitignore]
+
+  # Shell scripts - shellcheck
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+
+  # Typos - typos
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.32.0
+    hooks:
+      - id: typos

@@ -12,6 +12,8 @@
             "mikestead.dotenv",
             // Git
             "donjayamanne.git-extension-pack",
+            // General purpose linter
+            "fnando.linter",
             // Markdown
             "davidanson.vscode-markdownlint",
             "yzhang.markdown-all-in-one",

@@ -44,7 +44,7 @@ pre-commit install --install-hooks
 6. Run the application:
 
 ```bash
-python -m src.main
+make run
 ```
 
 ## Debug
@@ -59,8 +59,7 @@ Do you want to debug using builtin VSCode debugger?
 Do you want to debug using command line tool pdb?
 
 ```bash
-export PYTHONPATH=$(pwd)
-python -m pdb src/main.py
+make debug
 ```
 
 > Note: these commands are valid in the situation when you are debugging from the code, but also when you are using the `DEBUG_ENTRYPOINT` environment variable set to "true" (see [entrypoint.sh](docker/entrypoint.sh)).

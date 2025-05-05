@@ -20,6 +20,9 @@ Here are the steps you need to follow when starting a new coding project from th
 - Clone the repository
 - Delete the .git directory
 - Update the following files and their fields (press `Ctrl+Shift+F` and search for the string `<app>` to update most of those at once)
+  - *.githooks*
+    - **pre-validate-user-email.sh**
+      - all `company.com` occurrences
   - *docker directory*
     - **compose.yaml**
       - all `<app>` occurrences

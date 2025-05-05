@@ -10,6 +10,7 @@ The following is a set of guidelines for contributing. These are mostly guidelin
 
 - [Development Deployment](#development-deployment)
 - [Debug](#debug)
+- [Merge Request](#merge-request)
 - [Tools](#tools)
   - [uv](#uv)
   - [ruff](#ruff)
@@ -63,6 +64,15 @@ make debug
 ```
 
 > Note: these commands are valid in the situation when you are debugging from the code, but also when you are using the `DEBUG_ENTRYPOINT` environment variable set to "true" (see [entrypoint.sh](docker/entrypoint.sh)).
+
+## Merge Request
+
+Every time you push some code and consequently open a merge request, do not forget to:
+
+- Build an image of the app and scan it using [trivy](#trivy)
+- Update the code statistics table in the [README.md](README.md) file using [tokei](#tokei)
+- If needed
+  - Update the environment variables table in the [README.md](README.md) file using [csv2md](#csv2md)
 
 ## Tools
 

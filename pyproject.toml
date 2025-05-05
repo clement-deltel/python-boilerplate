@@ -110,7 +110,11 @@ compile-bytecode = true
 # extra-index-url = ["https://download.pytorch.org/whl/cpu"]
 
 # Strategy to use when resolving against multiple index URLs
-index-strategy = "unsafe-best-match"
+# Only use results from the first index that returns a match for a given package name
+index-strategy = "first-index"
+# Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next
+# index-strategy = "unsafe-best-match"
+
 # Whether to allow Python downloads.
 python-downloads = "automatic"
 # Mirror URL for downloading managed Python installations
@@ -124,8 +128,7 @@ resolution = "highest"
 
 [[tool.uv.index]]
 name = "pypi"
-url = "https://test.pypi.org/simple"
-default = true
+url = "https://pypi.org/simple"
 
 [tool.uv.sources]
 pypi = { index = "pypi" }

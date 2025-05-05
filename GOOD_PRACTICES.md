@@ -99,9 +99,12 @@ Here are the useful tips to make Python faster:
 
 Here is a list of tools that could be interesting and further enhance the stack:
 
+- [basedmypy](https://github.com/KotlinIsland/basedmypy): based Python static type checker with baseline, sane default settings and based typing features.
+- [basedpyright](https://github.com/DetachHead/basedpyright): pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server.
 - [pillow](https://github.com/python-pillow/Pillow): Python imaging library.
 - [pydantic](https://github.com/pydantic/pydantic): data validation using Python type hints.
 - [pylyzer](https://github.com/mtshiba/pylyzer): fast, feature-rich static code analyzer & language server for Python.
+- [pyright](https://github.com/microsoft/pyright): static type checker for Python.
 - [uv](https://github.com/astral-sh/uv): extremely fast Python package and project manager, written in Rust.
 - [uv-pre-commit](https://github.com/astral-sh/uv-pre-commit)
 

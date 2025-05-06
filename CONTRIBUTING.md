@@ -138,19 +138,19 @@ Export dependencies and update requirements files...
 - as a **user** and for the project?
 
 ```bash
-uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements.txt
+uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements.txt
 ```
 
 - as a **developer**?
 
 ```bash
-uv export --format requirements-txt --group dev --group lint --no-default-groups --no-emit-project --output-file requirements-dev.txt
+uv export --format requirements-txt --group dev --group lint --no-default-groups --no-emit-project --output-file requirements/requirements-dev.txt
 ```
 
 - as a **QA engineer**?
 
 ```bash
-uv export --format requirements-txt --group test --no-default-groups --no-emit-project --output-file requirements-test.txt
+uv export --format requirements-txt --group test --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt
 ```
 
 ### ruff

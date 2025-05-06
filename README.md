@@ -102,7 +102,7 @@ If using pip, you have to manually:
 - Install the project's dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements/requirements.txt
 ```
 
 3. Fill in the `.env.template` file with your configuration.
@@ -222,7 +222,7 @@ If using pip, you have to manually:
 
 
 ```bash
-pip install -r requirements-test.txt
+pip install -r requirements/requirements-test.txt
 ```
 
 3. Run tests:

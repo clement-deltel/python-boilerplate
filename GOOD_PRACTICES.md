@@ -119,6 +119,27 @@ Here are the useful tips to make Python faster:
 - use pypy
 - use 1 instead of "True" for infinite loops
 
+Here are the useful tips to make Python code cleaner:
+
+- use a linter. As of now, ruff is the default and select the following rules:
+  - flake8
+    - [bugbear - B](https://docs.astral.sh/ruff/rules/#flake8-bugbear-b)
+    - [comprehensions - C4](https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4)
+    - [logging-format - G](https://docs.astral.sh/ruff/rules/#flake8-logging-format-g)
+    - [quotes - Q](https://docs.astral.sh/ruff/rules/#flake8-quotes-q)
+    - [raise - RSE](https://docs.astral.sh/ruff/rules/#flake8-raise-rse)
+    - [return - RET](https://docs.astral.sh/ruff/rules/#flake8-return-ret)
+    - [self - SLF](https://docs.astral.sh/ruff/rules/#flake8-self-slf)
+    - [simplify - SIM](https://docs.astral.sh/ruff/rules/#flake8-simplify-sim)
+    - [use-pathlib - PTH](https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth)
+  - [isort - I](https://docs.astral.sh/ruff/rules/#isort-i)
+  - [pandas-vet - PD](https://docs.astral.sh/ruff/rules/#pandas-vet-pd)
+  - [pep8-naming - N](https://docs.astral.sh/ruff/rules/#pep8-naming-n)
+  - [pycodestyle - Errors - E](https://docs.astral.sh/ruff/rules/#pycodestyle-e)
+  - [pydocstyle - D](https://docs.astral.sh/ruff/rules/#pydocstyle-d)
+  - [Pyflakes - F](https://docs.astral.sh/ruff/rules/#pyflakes-f)
+- use a formatter
+
 ## Future enhancements
 
 Here is a list of tools that could be interesting and further enhance the stack:
@@ -142,4 +163,4 @@ Drop-in replacement for pandas:
 
 ## Resources
 
-- https://www.pyopensci.org/python-package-guide/index.html
+- [pyOpenSci - Python Package Guide](https://www.pyopensci.org/python-package-guide/index.html)

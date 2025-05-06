@@ -15,6 +15,7 @@ class Config:
     """Class specifying attributes and methods related to the configuration."""
 
     def __init__(self, run_date) -> None:
+        """Initialize class."""
         self.app = AppConfig(run_date)
         self.log = LogConfig(run_date)
 
@@ -27,6 +28,7 @@ class Config:
 
         Returns:
             Any: configuration instance.
+
         """
         return getattr(self, class_name, default)
 
@@ -40,6 +42,7 @@ class Config:
 
         Returns:
             Any: configuration attribute.
+
         """
         config_class = getattr(self, class_name, None)
         if config_class is None:
@@ -52,6 +55,7 @@ class AppConfig:
     """Class specifying attributes and methods related to the application configuration."""
 
     def __init__(self, run_date: datetime) -> None:
+        """Initialize class."""
         self.name = "app"
         self.run_date = run_date
 
@@ -65,6 +69,7 @@ class LogConfig:
     """Class specifying attributes and methods related to the log configuration."""
 
     def __init__(self, run_date: datetime) -> None:
+        """Initialize class."""
         self.level = environ.get("LOG_LEVEL", default="INFO")
         self.path = Path(environ.get("LOG_PATH", default="/home/app/logs"))
         self.file_path = Path.joinpath(self.path, f"{run_date.strftime('%Y-%m-%d')}.log")
@@ -82,13 +87,11 @@ class DevConfig(Config):
     """Class specifying attributes and methods related to the development environment configuration."""
 
     def __init__(self) -> None:
+        """Initialize class."""
         load_dotenv(".env", override=True)
         # Custom date specifically to tweak run date and trigger certain behaviors
         run_date_env = environ.get("RUN_DATE", default="")
-        if run_date_env != "":
-            run_date = datetime.strptime(run_date_env, "%Y-%m-%d")
-        else:
-            run_date = datetime.now()
+        run_date = datetime.strptime(run_date_env, "%Y-%m-%d") if run_date_env else datetime.now()
 
         super().__init__(run_date)
 
@@ -97,6 +100,7 @@ class ProdConfig(Config):
     """Class specifying attributes and methods related to the production environment configuration."""
 
     def __init__(self) -> None:
+        """Initialize class."""
         load_dotenv(".env", override=True)
         run_date = datetime.now()
         super().__init__(run_date)
@@ -111,6 +115,7 @@ def set_config(config: Config) -> None:
 
     Args:
         config (Config): configuration instance.
+
     """
     global _CONFIG_INSTANCE
     _CONFIG_INSTANCE = config
@@ -121,6 +126,7 @@ def get_config_instance() -> Config:
 
     Returns:
         Config: configuration instance.
+
     """
     global _CONFIG_INSTANCE
     if _CONFIG_INSTANCE is None:
@@ -137,6 +143,7 @@ def get_config_class(class_name: str, default=None):
 
     Returns:
         Any: configuration instance.
+
     """
     config = get_config_instance()
     return config.get_config_class(class_name, default)
@@ -152,6 +159,7 @@ def get_config_value(class_name: str, attribute: str, default=None):
 
     Returns:
         Any: configuration attribute.
+
     """
     config = get_config_instance()
     return config.get_config_value(class_name, attribute, default)

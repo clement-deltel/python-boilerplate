@@ -22,6 +22,7 @@ class Log:
     """Class specifying attributes and methods related to logging."""
 
     def __init__(self):
+        """Initialize class."""
         self.config = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
 
@@ -56,6 +57,7 @@ class Log:
 
         Args:
             level (str): log level.
+
         """
         self._logger.setLevel(self.levels[level])
 
@@ -64,6 +66,7 @@ class Log:
 
         Args:
             level (str): log level.
+
         """
         # Default
         self.file_formatter = CustomFormatter(level, datefmt="%d-%b-%Y %H:%M:%S")
@@ -130,6 +133,7 @@ class CustomFormatter(logging.Formatter):
     """Class used to retrieve extra and set colors for log messages."""
 
     def __init__(self, level: str, color_enabled: bool = False, datefmt=None):
+        """Initialize class."""
         super().__init__()
         self.level = level
         self.color_enabled = color_enabled
@@ -147,6 +151,7 @@ class CustomFormatter(logging.Formatter):
 
         Returns:
             str: record formatted as text.
+
         """
         # info = record.__dict__.copy()
         message = self.fmt.split("%")
@@ -174,6 +179,7 @@ class JSONFormatter(logging.Formatter):
     """Class used to serialize log messages in JSON and color them."""
 
     def __init__(self, level: str, color_enabled: bool = False, pretty_json: bool = False) -> None:
+        """Initialize class."""
         super().__init__()
         self.level = level
         self.color_enabled = color_enabled
@@ -189,6 +195,7 @@ class JSONFormatter(logging.Formatter):
 
         Returns:
             str: record formatted as JSON.
+
         """
         info = record.__dict__.copy()
         message = {}
@@ -238,6 +245,7 @@ class ErrFilter(logging.Filter):
 
         Returns:
             bool: if the record level is in or not.
+
         """
         return record.levelno in (logging.DEBUG, logging.INFO, logging.WARNING)
 
@@ -276,6 +284,7 @@ def set_log(log_instance: Log) -> None:
 
     Args:
         log_instance (Log): log instance.
+
     """
     global _LOG_INSTANCE
     _LOG_INSTANCE = log_instance
@@ -286,6 +295,7 @@ def log() -> Log:
 
     Returns:
         Log: log instance.
+
     """
     global _LOG_INSTANCE
     if _LOG_INSTANCE is None:

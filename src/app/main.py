@@ -14,7 +14,7 @@ from re import sub
 from dotenv import load_dotenv
 
 # Local application imports
-import src.app.common.config as config
+from src.app.common.config import Config, DevConfig, ProdConfig, set_config
 from src.app.common.log import log
 from src.app.common.profiler import Profiler
 
@@ -26,13 +26,13 @@ class Main:
     def signal_quit_handler(signum, frame) -> None:
         """Handle SIGQUIT signal for the application execution."""
         log().logger.warning("You pressed Ctrl + \\! Terminating gracefully...")
-        raise KeyboardInterrupt()
+        raise KeyboardInterrupt
 
     @staticmethod
     def signal_int_handler(signum, frame) -> None:
         """Handle SIGINT signal for the application execution."""
         log().logger.warning("You pressed Ctrl + C! Terminating gracefully...")
-        raise KeyboardInterrupt()
+        raise KeyboardInterrupt
 
     def run(self) -> None:
         """Perform all the steps to run this application."""
@@ -44,9 +44,9 @@ class Main:
 
             # Load environment-based configuration
             app_env = environ.get("APP_ENV", default="production")
-            config_options = {"development": config.DevConfig, "production": config.ProdConfig}
-            cfg: config.Config = config_options[app_env]()
-            config.set_config(cfg)
+            config_options = {"development": DevConfig, "production": ProdConfig}
+            cfg: Config = config_options[app_env]()
+            set_config(cfg)
 
         except KeyboardInterrupt:
             pass
@@ -81,7 +81,7 @@ def profile_if_enabled(func):
 
 @profile_if_enabled
 def main():
-    """Main."""
+    """Run the application."""
     Main().run()
 
 

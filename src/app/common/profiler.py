@@ -15,6 +15,7 @@ class Profiler:
     """Class specifying attributes and methods related to the profiler."""
 
     def __init__(self) -> None:
+        """Initialize class."""
         self.profiler = Profile()
 
     def start(self) -> None:

@@ -33,7 +33,7 @@ requires-python = "==3.11.8"
 dependencies = ["hatchling", "pandas", "python-dotenv", "requests"]
 
 [dependency-groups]
-dev = ["csv2md", "pre-commit", "snakeviz"]
+dev = ["commitizen", "csv2md", "pre-commit", "snakeviz"]
 lint = ["ruff", "yamllint"]
 test = ["coverage", "pytest"]
 

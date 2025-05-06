@@ -138,6 +138,7 @@ Here are the useful tips to make Python code cleaner:
   - [pycodestyle - Errors - E](https://docs.astral.sh/ruff/rules/#pycodestyle-e)
   - [pydocstyle - D](https://docs.astral.sh/ruff/rules/#pydocstyle-d)
   - [Pyflakes - F](https://docs.astral.sh/ruff/rules/#pyflakes-f)
+  - [Pylint - PL](https://docs.astral.sh/ruff/rules/#pylint-pl)
 - use a formatter
 
 ## Future enhancements

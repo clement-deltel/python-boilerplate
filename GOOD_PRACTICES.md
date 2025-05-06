@@ -8,6 +8,7 @@
 - [Git hooks](#git-hooks)
 - [Coding practices](#coding-practices)
 - [Future enhancements](#future-enhancements)
+- [Resources](#resources)
 
 ## Introduction
 
@@ -138,3 +139,7 @@ Drop-in replacement for pandas:
 
 - [fireducks](https://github.com/fireducks-dev/fireducks): compiler accelerated dataframe library for Python with fully-compatible pandas API.
 - [polars](https://github.com/pola-rs/polars): dataframes powered by a multithreaded, vectorized query engine, written in Rust.
+
+## Resources
+
+- https://www.pyopensci.org/python-package-guide/index.html

@@ -22,6 +22,7 @@
             "kevinrose.vsc-python-indent",
             "ms-python.python",
             "ms-python.debugpy",
+            "ms-python.vscode-pylance",
             "njpwerner.autodocstring",
             // Spell Checker
             "streetsidesoftware.code-spell-checker",

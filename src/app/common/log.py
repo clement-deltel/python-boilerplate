@@ -13,6 +13,7 @@ import logging
 from enum import Enum
 from json import dumps
 from sys import stderr, stdout
+from typing import Any
 
 # Local application imports
 from src.app.common.config import get_config_class, get_config_value
@@ -220,7 +221,7 @@ class JSONFormatter(logging.Formatter):
             message["lineno"] = record.lineno
 
         # Improve JSON readability
-        pretty_options = {}
+        pretty_options: dict[str, Any] = {}
         if self.pretty_json:
             pretty_options["indent"] = 2
 

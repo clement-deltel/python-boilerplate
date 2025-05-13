@@ -51,6 +51,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - project.authors
     - project.maintainers
     - project.classifiers (full list of possibilities available [here](https://pypi.org/classifiers))
+    - tool.ty.environment.python-platform (switch to Windows if needed)
     - tool.uv.environments (switch to Windows if needed)
     - tool.uv.required-environments (switch to Windows if needed)
   - **README.md**

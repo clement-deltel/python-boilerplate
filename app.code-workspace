@@ -12,16 +12,19 @@
             "mikestead.dotenv",
             // Git
             "donjayamanne.git-extension-pack",
+            "elagil.pre-commit-helper",
             // General purpose linter
             "fnando.linter",
             // Markdown
             "davidanson.vscode-markdownlint",
             "yzhang.markdown-all-in-one",
             // Python
+            "astral-sh.ty",
             "charliermarsh.ruff",
             "kevinrose.vsc-python-indent",
-            "ms-python.python",
             "ms-python.debugpy",
+            "ms-python.mypy-type-checker",
+            "ms-python.python",
             "ms-python.vscode-pylance",
             "njpwerner.autodocstring",
             // Spell Checker

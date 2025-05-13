@@ -15,36 +15,17 @@ repos:
       - id: detect-private-key
       - id: end-of-file-fixer
 
-  # Local: pre_validate_user_email
-  - repo: local
+  # commitizen - Version Control
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.7.0
     hooks:
-      - id: pre-validate-user-email
-        name: Check the user email against company approved domains
-        entry: .githooks/pre-validate-user-email.sh
-        language: script
-        pass_filenames: false
+      - id: commitizen
+      - id: commitizen-branch
+        stages: [pre-push]
 
-  # Dependency Management - uv
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.2
-    hooks:
-      - id: uv-lock
-      - id: uv-export
-        args: [--no-default-groups, --no-emit-project]
-
-  # Linter & Formatter - ruff
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.8
-    hooks:
-      - id: ruff
-        types_or: [python, pyi]
-        args: [--fix]
-      - id: ruff-format
-        types_or: [python, pyi]
-
-  # Secret Leak Detection - gitleaks
+  # gitleaks - Secret Leak Detection
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.25.1
+    rev: v8.26.0
     hooks:
       - id: gitleaks
         name: Detect hardcoded secrets
@@ -53,29 +34,48 @@ repos:
         language: golang
         pass_filenames: false
 
-  # YAML configuration files lint - yamllint
+  # ruff - Linter & Formatter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.9
+    hooks:
+      - id: ruff
+        types_or: [python, pyi]
+        args: [--fix]
+      - id: ruff-format
+        types_or: [python, pyi]
+
+  # shellcheck - Shell scripts
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+
+  # typos - Typos
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.32.0
+    hooks:
+      - id: typos
+
+  # uv - Dependency Management
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.7.3
+    hooks:
+      - id: uv-lock
+      - id: uv-export
+        args: [--no-default-groups, --no-emit-project]
+
+  # yamllint - YAML configuration files lint
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.1
     hooks:
       - id: yamllint
         args: [--strict, --config-file, .yamllint]
 
-  # Shell scripts - shellcheck
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+  # Local: pre_validate_user_email
+  - repo: local
     hooks:
-      - id: shellcheck
-
-  # Typos - typos
-  - repo: https://github.com/crate-ci/typos
-    rev: v1
-    hooks:
-      - id: typos
-
-  # Version Control - commitizen
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.6.2
-    hooks:
-      - id: commitizen
-      - id: commitizen-branch
-        stages: [pre-push]
+      - id: pre-validate-user-email
+        name: Check the user email against company approved domains
+        entry: .githooks/pre-validate-user-email.sh
+        language: script
+        pass_filenames: false

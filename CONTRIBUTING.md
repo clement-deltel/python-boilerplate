@@ -14,6 +14,7 @@ The following is a set of guidelines for contributing. These are mostly guidelin
 - [Tools](#tools)
   - [uv](#uv)
   - [ruff](#ruff)
+  - [ty](#ty)
   - [gitleaks](#gitleaks)
   - [pre-commit](#pre-commit)
   - [docker](#docker)
@@ -79,7 +80,7 @@ Every time you push some code and consequently open a merge request, do not forg
 
 ### uv
 
-Here are useful commands to manage the Python virtual environment and the dependencies using [uv](https://docs.astral.sh/uv/). The source code of this tool is available [here](https://github.com/astral-sh/uv). Do you want to:
+Here are useful commands to manage the Python virtual environment and the dependencies using [uv](https://docs.astral.sh/uv). The source code of this tool is available [here](https://github.com/astral-sh/uv). Do you want to:
 
 Ensures that all project dependencies (listed in `pyproject.toml`) are installed and up-to-date with the lockfile `uv.lock`?
 
@@ -155,7 +156,7 @@ uv export --format requirements-txt --group test --no-default-groups --no-emit-p
 
 ### ruff
 
-Here are useful commands to lint and format code using [ruff](https://docs.astral.sh/ruff/). The source code of this tool is available [here](https://github.com/astral-sh/ruff). Do you want to:
+Here are useful commands to lint and format code using [ruff](https://docs.astral.sh/ruff). The source code of this tool is available [here](https://github.com/astral-sh/ruff). Do you want to:
 
 Lint all files in the current directory, and fix any fixable errors?
 
@@ -175,9 +176,19 @@ Format a single file?
 ruff format path/to/file.py
 ```
 
+### ty
+
+Here are useful commands to check variable type using [ty](https://github.com/astral-sh/ty). The source code of this tool is available [here](https://github.com/astral-sh/ty). Do you want to:
+
+Check all files in the current directory?
+
+```bash
+ty check
+```
+
 ### gitleaks
 
-Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io/). The source code of this tool is available [here](https://github.com/gitleaks/gitleaks). Do you want to:
+Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io). The source code of this tool is available [here](https://github.com/gitleaks/gitleaks). Do you want to:
 
 Scan all the commits
 
@@ -187,7 +198,7 @@ gitleaks git --redact --verbose
 
 ### pre-commit
 
-Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com/). The source code of this tool is available [here](https://github.com/pre-commit/pre-commit). Do you want to:
+Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com). The source code of this tool is available [here](https://github.com/pre-commit/pre-commit). Do you want to:
 
 Auto-update pre-commit config to the latest repos' versions?
 
@@ -237,7 +248,7 @@ rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
 
 ### trivy
 
-Here are useful commands to scan an image using [trivy](https://trivy.dev/latest/). The source code of this tool is available [here](https://github.com/aquasecurity/trivy). Do you want to:
+Here are useful commands to scan an image using [trivy](https://trivy.dev/latest). The source code of this tool is available [here](https://github.com/aquasecurity/trivy). Do you want to:
 
 Find vulnerabilities, misconfigurations, secrets in an image?
 
@@ -259,7 +270,7 @@ tokei .
 
 ### csv2md
 
-Here are useful commands to manage the README documentation using [csv2md](https://pypi.org/project/csv2md/). Do you want to:
+Here are useful commands to manage the README documentation using [csv2md](https://pypi.org/project/csv2md). Do you want to:
 
 Easily update the Markdown table of environment variables?
 
@@ -290,7 +301,7 @@ Here are useful commands to analyze the code performance and identify bottleneck
 
 - Set the environment variable **PROFILING** to "true" to enable this functionality.
 - Once you run the application, it should generate a report named "{date}_{app_name}.prof" to the output path by the time it finishes
-- Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz/):
+- Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz):
 
 ```bash
 snakeviz {date}_{app_name}.prof

@@ -103,7 +103,7 @@
                 "name": "App - main",
                 "type": "debugpy",
                 "request": "launch",
-                "program": "src/main.py",
+                "program": "src/app/main.py",
                 "console": "integratedTerminal",
                 "cwd": "${workspaceFolder}",
                 "justMyCode": true,

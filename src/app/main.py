@@ -6,7 +6,6 @@
 import signal
 import sys
 import time
-from functools import wraps
 from os import environ
 from platform import system
 from re import sub
@@ -16,8 +15,8 @@ from dotenv import load_dotenv
 
 # Local application imports
 from src.app.common.config import Config, DevConfig, ProdConfig, set_config
+from src.app.common.decorator import profiler
 from src.app.common.log import log
-from src.app.common.profiler import Profiler
 
 
 class Main:
@@ -63,24 +62,7 @@ class Main:
             log().close()
 
 
-def profile_if_enabled(func):
-    """Enable profiling on the target function."""
-
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        profiling = environ.get("PROFILING", "false").lower() in ("true", "t", "1")
-        if profiling:
-            profiler = Profiler()
-            profiler.start()
-            result = func(*args, **kwargs)
-            profiler.end()
-            return result
-        return func(*args, **kwargs)
-
-    return wrapper
-
-
-@profile_if_enabled
+@profiler
 def main():
     """Run the application."""
     Main().run()

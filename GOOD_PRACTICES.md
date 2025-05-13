@@ -160,6 +160,11 @@ And specifically to make Python faster:
 - [cython](https://github.com/cython/cython): most widely used Python to C compiler.
 - [pypy](https://github.com/pypy/pypy): very fast and compliant implementation of the Python language.
 
+And specifically to document the code:
+
+- [sphinx](https://www.sphinx-doc.org/en/master): documentation generator.
+- [pydoc](https://docs.python.org/3/library/pydoc.html): documentation generator and online help system
+
 Drop-in replacement for pandas:
 
 - [fireducks](https://github.com/fireducks-dev/fireducks): compiler accelerated dataframe library for Python with fully-compatible pandas API.

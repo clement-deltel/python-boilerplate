@@ -34,7 +34,7 @@ dependencies = ["hatchling", "pandas", "python-dotenv", "requests"]
 
 [dependency-groups]
 dev = ["commitizen", "csv2md", "pre-commit", "snakeviz"]
-lint = ["ruff", "yamllint"]
+lint = ["mypy", "ruff", "ty", "types-requests", "yamllint"]
 test = ["coverage", "pytest"]
 
 #==============================================================================#
@@ -123,6 +123,17 @@ ignore = [
 
 [tool.ruff.lint.isort]
 case-sensitive = true
+split-on-trailing-comma = false
+
+#==============================================================================#
+#               ------- tool - ty ------
+#==============================================================================#
+[tool.ty]
+# Exclude files that are ignored by .ignore, .gitignore, .git/info/exclude, and global gitignore files.
+respect-ignore-files = true
+
+[tool.ty.rules]
+index-out-of-bounds = "ignore"
 
 #==============================================================================#
 #               ------- tool - uv ------

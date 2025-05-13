@@ -8,6 +8,7 @@ import sys
 import time
 from functools import wraps
 from os import environ
+from platform import system
 from re import sub
 
 # Third-party imports
@@ -23,24 +24,24 @@ class Main:
     """Main class containing the method for running the RAN Replicator Service."""
 
     @staticmethod
-    def signal_quit_handler(signum, frame) -> None:
-        """Handle SIGQUIT signal for the application execution."""
-        log().logger.warning("You pressed Ctrl + \\! Terminating gracefully...")
+    def signal_int_handler(signum, frame):
+        """Handle SIGINT signal for the application execution."""
+        log().logger.warning("You pressed Ctrl + C! Terminating gracefully...")
         raise KeyboardInterrupt
 
     @staticmethod
-    def signal_int_handler(signum, frame) -> None:
-        """Handle SIGINT signal for the application execution."""
-        log().logger.warning("You pressed Ctrl + C! Terminating gracefully...")
+    def signal_quit_handler(signum, frame):
+        """Handle SIGQUIT signal for the application execution."""
+        log().logger.warning("You pressed Ctrl + \\! Terminating gracefully...")
         raise KeyboardInterrupt
 
     def run(self) -> None:
         """Perform all the steps to run this application."""
         start = time.perf_counter()
         try:
-            # Normal if there is an error in Windows, SIGQUIT exists only in Unix
-            signal.signal(signal.SIGQUIT, self.signal_quit_handler)
             signal.signal(signal.SIGINT, self.signal_int_handler)
+            if system() == "Linux":
+                signal.signal(signal.SIGQUIT, self.signal_quit_handler)
 
             # Load environment-based configuration
             app_env = environ.get("APP_ENV", default="production")

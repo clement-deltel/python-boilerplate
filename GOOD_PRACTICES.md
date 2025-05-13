@@ -71,6 +71,7 @@ Here are the useful libraries and modules used across all of my Python projects:
   - [pre-commit](https://github.com/pre-commit/pre-commit): framework for managing and maintaining multi-language pre-commit hooks.
   - [ruff](https://github.com/astral-sh/ruff): extremely fast Python linter and code formatter, written in Rust.
   - [snakeviz](https://github.com/jiffyclub/snakeviz): in-browser Python profile viewer.
+  - [ty](https://github.com/astral-sh/ty): Python type checker and language server, written in Rust.
   - [uv](https://github.com/astral-sh/uv): extremely fast Python package and project manager, written in Rust.
   - [yapf](https://github.com/google/yapf): formatter for Python files.
 
@@ -84,6 +85,7 @@ Aa well as the corresponding Visual Studio Code extensions for some of them:
 - [mypy](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
 - [ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
+- [ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty)
 
 Not using anymore:
 

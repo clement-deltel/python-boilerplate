@@ -111,7 +111,7 @@ class Log:
             self.stream_handler_err.close()
             self.stream_handler_err = None
 
-    def open_file(self, file_path) -> None:
+    def open_file(self, file_path: str) -> None:
         """Open the file handler to write log messages to the log file."""
         try:
             if self.file_handler is None:
@@ -133,7 +133,7 @@ class Log:
 class CustomFormatter(logging.Formatter):
     """Class used to retrieve extra and set colors for log messages."""
 
-    def __init__(self, level: str, color_enabled: bool = False, datefmt=None):
+    def __init__(self, level: str, color_enabled: bool = False, datefmt: str = ""):
         """Initialize class."""
         super().__init__()
         self.level = level
@@ -277,7 +277,7 @@ class Levels(Enum):
 
 
 # Global
-_LOG_INSTANCE = None
+_log_instance = Log()
 
 
 def set_log(log_instance: Log) -> None:
@@ -287,18 +287,15 @@ def set_log(log_instance: Log) -> None:
         log_instance (Log): log instance.
 
     """
-    global _LOG_INSTANCE
-    _LOG_INSTANCE = log_instance
+    global _log_instance
+    _log_instance = log_instance
 
 
 def log() -> Log:
-    """Get global instance, instantiate it if None.
+    """Get global instance.
 
     Returns:
         Log: log instance.
 
     """
-    global _LOG_INSTANCE
-    if _LOG_INSTANCE is None:
-        _LOG_INSTANCE = Log()
-    return _LOG_INSTANCE
+    return _log_instance

@@ -6,6 +6,7 @@
 from datetime import datetime
 from os import environ
 from pathlib import Path
+from typing import Any
 
 # Third-party imports
 from dotenv import load_dotenv
@@ -14,12 +15,12 @@ from dotenv import load_dotenv
 class Config:
     """Class specifying attributes and methods related to the configuration."""
 
-    def __init__(self, run_date) -> None:
+    def __init__(self, run_date: datetime) -> None:
         """Initialize class."""
         self.app = AppConfig(run_date)
         self.log = LogConfig(run_date)
 
-    def get_config_class(self, class_name: str, default):
+    def get_config_class(self, class_name: str, default: Any) -> Any:
         """Get class.
 
         Args:
@@ -32,7 +33,7 @@ class Config:
         """
         return getattr(self, class_name, default)
 
-    def get_config_value(self, class_name: str, attribute: str, default):
+    def get_config_value(self, class_name: str, attribute: str, default: Any) -> Any:
         """Get attribute.
 
         Args:
@@ -107,7 +108,7 @@ class ProdConfig(Config):
 
 
 # Global
-_CONFIG_INSTANCE = None
+_config_instance = None
 
 
 def set_config(config: Config) -> None:
@@ -117,24 +118,24 @@ def set_config(config: Config) -> None:
         config (Config): configuration instance.
 
     """
-    global _CONFIG_INSTANCE
-    _CONFIG_INSTANCE = config
+    global _config_instance
+    _config_instance = config
 
 
 def get_config_instance() -> Config:
-    """Get global instance, instantiate it if None.
+    """Get global instance.
 
     Returns:
-        Config: configuration instance.
+        Config: config instance, whether ProdConfig or DevConfig.
 
     """
-    global _CONFIG_INSTANCE
-    if _CONFIG_INSTANCE is None:
-        _CONFIG_INSTANCE = ProdConfig()
-    return _CONFIG_INSTANCE
+    global _config_instance
+    if _config_instance is None:
+        _config_instance = ProdConfig()
+    return _config_instance
 
 
-def get_config_class(class_name: str, default=None):
+def get_config_class(class_name: str, default: Any = None) -> Any:
     """Get class.
 
     Args:
@@ -142,14 +143,14 @@ def get_config_class(class_name: str, default=None):
         default (Any, optional): value to return if class instance not found. Defaults to None.
 
     Returns:
-        Any: configuration instance.
+        Any: configuration class instance.
 
     """
     config = get_config_instance()
     return config.get_config_class(class_name, default)
 
 
-def get_config_value(class_name: str, attribute: str, default=None):
+def get_config_value(class_name: str, attribute: str, default: Any = None) -> Any:
     """Get attribute.
 
     Args:
@@ -158,7 +159,7 @@ def get_config_value(class_name: str, attribute: str, default=None):
         default (Any, optional): value to return if attribute not found. Defaults to None.
 
     Returns:
-        Any: configuration attribute.
+        Any: configuration class attribute.
 
     """
     config = get_config_instance()

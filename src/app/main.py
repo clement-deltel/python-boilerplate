@@ -3,20 +3,22 @@
 """Main module of the RAN Replicator Service."""
 
 # Standard imports
-import signal
 import sys
-import time
+from functools import wraps
 from os import environ
 from platform import system
 from re import sub
+from signal import SIGINT, SIGQUIT, signal
+from time import gmtime, perf_counter, strftime
+from typing import Callable
 
 # Third-party imports
 from dotenv import load_dotenv
 
 # Local application imports
 from src.app.common.config import Config, DevConfig, ProdConfig, set_config
-from src.app.common.decorator import profiler
 from src.app.common.log import log
+from src.app.common.profiler import Profiler
 
 
 class Main:
@@ -36,17 +38,17 @@ class Main:
 
     def run(self) -> None:
         """Perform all the steps to run this application."""
-        start = time.perf_counter()
+        start = perf_counter()
         try:
-            signal.signal(signal.SIGINT, self.signal_int_handler)
+            signal(SIGINT, self.signal_int_handler)
             if system() == "Linux":
-                signal.signal(signal.SIGQUIT, self.signal_quit_handler)
+                signal(SIGQUIT, self.signal_quit_handler)
 
             # Load environment-based configuration
             app_env = environ.get("APP_ENV", default="production")
             config_options = {"development": DevConfig, "production": ProdConfig}
-            cfg: Config = config_options[app_env]()
-            set_config(cfg)
+            config: Config = config_options[app_env]()
+            set_config(config)
 
         except KeyboardInterrupt:
             pass
@@ -56,10 +58,27 @@ class Main:
 
         finally:
             # Print execution time
-            end = time.perf_counter()
-            exec_time = time.strftime("%H:%M:%S", time.gmtime(end - start))
+            end = perf_counter()
+            exec_time = strftime("%H:%M:%S", gmtime(end - start))
             log().logger.info("Execution time: %s", exec_time)
             log().close()
+
+
+def profiler(func: Callable):
+    """Enable profiling on the target function."""
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        profiling = environ.get("PROFILING", "false").lower() in ("true", "t", "1")
+        if profiling:
+            profiler = Profiler()
+            profiler.start()
+            result = func(*args, **kwargs)
+            profiler.end()
+            return result
+        return func(*args, **kwargs)
+
+    return wrapper
 
 
 @profiler

@@ -127,6 +127,7 @@ ignore = [
     "E114",    # indentation-with-invalid-multiple-comment
     "E117",    # over-indented
     "E501",    # line-too-long
+    "PLR0913", # too-many-arguments
     "PLW0603", # global-statement
     "Q000",    # bad-quotes-inline-string
     "Q001",    # bad-quotes-multiline-string

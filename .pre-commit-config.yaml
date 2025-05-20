@@ -17,7 +17,7 @@ repos:
 
   # commitizen - Version Control
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.7.0
+    rev: v4.7.2
     hooks:
       - id: commitizen
       - id: commitizen-branch
@@ -36,7 +36,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.9
+    rev: v0.11.10
     hooks:
       - id: ruff
         types_or: [python, pyi]
@@ -58,7 +58,7 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.3
+    rev: 0.7.6
     hooks:
       - id: uv-lock
       - id: uv-export

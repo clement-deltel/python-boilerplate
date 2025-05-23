@@ -1,3 +1,8 @@
+pre-requisites:
+  curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+  curl -fLSs https://astral.sh/uv/install.sh | sh
+  brew install ls-lint
+
 init:
   uv sync --no-default-groups --no-install-project
   source .venv/bin/activate

@@ -1,0 +1,38 @@
+ls:
+  # Directories
+  .dir: regex:(\.{0,1})([a-z]+)
+  # Files
+  .code-workspace: exists:1 | kebab-case
+  .dockerignore: exists:1 | lowercase
+  .gitattributes: lowercase
+  .gitignore: exists:1 | lowercase
+  .md: regex:[a-zA-Z0-9_]+
+  .py: snake_case
+  .sh: kebab-case
+  .template: lowercase
+  .toml: lowercase
+  .yaml: kebab-case
+  .yml: kebab-case
+
+  doc:
+    .dir: lowercase
+
+  docker:
+    .dir: exists:1 | lowercase
+
+  requirements:
+    .dir: lowercase
+
+  src:
+    .dir: exists:1 | lowercase
+
+  test:
+    .dir: exists:1 | lowercase
+
+ignore:
+  - '**/__pycache__'
+  - .git
+  - .mypy_cache
+  - .pytest_cache
+  - .ruff_cache
+  - .venv

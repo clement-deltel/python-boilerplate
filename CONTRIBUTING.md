@@ -8,7 +8,7 @@ The following is a set of guidelines for contributing. These are mostly guidelin
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Development Deployment](#development-deployment)
+- [Development Environment](#development-environment)
 - [Debug](#debug)
 - [Merge Request](#merge-request)
 - [Tools](#tools)
@@ -24,7 +24,16 @@ The following is a set of guidelines for contributing. These are mostly guidelin
   - [readme-generator-for-helm](#readme-generator-for-helm)
   - [cProfile](#cprofile)
 
-## Development Deployment
+## Development Environment
+
+The pre-requisites are:
+
+- [ls-lint](https://github.com/loeffel-io/ls-lint)
+- [uv](https://docs.astral.sh/uv/)
+
+```bash
+make pre-requisites
+```
 
 Here are the steps to set up a development environment to run this application.
 
@@ -71,10 +80,10 @@ make debug
 Every time you push some code and consequently open a merge request, do not forget to:
 
 - Build an image of the app and scan it using [trivy](#trivy)
-- Update the code statistics table in the [README.md](README.md) file using [tokei](#tokei)
-- Update the dependency tree in the [README.md](README.md) file using [uv](#uv)
+- Update the code statistics table in the [README.md](README.md#code-statistics) file using [tokei](#tokei)
+- Update the dependency tree in the [README.md](README.md#dependencies) file using [uv](#uv)
 - If needed
-  - Update the environment variables table in the [README.md](README.md) file using [csv2md](#csv2md)
+  - Update the environment variables table in the [README.md](README.md#configuration) file using [csv2md](#csv2md)
 
 ## Tools
 

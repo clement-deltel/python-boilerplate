@@ -96,13 +96,17 @@ Not using anymore:
 
 Here are the useful git hooks used across all of my Python projects:
 
-- [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
-- [gitleaks](https://github.com/gitleaks/gitleaks)
-- [ruff](https://github.com/astral-sh/ruff-pre-commit)
-- [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
-- [typos](https://github.com/crate-ci/typos)
-- [uv](https://github.com/astral-sh/uv-pre-commit)
-- [yamllint](https://github.com/adrienverge/yamllint)
+- Featured
+  - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
+  - [gitleaks](https://github.com/gitleaks/gitleaks)
+  - [ruff](https://github.com/astral-sh/ruff-pre-commit)
+  - [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
+  - [typos](https://github.com/crate-ci/typos)
+  - [uv](https://github.com/astral-sh/uv-pre-commit)
+  - [yamllint](https://github.com/adrienverge/yamllint)
+- Custom
+  - [ls-lint](https://github.com/loeffel-io/ls-lint)
+  - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
 
 ## Coding practices
 

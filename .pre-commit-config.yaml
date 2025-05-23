@@ -78,4 +78,15 @@ repos:
         name: Check the user email against company approved domains
         entry: .githooks/pre-validate-user-email.sh
         language: script
+        always_run: true
+        pass_filenames: false
+
+  # Local: ls-lint
+  - repo: local
+    hooks:
+      - id: ls-lint
+        name: Bring some structure to the project filesystem
+        entry: .githooks/ls-lint.sh
+        language: script
+        always_run: true
         pass_filenames: false

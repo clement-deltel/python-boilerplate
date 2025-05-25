@@ -17,6 +17,10 @@ init-test:
 	uv sync --group test --no-default-groups --no-install-project
 	source .venv/bin/activate
 
+auto-activate:
+	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app
+	pyenv local 3.11.8_app
+
 # Code
 run:
 	python -m src.app.main

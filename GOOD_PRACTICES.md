@@ -42,7 +42,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - all `src.app.*` imports in the Python files
   - **LICENSE**: delete this file
   - **Makefile**
-    - 9 `app` occurrences
+    - 11 `app` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your project
     - update the *(build|create|pull|run)-container* tasks based on your project's requirements
   - **pyproject.toml**

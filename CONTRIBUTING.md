@@ -54,6 +54,8 @@ make init-dev
 make run
 ```
 
+> **Note**: for virtual environment auto activation when opening the project using pyenv, run `make auto-activate`.
+
 ## Debug
 
 Here useful tips to debug the project's code.

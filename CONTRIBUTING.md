@@ -32,6 +32,7 @@ The pre-requisites are:
 - [uv](https://docs.astral.sh/uv/)
 
 ```bash
+# Install homebrew, ls-lint, and uv
 make pre-requisites
 ```
 
@@ -41,18 +42,13 @@ Here are the steps to set up a development environment to run this application.
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
+# uv, and then pre-commit installation
 make init-dev
 ```
 
-3. Install the pre-commit hooks:
-
-```bash
-pre-commit install --install-hooks
-```
-
-4. Fill in the `.env.template` file with your configuration.
-5. Rename the file to `.env`.
-6. Run the application:
+3. Fill in the `.env.template` file with your configuration.
+4. Rename the file to `.env`.
+5. Run the application:
 
 ```bash
 make run
@@ -79,11 +75,16 @@ make debug
 
 Every time you push some code and consequently open a merge request, do not forget to:
 
-- Build an image of the app and scan it using [trivy](#trivy)
 - Update the code statistics table in the [README.md](README.md#code-statistics) file using [tokei](#tokei)
 - Update the dependency tree in the [README.md](README.md#dependencies) file using [uv](#uv)
+- Build an image of the app and scan it using [trivy](#trivy)
 - If needed
   - Update the environment variables table in the [README.md](README.md#configuration) file using [csv2md](#csv2md)
+
+```bash
+# Run tokei, uv, and trivy commands
+make merge-request
+```
 
 ## Tools
 
@@ -209,19 +210,25 @@ gitleaks git --redact --verbose
 
 Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com). The source code of this tool is available [here](https://github.com/pre-commit/pre-commit). Do you want to:
 
-Auto-update pre-commit config to the latest repos' versions?
+Install hooks?
+
+```bash
+pre-commit install --install-hooks
+```
+
+Auto-update hooks config to the latest repos' versions?
 
 ```bash
 pre-commit autoupdate
 ```
 
-Run all the hooks on all the files in the repository?
+Run all hooks on all the files in the repository?
 
 ```bash
 pre-commit run --all-files
 ```
 
-Run all the hooks on a specific file in the repository?
+Run all hooks on a specific file in the repository?
 
 ```bash
 pre-commit run --files <path/to/file>

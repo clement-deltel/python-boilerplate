@@ -39,15 +39,14 @@ Here are the steps you need to follow when starting a new coding project from th
       - 1 `app` occurrence
   - *src directory*
     - rename the `app` directory
-    - all `src.app.*` imports in the Python files
+    - all `app.*` imports in the Python files
   - **LICENSE**: delete this file
   - **Makefile**
     - 12 `app` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your project
     - update the *(build|create|pull|run)-container* tasks based on your project's requirements
   - **pyproject.toml**
-    - tool.hatch.build.targets.wheel.packages
-    - project.name
+    - 5 `app` occurrences (out of 6)
     - project.description
     - project.authors
     - project.maintainers

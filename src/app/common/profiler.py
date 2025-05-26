@@ -4,11 +4,14 @@
 
 # Standard imports
 from cProfile import Profile
+from functools import wraps
+from os import environ
 from pathlib import Path
 from pstats import Stats
+from typing import Callable
 
 # Local application imports
-from src.app.common.config import get_config_value
+from app.common.config import get_config_value
 
 
 class Profiler:
@@ -37,3 +40,20 @@ class Profiler:
         run_date = get_config_value("app", "run_date")
         export_file_path = Path.joinpath(output_path, f"{run_date.strftime('%Y%m%d')}_{name}.prof")
         stats.dump_stats(export_file_path)
+
+
+def profiler(func: Callable):
+    """Enable profiling on the target function."""
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        profiling = environ.get("PROFILING", "false").lower() in ("true", "t", "1")
+        if profiling:
+            profiler = Profiler()
+            profiler.start()
+            result = func(*args, **kwargs)
+            profiler.end()
+            return result
+        return func(*args, **kwargs)
+
+    return wrapper

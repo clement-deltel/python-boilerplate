@@ -16,7 +16,7 @@ from sys import stderr, stdout
 from typing import Any
 
 # Local application imports
-from src.app.common.config import get_config_class, get_config_value
+from app.common.config import get_config_class, get_config_value
 
 
 class Log:

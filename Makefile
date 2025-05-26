@@ -5,17 +5,21 @@ pre-requisites:
 	brew install ls-lint
 
 init:
-	uv sync --no-default-groups --no-install-project
+	uv sync --no-default-groups
 	source .venv/bin/activate
 
 init-dev:
-	uv sync --no-install-project
+	uv sync
 	source .venv/bin/activate
 	pre-commit install --install-hooks
 
 init-test:
-	uv sync --group test --no-default-groups --no-install-project
+	uv sync --group test --no-default-groups
 	source .venv/bin/activate
+
+init-from-scratch:
+	uv init --build-backend hatchling --managed-python --name app --python 3.11.8 --vcs git
+	uv sync
 
 auto-activate:
 	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app

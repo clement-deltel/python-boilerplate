@@ -97,7 +97,7 @@ Here are useful commands to manage the Python virtual environment and the depend
 Ensures that all project dependencies (listed in `pyproject.toml`) are installed and up-to-date with the lockfile `uv.lock`?
 
 ```bash
-uv sync --no-install-project
+uv sync
 ```
 
 Visualize the dependency tree?

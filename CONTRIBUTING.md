@@ -100,6 +100,12 @@ Ensures that all project dependencies (listed in `pyproject.toml`) are installed
 uv sync
 ```
 
+Upgrade all project dependencies?
+
+```bash
+uv sync --upgrade
+```
+
 Visualize the dependency tree?
 
 ```bash
@@ -164,6 +170,13 @@ uv export --format requirements-txt --group dev --group lint --no-default-groups
 
 ```bash
 uv export --format requirements-txt --group test --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt
+```
+
+- Update the tool itself?
+
+```bash
+uv self update
+pre-commit autoupdate --repo https://github.com/astral-sh/uv-pre-commit
 ```
 
 ### ruff

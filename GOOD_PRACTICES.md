@@ -165,6 +165,11 @@ And specifically to make Python faster:
 - [cython](https://github.com/cython/cython): most widely used Python to C compiler.
 - [pypy](https://github.com/pypy/pypy): very fast and compliant implementation of the language.
 
+And specifically to run tasks in parallel:
+
+- [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html): launching parallel tasks.
+- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html): process-based parallelism.
+
 And specifically to document the code:
 
 - [sphinx](https://www.sphinx-doc.org/en/master): documentation generator.

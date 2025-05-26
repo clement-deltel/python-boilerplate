@@ -10,8 +10,8 @@ init:
 
 init-dev:
 	uv sync
+	uv run pre-commit install --install-hooks
 	source .venv/bin/activate
-	pre-commit install --install-hooks
 
 init-test:
 	uv sync --group test --no-default-groups
@@ -20,6 +20,7 @@ init-test:
 init-from-scratch:
 	uv init --build-backend hatchling --managed-python --name app --python 3.11.8 --vcs git
 	uv sync
+	source .venv/bin/activate
 
 auto-activate:
 	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app

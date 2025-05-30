@@ -92,7 +92,7 @@ make merge-request
 
 ### uv
 
-Here are useful commands to manage the Python virtual environment and the dependencies using [uv](https://docs.astral.sh/uv). The source code of this tool is available [here](https://github.com/astral-sh/uv). Do you want to:
+Here are useful commands to manage the Python virtual environment and the dependencies using [uv](https://docs.astral.sh/uv) ([source code](https://github.com/astral-sh/uv)). Do you want to:
 
 Ensures that all project dependencies (listed in `pyproject.toml`) are installed and up-to-date with the lockfile `uv.lock`?
 
@@ -181,7 +181,7 @@ pre-commit autoupdate --repo https://github.com/astral-sh/uv-pre-commit
 
 ### ruff
 
-Here are useful commands to lint and format code using [ruff](https://docs.astral.sh/ruff). The source code of this tool is available [here](https://github.com/astral-sh/ruff). Do you want to:
+Here are useful commands to lint and format code using [ruff](https://docs.astral.sh/ruff) ([source code](https://github.com/astral-sh/ruff)). Do you want to:
 
 Lint all files in the current directory, and fix any fixable errors?
 
@@ -203,7 +203,7 @@ ruff format path/to/file.py
 
 ### ty
 
-Here are useful commands to check variable type using [ty](https://github.com/astral-sh/ty). The source code of this tool is available [here](https://github.com/astral-sh/ty). Do you want to:
+Here are useful commands to check variable type using [ty](https://github.com/astral-sh/ty) ([source code](https://github.com/astral-sh/ty)). Do you want to:
 
 Check all files in the current directory?
 
@@ -213,7 +213,7 @@ ty check
 
 ### gitleaks
 
-Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io). The source code of this tool is available [here](https://github.com/gitleaks/gitleaks). Do you want to:
+Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io) ([source code](https://github.com/gitleaks/gitleaks)). Do you want to:
 
 Scan all the commits
 
@@ -223,7 +223,7 @@ gitleaks git --redact --verbose
 
 ### pre-commit
 
-Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com). The source code of this tool is available [here](https://github.com/pre-commit/pre-commit). Do you want to:
+Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com) ([source code](https://github.com/pre-commit/pre-commit)). Do you want to:
 
 Install hooks?
 
@@ -279,7 +279,7 @@ rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
 
 ### trivy
 
-Here are useful commands to scan an image using [trivy](https://trivy.dev/latest). The source code of this tool is available [here](https://github.com/aquasecurity/trivy). Do you want to:
+Here are useful commands to scan an image using [trivy](https://trivy.dev/latest) ([source code](https://github.com/aquasecurity/trivy)). Do you want to:
 
 Find vulnerabilities, misconfigurations, secrets in an image?
 

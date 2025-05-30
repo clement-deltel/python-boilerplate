@@ -1,4 +1,6 @@
 # .yamllint
+# https://github.com/adrienverge/yamllint
+
 extends: default
 
 yaml-files:

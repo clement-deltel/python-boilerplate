@@ -150,10 +150,6 @@ split-on-trailing-comma = false
 #-----------------------------------------------------------------------------#
 # https://github.com/astral-sh/ty/blob/main/docs/configuration.md
 
-[tool.ty]
-# Exclude files that are ignored by .ignore, .gitignore, .git/info/exclude, and global gitignore files
-respect-ignore-files = true
-
 [tool.ty.environment]
 # Path to the Python installation from which ty resolves type information and third-party dependencies
 python = "./.venv"
@@ -162,6 +158,10 @@ python-platform = "linux"
 # python-platform = "win32"
 # Version of Python that will be used to analyze the source code
 python-version = "3.11"
+
+[tool.ty.src]
+# Exclude files that are ignored by .ignore, .gitignore, .git/info/exclude, and global gitignore files
+respect-ignore-files = true
 
 [tool.ty.terminal]
 # Format to use for printing diagnostic messages

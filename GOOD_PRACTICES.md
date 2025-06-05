@@ -66,20 +66,20 @@ Here are the useful libraries and modules used across all of my Python projects:
 - Built-in
   - [cProfile](https://docs.python.org/3/library/profile.html)
 - Third-party
-  - [commitizen](https://github.com/commitizen-tools/commitizen) [Python]: committing rules for projects, auto bump versions, and changelog generation.
-  - [csv2md](https://github.com/lzakharov/csv2md) [Python]: command line tool for converting CSV files into Markdown tables.
-  - [mypy](https://github.com/python/mypy) [Python]: static typing.
-  - [pre-commit](https://github.com/pre-commit/pre-commit) [Python]: framework for managing and maintaining multi-language pre-commit hooks.
-  - [ruff](https://github.com/astral-sh/ruff) [Rust]: extremely fast  linter and code formatter.
-  - [snakeviz](https://github.com/jiffyclub/snakeviz) [Python]: in-browser  profile viewer.
-  - [ty](https://github.com/astral-sh/ty) [Rust]: type checker and language server.
-  - [uv](https://github.com/astral-sh/uv) [Rust]: extremely fast package and project manager.
-  - [yapf](https://github.com/google/yapf) [Python]: formatter for files.
+  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
+  - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
+  - [mypy](https://github.com/python/mypy) - static typing. `Python`
+  - [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. `Python`
+  - [ruff](https://github.com/astral-sh/ruff) - extremely fast  linter and code formatter. `Rust`
+  - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser  profile viewer. `Python`
+  - [ty](https://github.com/astral-sh/ty) - type checker and language server. `Rust`
+  - [uv](https://github.com/astral-sh/uv) - extremely fast package and project manager. `Rust`
+  - [yapf](https://github.com/google/yapf) - formatter for files. `Python`
 
 Not using anymore:
 
-- [poetry](https://github.com/python-poetry/poetry) [Python]: packaging and dependency management made easy. **Reason**: now using uv.
-- [pyenv](https://github.com/pyenv/pyenv): version management. **Reason**: now using uv.
+- [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: now using uv. `Python`
+- [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: now using uv.
 
 ## Visual Studio Code extensions
 
@@ -152,33 +152,42 @@ Here are the useful tips to make Python code cleaner:
 
 Here is a list of tools that could be interesting and further enhance the stack:
 
-- [basedmypy](https://github.com/KotlinIsland/basedmypy) [Python]: based Python static type checker with baseline, sane default settings and based typing features.
-- [basedpyright](https://github.com/DetachHead/basedpyright) [TypeScript]: pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server.
-- [pillow](https://github.com/python-pillow/Pillow) [Python]: Python imaging library.
-- [pydantic](https://github.com/pydantic/pydantic) [Python]: data validation using type hints.
-- [pylyzer](https://github.com/mtshiba/pylyzer) [Rust]: fast, feature-rich static code analyzer & language server.
-- [pyrefly](https://github.com/facebook/pyrefly) [Rust]: fast type checker and IDE.
-- [pyright](https://github.com/microsoft/pyright) [Python]: static type checker.
+- [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
+- [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
+- [chroma](https://github.com/chroma-core/chroma) - AI-native open-source embedding database. `Rust` `Python`
+- [cyclopts](https://github.com/BrianPugh/cyclopts) - intuitive CLI based on python type hints. `Python`
+- [llmlingua](https://github.com/microsoft/LLMLingua) - speed up LLMs' inference and enhance LLM's perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss. `Python`
+- [moto](https://github.com/getmoto/moto) - easily mock out tests based on AWS infrastructure. `Python`
+- [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
+- [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
+- [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
+- [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
+- [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
+- [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
+- [streamlit](https://github.com/streamlit/streamlit) - build and share data apps. `Python` `TypeScript`
+- [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
+- [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
+- [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
 
 And specifically to make Python faster:
 
-- [cython](https://github.com/cython/cython): most widely used Python to C compiler.
-- [pypy](https://github.com/pypy/pypy): very fast and compliant implementation of the language.
+- [cython](https://github.com/cython/cython) - most widely used Python to C compiler.
+- [pypy](https://github.com/pypy/pypy) - very fast and compliant implementation of the language.
 
 And specifically to run tasks in parallel:
 
-- [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html): launching parallel tasks.
-- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html): process-based parallelism.
+- [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) - launching parallel tasks.
+- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) - process-based parallelism.
 
 And specifically to document the code:
 
-- [sphinx](https://www.sphinx-doc.org/en/master): documentation generator.
-- [pydoc](https://docs.python.org/3/library/pydoc.html): documentation generator and online help system.
+- [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
+- [pydoc](https://docs.python.org/3/library/pydoc.html) - documentation generator and online help system.
 
 Drop-in replacement for pandas:
 
-- [fireducks](https://github.com/fireducks-dev/fireducks) [C/C++]: compiler accelerated dataframe library with fully-compatible pandas API.
-- [polars](https://github.com/pola-rs/polars) [Rust]: dataframes powered by a multithreaded, vectorized query engine.
+- [fireducks](https://github.com/fireducks-dev/fireducks) - compiler accelerated dataframe library with fully-compatible pandas API. `C/C++`
+- [polars](https://github.com/pola-rs/polars) - dataframes powered by a multithreaded, vectorized query engine. `Rust`
 
 ## Resources
 

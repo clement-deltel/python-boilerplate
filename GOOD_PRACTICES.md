@@ -152,14 +152,16 @@ Here are the useful tips to make Python code cleaner:
 
 Here is a list of tools that could be interesting and further enhance the stack:
 
+- [altair](https://github.com/vega/altair) - declarative visualization library. `Python`
 - [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
 - [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
 - [chroma](https://github.com/chroma-core/chroma) - AI-native open-source embedding database. `Rust` `Python`
 - [cyclopts](https://github.com/BrianPugh/cyclopts) - intuitive CLI based on python type hints. `Python`
+- [duckdb](https://github.com/duckdb/duckdb) - analytical in-process SQL database management system. `C++`
+- [ibis](https://github.com/ibis-project/ibis) -  portable dataframe library. `Python`
 - [llmlingua](https://github.com/microsoft/LLMLingua) - speed up LLMs' inference and enhance LLM's perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss. `Python`
 - [moto](https://github.com/getmoto/moto) - easily mock out tests based on AWS infrastructure. `Python`
 - [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
-- [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
 - [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
 - [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
 - [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
@@ -179,15 +181,23 @@ And specifically to run tasks in parallel:
 - [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) - launching parallel tasks.
 - [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) - process-based parallelism.
 
+And specifically for data validation:
+
+- [attrs](https://github.com/python-attrs/attrs) - python classes without boilerplate. `Python`
+- [cattrs](https://github.com/python-attrs/cattrs) - composable custom class converters for attrs, dataclasses and friends. `Python`
+- [msgspec](https://github.com/jcrist/msgspec) - fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML. `Python` `C`
+- [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
+
 And specifically to document the code:
 
+- [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
 - [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
 - [pydoc](https://docs.python.org/3/library/pydoc.html) - documentation generator and online help system.
 
 Drop-in replacement for pandas:
 
 - [fireducks](https://github.com/fireducks-dev/fireducks) - compiler accelerated dataframe library with fully-compatible pandas API. `C/C++`
-- [polars](https://github.com/pola-rs/polars) - dataframes powered by a multithreaded, vectorized query engine. `Rust`
+- [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
 
 ## Resources
 

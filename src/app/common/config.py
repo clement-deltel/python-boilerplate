@@ -29,7 +29,6 @@ class Config:
 
         Returns:
             Any: configuration instance.
-
         """
         return getattr(self, class_name, default)
 
@@ -43,7 +42,6 @@ class Config:
 
         Returns:
             Any: configuration attribute.
-
         """
         config_class = getattr(self, class_name, None)
         if config_class is None:
@@ -116,7 +114,6 @@ def set_config(config: Config) -> None:
 
     Args:
         config (Config): configuration instance.
-
     """
     global _config_instance
     _config_instance = config
@@ -127,7 +124,6 @@ def get_config_instance() -> Config:
 
     Returns:
         Config: config instance, whether ProdConfig or DevConfig.
-
     """
     global _config_instance
     if _config_instance is None:
@@ -144,7 +140,6 @@ def get_config_class(class_name: str, default: Any = None) -> Any:
 
     Returns:
         Any: configuration class instance.
-
     """
     config = get_config_instance()
     return config.get_config_class(class_name, default)
@@ -160,7 +155,6 @@ def get_config_value(class_name: str, attribute: str, default: Any = None) -> An
 
     Returns:
         Any: configuration class attribute.
-
     """
     config = get_config_instance()
     return config.get_config_value(class_name, attribute, default)

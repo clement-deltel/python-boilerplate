@@ -58,7 +58,6 @@ class Log:
 
         Args:
             level (str): log level.
-
         """
         self._logger.setLevel(self.levels[level])
 
@@ -67,7 +66,6 @@ class Log:
 
         Args:
             level (str): log level.
-
         """
         # Default
         self.file_formatter = CustomFormatter(level, datefmt="%d-%b-%Y %H:%M:%S")
@@ -152,7 +150,6 @@ class CustomFormatter(logging.Formatter):
 
         Returns:
             str: record formatted as text.
-
         """
         # info = record.__dict__.copy()
         message = self.fmt.split("%")
@@ -196,7 +193,6 @@ class JSONFormatter(logging.Formatter):
 
         Returns:
             str: record formatted as JSON.
-
         """
         info = record.__dict__.copy()
         message = {}
@@ -246,7 +242,6 @@ class ErrFilter(logging.Filter):
 
         Returns:
             bool: if the record level is in or not.
-
         """
         return record.levelno in (logging.DEBUG, logging.INFO, logging.WARNING)
 
@@ -285,7 +280,6 @@ def set_log(log_instance: Log) -> None:
 
     Args:
         log_instance (Log): log instance.
-
     """
     global _log_instance
     _log_instance = log_instance
@@ -296,6 +290,5 @@ def log() -> Log:
 
     Returns:
         Log: log instance.
-
     """
     return _log_instance

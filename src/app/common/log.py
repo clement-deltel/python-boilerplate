@@ -8,14 +8,14 @@ Typical usage example:
   Log().close_stream()
 """
 
-# Standard
+# Standard Library
 import logging
 from enum import Enum
 from json import dumps
 from sys import stderr, stdout
 from typing import Any
 
-# Local application
+# Local Application
 from app.common.config import get_config_class, get_config_value
 
 

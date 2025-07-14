@@ -35,7 +35,7 @@ dependencies = ["hatchling", "pandas", "python-dotenv", "requests"]
 
 [dependency-groups]
 dev = ["commitizen", "csv2md", "pre-commit", "snakeviz"]
-lint = ["mypy", "ruff", "ty", "types-requests", "yamllint"]
+lint = ["isort", "mypy", "ruff", "ty", "types-requests", "yamllint"]
 test = ["coverage", "pytest"]
 
 #-----------------------------------------------------------------------------#
@@ -74,6 +74,18 @@ format = "markdown"
 source = "src"
 branch = true
 omit = ["*/__pycache__/*"]
+
+#-----------------------------------------------------------------------------#
+#               ------- tool - isort ------
+#-----------------------------------------------------------------------------#
+# https://pycqa.github.io/isort/docs/configuration/options.html
+
+[tool.isort]
+import_heading_future = "Future"
+import_heading_stdlib = "Standard Library"
+import_heading_thirdparty = "Third-party"
+import_heading_firstparty = "Local Application"
+import_heading_localfolder = "Local Folder"
 
 #-----------------------------------------------------------------------------#
 #               ------- tool - ruff ------

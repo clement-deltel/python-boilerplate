@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Module used to interact with the configuration."""
 
-# Standard
+# Standard Library
 from datetime import datetime
 from os import environ
 from pathlib import Path

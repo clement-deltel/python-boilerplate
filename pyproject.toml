@@ -121,6 +121,7 @@ select = [
     "D",   # pydocstyle
     "F",   # Pyflakes
     "PL",  # Pylint
+    "RUF", # Ruff-specific rules
 ]
 
 # Lint rules in conflict with the formatter: D206, D300, E111, E114, E117, Q000, Q001, Q002, Q003

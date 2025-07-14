@@ -28,7 +28,7 @@ repos:
 
   # gitleaks - Secret Leak Detection
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.26.0
+    rev: v8.27.2
     hooks:
       - id: gitleaks
         name: Detect hardcoded secrets
@@ -39,7 +39,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.10
+    rev: v0.12.3
     hooks:
       - id: ruff
         types_or: [python, pyi]
@@ -55,13 +55,13 @@ repos:
 
   # typos - Typos
   - repo: https://github.com/crate-ci/typos
-    rev: v1.32.0
+    rev: v1.34.0
     hooks:
       - id: typos
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.8
+    rev: 0.7.21
     hooks:
       - id: uv-lock
       - id: uv-export

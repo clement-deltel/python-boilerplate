@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Module used to run the profiler."""
 
-# Standard imports
+# Standard
 from cProfile import Profile
 from functools import wraps
 from os import environ
@@ -10,7 +10,7 @@ from pathlib import Path
 from pstats import Stats
 from typing import Callable
 
-# Local application imports
+# Local application
 from app.common.config import get_config_value
 
 

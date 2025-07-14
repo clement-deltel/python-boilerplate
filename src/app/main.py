@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Main module of the application."""
 
-# Standard imports
+# Standard
 import sys
 from os import environ
 from platform import system
@@ -10,10 +10,10 @@ from re import sub
 from signal import SIGINT, SIGQUIT, signal
 from time import gmtime, perf_counter, strftime
 
-# Third-party imports
+# Third-party
 from dotenv import load_dotenv
 
-# Local application imports
+# Local application
 from app.common.config import Config, DevConfig, ProdConfig, set_config
 from app.common.log import log
 from app.common.profiler import profiler

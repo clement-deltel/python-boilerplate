@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 """Module used to interact with the configuration."""
 
-# Standard imports
+# Standard
 from datetime import datetime
 from os import environ
 from pathlib import Path
 from typing import Any
 
-# Third-party imports
+# Third-party
 from dotenv import load_dotenv
 
 

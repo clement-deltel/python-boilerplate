@@ -37,6 +37,13 @@ repos:
         language: golang
         pass_filenames: false
 
+  # isort - Imports Sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+        name: isort (python)
+
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.3

@@ -7,16 +7,16 @@ pre-requisites:
 	brew install ls-lint
 
 init:
-	uv sync --no-default-groups
+	uv sync --frozen --no-default-groups
 	source .venv/bin/activate
 
 init-dev:
-	uv sync
+	uv sync --frozen
 	uv run pre-commit install --install-hooks
 	source .venv/bin/activate
 
 init-test:
-	uv sync --group test --no-default-groups
+	uv sync --frozen --group test --no-default-groups
 	source .venv/bin/activate
 
 init-from-scratch:
@@ -25,7 +25,9 @@ init-from-scratch:
 	source .venv/bin/activate
 
 auto-activate:
+    pyenv install 3.11.8
 	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app
+	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
 	pyenv local 3.11.8_app
 
 # --------------------------------------------------------------------------- #

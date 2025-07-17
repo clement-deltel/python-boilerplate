@@ -1,4 +1,6 @@
-# Initialization
+# --------------------------------------------------------------------------- #
+#               ------- Initialization ------
+# --------------------------------------------------------------------------- #
 pre-requisites:
 	curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 	curl -fLSs https://astral.sh/uv/install.sh | sh
@@ -26,7 +28,9 @@ auto-activate:
 	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app
 	pyenv local 3.11.8_app
 
-# Code
+# --------------------------------------------------------------------------- #
+#               ------- Code ------
+# --------------------------------------------------------------------------- #
 run:
 	python -m src.app.main
 
@@ -41,7 +45,9 @@ coverage:
 	coverage run --rcfile=pyproject.toml -m pytest --color=yes --verbose --config-file=test/pytest.ini
 	coverage report --show-missing
 
-# Container
+# --------------------------------------------------------------------------- #
+#               ------- Container ------
+# --------------------------------------------------------------------------- #
 build-container:
 	docker build --file docker/Dockerfile --tag app .
 
@@ -54,7 +60,9 @@ pull-container:
 run-container:
 	docker run --env-file .env --name app --rm app:latest
 
-# Other
+# --------------------------------------------------------------------------- #
+#               ------- Other ------
+# --------------------------------------------------------------------------- #
 merge-request:
 	tokei
 	uv tree --no-default-groups

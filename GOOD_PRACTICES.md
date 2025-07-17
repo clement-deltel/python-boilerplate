@@ -30,7 +30,7 @@ Here are the steps you need to follow when starting a new coding project from th
       - container_name
       - hostname
       - image
-    - **Dockerfile**
+    - **Dockerfile** or **wheel.Dockerfile** based on your needs
       - image.title
       - image.description
       - image.authors
@@ -40,6 +40,9 @@ Here are the steps you need to follow when starting a new coding project from th
   - *src directory*
     - rename the `app` directory
     - all `app.*` imports in the Python files
+  - **app.code-workspace**
+    - rename the file and replace `app`
+    - add launch configurations if needed
   - **LICENSE**: delete this file
   - **Makefile**
     - 12 `app` occurrences
@@ -68,6 +71,7 @@ Here are the useful libraries and modules used across all of my Python projects:
 - Third-party
   - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
   - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
+  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
   - [mypy](https://github.com/python/mypy) - static typing. `Python`
   - [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. `Python`
   - [ruff](https://github.com/astral-sh/ruff) - extremely fast  linter and code formatter. `Rust`
@@ -83,8 +87,10 @@ Not using anymore:
 
 ## Visual Studio Code extensions
 
+- [autodocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
 - [mypy](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
+- [python indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
 - [ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
 - [ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty)
 
@@ -99,6 +105,7 @@ Here are the useful git hooks used across all of my Python projects:
 - Featured
   - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
   - [gitleaks](https://github.com/gitleaks/gitleaks)
+  - [isort](https://github.com/PyCQA/isort)
   - [ruff](https://github.com/astral-sh/ruff-pre-commit)
   - [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
   - [typos](https://github.com/crate-ci/typos)
@@ -146,6 +153,7 @@ Here are the useful tips to make Python code cleaner:
   - [pydocstyle - D](https://docs.astral.sh/ruff/rules/#pydocstyle-d)
   - [Pyflakes - F](https://docs.astral.sh/ruff/rules/#pyflakes-f)
   - [Pylint - PL](https://docs.astral.sh/ruff/rules/#pylint-pl)
+  - [Ruff-specific - RUF](https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf)
 - use a formatter
 
 ## Future enhancements

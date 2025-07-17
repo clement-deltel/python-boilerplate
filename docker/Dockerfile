@@ -1,32 +1,42 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
+# Instructions creating a new layer: ADD, COPY, RUN
 
-# Following instructions create a layer: ADD, COPY, RUN
 ARG PYTHON_VERSION=3.11.8
 
-# First, build the application in the `/app` directory
+# --------------------------------------------------------------------------- #
+#               ------- Build Application ------
+# --------------------------------------------------------------------------- #
 FROM ghcr.io/astral-sh/uv:bookworm-slim AS builder
+WORKDIR /app
 
-# Set variables to configure uv
+# Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1
+# Cache mount used to improve performance across builds
 ENV UV_LINK_MODE=copy
 # Configure the Python directory so it is consistent
 ENV UV_PYTHON_INSTALL_DIR=/python
 # Only use the managed Python version
 ENV UV_PYTHON_PREFERENCE=only-managed
 
-# Install Python before the project for caching
+# Install Python before the application for caching
 RUN uv python install ${PYTHON_VERSION}
 
-WORKDIR /app
+# Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-default-groups --no-install-project
-COPY . .
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-default-groups
 
-# Then, use a final image without uv
+# Copy application code into the image
+COPY . .
+
+# Install application
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-default-groups --no-editable
+
+# --------------------------------------------------------------------------- #
+#               ------- Run Application ------
+# --------------------------------------------------------------------------- #
 FROM debian:bookworm-slim AS runtime
 
 LABEL org.opencontainers.image.title="app"

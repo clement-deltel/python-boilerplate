@@ -31,6 +31,14 @@ def signal_quit_handler(signum, frame):
     raise KeyboardInterrupt
 
 
+def load_config():
+    """Load environment-based configuration."""
+    app_env = environ.get("APP_ENV", default="production")
+    config_options = {"development": DevConfig, "production": ProdConfig}
+    config: Config = config_options[app_env]()
+    set_config(config)
+
+
 @profiler
 def main() -> None:
     """Perform all the steps to run this application."""
@@ -41,11 +49,7 @@ def main() -> None:
         if system() == "Linux":
             signal(SIGQUIT, signal_quit_handler)
 
-        # Load environment-based configuration
-        app_env = environ.get("APP_ENV", default="production")
-        config_options = {"development": DevConfig, "production": ProdConfig}
-        config: Config = config_options[app_env]()
-        set_config(config)
+        load_config()
 
     except KeyboardInterrupt:
         pass

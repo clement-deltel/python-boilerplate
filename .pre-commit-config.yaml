@@ -20,7 +20,7 @@ repos:
 
   # commitizen - Version Control
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.7.2
+    rev: v4.8.3
     hooks:
       - id: commitizen
       - id: commitizen-branch
@@ -46,7 +46,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.3
+    rev: v0.12.4
     hooks:
       - id: ruff
         types_or: [python, pyi]
@@ -68,7 +68,7 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.21
+    rev: 0.8.0
     hooks:
       - id: uv-lock
       - id: uv-export
@@ -97,6 +97,16 @@ repos:
       - id: ls-lint
         name: Bring some structure to the project filesystem
         entry: .githooks/ls-lint.sh
+        language: script
+        always_run: true
+        pass_filenames: false
+
+  # Local: varlock
+  - repo: local
+    hooks:
+      - id: varlock
+        name: Bring some structure to the env file
+        entry: .githooks/varlock.sh
         language: script
         always_run: true
         pass_filenames: false

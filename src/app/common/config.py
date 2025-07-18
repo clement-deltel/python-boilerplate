@@ -59,8 +59,8 @@ class AppConfig:
         self.run_date = run_date
 
         # Directories and files
-        self.input_path = Path(environ.get("INPUT_PATH", default="/home/app/input"))
-        self.output_path = Path(environ.get("OUTPUT_PATH", default="/home/app/output"))
+        self.input_path = Path(environ.get("INPUT_PATH", default="input"))
+        self.output_path = Path(environ.get("OUTPUT_PATH", default="output"))
         self.output_path.mkdir(parents=True, exist_ok=True)
 
 
@@ -70,7 +70,7 @@ class LogConfig:
     def __init__(self, run_date: datetime) -> None:
         """Initialize class."""
         self.level = environ.get("LOG_LEVEL", default="INFO")
-        self.path = Path(environ.get("LOG_PATH", default="/home/app/logs"))
+        self.path = Path(environ.get("LOG_PATH", default="log"))
         self.file_path = Path.joinpath(self.path, f"{run_date.strftime('%Y-%m-%d')}.log")
         self.to_file = environ.get("LOG_TO_FILE", default="false").lower() in ("true", "t", "1")
         # Log formatting

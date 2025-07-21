@@ -128,7 +128,7 @@ make run
 2. Build the Docker image:
 
 ```bash
-make build-container
+make build-image
 ```
 
 3. Fill in the `.env.template` file with your configuration.
@@ -205,7 +205,7 @@ If you want to test this application using the released Docker image, follow the
 3. Pull the image:
 
 ```bash
-make pull-container
+make pull-image
 ```
 
 4. Run a container:

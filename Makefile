@@ -48,16 +48,19 @@ coverage:
 	coverage report --show-missing
 
 # --------------------------------------------------------------------------- #
-#               ------- Container ------
+#               ------- Image ------
 # --------------------------------------------------------------------------- #
-build-container:
+build-image:
 	docker build --file docker/Dockerfile --tag app .
 
+pull-image:
+	docker pull app:latest
+
+# --------------------------------------------------------------------------- #
+#               ------- Container ------
+# --------------------------------------------------------------------------- #
 create-container:
 	docker create --env-file .env --name app app:latest
-
-pull-container:
-	docker pull app:latest
 
 run-container:
 	docker run --env-file .env --name app --rm app:latest

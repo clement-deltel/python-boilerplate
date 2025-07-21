@@ -25,7 +25,7 @@ init-from-scratch:
 	source .venv/bin/activate
 
 auto-activate:
-    pyenv install 3.11.8
+	pyenv install 3.11.8
 	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app
 	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
 	pyenv local 3.11.8_app

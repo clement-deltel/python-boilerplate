@@ -30,18 +30,18 @@ This application...
  Dockerfile              2          119           57           38           24
  INI                     1           14            5            7            2
  JSON                    1            7            7            0            0
- Makefile                1           76           49           12           15
- Python                  4          580          421           51          108
+ Makefile                1          113           70           21           22
+ Python                  4          584          424           50          110
  Shell                   1            8            6            2            0
- Plain Text              3          299            0          299            0
- TOML                    1          253          134           82           37
+ Plain Text              3          416            0          416            0
+ TOML                    1          257          137           83           37
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                4          857            0          594          263
- |- BASH                 2           66           60            6            0
- (Total)                            923           60          600          263
+ Markdown                4          876            0          604          272
+ |- BASH                 2           68           62            6            0
+ (Total)                            944           62          610          272
 ===============================================================================
- Total                  19         2233          699         1085          449
+ Total                  19         2414          726         1221          467
 ===============================================================================
 ```
 
@@ -65,23 +65,19 @@ This project's dependencies are managed with [uv](https://docs.astral.sh/uv/). Y
 
 ```text
 app v0.1.0
-├── hatchling v1.27.0
-│   ├── packaging v25.0
-│   ├── pathspec v0.12.1
-│   ├── pluggy v1.5.0
-│   └── trove-classifiers v2025.5.1.12
-├── pandas v2.2.3
-│   ├── numpy v2.2.5
+├── numpy v2.3.1
+├── pandas v2.3.1
+│   ├── numpy v2.3.1
 │   ├── python-dateutil v2.9.0.post0
 │   │   └── six v1.17.0
 │   ├── pytz v2025.2
 │   └── tzdata v2025.2
-├── python-dotenv v1.1.0
-└── requests v2.32.3
-    ├── certifi v2025.4.26
+├── python-dotenv v1.1.1
+└── requests v2.32.4
+    ├── certifi v2025.7.14
     ├── charset-normalizer v3.4.2
     ├── idna v3.10
-    └── urllib3 v2.4.0
+    └── urllib3 v2.5.0
 ```
 
 ## Configuration

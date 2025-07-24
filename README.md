@@ -55,8 +55,9 @@ The core requirements are:
 
 Some extra utilities are:
 
-- [ls-lint](https://github.com/loeffel-io/ls-lint) [Go]: directory and filename linter, bring some structure to the project filesystem.
-- [uv](https://docs.astral.sh/uv/) [Rust]: Python package and project manager.
+- [ls-lint](https://ls-lint.org/) - directory and filename linter, bring some structure to the project filesystem. `Go`
+- [uv](https://docs.astral.sh/uv/) - Python package and project manager. `Rust`
+- [varlock](https://varlock.dev/) - .env files powered by @env-spec decorator comments. `TypeScript` `JavaScript`
 
 ## Dependencies
 

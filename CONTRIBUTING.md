@@ -16,6 +16,8 @@ The following is a set of guidelines for contributing. These are mostly guidelin
   - [ruff](#ruff)
   - [ty](#ty)
   - [gitleaks](#gitleaks)
+  - [ls-lint](#ls-lint)
+  - [varlock](#varlock)
   - [pre-commit](#pre-commit)
   - [docker](#docker)
   - [trivy](#trivy)
@@ -28,11 +30,12 @@ The following is a set of guidelines for contributing. These are mostly guidelin
 
 The pre-requisites are:
 
-- [ls-lint](https://github.com/loeffel-io/ls-lint)
+- [ls-lint](https://ls-lint.org/)
 - [uv](https://docs.astral.sh/uv/)
+- [varlock](https://varlock.dev/)
 
 ```bash
-# Install homebrew, ls-lint, and uv
+# Install homebrew, ls-lint, uv, and varlock
 make pre-requisites
 ```
 
@@ -215,11 +218,32 @@ ty check
 
 Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io) ([source code](https://github.com/gitleaks/gitleaks)). Do you want to:
 
-Scan all the commits
+Scan all the commits?
 
 ```bash
 gitleaks git --redact --verbose
 ```
+
+### ls-lint
+
+Here are useful commands to ensure consistent project filesystem structure using [ls-lint](https://ls-lint.org/) ([source code](https://github.com/loeffel-io/ls-lint)). Do you want to:
+
+Check the project filesystem structure?
+
+```bash
+ls-lint
+```
+
+### varlock
+
+Here are useful commands to ensure consistent .env structure by adding @env-spec decorator comments, using [varlock](https://varlock.dev/) ([source code](https://github.com/dmno-dev/varlock)). Do you want to:
+
+Check the .env file structure:
+
+```bash
+varlock load
+```
+
 
 ### pre-commit
 

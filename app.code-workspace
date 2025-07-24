@@ -90,20 +90,23 @@
         // Ruff
         "ruff.lineLength": 160,
         "ruff.lint.ignore": [
-            "D203", // incorrect-blank-line-before-class
             "D206", // docstring-tab-indentation
-            "D213", // multi-line-summary-second-line
             "D300", // triple-single-quotes
             "E111", // indentation-with-invalid-multiple
             "E114", // indentation-with-invalid-multiple-comment
             "E117", // over-indented
-            "E501", // line-too-long
-            "PLR0913", // too-many-arguments
-            "PLW0603", // global-statement
             "Q000", // bad-quotes-inline-string
             "Q001", // bad-quotes-multiline-string
             "Q002", // bad-quotes-docstring
             "Q003", // avoidable-escaped-quote
+            // --- //
+            "B006", // mutable-argument-default
+            "D203", // incorrect-blank-line-before-class
+            "D213", // multi-line-summary-second-line
+            "E501", // line-too-long
+            "PLC0415", // import-outside-top-level
+            "PLR0913", // too-many-arguments
+            "PLW0603", // global-statement
         ],
         "ruff.lint.select": [
             "B", // flake8-bugbear

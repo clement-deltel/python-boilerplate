@@ -62,6 +62,7 @@
         // Files
         "files.eol": "\n",
         "files.exclude": {
+            "**/control": true,
             "**/__pycache__": true,
             "**/*.pyc": true,
             "**/.mypy_cache": true,

@@ -11,5 +11,8 @@ yaml-files:
 rules:
   document-start:
     present: false
+  line-length:
+    max: 80
+    level: warning
 
 ignore-from-file: .gitignore

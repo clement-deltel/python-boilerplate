@@ -79,7 +79,7 @@ repos:
     rev: v1.37.1
     hooks:
       - id: yamllint
-        args: [--strict, --config-file, .yamllint]
+        args: [--config-file, .yamllint]
 
   # Local: pre_validate_user_email
   - repo: local

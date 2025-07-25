@@ -43,6 +43,8 @@ Here are the steps you need to follow when starting a new coding project from th
   - **app.code-workspace**
     - rename the file replacing `app`
     - add launch configurations if needed
+  - **CONTRIBUTING.md**
+    - 1 `<app>` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
     - 18 `app` occurrences

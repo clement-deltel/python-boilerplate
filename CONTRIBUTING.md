@@ -329,11 +329,11 @@ Here are useful commands to manage the README documentation using [csv2md](https
 
 Easily update the Markdown table of environment variables?
 
-- Update the file `docs/env.csv`
+- Update the file `doc/env.csv`
 - Generate the corresponding Markdown table:
 
 ```bash
-python -m csv2md docs/env.csv
+python -m csv2md doc/env.csv
 ```
 
 - Copy the table from stdout to `README.md`

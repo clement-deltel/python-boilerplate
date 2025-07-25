@@ -82,7 +82,7 @@ get-tag:
 	echo "export IMAGE_TAG=${IMAGE_TAG}"
 
 build-image: clean
-	docker build --file docker/Dockerfile --tag app .
+	docker build --file docker/Dockerfile --tag app:${IMAGE_TAG} .
 
 pull-image:
 	docker pull app:${IMAGE_TAG}

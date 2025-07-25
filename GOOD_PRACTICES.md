@@ -36,9 +36,9 @@ Here are the steps you need to follow when starting a new coding project from th
       - image.authors
       - image.vendor
     - **entrypoint.sh**
-      - 1 `app` occurrence
+      - 1 `app` occurrence (use hyphen over underscore if multiple words)
   - *src directory*
-    - rename the `app` directory
+    - rename the `app` directory (use hyphen over underscore if multiple words)
     - all `app.*` imports in the Python files
   - **app.code-workspace**
     - rename the file replacing `app`

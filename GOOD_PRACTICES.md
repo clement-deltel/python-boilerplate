@@ -41,15 +41,16 @@ Here are the steps you need to follow when starting a new coding project from th
     - rename the `app` directory
     - all `app.*` imports in the Python files
   - **app.code-workspace**
-    - rename the file and replace `app`
+    - rename the file replacing `app`
     - add launch configurations if needed
   - **LICENSE**: delete this file
   - **Makefile**
-    - 12 `app` occurrences
+    - 18 `app` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your project
-    - update the *(build|create|pull|run)-container* tasks based on your project's requirements
+    - update the *(build|pull|push)-image* tasks based on your project's requirements
+    - update the *(create|run)-container* tasks based on your project's requirements
   - **pyproject.toml**
-    - 5 `app` occurrences (out of 6)
+    - 9 `app` occurrences
     - project.description
     - project.authors
     - project.maintainers

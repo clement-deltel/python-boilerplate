@@ -2,12 +2,11 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 ARG PYTHON_VERSION=3.11.8
-ARG WORKFLOW_MANAGER_VERSION=1.5.0
-
+ARG UV_VERSION=0.8.0
 # --------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # --------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:bookworm-slim AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-bookworm-slim AS builder
 WORKDIR /app
 
 # Ensure that all commands within the Dockerfile compile bytecode
@@ -47,3 +46,4 @@ LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Copy and install wheel file
 COPY --from=builder /app/dist/*.whl ./
+RUN pip install *.whl

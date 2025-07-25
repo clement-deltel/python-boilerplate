@@ -32,13 +32,13 @@ init-from-scratch:
 
 init-auto-activate:
 	pyenv install 3.11.8
-	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app
-	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
 	pyenv local 3.11.8_app
 
 auto-activate:
-	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8_app
-	ln -s $(pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
 	pyenv local 3.11.8_app
 
 # --------------------------------------------------------------------------- #
@@ -78,7 +78,10 @@ coverage:
 # --------------------------------------------------------------------------- #
 #               ------- Image ------
 # --------------------------------------------------------------------------- #
-build-image:
+get-tag:
+	echo "export IMAGE_TAG=${IMAGE_TAG}"
+
+build-image: clean
 	docker build --file docker/Dockerfile --tag app .
 
 pull-image:

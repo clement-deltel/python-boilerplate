@@ -1,13 +1,8 @@
 # Contributing <!-- omit in toc -->
 
-🎉 First off, thanks for taking the time to contribute! 🎉
-
-Anyone who wishes to contribute to this project - whether documentation, features, bug fixes, code cleanup, testing, or code reviews - is very much encouraged to do so.
-
-The following is a set of guidelines for contributing. These are mostly guidelines, not rules. Use your best judgment, and feel free to suggest changes to this document in a pull request.
-
 ## Table of Contents <!-- omit in toc -->
 
+- [Introduction](#introduction)
 - [Development Environment](#development-environment)
 - [Debug](#debug)
 - [Merge Request](#merge-request)
@@ -25,6 +20,14 @@ The following is a set of guidelines for contributing. These are mostly guidelin
   - [csv2md](#csv2md)
   - [readme-generator-for-helm](#readme-generator-for-helm)
   - [cProfile](#cprofile)
+
+## Introduction
+
+🎉 First off, thanks for taking the time to contribute! 🎉
+
+Anyone who wishes to contribute to this project - whether documentation, features, bug fixes, code cleanup, testing, or code reviews - is very much encouraged to do so.
+
+The following is a set of guidelines for contributing. These are mostly guidelines, not rules. Use your best judgment, and feel free to suggest changes to this document in a pull request.
 
 ## Development Environment
 

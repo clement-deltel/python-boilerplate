@@ -25,6 +25,10 @@ Here are the steps you need to follow when starting a new coding project from th
   - *.githooks directory*
     - **pre-validate-user-email.sh**
       - 2 `company.com` occurrences
+  - *deploy directory*
+    - **README.md**
+      - 6 `<app>` occurrences
+      - all `<[a-z]*>` occurrences
   - *docker directory*
     - **compose.yaml**
       - container_name
@@ -62,6 +66,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - tool.uv.required-environments (switch to Windows if needed)
   - **README.md**
     - 4 `<app>` occurrences
+    - Title `Application`
     - Introduction section
 - Run the following uv command: `make init-dev`
 

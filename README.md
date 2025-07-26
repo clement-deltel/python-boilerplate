@@ -1,4 +1,4 @@
-# Project <!-- omit in toc -->
+# Application <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -186,7 +186,7 @@ docker compose down -v
 
 This application is meant to be deployed in a Kubernetes cluster. To learn more on how to deploy this application, please refer to the guides listed below:
 
-- [Deployment using Helm](deploy/README.md)
+- [Deployment Guide](deploy/README.md)
 - [Helm Chart](helm_chart/README.md)
 
 ## Test

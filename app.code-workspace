@@ -78,6 +78,11 @@
         "git.autofetch": true,
         "git.autorefresh": true,
         "git.showPushSuccessNotification": true,
+        // Extension - Markdownlint
+        "markdownlint.config": {
+            "MD029": false, // Ordered list item prefix
+            "MD059": false // Link text should be descriptive
+        },
         // Extension - Python
         "python.analysis.autoFormatStrings": true,
         "python.analysis.autoImportCompletions": true,

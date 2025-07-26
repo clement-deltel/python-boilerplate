@@ -244,7 +244,6 @@ Check the .env file structure:
 varlock load
 ```
 
-
 ### pre-commit
 
 Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com) ([source code](https://github.com/pre-commit/pre-commit)). Do you want to:

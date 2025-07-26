@@ -226,7 +226,6 @@ If using pip, you have to manually:
 - Activate the virtual environment.
 - Install the project's dependencies:
 
-
 ```bash
 pip install -r requirements/requirements-test.txt
 ```

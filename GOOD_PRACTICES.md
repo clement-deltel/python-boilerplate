@@ -40,9 +40,9 @@ Here are the steps you need to follow when starting a new coding project from th
       - image.authors
       - image.vendor
     - **entrypoint.sh**
-      - 1 `app` occurrence (use hyphen over underscore if multiple words)
+      - 1 `app` occurrence (use underscore over hyphen if multiple words)
   - *src directory*
-    - rename the `app` directory (use hyphen over underscore if multiple words)
+    - rename the `app` directory (use underscore over hyphen if multiple words)
     - all `app.*` imports in the Python files
   - **app.code-workspace**
     - rename the file replacing `app`
@@ -51,12 +51,12 @@ Here are the steps you need to follow when starting a new coding project from th
     - 1 `<app>` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 18 `app` occurrences
+    - 18 `app` occurrences (check on hyphen or underscore use based on needs if multiple words)
     - check *run* and *debug* tasks to ensure they are compatible with your project
     - update the *(build|pull|push)-image* tasks based on your project's requirements
     - update the *(create|run)-container* tasks based on your project's requirements
   - **pyproject.toml**
-    - 9 `app` occurrences
+    - 9 `app` occurrences (check on hyphen or underscore use based on needs if multiple words)
     - project.description
     - project.authors
     - project.maintainers

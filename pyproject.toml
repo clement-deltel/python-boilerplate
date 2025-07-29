@@ -13,7 +13,7 @@ namespace = true
 [project]
 name = "app"
 description = "app"
-version = "0.1.0"
+version = "0.0.0"
 authors = [{ name = "", email = "support@company.com" }]
 maintainers = [{ name = "", email = "support@company.com" }]
 readme = "README.md"

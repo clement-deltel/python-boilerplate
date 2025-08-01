@@ -16,7 +16,11 @@ class Config:
     """Class specifying attributes and methods related to the configuration."""
 
     def __init__(self, run_date: datetime) -> None:
-        """Initialize class."""
+        """Initialize class.
+
+        Args:
+            run_date (datetime): application run date.
+        """
         self.app = AppConfig(run_date)
         self.log = LogConfig(run_date)
 
@@ -54,7 +58,11 @@ class AppConfig:
     """Class specifying attributes and methods related to the application configuration."""
 
     def __init__(self, run_date: datetime) -> None:
-        """Initialize class."""
+        """Initialize class.
+
+        Args:
+            run_date (datetime): application run date.
+        """
         self.name = "app"
         self.run_date = run_date
 
@@ -68,7 +76,11 @@ class LogConfig:
     """Class specifying attributes and methods related to the log configuration."""
 
     def __init__(self, run_date: datetime) -> None:
-        """Initialize class."""
+        """Initialize class.
+
+        Args:
+            run_date (datetime): application run date.
+        """
         self.level = environ.get("LOG_LEVEL", default="INFO")
         self.path = Path(environ.get("LOG_PATH", default="log"))
         self.file_path = Path.joinpath(self.path, f"{run_date.strftime('%Y-%m-%d')}.log")

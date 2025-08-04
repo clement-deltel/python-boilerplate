@@ -63,8 +63,13 @@ RUN groupadd --gid ${ID} ${USER} && \
 COPY --from=builder --chown=python:python /python /python
 COPY --from=builder --chown=${USER}:${USER} /app ${HOME}
 COPY --chown=${USER}:${USER} docker/entrypoint.sh ${HOME}/entrypoint.sh
-RUN chmod +x ${HOME}/entrypoint.sh
+COPY --chown=${USER}:${USER} docker/healthcheck.py ${HOME}/healthcheck.py
+
+RUN chmod +x ${HOME}/{entrypoint.sh,healthcheck.py}
 WORKDIR ${HOME}
 USER ${USER}
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python healthcheck.py || exit 1
 
 ENTRYPOINT ["./entrypoint.sh"]

@@ -158,6 +158,20 @@ uv remove --group dev <package>
 uv remove --group test <package>
 ```
 
+Upgrade a dependency...
+
+- without specifying a version?
+
+```bash
+uv sync --upgrade-package <package>
+```
+
+- specifying a version?
+
+```bash
+uv sync --upgrade-package <package>==<version>
+```
+
 Export dependencies and update requirements files...
 
 - as a **user** and for the project?

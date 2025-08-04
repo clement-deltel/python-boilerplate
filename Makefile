@@ -100,6 +100,15 @@ run-container:
 	docker run --env-file .env --name app --rm app:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
+#               ------- Scan ------
+# ---------------------------------------------------------------------------- #
+scan-repo:
+	trivy repository --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln .
+
+scan-image:
+	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app:${IMAGE_TAG}
+
+# ---------------------------------------------------------------------------- #
 #               ------- Other ------
 # ---------------------------------------------------------------------------- #
 clean:
@@ -113,4 +122,3 @@ clean:
 merge-request:
 	tokei
 	uv tree --no-default-groups
-	trivy image --image-config-scanners misconfig,secret --scanners vuln,secret app:${IMAGE_TAG}

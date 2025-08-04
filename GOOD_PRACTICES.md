@@ -41,6 +41,8 @@ Here are the steps you need to follow when starting a new coding project from th
       - image.vendor
     - **entrypoint.sh**
       - 1 `app` occurrence (use underscore over hyphen if multiple words)
+    - **healthcheck.py**
+      - 1 `app` occurrence (use underscore over hyphen if multiple words)
   - *src directory*
     - rename the `app` directory (use underscore over hyphen if multiple words)
     - all `app.*` imports in the Python files

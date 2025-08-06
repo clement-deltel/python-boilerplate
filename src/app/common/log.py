@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Module used to log all the events of the application execution.
 
 Typical usage example:

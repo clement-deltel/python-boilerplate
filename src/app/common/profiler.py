@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Module used to run the profiler."""
 
 # Standard Library
 from cProfile import Profile
+from collections.abc import Callable
 from functools import wraps
 from os import environ
 from pathlib import Path
 from pstats import Stats
-from typing import Callable
 
 # Local Application
 from app.common.config import get_config_value

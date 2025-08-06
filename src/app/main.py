@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Main module of the application."""
 
 # Standard Library
@@ -31,12 +30,17 @@ def signal_quit_handler(signum, frame):
     raise KeyboardInterrupt
 
 
-def load_config():
-    """Load environment-based configuration."""
+def load_config() -> Config:
+    """Load environment-based configuration.
+
+    Returns:
+        Config: config instance and all its attributes.
+    """
     app_env = environ.get("APP_ENV", default="production")
     config_options = {"development": DevConfig, "production": ProdConfig}
     config: Config = config_options[app_env]()
     set_config(config)
+    return config
 
 
 @profiler

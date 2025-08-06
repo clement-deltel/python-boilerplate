@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Module used to interact with the configuration."""
 
 # Standard Library
@@ -102,7 +101,7 @@ class DevConfig(Config):
         load_dotenv(".env", override=True)
         # Custom date specifically to tweak run date and trigger certain behaviors
         run_date_env = environ.get("RUN_DATE", default="")
-        run_date = datetime.strptime(run_date_env, "%Y-%m-%d") if run_date_env else datetime.now()
+        run_date = datetime.strptime(run_date_env, "%Y-%m-%d").astimezone() if run_date_env else datetime.now().astimezone()
 
         super().__init__(run_date)
 
@@ -113,7 +112,7 @@ class ProdConfig(Config):
     def __init__(self) -> None:
         """Initialize class."""
         load_dotenv(".env", override=True)
-        run_date = datetime.now()
+        run_date = datetime.now().astimezone()
         super().__init__(run_date)
 
 
@@ -131,7 +130,7 @@ def set_config(config: Config) -> None:
     _config_instance = config
 
 
-def get_config_instance() -> Config:
+def get_config() -> Config:
     """Get global instance.
 
     Returns:
@@ -153,7 +152,7 @@ def get_config_class(class_name: str, default: Any = None) -> Any:
     Returns:
         Any: configuration class instance.
     """
-    config = get_config_instance()
+    config = get_config()
     return config.get_config_class(class_name, default)
 
 
@@ -168,5 +167,5 @@ def get_config_value(class_name: str, attribute: str, default: Any = None) -> An
     Returns:
         Any: configuration class attribute.
     """
-    config = get_config_instance()
+    config = get_config()
     return config.get_config_value(class_name, attribute, default)

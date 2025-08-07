@@ -27,21 +27,21 @@ This application...
 ===============================================================================
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
- Dockerfile              2          119           57           38           24
- INI                     1           14            5            7            2
+ Dockerfile              2          124           61           38           25
+ INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
- Makefile                1          113           70           21           22
- Python                  4          584          424           50          110
+ Makefile                1          120           72           24           24
+ Python                  5          660          485           51          124
  Shell                   1            8            6            2            0
  Plain Text              3          416            0          416            0
- TOML                    1          257          137           83           37
+ TOML                    1          281          157           86           38
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                4          876            0          604          272
- |- BASH                 2           68           62            6            0
- (Total)                            944           62          610          272
+ Markdown                4          877            0          601          276
+ |- BASH                 3           74           69            5            0
+ (Total)                            951           69          606          276
 ===============================================================================
- Total                  19         2414          726         1221          467
+ Total                  20         2530          813         1227          490
 ===============================================================================
 ```
 
@@ -64,17 +64,17 @@ Some extra utilities are:
 This project's dependencies are managed with [uv](https://docs.astral.sh/uv/). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation/). It is recommended to install and use it, even still requirements files are available and can be used.
 
 ```text
-app v0.1.0
-├── numpy v2.3.1
+app v0.0.0
+├── numpy v2.3.2
 ├── pandas v2.3.1
-│   ├── numpy v2.3.1
+│   ├── numpy v2.3.2
 │   ├── python-dateutil v2.9.0.post0
 │   │   └── six v1.17.0
 │   ├── pytz v2025.2
 │   └── tzdata v2025.2
 ├── python-dotenv v1.1.1
 └── requests v2.32.4
-    ├── certifi v2025.7.14
+    ├── certifi v2025.8.3
     ├── charset-normalizer v3.4.2
     ├── idna v3.10
     └── urllib3 v2.5.0
@@ -85,6 +85,14 @@ app v0.1.0
 The application configuration can be loaded as a set of environment variables in the Docker image. A file mounted on /home/app/.env can also override those values for testing purposes.
 
 List of available environment variables:
+
+| Variable    | Type | Sensitive | Default           | Condition | Example            | Description                                                        |
+| ----------- | ---- | --------- | ----------------- | --------- | ------------------ | ------------------------------------------------------------------ |
+| INPUT_PATH  | str  |           | /home/app/inputs  |           | /path/to/directory | Path to directory containing input files                           |
+| OUTPUT_PATH | str  |           | /home/app/outputs |           | /path/to/directory | Path to directory where to save output files                       |
+| LOG_LEVEL   | str  |           | INFO              |           | INFO               | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
+| LOG_PATH    | str  |           | /home/app/logs    |           | /path/to/directory | Path to directory containing log files if enabled                  |
+| LOG_TO_FILE | bool |           | false             |           | true               | Whether to export logs to a file                                   |
 
 > *Note*: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 

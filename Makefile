@@ -118,7 +118,3 @@ clean:
 	find . -type d -name '.mypy_cache' | xargs rm -rf
 	find . -type d -name '.pytest_cache' | xargs rm -rf
 	find . -type d -name '.ruff_cache' | xargs rm -rf
-
-merge-request:
-	tokei
-	uv tree --no-default-groups

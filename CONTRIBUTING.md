@@ -85,13 +85,17 @@ Every time you push some code and consequently open a merge request, do not forg
 
 - Update the code statistics table in the [README.md](README.md#code-statistics) file using [tokei](#tokei)
 - Update the dependency tree in the [README.md](README.md#dependencies) file using [uv](#uv)
+- Update the environment variables table in the [README.md](README.md#configuration) file using [csv2md](#csv2md)
+
+> *Note*: There are pre-commit hooks to update those section of the README file automatically.
+
+- Scan the repository using [trivy](#trivy)
 - Build an image of the app and scan it using [trivy](#trivy)
-- If needed
-  - Update the environment variables table in the [README.md](README.md#configuration) file using [csv2md](#csv2md)
 
 ```bash
-# Run tokei, uv, and trivy commands
-make merge-request
+make scan-repo
+make build-image
+make scan-image
 ```
 
 ## Tools

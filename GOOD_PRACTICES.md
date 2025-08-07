@@ -47,7 +47,8 @@ Here are the steps you need to follow when starting a new coding project from th
     - rename the `app` directory (use underscore over hyphen if multiple words)
     - all `app.*` imports in the Python files
   - **app.code-workspace**
-    - rename the file replacing `app`
+    - rename the file itself replacing `app`
+    - 2 `app` occurrence (use underscore over hyphen if multiple words)
     - add launch configurations if needed
   - **CONTRIBUTING.md**
     - 1 `<app>` occurrence

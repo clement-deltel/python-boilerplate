@@ -14,7 +14,6 @@ def parse_args() -> Namespace:
 
     Returns:
         argparse.Namespace: populated with user input arguments.
-
     """
     parser = ArgumentParser(description="Update README.md sections with command output", add_help=False)
 

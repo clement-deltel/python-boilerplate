@@ -4,35 +4,63 @@
 ls:
   # Directories
   .dir: regex:(\.{0,1})([a-z]+)
-  # Files
-  .code-workspace: exists:1 | kebab-case
-  .dockerignore: exists:1 | lowercase
-  .gitattributes: lowercase
-  .gitignore: exists:1 | lowercase
+
+  # Mandatory project files
+  .code-workspace: kebab-case | exists:1
+  .dockerignore: lowercase | exists:1
+  .gitignore: lowercase | exists:1
+  .env.schema: lowercase | exists:1
+
+  # Optional project files
+  .gitattributes: lowercase | exists:0-1
+  .pre-commit-config.yaml: kebab-case | exists:0-1
+  .yamllint: lowercase | exists:0-1
+
+  # Extensions
+  .json: lowercase
   .md: regex:[a-zA-Z0-9_]+
   .py: snake_case
   .sh: kebab-case
-  .template: lowercase
   .toml: lowercase
   .yaml: kebab-case
   .yml: kebab-case
 
+  # Subdirectories
+  .azuredevops:
+    .dir: lowercase | exists:0-1
+
+  .githooks:
+    .dir: lowercase | exists:0-1
+
+  .pipelines:
+    .dir: lowercase | exists:0-1
+
   doc:
-    .dir: lowercase
+    .dir: lowercase | exists:0-1
+
+  docs:
+    .dir: exists:0
 
   docker:
-    .dir: exists:1 | lowercase
+    .dir: lowercase | exists:1
+    .Dockerfile: snake_case
+    .yaml: lowercase | exists:0-1
 
   requirements:
-    .dir: lowercase
+    .dir: lowercase | exists:0-1
+    .txt: kebab-case
 
   src:
-    .dir: exists:1 | lowercase
+    .dir: snake_case | exists:1
 
   test:
-    .dir: exists:1 | lowercase
+    .dir: snake_case | exists:1
+
+  tests:
+    .dir: exists:0
 
 ignore:
+  - '**/control'
   - '**/__pycache__'
   - .git
   - .mypy_cache

@@ -11,6 +11,24 @@ from typing import Any
 from dotenv import load_dotenv
 
 
+def env_to_bool(variable: str | None) -> bool | None:
+    """."""
+    if variable is None:
+        return None
+    return variable.casefold() in ("true", "t", "1")
+
+
+def env_to_int(variable: str | None) -> int | None:
+    """."""
+    if variable is None:
+        return None
+    try:
+        return int(variable)
+    except ValueError as err:
+        print(f"ValueError: {variable} cast to int failed")
+        raise Exception from err
+
+
 class Config:
     """Class specifying attributes and methods related to the configuration."""
 
@@ -83,11 +101,11 @@ class LogConfig:
         self.level = environ.get("LOG_LEVEL", default="INFO")
         self.path = Path(environ.get("LOG_PATH", default="log"))
         self.file_path = Path.joinpath(self.path, f"{run_date.strftime('%Y-%m-%d')}.log")
-        self.to_file = environ.get("LOG_TO_FILE", default="false").lower() in ("true", "t", "1")
+        self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
         # Log formatting
-        self.color = environ.get("LOG_COLOR", default="true").lower() in ("true", "t", "1")
-        self.json = environ.get("LOG_JSON", default="true").lower() in ("true", "t", "1")
-        self.pretty = environ.get("LOG_JSON_PRETTY", default="false").lower() in ("true", "t", "1")
+        self.color = env_to_bool(environ.get("LOG_COLOR", default="true"))
+        self.json = env_to_bool(environ.get("LOG_JSON", default="true"))
+        self.pretty = env_to_bool(environ.get("LOG_JSON_PRETTY", default="false"))
 
         if self.to_file:
             self.path.mkdir(parents=True, exist_ok=True)

@@ -168,8 +168,7 @@ class CustomFormatter(logging.Formatter):
         else:
             log_fmt = fmt
 
-        formatter = logging.Formatter(log_fmt, self.datefmt)
-        return formatter.format(record)
+        return logging.Formatter(log_fmt, self.datefmt).format(record)
 
 
 class JSONFormatter(logging.Formatter):

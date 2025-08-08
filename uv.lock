@@ -32,6 +32,8 @@ dev = [
 lint = [
     { name = "isort", marker = "sys_platform == 'linux'" },
     { name = "mypy", marker = "sys_platform == 'linux'" },
+    { name = "pyupgrade", marker = "sys_platform == 'linux'" },
+    { name = "refurb", marker = "sys_platform == 'linux'" },
     { name = "ruff", marker = "sys_platform == 'linux'" },
     { name = "ty", marker = "sys_platform == 'linux'" },
     { name = "types-requests", marker = "sys_platform == 'linux'" },
@@ -60,6 +62,8 @@ dev = [
 lint = [
     { name = "isort" },
     { name = "mypy" },
+    { name = "pyupgrade" },
+    { name = "refurb" },
     { name = "ruff" },
     { name = "ty" },
     { name = "types-requests" },
@@ -457,6 +461,18 @@ wheels = [
 ]
 
 [[package]]
+name = "pyupgrade"
+version = "3.20.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "tokenize-rt", marker = "sys_platform == 'linux'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c0/75/3df66861bca41394f05c5b818943fd0535bc02d5c5c512f9d859dec921f3/pyupgrade-3.20.0.tar.gz", hash = "sha256:dd6a16c13fc1a7db45796008689a9a35420bd364d681430f640c5e54a3d351ea", size = 45007, upload-time = "2025-05-23T18:55:43.239Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/63/1c/8412744f89cbd251f159f790980492b38468530117f614108196665d3b1a/pyupgrade-3.20.0-py2.py3-none-any.whl", hash = "sha256:cd5bf842b863f50adad324a01c30aef60b9f698a9814848094818659c92cd1f4", size = 62452, upload-time = "2025-05-23T18:55:41.62Z" },
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -479,6 +495,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a8/b8/d16eb579277f3de9e56e5ad25280fab52fc5774117fb70362e8c2e016559/questionary-2.1.0.tar.gz", hash = "sha256:6302cdd645b19667d8f6e6634774e9538bfcd1aad9be287e743d96cacaf95587", size = 26775, upload-time = "2024-12-29T11:49:17.802Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ad/3f/11dd4cd4f39e05128bfd20138faea57bec56f9ffba6185d276e3107ba5b2/questionary-2.1.0-py3-none-any.whl", hash = "sha256:44174d237b68bc828e4878c763a9ad6790ee61990e0ae72927694ead57bab8ec", size = 36747, upload-time = "2024-12-29T11:49:16.734Z" },
+]
+
+[[package]]
+name = "refurb"
+version = "2.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mypy", marker = "sys_platform == 'linux'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1d/fe/34715ea7799daedfd8ef20fd8fbba23aa2aaa2039a94b41e63ee203e202d/refurb-2.1.0.tar.gz", hash = "sha256:4fb41a3a6523a035c2379792776d4c28ddb291c7fcb8348725cc01749a98e32c", size = 89109, upload-time = "2025-05-15T00:18:57.69Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/db/b6/10f6facceae292a47bf3f78fc2edf67127e417e5ffa80376c18b65e103eb/refurb-2.1.0-py3-none-any.whl", hash = "sha256:a5e6386614ad92f9351df34475b9518c52e82601990d121a4b7a3a0a85b777c2", size = 140160, upload-time = "2025-05-15T00:18:56.174Z" },
 ]
 
 [[package]]
@@ -544,6 +572,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ca/6c/3d75c196ac07ac8749600b60b03f4f6094d54e132c4d94ebac6ee0e0add0/termcolor-3.1.0.tar.gz", hash = "sha256:6a6dd7fbee581909eeec6a756cff1d7f7c376063b14e4a298dc4980309e55970", size = 14324, upload-time = "2025-04-30T11:37:53.791Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4f/bd/de8d508070629b6d84a30d01d57e4a65c69aa7f5abe7560b8fad3b50ea59/termcolor-3.1.0-py3-none-any.whl", hash = "sha256:591dd26b5c2ce03b9e43f391264626557873ce1d379019786f99b0c2bee140aa", size = 7684, upload-time = "2025-04-30T11:37:52.382Z" },
+]
+
+[[package]]
+name = "tokenize-rt"
+version = "6.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/69/ed/8f07e893132d5051d86a553e749d5c89b2a4776eb3a579b72ed61f8559ca/tokenize_rt-6.2.0.tar.gz", hash = "sha256:8439c042b330c553fdbe1758e4a05c0ed460dbbbb24a606f11f0dee75da4cad6", size = 5476, upload-time = "2025-05-23T23:48:00.035Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/33/f0/3fe8c6e69135a845f4106f2ff8b6805638d4e85c264e70114e8126689587/tokenize_rt-6.2.0-py2.py3-none-any.whl", hash = "sha256:a152bf4f249c847a66497a4a95f63376ed68ac6abf092a2f7cfb29d044ecff44", size = 6004, upload-time = "2025-05-23T23:47:58.812Z" },
 ]
 
 [[package]]

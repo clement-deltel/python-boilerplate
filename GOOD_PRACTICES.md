@@ -115,8 +115,11 @@ Here are the useful git hooks used across all of my Python projects:
 
 - Featured
   - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
+  - [commitizen](https://github.com/commitizen-tools/commitizen)
   - [gitleaks](https://github.com/gitleaks/gitleaks)
   - [isort](https://github.com/PyCQA/isort)
+  - [pyupgrade](https://github.com/asottile/pyupgrade)
+  - [refurb](https://github.com/dosisod/refurb)
   - [ruff](https://github.com/astral-sh/ruff-pre-commit)
   - [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
   - [typos](https://github.com/crate-ci/typos)
@@ -125,6 +128,8 @@ Here are the useful git hooks used across all of my Python projects:
 - Custom
   - [ls-lint](https://github.com/loeffel-io/ls-lint)
   - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
+  - [readme-update](.githooks/readme_update.py)
+  - [varlock](https://github.com/dmno-dev/varlock)
 
 ## Coding practices
 

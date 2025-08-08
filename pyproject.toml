@@ -37,7 +37,16 @@ dependencies = ["numpy", "pandas", "python-dotenv", "requests"]
 
 [dependency-groups]
 dev = ["commitizen", "csv2md", "pre-commit", "snakeviz"]
-lint = ["isort", "mypy", "ruff", "ty", "types-requests", "yamllint"]
+lint = [
+    "isort",
+    "mypy",
+    "pyupgrade",
+    "refurb",
+    "ruff",
+    "ty",
+    "types-requests",
+    "yamllint",
+]
 test = ["coverage", "pytest"]
 
 # ---------------------------------------------------------------------------- #
@@ -101,6 +110,16 @@ include_trailing_comma = true
 line_length = 160
 # https://pycqa.github.io/isort/docs/configuration/multi_line_output_modes.html
 multi_line_output = 3 # vertical-hanging-indent
+
+# ---------------------------------------------------------------------------- #
+#               ------- tool - refurb ------
+# ---------------------------------------------------------------------------- #
+# https://pypi.org/project/refurb
+
+[tool.refurb]
+ignore = [
+    "FURB107", # use-with-suppress
+]
 
 # ---------------------------------------------------------------------------- #
 #               ------- tool - ruff ------

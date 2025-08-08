@@ -27,11 +27,9 @@ class Profiler:
     def end(self) -> None:
         """Terminate profiler, format and export results."""
         self.profiler.disable()
-        stats = Stats(self.profiler)
 
-        # Format results
-        stats = stats.strip_dirs()
-        stats = stats.sort_stats("cumtime")
+        # Get and format results
+        stats = Stats(self.profiler).strip_dirs().sort_stats("cumtime")
 
         # Export results
         output_path = get_config_value("app", "output_path")

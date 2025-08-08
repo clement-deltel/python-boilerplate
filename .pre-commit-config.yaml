@@ -1,41 +1,79 @@
 # .pre-commit-config.yaml
 # https://pre-commit.com
 
-default_install_hook_types: [pre-commit]
+default_install_hook_types: [commit-msg, pre-commit, pre-push]
 repos:
+  # -------------------------------------------------------------------------- #
+  #               ------- General ------
+  # -------------------------------------------------------------------------- #
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
       - id: check-ast
       - id: check-case-conflict
       - id: check-docstring-first
+      - id: check-json
       - id: check-toml
-      - id: trailing-whitespace
+      - id: check-xml
+      - id: check-yaml
       - id: check-yaml
       - id: debug-statements
       - id: detect-aws-credentials
         args: ["--allow-missing-credentials"]
       - id: detect-private-key
       - id: end-of-file-fixer
+      - id: name-tests-test
+      - id: pretty-format-json
+      - id: trailing-whitespace
 
-  # commitizen - Version Control
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.8.3
-    hooks:
-      - id: commitizen
-      - id: commitizen-branch
-        stages: [pre-push]
+  # -------------------------------------------------------------------------- #
+  #               ------- Secrets & Environment Variables ------
+  # -------------------------------------------------------------------------- #
 
-  # gitleaks - Secret Leak Detection
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.27.2
     hooks:
       - id: gitleaks
-        name: Detect hardcoded secrets
+        name: gitleaks
         description: Detect hardcoded secrets using Gitleaks
         entry: gitleaks git --pre-commit --redact --staged --verbose
         language: golang
         pass_filenames: false
+
+  - repo: local
+    hooks:
+      - id: varlock
+        name: varlock
+        description: Ensure project env file structure meets standards using varlock
+        entry: .githooks/varlock.sh
+        language: script
+        always_run: true
+        pass_filenames: false
+
+  # -------------------------------------------------------------------------- #
+  #               ------- Version Control ------
+  # -------------------------------------------------------------------------- #
+  # - repo: https://github.com/commitizen-tools/commitizen
+  #   rev: v4.8.3
+  #   hooks:
+  #     - id: commitizen
+  #       stages: [commit-msg]
+  #     - id: commitizen-branch
+  #       stages: [pre-push]
+
+  - repo: local
+    hooks:
+      - id: pre-validate-user-email
+        name: pre-validate-user-email
+        description: Check user email against company approved domains
+        entry: .githooks/pre-validate-user-email.sh
+        language: script
+        always_run: true
+        pass_filenames: false
+
+  # -------------------------------------------------------------------------- #
+  #               ------- Python ------
+  # -------------------------------------------------------------------------- #
 
   # isort - Imports Sorting
   - repo: https://github.com/pycqa/isort
@@ -44,27 +82,28 @@ repos:
       - id: isort
         name: isort (python)
 
+  # pyupgrade - Upgrade syntax for newer versions of the language
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.20.0
+    hooks:
+      - id: pyupgrade
+
+  # refurb - Refurbishing and modernizing Python codebases.
+  - repo: https://github.com/dosisod/refurb
+    rev: v2.1.0
+    hooks:
+      - id: refurb
+        args: [--python-version, "3.11"]
+
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.4
     hooks:
-      - id: ruff
+      - id: ruff-check
         types_or: [python, pyi]
         args: [--fix]
       - id: ruff-format
         types_or: [python, pyi]
-
-  # shellcheck - Shell scripts
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
-    hooks:
-      - id: shellcheck
-
-  # typos - Typos
-  - repo: https://github.com/crate-ci/typos
-    rev: v1.34.0
-    hooks:
-      - id: typos
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
@@ -74,64 +113,67 @@ repos:
       - id: uv-export
         args: [--no-default-groups, --no-emit-project]
 
-  # yamllint - YAML configuration files lint
+  # -------------------------------------------------------------------------- #
+  #               ------- Shell ------
+  # -------------------------------------------------------------------------- #
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+
+  # -------------------------------------------------------------------------- #
+  #               ------- YAML ------
+  # -------------------------------------------------------------------------- #
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.1
     hooks:
       - id: yamllint
         args: [--config-file, .yamllint]
 
-  # Local: pre-validate-user-email
-  - repo: local
-    hooks:
-      - id: pre-validate-user-email
-        name: Check the user email against company approved domains
-        entry: .githooks/pre-validate-user-email.sh
-        language: script
-        always_run: true
-        pass_filenames: false
-
-  # Local: ls-lint
+  # -------------------------------------------------------------------------- #
+  #               ------- Project Structure ------
+  # -------------------------------------------------------------------------- #
   - repo: local
     hooks:
       - id: ls-lint
-        name: Bring some structure to the project filesystem
+        name: ls-lint
+        description: Ensure project directory & file structure meets standards using ls-lint
         entry: .githooks/ls-lint.sh
         language: script
         always_run: true
         pass_filenames: false
 
-  # Local: readme_update
+  # -------------------------------------------------------------------------- #
+  #               ------- Documentation & Typos ------
+  # -------------------------------------------------------------------------- #
   - repo: local
     hooks:
       - id: readme-update-env
+        name: readme-update-env
+        description: Update README.md environment variables table
+        entry: python .githooks/readme_update.py
+        language: system
+        always_run: true
+        pass_filenames: false
         args: ["--command", "csv2md doc/env.csv", "--regex", '(List of available environment variables:\n\n)(.*?)(\n\n> \*Note\*:)']
-        name: Update README.md environment variables table
+      - id: readme update tokei
+        name: readme-update-tokei
+        description: Update README.md code statistics
         entry: python .githooks/readme_update.py
         language: system
         always_run: true
         pass_filenames: false
-      - id: readme-update-tokei
         args: ["--command", "tokei", "--regex", '(## Code Statistics\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
-        name: Update README.md code statistics
+      - id: readme update uv
+        name: readme-update-uv
+        description: Update README.md dependency tree
         entry: python .githooks/readme_update.py
         language: system
         always_run: true
         pass_filenames: false
-      - id: readme-update-uv
         args: ["--command", "uv tree --no-default-groups", "--regex", '(## Dependencies\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
-        name: Update README.md dependency tree
-        entry: python .githooks/readme_update.py
-        language: system
-        always_run: true
-        pass_filenames: false
 
-  # Local: varlock
-  - repo: local
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.34.0
     hooks:
-      - id: varlock
-        name: Bring some structure to the env file
-        entry: .githooks/varlock.sh
-        language: script
-        always_run: true
-        pass_filenames: false
+      - id: typos

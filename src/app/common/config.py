@@ -170,8 +170,7 @@ def get_config_class(class_name: str, default: Any = None) -> Any:
     Returns:
         Any: configuration class instance.
     """
-    config = get_config()
-    return config.get_config_class(class_name, default)
+    return get_config().get_config_class(class_name, default)
 
 
 def get_config_value(class_name: str, attribute: str, default: Any = None) -> Any:
@@ -185,5 +184,4 @@ def get_config_value(class_name: str, attribute: str, default: Any = None) -> An
     Returns:
         Any: configuration class attribute.
     """
-    config = get_config()
-    return config.get_config_value(class_name, attribute, default)
+    return get_config().get_config_value(class_name, attribute, default)

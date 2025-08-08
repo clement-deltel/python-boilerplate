@@ -46,6 +46,8 @@ Here are the steps you need to follow when starting a new coding project from th
   - *src directory*
     - rename the `app` directory (use underscore over hyphen if multiple words)
     - all `app.*` imports in the Python files
+  - **.pre-commit-config.yaml**
+    - enable commitizen hooks (disabled by default due to lack of emojis support)
   - **app.code-workspace**
     - rename the file itself replacing `app`
     - 2 `app` occurrence (use underscore over hyphen if multiple words)

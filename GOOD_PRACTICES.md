@@ -135,10 +135,16 @@ Here are the useful git hooks used across all of my Python projects:
 
 ## Coding practices
 
+Here are the essential good Python practices:
+
+- avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)
+- use pathlib over os module
+- do not use f-strings in log statements
+- use 1 instead of "True" for infinite loops
+
 Here are the useful tips to make Python faster:
 
 - apply multi-assignments
-- avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)
 - avoid using globals
 - concatenate strings with join
 - optimize loops with code maps
@@ -149,7 +155,6 @@ Here are the useful tips to make Python faster:
 - use list comprehension instead of loop
 - use numpy arrays instead of lists
 - use pypy
-- use 1 instead of "True" for infinite loops
 
 Here are the useful tips to make Python code cleaner:
 

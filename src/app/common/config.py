@@ -11,17 +11,13 @@ from typing import Any
 from dotenv import load_dotenv
 
 
-def env_to_bool(variable: str | None) -> bool | None:
+def env_to_bool(variable: str) -> bool:
     """."""
-    if variable is None:
-        return None
     return variable.casefold() in ("true", "t", "1")
 
 
-def env_to_int(variable: str | None) -> int | None:
+def env_to_int(variable: str) -> int:
     """."""
-    if variable is None:
-        return None
     try:
         return int(variable)
     except ValueError as err:

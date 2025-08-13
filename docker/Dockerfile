@@ -69,6 +69,8 @@ RUN chmod +x ${HOME}/entrypoint.sh ${HOME}/healthcheck.py
 WORKDIR ${HOME}
 USER ${USER}
 
+# hadolint unsupported flag: --start-interval=10s
+# See https://github.com/hadolint/hadolint/issues/978
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD python healthcheck.py || exit 1
 

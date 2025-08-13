@@ -9,6 +9,7 @@
     "extensions": {
         "recommendations": [
             // Docker
+            "exiasr.hadolint",
             "ms-azuretools.vscode-containers",
             // DotENV
             "dotenv.dotenv-vscode",
@@ -25,6 +26,7 @@
             "charliermarsh.ruff",
             "kevinrose.vsc-python-indent",
             "ms-python.debugpy",
+            "ms-python.isort",
             "ms-python.mypy-type-checker",
             "ms-python.python",
             "ms-python.vscode-pylance",

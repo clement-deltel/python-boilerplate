@@ -101,6 +101,8 @@ Not using anymore:
 ## Visual Studio Code extensions
 
 - [autodocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+- [hadolint](https://marketplace.visualstudio.com/items?itemName=exiasr.hadolint)
+- [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
 - [mypy](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
 - [python indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
@@ -119,6 +121,7 @@ Here are the useful git hooks used across all of my Python projects:
   - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
   - [commitizen](https://github.com/commitizen-tools/commitizen)
   - [gitleaks](https://github.com/gitleaks/gitleaks)
+  - [hadolint](https://github.com/hadolint/hadolint)
   - [isort](https://github.com/PyCQA/isort)
   - [pyupgrade](https://github.com/asottile/pyupgrade)
   - [refurb](https://github.com/dosisod/refurb)
@@ -128,6 +131,7 @@ Here are the useful git hooks used across all of my Python projects:
   - [uv](https://github.com/astral-sh/uv-pre-commit)
   - [yamllint](https://github.com/adrienverge/yamllint)
 - Custom
+  - [helm-lint](https://helm.sh/docs/helm/helm_lint)
   - [ls-lint](https://github.com/loeffel-io/ls-lint)
   - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
   - [readme-update](.githooks/readme_update.py)

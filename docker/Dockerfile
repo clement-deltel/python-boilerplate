@@ -19,7 +19,7 @@ ENV UV_PYTHON_INSTALL_DIR=/python
 ENV UV_PYTHON_PREFERENCE=only-managed
 
 # Install Python before the application for caching
-RUN uv python install ${PYTHON_VERSION}
+RUN uv python install "${PYTHON_VERSION}"
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -65,7 +65,7 @@ COPY --from=builder --chown=${USER}:${USER} /app ${HOME}
 COPY --chown=${USER}:${USER} docker/entrypoint.sh ${HOME}/entrypoint.sh
 COPY --chown=${USER}:${USER} docker/healthcheck.py ${HOME}/healthcheck.py
 
-RUN chmod +x ${HOME}/{entrypoint.sh,healthcheck.py}
+RUN chmod +x ${HOME}/entrypoint.sh ${HOME}/healthcheck.py
 WORKDIR ${HOME}
 USER ${USER}
 

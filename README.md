@@ -27,10 +27,10 @@ This application...
 ===============================================================================
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
- Dockerfile              2          124           61           38           25
+ Dockerfile              2          129           63           39           27
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
- Makefile                1          120           72           24           24
+ Makefile                1          129           76           27           26
  Python                  5          673          494           51          128
  Shell                   1            8            6            2            0
  Plain Text              3          416            0          416            0
@@ -41,7 +41,7 @@ This application...
  |- BASH                 3           74           69            5            0
  (Total)                            958           69          613          276
 ===============================================================================
- Total                  20         2569          835         1238          496
+ Total                  20         2583          841         1242          500
 ===============================================================================
 ```
 
@@ -61,7 +61,7 @@ Some extra utilities are:
 
 ## Dependencies
 
-This project's dependencies are managed with [uv](https://docs.astral.sh/uv/). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation/). It is recommended to install and use it, even still requirements files are available and can be used.
+The application dependencies are managed with [uv](https://docs.astral.sh/uv/). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation/). It is recommended to install and use it, even still requirements files are available and can be used.
 
 ```text
 app v0.0.0

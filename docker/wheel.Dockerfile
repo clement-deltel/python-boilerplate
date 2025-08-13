@@ -19,7 +19,7 @@ ENV UV_PYTHON_INSTALL_DIR=/python
 ENV UV_PYTHON_PREFERENCE=only-managed
 
 # Install Python before the application for caching
-RUN uv python install ${PYTHON_VERSION}
+RUN uv python install "${PYTHON_VERSION}"
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -44,6 +44,11 @@ LABEL org.opencontainers.image.description="app"
 LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
+# Not persisted into the runtime image
+ARG HOME=/home/app
+
+WORKDIR ${HOME}
+
 # Copy and install wheel file
 COPY --from=builder /app/dist/*.whl ./
-RUN pip install *.whl
+RUN pip install --no-cache-dir ./*.whl

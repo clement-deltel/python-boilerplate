@@ -16,7 +16,7 @@ repos:
       - id: check-toml
       - id: check-xml
       - id: check-yaml
-      - id: check-yaml
+        exclude: ^helm_chart/templates/
       - id: debug-statements
       - id: detect-aws-credentials
         args: ["--allow-missing-credentials"]
@@ -131,6 +131,27 @@ repos:
         args: [--config-file, .yamllint]
 
   # -------------------------------------------------------------------------- #
+  #               ------- Docker ------
+  # -------------------------------------------------------------------------- #
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint
+
+  # -------------------------------------------------------------------------- #
+  #               ------- Helm ------
+  # -------------------------------------------------------------------------- #
+  - repo: local
+    hooks:
+      - id: helm-lint
+        name: helm-lint
+        description: Examine a chart for possible issues
+        entry: .githooks/helm-lint.sh
+        language: script
+        always_run: true
+        pass_filenames: false
+
+  # -------------------------------------------------------------------------- #
   #               ------- Project Structure ------
   # -------------------------------------------------------------------------- #
   - repo: local
@@ -138,8 +159,8 @@ repos:
       - id: ls-lint
         name: ls-lint
         description: Ensure project directory & file structure meets standards using ls-lint
-        entry: .githooks/ls-lint.sh
-        language: script
+        entry: ls-lint
+        language: system
         always_run: true
         pass_filenames: false
 

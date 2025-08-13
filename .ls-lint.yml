@@ -3,7 +3,7 @@
 
 ls:
   # Directories
-  .dir: regex:(\.{0,1})([a-z]+)
+  .dir: regex:(\.{0,1})([a-z_]+)
 
   # Mandatory project files
   .code-workspace: kebab-case | exists:1
@@ -17,10 +17,12 @@ ls:
   .yamllint: lowercase | exists:0-1
 
   # Extensions
+  .env: kebab-case
   .json: lowercase
   .md: regex:[a-zA-Z0-9_]+
   .py: snake_case
   .sh: kebab-case
+  .tpl: snake_case
   .toml: lowercase
   .yaml: kebab-case
   .yml: kebab-case
@@ -45,6 +47,10 @@ ls:
     .dir: lowercase | exists:1
     .Dockerfile: snake_case
     .yaml: lowercase | exists:0-1
+
+  helm_chart:
+    .dir: lowercase | exists:0-1
+    .yaml: regex:[a-zA-Z0-9_-]+
 
   requirements:
     .dir: lowercase | exists:0-1

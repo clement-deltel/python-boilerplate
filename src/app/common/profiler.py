@@ -9,8 +9,11 @@ from os import environ
 from pathlib import Path
 from pstats import Stats
 
+# Third-party
+from dotenv import load_dotenv
+
 # Local Application
-from app.common.config import get_config_value
+from app.common.config import env_to_bool, get_config_value
 
 
 class Profiler:
@@ -44,8 +47,9 @@ def profiler(func: Callable):
 
     @wraps(func)
     def wrapper(*args, **kwargs):
-        profiling = environ.get("PROFILING", "false").lower() in ("true", "t", "1")
-        if profiling:
+        load_dotenv(".env", override=True)
+
+        if env_to_bool(environ.get("PROFILING", default="false")):
             profiler = Profiler()
             profiler.start()
             result = func(*args, **kwargs)

@@ -9,9 +9,6 @@ from re import sub
 from signal import SIGINT, SIGQUIT, signal
 from time import gmtime, perf_counter, strftime
 
-# Third-party
-from dotenv import load_dotenv
-
 # Local Application
 from app.common.config import Config, DevConfig, ProdConfig, set_config
 from app.common.log import log
@@ -46,7 +43,6 @@ def load_config() -> Config:
 @profiler
 def main() -> None:
     """Perform all the steps to run this application."""
-    load_dotenv(".env", override=True)
     start = perf_counter()
     try:
         signal(SIGINT, signal_int_handler)

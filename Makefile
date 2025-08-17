@@ -26,20 +26,20 @@ init-test:
 	source .venv/bin/activate
 
 init-from-scratch:
-	uv init --build-backend hatchling --managed-python --name app --python 3.11.8 --vcs git
+	uv init --build-backend hatchling --managed-python --name app --python 3.11.11 --vcs git
 	uv sync
 	source .venv/bin/activate
 
 init-auto-activate:
-	pyenv install 3.11.8
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8_app
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
-	pyenv local 3.11.8_app
+	pyenv install 3.11.11
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app
+	pyenv local 3.11.11_app
 
 auto-activate:
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8_app
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.8/envs/3.11.8_app
-	pyenv local 3.11.8_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app
+	pyenv local 3.11.11_app
 
 # ---------------------------------------------------------------------------- #
 #               ------- Requirements ------

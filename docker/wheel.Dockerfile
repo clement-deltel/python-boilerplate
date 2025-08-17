@@ -1,13 +1,16 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
 # Instructions creating a new layer: ADD, COPY, RUN
 
-ARG PYTHON_VERSION=3.11.8
 ARG UV_VERSION=0.8.0
+
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-bookworm-slim AS builder
 WORKDIR /app
+
+# Not persisted into the builder image
+ARG PYTHON_VERSION=3.11.11
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

@@ -56,7 +56,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - 1 `<app>` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 18 `app` occurrences (check on hyphen or underscore use based on needs if multiple words)
+    - 17 `app` occurrences (check on hyphen or underscore use based on needs if multiple words)
     - check *run* and *debug* tasks to ensure they are compatible with your project
     - update the *(build|pull|push)-image* tasks based on your project's requirements
     - update the *(create|run)-container* tasks based on your project's requirements

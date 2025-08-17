@@ -282,6 +282,7 @@ output/
 # Docker
 docker/
 !docker/entrypoint.sh
+!docker/healthcheck.py
 
 # Documentation
 doc/

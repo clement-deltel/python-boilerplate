@@ -7,7 +7,7 @@ repos:
   #               ------- General ------
   # -------------------------------------------------------------------------- #
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-ast
       - id: check-case-conflict
@@ -31,7 +31,7 @@ repos:
   # -------------------------------------------------------------------------- #
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.27.2
+    rev: v8.28.0
     hooks:
       - id: gitleaks
         name: gitleaks
@@ -97,7 +97,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.4
+    rev: v0.12.9
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -107,17 +107,27 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.8.0
+    rev: 0.8.11
     hooks:
       - id: uv-lock
       - id: uv-export
         args: [--no-default-groups, --no-emit-project]
 
+  - repo: local
+    hooks:
+      - id: uv-requirements
+        name: uv-requirements
+        description: Ensure all project requirements.txt are up-to-date
+        entry: .githooks/uv-requirements.sh
+        language: script
+        always_run: true
+        pass_filenames: false
+
   # -------------------------------------------------------------------------- #
   #               ------- Shell ------
   # -------------------------------------------------------------------------- #
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+    rev: v0.11.0.1
     hooks:
       - id: shellcheck
 
@@ -134,7 +144,7 @@ repos:
   #               ------- Docker ------
   # -------------------------------------------------------------------------- #
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
+    rev: v2.13.1-beta
     hooks:
       - id: hadolint
 

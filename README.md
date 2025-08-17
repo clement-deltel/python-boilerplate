@@ -7,6 +7,7 @@
 - [Requirements](#requirements)
 - [Dependencies](#dependencies)
 - [Configuration](#configuration)
+- [Logs](#logs)
 - [Quick Start](#quick-start)
   - [Code](#code)
   - [Docker](#docker)
@@ -31,17 +32,17 @@ This application...
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
  Makefile                1          129           76           27           26
- Python                  5          669          490           51          128
+ Python                  6          848          635           58          155
  Shell                   1            8            6            2            0
- Plain Text              3          416            0          416            0
+ Plain Text              3          421            0          421            0
  TOML                    1          300          170           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                4          893            0          615          278
+ Markdown                4          909            0          626          283
  |- BASH                 3           74           69            5            0
- (Total)                            967           69          620          278
+ (Total)                            983           69          631          283
 ===============================================================================
- Total                  20         2590          837         1251          502
+ Total                  21         2790          982         1274          534
 ===============================================================================
 ```
 
@@ -75,7 +76,7 @@ app v0.0.0
 ├── python-dotenv v1.1.1
 └── requests v2.32.4
     ├── certifi v2025.8.3
-    ├── charset-normalizer v3.4.2
+    ├── charset-normalizer v3.4.3
     ├── idna v3.10
     └── urllib3 v2.5.0
 ```
@@ -96,6 +97,14 @@ List of available environment variables:
 
 > *Note*: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 
+## Logs
+
+The application logs are based on the Python [logging](https://docs.python.org/3/library/logging.html) module. Here are the different fields:
+
+- **user_id**: user running the application
+- **table**: database table targeted by a given API request
+- **record**: database record being processed
+
 ## Quick Start
 
 There are four ways to run this application:
@@ -113,7 +122,7 @@ If using pip, you have to manually:
 
 - Create a Python virtual environment.
 - Activate the virtual environment.
-- Install the project's dependencies:
+- Install the application dependencies:
 
 ```bash
 pip install -r requirements/requirements.txt
@@ -232,7 +241,7 @@ If using pip, you have to manually:
 
 - Create a Python virtual environment.
 - Activate the virtual environment.
-- Install the project's dependencies:
+- Install the application dependencies:
 
 ```bash
 pip install -r requirements/requirements-test.txt
@@ -262,6 +271,13 @@ make coverage
 Please open an issue if anything is missing or unclear in this documentation.
 
 ## Resources
+
+If you want to learn more about Python libraries used throughout this application, you can refer to the below links:
+
+- [http](https://docs.python.org/3/library/http.html)
+- [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
+- [pathlib](https://docs.python.org/3/library/pathlib.html)
+- [requests](https://requests.readthedocs.io/en/latest/api/)
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
 

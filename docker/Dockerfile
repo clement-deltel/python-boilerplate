@@ -47,7 +47,7 @@ LABEL org.opencontainers.image.vendor="Company Inc."
 # Not persisted into the runtime image
 ARG USER="app"
 ARG ID="1000"
-ARG HOME=/home/app
+ARG HOME=/app
 ARG VIRTUAL_ENV="${HOME}/.venv"
 
 # Ensure apt-get doesn't open a menu on you

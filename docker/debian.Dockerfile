@@ -1,13 +1,12 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
 # Instructions creating a new layer: ADD, COPY, RUN
 
-ARG ALPINE_VERSION=3.21
 ARG UV_VERSION=0.8.11
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-alpine${ALPINE_VERSION} AS builder
+FROM ghcr.io/astral-sh/uv:bookworm-slim AS builder
 WORKDIR /app
 
 # Not persisted into the builder image
@@ -38,19 +37,10 @@ COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-default-groups --no-editable
 
-# Clean up unnecessary files to reduce size
-RUN find .venv \( \
-    -name "*.pyc" -o \
-    -name "*.pyo" -o \
-    -name "*.pyd" -o \
-    -name "__pycache__" -o \
-    -name "test" \
-    \) -exec rm -rf {} + 2>/dev/null || true
-
 # ---------------------------------------------------------------------------- #
 #               ------- Run Application ------
 # ---------------------------------------------------------------------------- #
-FROM alpine:${ALPINE_VERSION} AS runtime
+FROM debian:bookworm-slim AS runtime
 
 LABEL org.opencontainers.image.title="app"
 LABEL org.opencontainers.image.description="app"
@@ -58,6 +48,7 @@ LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
+ARG DEBIAN_FRONTEND=noninteractive
 ARG USER="app"
 ARG ID="1000"
 ARG HOME=/app
@@ -67,8 +58,8 @@ ARG VIRTUAL_ENV="${HOME}/.venv"
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 
 # Create group, user, and home directory
-RUN addgroup -g ${ID} ${USER} && \
-    adduser -D -h ${HOME} -u ${ID} -G ${USER} ${USER}
+RUN groupadd --gid ${ID} ${USER} && \
+    useradd --create-home --home ${HOME} --uid ${ID} --gid ${ID} ${USER}
 
 # Copy the Python version, the application from the builder, and the entrypoint
 COPY --from=builder --chown=python:python /python /python

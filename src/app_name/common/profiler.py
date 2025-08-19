@@ -13,7 +13,7 @@ from pstats import Stats
 from dotenv import load_dotenv
 
 # Local Application
-from app.common.config import env_to_bool, get_config_value
+from app_name.common.config import env_to_bool, get_config_value
 
 
 class Profiler:

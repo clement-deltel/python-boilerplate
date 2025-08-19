@@ -10,7 +10,7 @@ from typing import Any
 from dotenv import load_dotenv
 
 # Local Application
-from app.common.path_translator import PathTranslator
+from app_name.common.path_translator import PathTranslator
 
 
 def env_to_bool(variable: str) -> bool:

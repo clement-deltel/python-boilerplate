@@ -10,9 +10,9 @@ from signal import SIGINT, SIGQUIT, signal
 from time import gmtime, perf_counter, strftime
 
 # Local Application
-from app.common.config import Config, DevConfig, ProdConfig, set_config
-from app.common.log import log
-from app.common.profiler import profiler
+from app_name.common.config import Config, DevConfig, ProdConfig, set_config
+from app_name.common.profiler import profiler
+from app_name.event.log import log
 
 
 def signal_int_handler(signum, frame):

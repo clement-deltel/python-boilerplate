@@ -27,7 +27,7 @@ Here are the steps you need to follow when starting a new coding project from th
       - 2 `company.com` occurrences
   - *deploy directory*
     - **README.md**
-      - 6 `<app>` occurrences
+      - 4 `<app>` occurrences
       - all `<[a-z]*>` occurrences
   - *docker directory*
     - **compose.yaml**

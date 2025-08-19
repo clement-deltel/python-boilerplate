@@ -10,11 +10,12 @@
   - [uv](#uv)
   - [ruff](#ruff)
   - [ty](#ty)
+  - [pre-commit](#pre-commit)
   - [gitleaks](#gitleaks)
   - [ls-lint](#ls-lint)
   - [varlock](#varlock)
-  - [pre-commit](#pre-commit)
   - [docker](#docker)
+  - [hadolint](#hadolint)
   - [trivy](#trivy)
   - [tokei](#tokei)
   - [csv2md](#csv2md)
@@ -33,13 +34,20 @@ The following is a set of guidelines for contributing. These are mostly guidelin
 
 The pre-requisites are:
 
-- [ls-lint](https://ls-lint.org/)
-- [uv](https://docs.astral.sh/uv/)
-- [varlock](https://varlock.dev/)
+- uv
+- Using Homebrew
+  - gitleaks
+  - hadolint
+  - ls-lint
+  - tokei
+  - varlock
+  - readme-generator-for-helm
 
 ```bash
-# Install homebrew, ls-lint, uv, and varlock
 make pre-requisites
+
+git clone https://github.com/bitnami/readme-generator-for-helm
+npm install ./readme-generator-for-helm
 ```
 
 Here are the steps to set up a development environment to run this application.
@@ -52,7 +60,7 @@ Here are the steps to set up a development environment to run this application.
 make init-dev
 ```
 
-3. Fill in the `.env.template` file with your configuration.
+3. Fill in the `.env.schema` file with your configuration.
 4. Rename the file to `.env`.
 5. Run the application:
 
@@ -235,36 +243,6 @@ Check all files in the current directory?
 ty check
 ```
 
-### gitleaks
-
-Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io) ([source code](https://github.com/gitleaks/gitleaks)). Do you want to:
-
-Scan all the commits?
-
-```bash
-gitleaks git --redact --verbose
-```
-
-### ls-lint
-
-Here are useful commands to ensure consistent project filesystem structure using [ls-lint](https://ls-lint.org/) ([source code](https://github.com/loeffel-io/ls-lint)). Do you want to:
-
-Check the project filesystem structure?
-
-```bash
-ls-lint
-```
-
-### varlock
-
-Here are useful commands to ensure consistent .env structure by adding @env-spec decorator comments, using [varlock](https://varlock.dev/) ([source code](https://github.com/dmno-dev/varlock)). Do you want to:
-
-Check the .env file structure:
-
-```bash
-varlock load
-```
-
 ### pre-commit
 
 Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com) ([source code](https://github.com/pre-commit/pre-commit)). Do you want to:
@@ -311,6 +289,36 @@ Uninstall hooks?
 pre-commit uninstall
 ```
 
+### gitleaks
+
+Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io) ([source code](https://github.com/gitleaks/gitleaks)). Do you want to:
+
+Scan all the commits?
+
+```bash
+gitleaks git --redact --verbose
+```
+
+### ls-lint
+
+Here are useful commands to ensure consistent project filesystem structure using [ls-lint](https://ls-lint.org/) ([source code](https://github.com/loeffel-io/ls-lint)). Do you want to:
+
+Check the project filesystem structure?
+
+```bash
+ls-lint
+```
+
+### varlock
+
+Here are useful commands to ensure consistent .env structure by adding @env-spec decorator comments, using [varlock](https://varlock.dev/) ([source code](https://github.com/dmno-dev/varlock)). Do you want to:
+
+Check the .env file structure:
+
+```bash
+varlock load
+```
+
 ### docker
 
 Here are useful commands to manage the Docker configuration. Do you want to:
@@ -319,6 +327,16 @@ Here are useful commands to manage the Docker configuration. Do you want to:
 
 ```bash
 rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
+```
+
+### hadolint
+
+Here are useful commands to lint the Dockerfile using [hadolint](https://github.com/hadolint/hadolint) ([source code](https://github.com/hadolint/hadolint)). Do you want to:
+
+Apply best practices on your Dockerfile?
+
+```bash
+hadolint docker/Dockerfile
 ```
 
 ### trivy

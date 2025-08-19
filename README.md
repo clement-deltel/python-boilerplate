@@ -20,7 +20,7 @@
 
 ## Introduction
 
-This application...
+app-description
 
 ## Code Statistics
 
@@ -38,11 +38,11 @@ This application...
  TOML                    1          300          170           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                4          909            0          626          283
- |- BASH                 3           74           69            5            0
- (Total)                            983           69          631          283
+ Markdown                4          923            0          636          287
+ |- BASH                 3           77           72            4            1
+ (Total)                           1000           72          640          288
 ===============================================================================
- Total                  22         2929         1058         1309          562
+ Total                  22         2943         1058         1319          566
 ===============================================================================
 ```
 
@@ -56,9 +56,8 @@ The core requirements are:
 
 Some extra utilities are:
 
-- [ls-lint](https://ls-lint.org/) - directory and filename linter, bring some structure to the project filesystem. `Go`
+- [docker](https://github.com/docker) - software platform that allows to build, test, and deploy applications quickly, packages software into standardized units called containers that have everything including libraries, system tools, code, and runtime.
 - [uv](https://docs.astral.sh/uv/) - Python package and project manager. `Rust`
-- [varlock](https://varlock.dev/) - .env files powered by @env-spec decorator comments. `TypeScript` `JavaScript`
 
 ## Dependencies
 
@@ -128,7 +127,7 @@ If using pip, you have to manually:
 pip install -r requirements/requirements.txt
 ```
 
-3. Fill in the `.env.template` file with your configuration.
+3. Fill in the `.env.schema` file with your configuration.
 4. Rename the file to `.env`.
 5. Run the application:
 
@@ -145,7 +144,7 @@ make run
 make build-image
 ```
 
-3. Fill in the `.env.template` file with your configuration.
+3. Fill in the `.env.schema` file with your configuration.
 4. Rename the file to `.env`.
 5. Run the application:
 
@@ -175,7 +174,7 @@ docker rm <app>
 ### Docker Compose
 
 1. Clone this repository.
-2. Fill in the `.env.template` file with your configuration.
+2. Fill in the `.env.schema` file with your configuration.
 3. Rename the file to `.env`.
 4. Run the application:
 

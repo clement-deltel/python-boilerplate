@@ -25,7 +25,7 @@ init-test:
 	source .venv/bin/activate
 
 init-from-scratch:
-	uv init --build-backend uv_build --managed-python --name app-name --python 3.11.11 --vcs git
+	uv init --build-backend uv --managed-python --name app-name --python 3.11.11 --vcs git
 	uv sync
 	source .venv/bin/activate
 

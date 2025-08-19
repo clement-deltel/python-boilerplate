@@ -153,10 +153,10 @@ repos:
   # -------------------------------------------------------------------------- #
   - repo: local
     hooks:
-      - id: helm-lint
-        name: helm-lint
-        description: Examine a chart for possible issues
-        entry: .githooks/helm-lint.sh
+      - id: helm-chart
+        name: helm-chart
+        description: Examine a chart for possible issues and update chart README file
+        entry: .githooks/helm-chart.sh
         language: script
         always_run: true
         pass_filenames: false

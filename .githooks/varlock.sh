@@ -1,3 +1,5 @@
 #!/bin/bash
 
-varlock load
+if command -v varlock &> /dev/null; then
+  varlock load
+fi

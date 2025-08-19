@@ -7,10 +7,9 @@ IMAGE_TAG=$(shell cz version --project)
 #               ------- Initialization ------
 # ---------------------------------------------------------------------------- #
 pre-requisites:
-	curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 	curl -fLSs https://astral.sh/uv/install.sh | sh
-	brew install ls-lint
-	brew install dmno-dev/tap/varlock
+	curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+	brew install gitleaks hadolint ls-lint tokei dmno-dev/tap/varlock
 
 init:
 	uv sync --frozen --no-default-groups
@@ -26,7 +25,7 @@ init-test:
 	source .venv/bin/activate
 
 init-from-scratch:
-	uv init --build-backend hatchling --managed-python --name app --python 3.11.11 --vcs git
+	uv init --build-backend uv_build --managed-python --name app --python 3.11.11 --vcs git
 	uv sync
 	source .venv/bin/activate
 

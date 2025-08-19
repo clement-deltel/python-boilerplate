@@ -82,17 +82,17 @@ app v0.0.0
 
 ## Configuration
 
-The application configuration can be loaded as a set of environment variables in the Docker image. A file mounted on /home/app/.env can also override those values for testing purposes.
+The application configuration can be loaded as a set of environment variables in the Docker image. A file mounted on /app/.env can also override those values for testing purposes.
 
 List of available environment variables:
 
-| Variable    | Type | Sensitive | Default           | Condition | Example            | Description                                                        |
-| ----------- | ---- | --------- | ----------------- | --------- | ------------------ | ------------------------------------------------------------------ |
-| INPUT_PATH  | str  |           | /home/app/inputs  |           | /path/to/directory | Path to directory containing input files                           |
-| OUTPUT_PATH | str  |           | /home/app/outputs |           | /path/to/directory | Path to directory where to save output files                       |
-| LOG_LEVEL   | str  |           | INFO              |           | INFO               | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
-| LOG_PATH    | str  |           | /home/app/logs    |           | /path/to/directory | Path to directory containing log files if enabled                  |
-| LOG_TO_FILE | bool |           | false             |           | true               | Whether to export logs to a file                                   |
+| Variable    | Type | Sensitive | Default     | Condition | Example            | Description                                                        |
+| ----------- | ---- | --------- | ----------- | --------- | ------------------ | ------------------------------------------------------------------ |
+| INPUT_PATH  | str  |           | /app/input  |           | /path/to/directory | Path to directory containing input files                           |
+| OUTPUT_PATH | str  |           | /app/output |           | /path/to/directory | Path to directory where to save output files                       |
+| LOG_LEVEL   | str  |           | INFO        |           | INFO               | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
+| LOG_PATH    | str  |           | /app/log    |           | /path/to/directory | Path to directory containing log files if enabled                  |
+| LOG_TO_FILE | bool |           | false       |           | true               | Whether to export logs to a file                                   |
 
 > *Note*: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 

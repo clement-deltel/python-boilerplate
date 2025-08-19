@@ -48,7 +48,7 @@ LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
-ARG HOME=/home/app
+ARG HOME=/app
 
 WORKDIR ${HOME}
 

@@ -3,10 +3,10 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: app
+    container_name: app-name
     env_file: ../.env
-    hostname: app
-    image: app:${IMAGE_TAG}
+    hostname: app-name
+    image: app-name:${IMAGE_TAG}
     logging:
       driver: json-file
       options:
@@ -15,6 +15,6 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
     volumes:
-      - ../input:/home/app/input
-      - ../log:/home/app/log
-      - ../output:/home/app/output
+      - ../input:/app/input
+      - ../log:/app/log
+      - ../output:/app/output

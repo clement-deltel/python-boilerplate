@@ -1,12 +1,13 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
 # Instructions creating a new layer: ADD, COPY, RUN
 
+ARG DEBIAN_VERSION=trixie-slim
 ARG UV_VERSION=0.8.11
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:bookworm-slim AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-python3.11-${DEBIAN_VERSION} AS builder
 WORKDIR /app
 
 # Not persisted into the builder image
@@ -22,7 +23,7 @@ ENV UV_PYTHON_INSTALL_DIR=/python
 ENV UV_PYTHON_PREFERENCE=only-managed
 
 # Install Python before the application for caching
-RUN uv python install "${PYTHON_VERSION}"
+RUN uv python install ${PYTHON_VERSION}
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -37,10 +38,19 @@ COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-default-groups --no-editable
 
+# Clean up unnecessary files to reduce size
+RUN find .venv \( \
+    -name "*.pyc" -o \
+    -name "*.pyo" -o \
+    -name "*.pyd" -o \
+    -name "__pycache__" -o \
+    -name "test" \
+    \) -exec rm -rf {} + 2>/dev/null || true
+
 # ---------------------------------------------------------------------------- #
 #               ------- Run Application ------
 # ---------------------------------------------------------------------------- #
-FROM debian:bookworm-slim AS runtime
+FROM debian:${DEBIAN_VERSION} AS runtime
 
 LABEL org.opencontainers.image.title="app"
 LABEL org.opencontainers.image.description="app"

@@ -28,7 +28,7 @@ def get_expected_process(debug_entrypoint):
         debug_command = environ.get("DEBUG_COMMAND", default="tail -f /dev/null")
         # Try full command first, fall back to first word
         return debug_command.strip(), debug_command.split()[0]
-    pattern = "python -m src.app.main"
+    pattern = "python -m src.app_name.main"
     return pattern, pattern
 
 

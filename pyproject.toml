@@ -7,12 +7,12 @@ build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-root = "src"
-module-name = ["app"]
+module-name = ["app_name"]
 namespace = true
 
 [project]
-name = "app"
-description = "app"
+name = "app-name"
+description = "app-description"
 version = "0.0.0"
 authors = [{ name = "", email = "support@company.com" }]
 maintainers = [{ name = "", email = "support@company.com" }]
@@ -53,14 +53,14 @@ test = ["coverage", "pytest"]
 #               ------- entry-points ------
 # ---------------------------------------------------------------------------- #
 # [project.entry-points."tasks"]
-# "app.tasks_definitions" = "app.definitions:definitions"
-# "app.tasks" = "app.tasks"
+# "app_name.tasks_definitions" = "app_name.definitions:definitions"
+# "app_name.tasks" = "app_name.tasks"
 
 # ---------------------------------------------------------------------------- #
 #               ------- scripts ------
 # ---------------------------------------------------------------------------- #
 [project.scripts]
-app = "app.main:main"
+app_name = "app_name.main:main"
 
 # ---------------------------------------------------------------------------- #
 #               ------- tool - commitizen ------

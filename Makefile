@@ -25,20 +25,20 @@ init-test:
 	source .venv/bin/activate
 
 init-from-scratch:
-	uv init --build-backend uv_build --managed-python --name app --python 3.11.11 --vcs git
+	uv init --build-backend uv_build --managed-python --name app-name --python 3.11.11 --vcs git
 	uv sync
 	source .venv/bin/activate
 
 init-auto-activate:
 	pyenv install 3.11.11
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app
-	pyenv local 3.11.11_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app-name
+	pyenv local 3.11.11_app-name
 
 auto-activate:
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app
-	pyenv local 3.11.11_app
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app-name
+	pyenv local 3.11.11_app-name
 
 # ---------------------------------------------------------------------------- #
 #               ------- Requirements ------
@@ -61,11 +61,11 @@ requirement-all:
 #               ------- Code ------
 # ---------------------------------------------------------------------------- #
 run:
-	python -m src.app.main
+	python -m src.app_name.main
 
 debug:
 	export PYTHONPATH=$(pwd)
-	python -m pdb src/app/main.py
+	python -m pdb src/app_name/main.py
 
 test:
 	python -m pytest --color=yes --durations=5 --verbose --config-file=test/pytest.ini test/
@@ -90,22 +90,22 @@ get-tag:
 	echo "export IMAGE_TAG=${IMAGE_TAG}"
 
 build-image: clean
-	docker build --file docker/Dockerfile --tag app:${IMAGE_TAG} .
+	docker build --file docker/Dockerfile --tag app-name:${IMAGE_TAG} .
 
 pull-image:
-	docker pull app:${IMAGE_TAG}
+	docker pull app-name:${IMAGE_TAG}
 
 push-image:
-	docker push app:${IMAGE_TAG}
+	docker push app-name:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Container ------
 # ---------------------------------------------------------------------------- #
 create-container:
-	docker create --env-file .env --name app app:${IMAGE_TAG}
+	docker create --env-file .env --name app-name app-name:${IMAGE_TAG}
 
 run-container:
-	docker run --env-file .env --name app --rm app:${IMAGE_TAG}
+	docker run --env-file .env --name app-name --rm app-name:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Scan ------
@@ -114,7 +114,7 @@ scan-repo:
 	trivy repository --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln .
 
 scan-image:
-	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app:${IMAGE_TAG}
+	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Other ------

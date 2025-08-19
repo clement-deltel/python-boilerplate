@@ -100,7 +100,7 @@ class AppConfig:
             run_date (datetime): application run date.
             translator (PathTranslator): path translation between Windows and Linux formats.
         """
-        self.name = "app"
+        self.name = "app-name"
         self.run_date = run_date
 
         # Directories and files

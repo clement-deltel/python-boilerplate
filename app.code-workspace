@@ -2,7 +2,7 @@
     "folders": [
         {
             // Source code
-            "name": "Application",
+            "name": "Application Name",
             "path": "."
         }
     ],
@@ -169,8 +169,8 @@
                 "request": "launch",
                 "justMyCode": true,
                 // "preLaunchTask": "${defaultBuildTask}",
-                // "module": "app",
-                "program": "src/app/main.py",
+                // "module": "app_name",
+                "program": "src/app_name/main.py",
                 "env": {
                     "APP_ENV": "development",
                     "PYTHONPATH": "${workspaceFolder}",

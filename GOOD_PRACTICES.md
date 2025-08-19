@@ -27,42 +27,43 @@ Here are the steps you need to follow when starting a new coding project from th
       - 2 `company.com` occurrences
   - *deploy directory*
     - **README.md**
-      - 4 `<app>` occurrences
+      - 6 `customer-app-name` occurrences
       - all `<[a-z]*>` occurrences
   - *docker directory*
     - **compose.yaml**
-      - container_name
-      - hostname
-      - image
+      - 3 `app-name` occurrences
     - **Dockerfile** or **wheel.Dockerfile** based on your needs
-      - image.title
-      - image.description
+      - 1 `app-name` occurrence
+      - 1 `app-description` occurrence
       - image.authors
       - image.vendor
     - **entrypoint.sh**
-      - 1 `app` occurrence (use underscore over hyphen if multiple words)
+      - 1 `app_name` occurrence
     - **healthcheck.py**
-      - 1 `app` occurrence (use underscore over hyphen if multiple words)
+      - 1 `app_name` occurrence (use underscore over hyphen if multiple words)
   - *src directory*
-    - rename the `app` directory (use underscore over hyphen if multiple words)
-    - all `app.*` imports in the Python files
+    - rename the `app_name` directory
+    - all `app_name.*` imports in the Python files
   - **.pre-commit-config.yaml**
     - enable commitizen hooks (disabled by default due to lack of emojis support)
-  - **app.code-workspace**
-    - rename the file itself replacing `app`
-    - 2 `app` occurrence (use underscore over hyphen if multiple words)
+  - **app-name.code-workspace**
+    - rename the file itself replacing `app-name`
+    - 1 `Application Name` occurrence
+    - 2 `app_name` occurrence
     - add launch configurations if needed
   - **CONTRIBUTING.md**
-    - 1 `<app>` occurrence
+    - 1 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 17 `app` occurrences (check on hyphen or underscore use based on needs if multiple words)
-    - check *run* and *debug* tasks to ensure they are compatible with your project
-    - update the *(build|pull|push)-image* tasks based on your project's requirements
-    - update the *(create|run)-container* tasks based on your project's requirements
+    - 17 `app-name` occurrences
+    - 2 `app_name` occurrences
+    - check *run* and *debug* tasks to ensure they are compatible with your application
+    - update the *(build|pull|push)-image* tasks based on your application's requirements
+    - update the *(create|run)-container* tasks based on your application's requirements
   - **pyproject.toml**
-    - 9 `app` occurrences (check on hyphen or underscore use based on needs if multiple words)
-    - project.description
+    - 1 `app-name` occurrence
+    - 7 `app_name` occurrences
+    - 1 `app-description` occurrence
     - project.authors
     - project.maintainers
     - project.classifiers ([list of classifiers](https://pypi.org/classifiers))
@@ -70,9 +71,9 @@ Here are the steps you need to follow when starting a new coding project from th
     - tool.uv.environments (switch to Windows if needed)
     - tool.uv.required-environments (switch to Windows if needed)
   - **README.md**
-    - 4 `<app>` occurrences
-    - Title `Application`
-    - Introduction section
+    - 4 `app-name` occurrences
+    - 1 `app-description` occurrence
+    - 1 `Application Name` occurrence
 - Run the following uv command: `make init-dev`
 
 ## Libraries

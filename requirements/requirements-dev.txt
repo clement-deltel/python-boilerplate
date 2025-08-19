@@ -99,7 +99,7 @@ numpy==2.3.2 ; sys_platform == 'linux' \
     --hash=sha256:f75018be4980a7324edc5930fe39aa391d5734531b1926968605416ff58c332d \
     --hash=sha256:fb1752a3bb9a3ad2d6b090b88a9a0ae1cd6f004ef95f75825e2f382c183b2097
     # via
-    #   app
+    #   app-name
     #   pandas
 packaging==25.0 ; sys_platform == 'linux' \
     --hash=sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484 \
@@ -111,7 +111,7 @@ pandas==2.3.1 ; sys_platform == 'linux' \
     --hash=sha256:4d544806b485ddf29e52d75b1f559142514e60ef58a832f74fb38e48d757b299 \
     --hash=sha256:98bcc8b5bf7afed22cc753a28bc4d9e26e078e777066bc53fac7904ddef9a678 \
     --hash=sha256:e6723a27ad7b244c0c79d8e7007092d7c8f0f11305770e2f4cd778b3ad5f9f85
-    # via app
+    # via app-name
 pathspec==0.12.1 ; sys_platform == 'linux' \
     --hash=sha256:a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08 \
     --hash=sha256:a482d51503a1ab33b1c67a6c3813a26953dbdc71c31dacaef9a838c4e29f5712
@@ -136,7 +136,7 @@ python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
 python-dotenv==1.1.1 ; sys_platform == 'linux' \
     --hash=sha256:31f23644fe2602f88ff55e1f5c79ba497e01224ee7737937930c448e4d0e24dc \
     --hash=sha256:a8a6399716257f45be6a007360200409fce5cda2661e3dec71d23dc15f6189ab
-    # via app
+    # via app-name
 pytz==2025.2 ; sys_platform == 'linux' \
     --hash=sha256:360b9e3dbb49a209c21ad61809c7fb453643e048b38924c765813546746e81c3 \
     --hash=sha256:5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00
@@ -165,7 +165,7 @@ refurb==2.1.0 ; sys_platform == 'linux' \
 requests==2.32.4 ; sys_platform == 'linux' \
     --hash=sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c \
     --hash=sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422
-    # via app
+    # via app-name
 ruff==0.12.9 ; sys_platform == 'linux' \
     --hash=sha256:07adb221c54b6bba24387911e5734357f042e5669fa5718920ee728aba3cbadc \
     --hash=sha256:17d5b6b0b3a25259b69ebcba87908496e6830e03acfb929ef9fd4c58675fa2ea \

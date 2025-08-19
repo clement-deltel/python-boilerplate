@@ -346,7 +346,7 @@ Here are useful commands to scan an image using [trivy](https://trivy.dev/latest
 Find vulnerabilities, misconfigurations, secrets in an image?
 
 ```bash
-trivy image --image-config-scanners misconfig,secret --scanners vuln,secret <app>:latest
+trivy image --image-config-scanners misconfig,secret --scanners vuln,secret app-name:latest
 ```
 
 ### tokei
@@ -393,9 +393,9 @@ readme-generator --values helm_chart/values.yaml --readme helm_chart/README.md
 Here are useful commands to analyze the code performance and identify bottlenecks using [cProfile](https://docs.python.org/3/library/profile.html).
 
 - Set the environment variable **PROFILING** to "true" to enable this functionality.
-- Once you run the application, it should generate a report named "{date}_{app_name}.prof" to the output path by the time it finishes
+- Once you run the application, it should generate a report named "{date}_{app}.prof" to the output path by the time it finishes
 - Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz):
 
 ```bash
-snakeviz {date}_{app_name}.prof
+snakeviz {date}_{app}.prof
 ```

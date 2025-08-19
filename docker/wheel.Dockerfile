@@ -42,8 +42,8 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # ---------------------------------------------------------------------------- #
 FROM debian:bookworm-slim AS runtime
 
-LABEL org.opencontainers.image.title="app"
-LABEL org.opencontainers.image.description="app"
+LABEL org.opencontainers.image.title="app-name"
+LABEL org.opencontainers.image.description="app-description"
 LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 

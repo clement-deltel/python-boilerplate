@@ -1,4 +1,4 @@
-# Application <!-- omit in toc -->
+# Application Name <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -38,11 +38,11 @@ app-description
  TOML                    1          300          170           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                4          923            0          636          287
+ Markdown                4          924            0          637          287
  |- BASH                 3           77           72            4            1
- (Total)                           1000           72          640          288
+ (Total)                           1001           72          641          288
 ===============================================================================
- Total                  22         2952         1065         1320          567
+ Total                  22         2953         1065         1321          567
 ===============================================================================
 ```
 
@@ -64,7 +64,7 @@ Some extra utilities are:
 The application dependencies are managed with [uv](https://docs.astral.sh/uv/). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation/). It is recommended to install and use it, even still requirements files are available and can be used.
 
 ```text
-app v0.0.0
+app-name v0.0.0
 ├── numpy v2.3.2
 ├── pandas v2.3.1
 │   ├── numpy v2.3.2
@@ -160,15 +160,15 @@ make run-container
 # Create
 make create-container
 # Start
-docker start <app>
+docker start app-name
 # or (if you need to attach to the application process)
-docker start <app> --attach
+docker start app-name --attach
 ```
 
 6. Remove container after execution (if `--rm` option was not used):
 
 ```bash
-docker rm <app>
+docker rm app-name
 ```
 
 ### Docker Compose
@@ -192,7 +192,7 @@ docker compose down -v
 cd docker
 docker compose create
 docker compose start
-docker logs <app>
+docker logs app-name
 docker compose down -v
 ```
 

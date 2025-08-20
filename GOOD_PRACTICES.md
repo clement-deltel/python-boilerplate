@@ -52,10 +52,10 @@ Here are the steps you need to follow when starting a new coding project from th
     - 2 `app_name` occurrence
     - add launch configurations if needed
   - **CONTRIBUTING.md**
-    - 1 `app-name` occurrence
+    - 3 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 17 `app-name` occurrences
+    - 19 `app-name` occurrences
     - 2 `app_name` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your application
     - update the *(build|pull|push)-image* tasks based on your application's requirements
@@ -135,6 +135,7 @@ Here are the useful git hooks used across all of my Python projects:
   - [helm-lint](https://helm.sh/docs/helm/helm_lint)
   - [ls-lint](https://github.com/loeffel-io/ls-lint)
   - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
+  - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm)
   - [readme-update](.githooks/readme_update.py)
   - [varlock](https://github.com/dmno-dev/varlock)
 

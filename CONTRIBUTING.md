@@ -16,6 +16,7 @@
   - [varlock](#varlock)
   - [docker](#docker)
   - [hadolint](#hadolint)
+  - [dive](#dive)
   - [trivy](#trivy)
   - [tokei](#tokei)
   - [csv2md](#csv2md)
@@ -337,6 +338,22 @@ Apply best practices on your Dockerfile?
 
 ```bash
 hadolint docker/Dockerfile
+```
+
+### dive
+
+Here are useful commands to explore image layers using [dive](https://github.com/wagoodman/dive) ([source code](https://github.com/wagoodman/dive)). Do you want to:
+
+Explore image layers?
+
+```bash
+dive app-name:latest
+```
+
+Analyze image efficiency in CI mode?
+
+```bash
+CI=true dive app-name:latest
 ```
 
 ### trivy

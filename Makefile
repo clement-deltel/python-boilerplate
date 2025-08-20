@@ -90,6 +90,7 @@ get-tag:
 	echo "export IMAGE_TAG=${IMAGE_TAG}"
 
 build-image: clean
+	export DOCKER_CONTENT_TRUST=1
 	docker build --file docker/Dockerfile --tag app-name:${IMAGE_TAG} .
 
 pull-image:
@@ -124,6 +125,9 @@ scan-repo:
 
 scan-image:
 	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:${IMAGE_TAG}
+
+scan-image-security:
+	dockle app-name:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Other ------

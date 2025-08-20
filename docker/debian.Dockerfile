@@ -69,7 +69,12 @@ ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 
 # Create group, user, and home directory
 RUN groupadd --gid ${ID} ${USER} && \
-    useradd --create-home --home ${HOME} --uid ${ID} --gid ${ID} ${USER}
+    useradd --create-home --home ${HOME} --uid ${ID} --gid ${ID} ${USER} && \
+# Remove setuid and setgid permissions to prevent privilege escalation
+# https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#cis-di-0008
+    chmod u-s /usr/bin/su /usr/bin/chsh /usr/bin/mount /usr/bin/chfn \
+              /usr/bin/umount /usr/bin/newgrp /usr/bin/passwd /usr/bin/gpasswd && \
+    chmod g-s /usr/bin/expiry /usr/sbin/unix_chkpwd /usr/bin/chage
 
 # Copy the Python version, the application from the builder, and the entrypoint
 COPY --from=builder --chown=python:python /python /python

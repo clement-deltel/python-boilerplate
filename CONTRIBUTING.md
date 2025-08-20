@@ -17,6 +17,7 @@
   - [docker](#docker)
   - [hadolint](#hadolint)
   - [dive](#dive)
+  - [dockle](#dockle)
   - [trivy](#trivy)
   - [tokei](#tokei)
   - [csv2md](#csv2md)
@@ -354,6 +355,16 @@ Analyze image efficiency in CI mode?
 
 ```bash
 CI=true dive app-name:latest
+```
+
+### dockle
+
+Here are useful commands to detect potential security flaws of the Docker image using [dockle](https://containers.goodwith.tech/) ([source code](https://github.com/goodwithtech/dockle)). Do you want to:
+
+Analyze image security?
+
+```bash
+dockle app-name:latest
 ```
 
 ### trivy

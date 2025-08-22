@@ -7,7 +7,7 @@
 - [Debug](#debug)
 - [Merge Request](#merge-request)
 - [Tools](#tools)
-  - [Source code](#source-code)
+  - [Source Code](#source-code)
     - [uv](#uv)
     - [ruff](#ruff)
     - [ty](#ty)
@@ -114,7 +114,7 @@ make scan-image
 
 ## Tools
 
-### Source code
+### Source Code
 
 #### uv
 

@@ -25,11 +25,11 @@ Ensure you have installed the tools listed below:
 
 - [uv](https://github.com/astral-sh/uv) - extremely fast package and project manager. `Rust`
 - Using Homebrew
-  - [gitleaks](https://github.com/gitleaks/gitleaks)
-  - [hadolint](https://github.com/hadolint/hadolint)
-  - [ls-lint](https://github.com/loeffel-io/ls-lint)
-  - [tokei](https://github.com/XAMPPRocky/tokei)
-  - [varlock](https://github.com/dmno-dev/varlock)
+  - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
+  - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
+  - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
+  - [tokei](https://github.com/XAMPPRocky/tokei) - count your code, quickly. `Rust`
+  - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
 
 Or run the command below:
 
@@ -49,7 +49,7 @@ make pre-requisites
    - Perform replacements of application name & description, customer name in all files
    - Rename files and directories based on the same replacement rules
    - Update renovate configuration
-   - Create and initialize a virtual environment using venv
+   - Create and initialize a virtual environment using uv
    - Initialize a Git repository and add the remote (if any)
    - Install pre-commit hooks
    - Stage the files for the initial commit

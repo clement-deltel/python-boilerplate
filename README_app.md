@@ -38,11 +38,11 @@ app-description
  TOML                    1          300          170           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                5         1025            0          708          317
+ Markdown                5         1026            0          709          317
  |- BASH                 4           83           78            4            1
- (Total)                           1108           78          712          318
+ (Total)                           1109           78          713          318
 ===============================================================================
- Total                  24         3497         1314         1506          677
+ Total                  24         3498         1314         1507          677
 ===============================================================================
 ```
 
@@ -103,6 +103,7 @@ The application logs are based on the Python [logging](https://docs.python.org/3
 - **user_id**: user running the application
 - **table**: database table targeted by a given API request
 - **record**: database record being processed
+- **wait**: wait time value when needed
 
 ## Quick Start
 

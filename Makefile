@@ -31,14 +31,14 @@ init-from-scratch:
 
 init-auto-activate:
 	pyenv install 3.11.11
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app-name
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app-name
-	pyenv local 3.11.11_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_customer_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_customer_app-name
+	pyenv local 3.11.11_customer_app-name
 
 auto-activate:
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_app-name
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_app-name
-	pyenv local 3.11.11_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_customer_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_customer_app-name
+	pyenv local 3.11.11_customer_app-name
 
 # ---------------------------------------------------------------------------- #
 #               ------- Requirements ------

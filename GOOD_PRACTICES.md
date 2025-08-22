@@ -55,8 +55,9 @@ Here are the steps you need to follow when starting a new coding project from th
     - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 20 `app-name` occurrences
+    - 14 `app-name` occurrences
     - 2 `app_name` occurrences
+    - 6 `customer_app-name` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your application
     - update the *(build|pull|push)-image* tasks based on your application's requirements
     - update the *(create|run)-container* tasks based on your application's requirements
@@ -74,6 +75,9 @@ Here are the steps you need to follow when starting a new coding project from th
     - 4 `app-name` occurrences
     - 1 `app-description` occurrence
     - 1 `Application Name` occurrence
+  - **renovate.json**
+    - 1 `azureWorkItemId` occurrence
+    - 1 `<domain>\\<user>` occurrence
 - Run the following uv command: `make init-dev`
 
 ## Libraries

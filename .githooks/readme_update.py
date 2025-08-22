@@ -84,8 +84,8 @@ def get_readme() -> Path | None:
 
     # Check current directory and all parents
     for directory in (current_dir, *list(current_dir.parents)):
-        if directory.joinpath("README.md").is_file():
-            return directory.joinpath("README.md")
+        if directory.joinpath("README_app.md").is_file():
+            return directory.joinpath("README_app.md")
 
     return None
 

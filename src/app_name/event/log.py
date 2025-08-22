@@ -26,7 +26,7 @@ class Log:
         self.config = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
 
-        self.extra_fields = {"user_id", "table", "record"}
+        self.extra_fields = {"user_id", "table", "record", "wait"}
 
         # Logger
         self._logger = logging.getLogger(get_config_value("app", "name"))

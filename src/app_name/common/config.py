@@ -123,9 +123,12 @@ class LogConfig:
             translator (PathTranslator): path translation between Windows and Linux formats.
         """
         self.level = environ.get("LOG_LEVEL", default="INFO")
+
+        # Log file
         self.path = translator.to_linux(environ.get("LOG_PATH", default="log"))
         self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%d')}.log")
         self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
+
         # Log formatting
         self.color = env_to_bool(environ.get("LOG_COLOR", default="true"))
         self.json = env_to_bool(environ.get("LOG_JSON", default="true"))

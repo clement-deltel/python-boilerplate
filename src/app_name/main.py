@@ -60,8 +60,7 @@ def main() -> None:
     finally:
         # Print execution time
         end = perf_counter()
-        exec_time = strftime("%H:%M:%S", gmtime(end - start))
-        log().logger.info("Execution time: %s", exec_time)
+        log().logger.info("Execution time: %s", strftime("%H:%M:%S", gmtime(end - start)))
         log().close()
 
 

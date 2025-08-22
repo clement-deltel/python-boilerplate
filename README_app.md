@@ -101,9 +101,9 @@ List of available environment variables:
 The application logs are based on the Python [logging](https://docs.python.org/3/library/logging.html) module. Here are the different fields:
 
 - **user_id**: user running the application
-- **table**: database table targeted by a given API request
+- **table**: database table name
 - **record**: database record being processed
-- **wait**: wait time value when needed
+- **wait**: wait time value
 
 ## Quick Start
 

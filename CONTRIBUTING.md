@@ -7,22 +7,26 @@
 - [Debug](#debug)
 - [Merge Request](#merge-request)
 - [Tools](#tools)
-  - [uv](#uv)
-  - [ruff](#ruff)
-  - [ty](#ty)
-  - [pre-commit](#pre-commit)
-  - [gitleaks](#gitleaks)
-  - [ls-lint](#ls-lint)
-  - [varlock](#varlock)
-  - [docker](#docker)
-  - [hadolint](#hadolint)
-  - [dive](#dive)
-  - [dockle](#dockle)
-  - [trivy](#trivy)
-  - [tokei](#tokei)
-  - [csv2md](#csv2md)
-  - [readme-generator-for-helm](#readme-generator-for-helm)
-  - [cProfile](#cprofile)
+  - [Source code](#source-code)
+    - [uv](#uv)
+    - [ruff](#ruff)
+    - [ty](#ty)
+    - [pre-commit](#pre-commit)
+    - [gitleaks](#gitleaks)
+    - [ls-lint](#ls-lint)
+    - [varlock](#varlock)
+  - [Performance](#performance)
+    - [cProfile](#cprofile)
+  - [Containerization](#containerization)
+    - [docker](#docker)
+    - [hadolint](#hadolint)
+    - [dive](#dive)
+    - [dockle](#dockle)
+    - [trivy](#trivy)
+  - [Documentation](#documentation)
+    - [tokei](#tokei)
+    - [csv2md](#csv2md)
+    - [readme-generator-for-helm](#readme-generator-for-helm)
 
 ## Introduction
 
@@ -110,7 +114,9 @@ make scan-image
 
 ## Tools
 
-### uv
+### Source code
+
+#### uv
 
 Here are useful commands to manage the Python virtual environment and the dependencies using [uv](https://docs.astral.sh/uv) ([source code](https://github.com/astral-sh/uv)). Do you want to:
 
@@ -213,7 +219,7 @@ uv self update
 pre-commit autoupdate --repo https://github.com/astral-sh/uv-pre-commit
 ```
 
-### ruff
+#### ruff
 
 Here are useful commands to lint and format code using [ruff](https://docs.astral.sh/ruff) ([source code](https://github.com/astral-sh/ruff)). Do you want to:
 
@@ -235,7 +241,7 @@ Format a single file?
 ruff format path/to/file.py
 ```
 
-### ty
+#### ty
 
 Here are useful commands to check variable type using [ty](https://github.com/astral-sh/ty) ([source code](https://github.com/astral-sh/ty)). Do you want to:
 
@@ -245,7 +251,7 @@ Check all files in the current directory?
 ty check
 ```
 
-### pre-commit
+#### pre-commit
 
 Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com) ([source code](https://github.com/pre-commit/pre-commit)). Do you want to:
 
@@ -291,7 +297,7 @@ Uninstall hooks?
 pre-commit uninstall
 ```
 
-### gitleaks
+#### gitleaks
 
 Here are useful commands to detect potential secret leaks using [gitleaks](https://gitleaks.io) ([source code](https://github.com/gitleaks/gitleaks)). Do you want to:
 
@@ -301,7 +307,7 @@ Scan all the commits?
 gitleaks git --redact --verbose
 ```
 
-### ls-lint
+#### ls-lint
 
 Here are useful commands to ensure consistent project filesystem structure using [ls-lint](https://ls-lint.org/) ([source code](https://github.com/loeffel-io/ls-lint)). Do you want to:
 
@@ -311,7 +317,7 @@ Check the project filesystem structure?
 ls-lint
 ```
 
-### varlock
+#### varlock
 
 Here are useful commands to ensure consistent .env structure by adding @env-spec decorator comments, using [varlock](https://varlock.dev/) ([source code](https://github.com/dmno-dev/varlock)). Do you want to:
 
@@ -321,7 +327,23 @@ Check the .env file structure:
 varlock load
 ```
 
-### docker
+### Performance
+
+#### cProfile
+
+Here are useful commands to analyze the code performance and identify bottlenecks using [cProfile](https://docs.python.org/3/library/profile.html).
+
+- Set the environment variable **PROFILING** to "true" to enable this functionality.
+- Once you run the application, it should generate a report named "{date}_{app}.prof" to the output path by the time it finishes
+- Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz):
+
+```bash
+snakeviz {date}_{app}.prof
+```
+
+### Containerization
+
+#### docker
 
 Here are useful commands to manage the Docker configuration. Do you want to:
 
@@ -331,7 +353,7 @@ Here are useful commands to manage the Docker configuration. Do you want to:
 rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
 ```
 
-### hadolint
+#### hadolint
 
 Here are useful commands to lint the Dockerfile using [hadolint](https://github.com/hadolint/hadolint) ([source code](https://github.com/hadolint/hadolint)). Do you want to:
 
@@ -341,7 +363,7 @@ Apply best practices on your Dockerfile?
 hadolint docker/Dockerfile
 ```
 
-### dive
+#### dive
 
 Here are useful commands to explore image layers using [dive](https://github.com/wagoodman/dive) ([source code](https://github.com/wagoodman/dive)). Do you want to:
 
@@ -357,7 +379,7 @@ Analyze image efficiency in CI mode?
 CI=true dive app-name:latest
 ```
 
-### dockle
+#### dockle
 
 Here are useful commands to detect potential security flaws of the Docker image using [dockle](https://containers.goodwith.tech/) ([source code](https://github.com/goodwithtech/dockle)). Do you want to:
 
@@ -367,7 +389,7 @@ Analyze image security?
 dockle app-name:latest
 ```
 
-### trivy
+#### trivy
 
 Here are useful commands to scan an image using [trivy](https://trivy.dev/latest) ([source code](https://github.com/aquasecurity/trivy)). Do you want to:
 
@@ -377,7 +399,9 @@ Find vulnerabilities, misconfigurations, secrets in an image?
 trivy image --image-config-scanners misconfig,secret --scanners vuln,secret app-name:latest
 ```
 
-### tokei
+### Documentation
+
+#### tokei
 
 Here are useful commands to generate some code statistics and add them to the README using [tokei](https://github.com/XAMPPRocky/tokei).
 
@@ -389,7 +413,7 @@ tokei .
 
 - Copy the table from stdout to `README.md` in a code block
 
-### csv2md
+#### csv2md
 
 Here are useful commands to manage the README documentation using [csv2md](https://pypi.org/project/csv2md). Do you want to:
 
@@ -404,7 +428,7 @@ python -m csv2md doc/env.csv
 
 - Copy the table from stdout to `README.md`
 
-### readme-generator-for-helm
+#### readme-generator-for-helm
 
 Here are useful commands to manage the Helm chart documentation using [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm). Do you want to:
 
@@ -415,15 +439,3 @@ readme-generator --values helm_chart/values.yaml --readme helm_chart/README.md
 ```
 
 > Note: For any documentation related contribution, please use a spell checking tool like [Grammarly](https://www.grammarly.com) to avoid typographical and any other type of errors.
-
-### cProfile
-
-Here are useful commands to analyze the code performance and identify bottlenecks using [cProfile](https://docs.python.org/3/library/profile.html).
-
-- Set the environment variable **PROFILING** to "true" to enable this functionality.
-- Once you run the application, it should generate a report named "{date}_{app}.prof" to the output path by the time it finishes
-- Open the report with a text editor or visualize it using [snakeviz](https://jiffyclub.github.io/snakeviz):
-
-```bash
-snakeviz {date}_{app}.prof
-```

@@ -58,13 +58,24 @@ requirement-all:
 	uv export --format requirements-txt --group test --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt
 
 # ---------------------------------------------------------------------------- #
-#               ------- Code ------
+#               ------- Run ------
 # ---------------------------------------------------------------------------- #
 run:
-	python -m src.app_name.main
+	app_name
 
+run-module:
+	python -m app_name.main
+
+run-program:
+	python src/app_name/main.py
+
+run-uv:
+	uv run app_name
+
+# ---------------------------------------------------------------------------- #
+#               ------- Debug & Test ------
+# ---------------------------------------------------------------------------- #
 debug:
-	export PYTHONPATH=$(pwd)
 	python -m pdb src/app_name/main.py
 
 test:

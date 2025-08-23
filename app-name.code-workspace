@@ -31,6 +31,7 @@
             "ms-python.python",
             "ms-python.vscode-pylance",
             "njpwerner.autodocstring",
+            "rodolphebarbanneau.python-docstring-highlighter",
             // Spell Checker
             "streetsidesoftware.code-spell-checker",
             // TOML
@@ -161,7 +162,7 @@
         "version": "0.2.0",
         "configurations": [
             {
-                "name": "App - main",
+                "name": "Application Name",
                 "console": "internalConsole",
                 "internalConsoleOptions": "openOnSessionStart",
                 "cwd": "${workspaceFolder}",
@@ -169,8 +170,8 @@
                 "request": "launch",
                 "justMyCode": true,
                 // "preLaunchTask": "${defaultBuildTask}",
-                // "module": "app_name",
-                "program": "src/app_name/main.py",
+                "module": "app_name.main",
+                // "program": "src/app_name/main.py",
                 "env": {
                     "APP_ENV": "development",
                     "PYTHONPATH": "${workspaceFolder}",

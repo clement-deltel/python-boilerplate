@@ -8,7 +8,6 @@ ARG UV_VERSION=0.8.11
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-python3.11-${DEBIAN_VERSION} AS builder
-WORKDIR /app
 
 # Not persisted into the builder image
 ARG PYTHON_VERSION=3.11.11
@@ -21,6 +20,9 @@ ENV UV_LINK_MODE=copy
 ENV UV_PYTHON_INSTALL_DIR=/python
 # Only use the managed Python version
 ENV UV_PYTHON_PREFERENCE=only-managed
+
+# Set working directory to the `app` directory
+WORKDIR /app
 
 # Install Python before the application for caching
 RUN uv python install ${PYTHON_VERSION}
@@ -61,11 +63,14 @@ LABEL org.opencontainers.image.vendor="Company Inc."
 ARG DEBIAN_FRONTEND=noninteractive
 ARG USER="app"
 ARG ID="1000"
-ARG HOME=/app
+ARG HOME=/${USER}
 ARG VIRTUAL_ENV="${HOME}/.venv"
 
 # Place executables in the environment at the front of the path
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
+
+# Set working directory
+WORKDIR ${HOME}
 
 # Create group, user, and home directory
 RUN groupadd --gid ${ID} ${USER} && \
@@ -78,12 +83,10 @@ RUN groupadd --gid ${ID} ${USER} && \
 
 # Copy the Python version, the application from the builder, and the entrypoint
 COPY --from=builder --chown=python:python /python /python
-COPY --from=builder --chown=${USER}:${USER} /app ${HOME}
-COPY --chown=${USER}:${USER} docker/entrypoint.sh ${HOME}/entrypoint.sh
-COPY --chown=${USER}:${USER} docker/healthcheck.py ${HOME}/healthcheck.py
+COPY --from=builder --chown=${USER}:${USER} ${HOME}/.venv ${HOME}/.venv
+COPY --chmod=500 --chown=${USER}:${USER} docker/entrypoint.sh ${HOME}/entrypoint.sh
+COPY --chmod=500 --chown=${USER}:${USER} docker/healthcheck.py ${HOME}/healthcheck.py
 
-RUN chmod +x ${HOME}/entrypoint.sh ${HOME}/healthcheck.py
-WORKDIR ${HOME}
 USER ${USER}
 
 # hadolint unsupported flag: --start-interval=10s

@@ -3,21 +3,34 @@
 
 # Standard Library
 from os import environ
-from subprocess import TimeoutExpired, run
+from pathlib import Path
 from sys import exit as sys_exit
 
 
 def is_process_running(pattern):
-    """Check if a process matching the given pattern is running."""
+    """Check if a process matching the given pattern is running using /proc."""
     try:
-        result = run(
-            ["/usr/bin/pgrep", "-f", pattern],
-            check=False,
-            capture_output=True,
-            timeout=5,  # Prevent hanging
-        )
-        return result.returncode == 0
-    except (TimeoutExpired, FileNotFoundError) as err:
+        proc_dir = Path("/proc")
+        for pid_dir in proc_dir.iterdir():
+            if not pid_dir.name.isdigit():
+                continue
+
+            try:
+                # Read the command line of the process
+                cmdline_file = pid_dir / "cmdline"
+                with cmdline_file.open("r") as f:
+                    cmdline = f.read().replace("\0", " ").strip()
+
+                if pattern in cmdline:
+                    return True
+
+            except (OSError, PermissionError):
+                # Process might have disappeared or we don't have permission
+                continue
+
+        return False
+
+    except OSError as err:
         print(f"Error checking process '{pattern}': {err}")
         return False
 
@@ -28,7 +41,7 @@ def get_expected_process(debug_entrypoint):
         debug_command = environ.get("DEBUG_COMMAND", default="tail -f /dev/null")
         # Try full command first, fall back to first word
         return debug_command.strip(), debug_command.split()[0]
-    pattern = "python -m src.app_name.main"
+    pattern = "app_name"
     return pattern, pattern
 
 

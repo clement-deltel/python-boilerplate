@@ -105,8 +105,14 @@ push-image:
 create-container:
 	docker create --env-file .env --name app-name app-name:${IMAGE_TAG}
 
+debug-container:
+	python -m pdb .venv/lib/python3.11/site-packages/app_name/main.py
+
 run-container:
 	docker run --env-file .env --name app-name --rm app-name:${IMAGE_TAG}
+
+run-container-detach:
+	docker run --detach --env-file .env --name app-name --rm app-name:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dive ------

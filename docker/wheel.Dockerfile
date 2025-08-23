@@ -1,13 +1,13 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
 # Instructions creating a new layer: ADD, COPY, RUN
 
-ARG UV_VERSION=0.8.0
+ARG DEBIAN_VERSION=trixie-slim
+ARG UV_VERSION=0.8.11
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-bookworm-slim AS builder
-WORKDIR /app
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-python3.11-${DEBIAN_VERSION} AS builder
 
 # Not persisted into the builder image
 ARG PYTHON_VERSION=3.11.11
@@ -21,8 +21,11 @@ ENV UV_PYTHON_INSTALL_DIR=/python
 # Only use the managed Python version
 ENV UV_PYTHON_PREFERENCE=only-managed
 
+# Set working directory to the `app` directory
+WORKDIR /app
+
 # Install Python before the application for caching
-RUN uv python install "${PYTHON_VERSION}"
+RUN uv python install ${PYTHON_VERSION}
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \

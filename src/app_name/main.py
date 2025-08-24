@@ -15,13 +15,13 @@ from app_name.common.profiler import profiler
 from app_name.event.log import log
 
 
-def signal_int_handler(signum, frame):
+def signal_int_handler(signum, frame):  # noqa: ARG001
     """Handle SIGINT signal for the application execution."""
     log().logger.warning("You pressed Ctrl + C! Terminating gracefully...")
     raise KeyboardInterrupt
 
 
-def signal_quit_handler(signum, frame):
+def signal_quit_handler(signum, frame):  # noqa: ARG001
     """Handle SIGQUIT signal for the application execution."""
     log().logger.warning("You pressed Ctrl + \\! Terminating gracefully...")
     raise KeyboardInterrupt

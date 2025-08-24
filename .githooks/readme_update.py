@@ -63,7 +63,7 @@ def run_command(command: str) -> str | None:
     command_parts = command.split(" ")
     name = command_parts[0]
     try:
-        result = run(command_parts, capture_output=True, text=True, check=True)
+        result = run(command_parts, capture_output=True, text=True, check=True)  # noqa: S603
         return result.stdout.strip()
     except CalledProcessError as err:
         print(f"Error running {name} command: {err}")
@@ -155,10 +155,10 @@ def main() -> int:
     # Diff/Stage the updated README.md for commit
     try:
         if args.dry_run:
-            ps = run(["/usr/bin/git", "diff", str(path)], check=True, capture_output=True)
+            ps = run(["/usr/bin/git", "diff", str(path)], check=True, capture_output=True)  # noqa: S603
             print(ps.stdout.decode("utf-8"))
         else:
-            run(["/usr/bin/git", "add", str(path)], check=True, capture_output=True)
+            run(["/usr/bin/git", "add", str(path)], check=True, capture_output=True)  # noqa: S603
             print("✓ README.md staged for commit")
     except CalledProcessError as err:
         print(f"Warning: Could not stage README.md: {err}")

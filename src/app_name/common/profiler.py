@@ -38,7 +38,7 @@ class Profiler:
         output_path = get_config_value("app", "output_path")
         name = get_config_value("app", "name")
         run_date = get_config_value("app", "run_date")
-        export_file_path = Path.joinpath(output_path, f"{run_date.strftime('%Y%m%d')}_{name}.prof")
+        export_file_path = Path.joinpath(output_path, f"{run_date.strftime('%Y-%m-%dT%H:%M:%S')}_{name}.prof")
         stats.dump_stats(export_file_path)
 
 

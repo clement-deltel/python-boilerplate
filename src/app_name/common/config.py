@@ -2,7 +2,7 @@
 """Module used to interact with the configuration."""
 
 # Standard Library
-from datetime import datetime
+from datetime import UTC, datetime
 from os import environ
 from typing import Any
 
@@ -126,7 +126,7 @@ class LogConfig:
 
         # Log file
         self.path = translator.to_linux(environ.get("LOG_PATH", default="log"))
-        self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%d')}.log")
+        self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H:%M:%S')}.log")
         self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
 
         # Log formatting
@@ -149,7 +149,7 @@ class DevConfig(Config):
         load_dotenv(".env", override=True)
         # Custom date specifically to tweak run date and trigger certain behaviors
         run_date_env = environ.get("RUN_DATE", default="")
-        run_date = datetime.strptime(run_date_env, "%Y-%m-%d").astimezone() if run_date_env else datetime.now().astimezone()
+        run_date = datetime.strptime(run_date_env, "%Y-%m-%d").astimezone(UTC) if run_date_env else datetime.now(UTC)
 
         translator = PathTranslator(environ.get("MAPPINGS_PATH", default="C:\\:/mnt/"))
 
@@ -165,7 +165,7 @@ class ProdConfig(Config):
     def __init__(self) -> None:
         """Initialize class."""
         load_dotenv(".env", override=True)
-        run_date = datetime.now().astimezone()
+        run_date = datetime.now(UTC)
 
         translator = PathTranslator(environ.get("MAPPINGS_PATH", default="C:\\:/mnt/"))
 

@@ -9,6 +9,7 @@ Typical usage example:
 
 # Standard Library
 import logging
+from datetime import UTC, datetime
 from enum import Enum
 from json import dumps
 from sys import stderr, stdout
@@ -144,6 +145,19 @@ class CustomFormatter(logging.Formatter):
         self.fmt = "%(asctime)-20s - %(levelname)-8s - %(message)s"
         self.reset = "\x1b[0m"
 
+    def formatTime(self, record: logging.LogRecord, datefmt=None):  # noqa: ARG002, N802
+        """Format timestamp according to RFC3339 specification.
+
+        Args:
+            record (logging.LogRecord): an event being logged.
+            datefmt (str): ignored, RFC3339 format is always used.
+
+        Returns:
+            str: RFC3339 formatted timestamp
+        """
+        # Format with microseconds and Z suffix for UTC
+        return datetime.fromtimestamp(record.created, tz=UTC).isoformat(timespec="microseconds").replace("+00:00", "Z")
+
     def format(self, record: logging.LogRecord) -> str:
         """Retrieve extra information and apply different colors to the log messages.
 
@@ -188,6 +202,19 @@ class JSONFormatter(logging.Formatter):
 
         self.colors = {item.name: item.value for item in Colors}
         self.reset = "\x1b[0m"
+
+    def formatTime(self, record: logging.LogRecord, datefmt=None):  # noqa: ARG002, N802
+        """Format timestamp according to RFC3339 specification.
+
+        Args:
+            record (logging.LogRecord): an event being logged.
+            datefmt (str): ignored, RFC3339 format is always used.
+
+        Returns:
+            str: RFC3339 formatted timestamp
+        """
+        # Format with microseconds and Z suffix for UTC
+        return datetime.fromtimestamp(record.created, tz=UTC).isoformat(timespec="microseconds").replace("+00:00", "Z")
 
     def format(self, record: logging.LogRecord) -> str:
         """Format record to JSON, and apply colors if enabled.

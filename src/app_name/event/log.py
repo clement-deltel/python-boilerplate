@@ -70,11 +70,11 @@ class Log:
             level (str): log level.
         """
         # Default
-        self.file_formatter = CustomFormatter(level, self.extra_fields, datefmt="%d-%b-%Y %H:%M:%S")
-        self.stream_formatter = CustomFormatter(level, self.extra_fields, self.config.color)
+        self.file_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields)
+        self.stream_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields, self.config.color)
         # JSON formatters
         if self.config.json:
-            self.stream_formatter = JSONFormatter(level, self.extra_fields, self.config.color, self.config.pretty)
+            self.stream_formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
 
     def open(self) -> None:
         """Open both stream and file handlers."""
@@ -133,13 +133,13 @@ class Log:
 class CustomFormatter(logging.Formatter):
     """Class used to retrieve extra and set colors for log messages."""
 
-    def __init__(self, level: str, extra_fields: set, color_enabled: bool = False, datefmt: str = ""):
+    def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False):
         """Initialize class."""
         super().__init__()
+        self.app_env = app_env
         self.level = level
         self.extra_fields = extra_fields
         self.color_enabled = color_enabled
-        self.datefmt = datefmt
 
         self.colors = {item.name: item.value for item in Colors}
         self.fmt = "%(asctime)-20s - %(levelname)-8s - %(message)s"
@@ -169,6 +169,7 @@ class CustomFormatter(logging.Formatter):
         """
         info = record.__dict__.copy()
         message = self.fmt.split("%")
+        message.append(f" - ({self.app_env})s")
         # Handle extra
         for field in self.extra_fields:
             if field in info:
@@ -177,7 +178,7 @@ class CustomFormatter(logging.Formatter):
         fmt = "%".join(message)
         # Add more context in a debugging scenario
         if self.level == "DEBUG":
-            fmt = fmt + " (%(module)s:%(lineno)s)"
+            fmt = fmt + " (%(module)s::%(funcName)s:%(lineno)s)"
 
         # Apply color if enabled
         if self.color_enabled:
@@ -192,9 +193,10 @@ class CustomFormatter(logging.Formatter):
 class JSONFormatter(logging.Formatter):
     """Class used to serialize log messages in JSON and color them."""
 
-    def __init__(self, level: str, extra_fields: set, color_enabled: bool = False, pretty_json: bool = False) -> None:
+    def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False, pretty_json: bool = False) -> None:
         """Initialize class."""
         super().__init__()
+        self.app_env = app_env
         self.level = level
         self.extra_fields = extra_fields
         self.color_enabled = color_enabled
@@ -228,6 +230,7 @@ class JSONFormatter(logging.Formatter):
         info = record.__dict__.copy()
         message = {}
         message["name"] = info["name"]
+        message["environment"] = self.app_env
         message["timestamp"] = self.formatTime(record)
         message["level"] = info["levelname"]
         message["message"] = record.getMessage()

@@ -47,15 +47,16 @@ def env_to_int(variable: str) -> int:
 class Config:
     """Class specifying attributes and methods related to the configuration."""
 
-    def __init__(self, run_date: datetime, translator: PathTranslator) -> None:
+    def __init__(self, app_env: str, run_date: datetime, translator: PathTranslator) -> None:
         """Initialize class.
 
         Args:
+            app_env (str): application environment.
             run_date (datetime): application run date.
             translator (PathTranslator): path translation between Windows and Linux formats.
         """
         self.app = AppConfig(run_date, translator)
-        self.log = LogConfig(run_date, translator)
+        self.log = LogConfig(app_env, run_date, translator)
 
     def get_config_class(self, class_name: str, default: Any) -> Any:
         """Get class.
@@ -115,14 +116,16 @@ class AppConfig:
 class LogConfig:
     """Class specifying attributes and methods related to the log configuration."""
 
-    def __init__(self, run_date: datetime, translator: PathTranslator) -> None:
+    def __init__(self, app_env: str, run_date: datetime, translator: PathTranslator) -> None:
         """Initialize class.
 
         Args:
+            app_env (str): application environment.
             run_date (datetime): application run date.
             translator (PathTranslator): path translation between Windows and Linux formats.
         """
         self.level = environ.get("LOG_LEVEL", default="INFO")
+        self.app_env = app_env
 
         # Log file
         self.path = translator.to_linux(environ.get("LOG_PATH", default="log"))
@@ -153,7 +156,7 @@ class DevConfig(Config):
 
         translator = PathTranslator(environ.get("MAPPINGS_PATH", default="C:\\:/mnt/"))
 
-        super().__init__(run_date, translator)
+        super().__init__("development", run_date, translator)
 
 
 # ---------------------------------------------------------------------------- #
@@ -169,7 +172,7 @@ class ProdConfig(Config):
 
         translator = PathTranslator(environ.get("MAPPINGS_PATH", default="C:\\:/mnt/"))
 
-        super().__init__(run_date, translator)
+        super().__init__("production", run_date, translator)
 
 
 # Global

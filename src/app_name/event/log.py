@@ -17,6 +17,8 @@ from typing import Any
 
 # Local Application
 from app_name.common.config import get_config_class, get_config_value
+from app_name.event.cloud_event_formatter import CloudEventFormatter
+from app_name.event.colors import Colors
 
 
 class Log:
@@ -72,9 +74,12 @@ class Log:
         # Default
         self.file_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields)
         self.stream_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields, self.config.color)
-        # JSON formatters
+        # JSON formatter
         if self.config.json:
             self.stream_formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
+        # CloudEvent formatter
+        if self.config.cloud_event:
+            self.stream_formatter = CloudEventFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
 
     def open(self) -> None:
         """Open both stream and file handlers."""
@@ -279,21 +284,6 @@ class ErrFilter(logging.Filter):
             bool: if the record level is in or not.
         """
         return record.levelno in (logging.DEBUG, logging.INFO, logging.WARNING)
-
-
-class Colors(Enum):
-    """Class used to list log colors."""
-
-    # Blue
-    DEBUG = "\x1b[34m"
-    # White
-    INFO = "\x1b[39m"
-    # Yellow
-    WARNING = "\x1b[33m"
-    # Light red
-    ERROR = "\x1b[91m"
-    # Red
-    CRITICAL = "\x1b[31m"
 
 
 class Levels(Enum):

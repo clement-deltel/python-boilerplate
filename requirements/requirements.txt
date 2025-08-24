@@ -16,6 +16,14 @@ charset-normalizer==3.4.3 ; sys_platform == 'linux' \
     --hash=sha256:ce571ab16d890d23b5c278547ba694193a45011ff86a9162a71307ed9f86759a \
     --hash=sha256:fd10de089bcdcd1be95a2f73dbe6254798ec1bda9f450d5828c96f93e2536b9c
     # via requests
+cloudevents==1.12.0 ; sys_platform == 'linux' \
+    --hash=sha256:49196267f5f963d87ae156f93fc0fa32f4af69485f2c8e62e0db8b0b4b8b8921 \
+    --hash=sha256:ebd5544ceb58c8378a0787b657a2ae895e929b80a82d6675cba63f0e8c5539e0
+    # via app-name
+deprecation==2.1.0 ; sys_platform == 'linux' \
+    --hash=sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff \
+    --hash=sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a
+    # via cloudevents
 idna==3.10 ; sys_platform == 'linux' \
     --hash=sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9 \
     --hash=sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
@@ -31,6 +39,10 @@ numpy==2.3.2 ; sys_platform == 'linux' \
     # via
     #   app-name
     #   pandas
+packaging==25.0 ; sys_platform == 'linux' \
+    --hash=sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484 \
+    --hash=sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f
+    # via deprecation
 pandas==2.3.1 ; sys_platform == 'linux' \
     --hash=sha256:0a95b9ac964fe83ce317827f80304d37388ea77616b1425f0ae41c9d2d0d7bb2 \
     --hash=sha256:3462c3735fe19f2638f2c3a40bd94ec2dc5ba13abbb032dd2fa1f540a075509d \

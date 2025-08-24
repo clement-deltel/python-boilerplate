@@ -32,17 +32,17 @@ app-description
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
  Makefile                1          158           91           33           34
- Python                  8         1060          771           95          194
+ Python                  8         1071          780           96          195
  Shell                   2          498          306          108           84
- Plain Text              3          421            0          421            0
- TOML                    1          296          166           90           40
+ Plain Text              3          433            0          433            0
+ TOML                    1          302          172           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                5         1026            0          709          317
+ Markdown                5         1029            0          712          317
  |- BASH                 4           83           78            4            1
- (Total)                           1109           78          713          318
+ (Total)                           1112           78          716          318
 ===============================================================================
- Total                  26         3751         1486         1539          726
+ Total                  26         3783         1501         1555          727
 ===============================================================================
 ```
 
@@ -65,6 +65,9 @@ The application dependencies are managed with [uv](https://docs.astral.sh/uv/). 
 
 ```text
 app-name v0.0.0
+├── cloudevents v1.12.0
+│   └── deprecation v2.1.0
+│       └── packaging v25.0
 ├── numpy v2.3.2
 ├── pandas v2.3.1
 │   ├── numpy v2.3.2

@@ -171,16 +171,16 @@ class CustomFormatter(logging.Formatter):
         """
         info = record.__dict__.copy()
         message = self.fmt.split("%")
-        message.append(f" - ({self.app_env})s")
         # Handle extra
         for field in self.extra_fields:
             if field in info:
                 message[-1] += " - "
                 message.append(f"({field})s")
         fmt = "%".join(message)
+        fmt = f"{self.app_env} - {fmt}"
         # Add more context in a debugging scenario
         if self.level == "DEBUG":
-            fmt = fmt + " (%(module)s::%(funcName)s:%(lineno)s)"
+            fmt = f"{fmt} (%(module)s::%(funcName)s:%(lineno)s)"
 
         # Apply color if enabled
         if self.color_enabled:

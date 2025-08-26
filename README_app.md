@@ -38,11 +38,11 @@ app-description
  TOML                    1          302          172           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                5         1029            0          712          317
+ Markdown                5         1039            0          722          317
  |- BASH                 4           83           78            4            1
- (Total)                           1112           78          716          318
+ (Total)                           1122           78          726          318
 ===============================================================================
- Total                  27         4134         1773         1582          779
+ Total                  27         4144         1773         1592          779
 ===============================================================================
 ```
 
@@ -101,12 +101,22 @@ List of available environment variables:
 
 ## Logs
 
-The application logs are based on the Python [logging](https://docs.python.org/3/library/logging.html) module. Here are the different fields:
+The application logs are based on the Python [logging](https://docs.python.org/3/library/logging.html) module, following the [CloudEvents specification](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md). Here are the different fields:
 
-- **user_id**: user running the application
-- **table**: database table name
-- **record**: database record being processed
-- **wait**: wait time value
+- **specversion**
+- **type**
+- **source**
+- **subject**
+- **id**
+- **time**
+- **environment**: application environment
+- **level**: log level
+- **datacontenttype**
+- **data**
+  - **user_id**: user running the application
+  - **table**: database table name
+  - **record**: database record being processed
+  - **wait**: wait time value
 
 ## Quick Start
 

@@ -57,7 +57,7 @@ class Config:
         """
         self.app = AppConfig(run_date, translator)
         self.log = LogConfig(app_env, run_date, translator)
-        self.cloud_event = CloudEventConfig()
+        self.cloudevents = CloudEventsConfig()
 
     def get_config_class(self, class_name: str, default: Any) -> Any:
         """Get class.
@@ -134,7 +134,7 @@ class LogConfig:
         self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
 
         # Log formatting
-        self.cloud_event = env_to_bool(environ.get("LOG_CLOUD_EVENT", default="true"))
+        self.cloudevents = env_to_bool(environ.get("LOG_CLOUDEVENTS", default="true"))
         self.color = env_to_bool(environ.get("LOG_COLOR", default="true"))
         self.json = env_to_bool(environ.get("LOG_JSON", default="false"))
         self.pretty = env_to_bool(environ.get("LOG_JSON_PRETTY", default="false"))
@@ -144,19 +144,19 @@ class LogConfig:
 
 
 # ---------------------------------------------------------------------------- #
-#               ------- CloudEvent Config ------
+#               ------- CloudEvents Config ------
 # ---------------------------------------------------------------------------- #
-class CloudEventConfig:
-    """Class specifying attributes and methods related to the CloudEvent specification."""
+class CloudEventsConfig:
+    """Class specifying attributes and methods related to the CloudEvents specification."""
 
     def __init__(self) -> None:
         """Initialize class."""
         # Required
-        self.spec_version = environ.get("CLOUD_EVENT_SPEC_VERSION", default="1.0")
-        self.type = environ.get("CLOUD_EVENT_TYPE", default="com.customer.app_name.v1")
+        self.spec_version = environ.get("CLOUDEVENTS_SPEC_VERSION", default="1.0")
+        self.type = environ.get("CLOUDEVENTS_TYPE", default="com.customer.app_name.v1")
 
         # Optional
-        self.data_content_type = environ.get("CLOUD_EVENT_DATA_CONTENT_TYPE", default="application/json")
+        self.data_content_type = environ.get("CLOUDEVENTS_DATA_CONTENT_TYPE", default="application/json")
 
 
 # ---------------------------------------------------------------------------- #

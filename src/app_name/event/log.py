@@ -16,8 +16,8 @@ from sys import stderr, stdout
 from typing import Any
 
 # Local Application
-from app_name.common.config import get_config_class, get_config_value
-from app_name.event.cloud_event_formatter import CloudEventFormatter
+from app_name.common.config import LogConfig, get_config_class, get_config_value
+from app_name.event.cloud_event_formatter import CloudEventsFormatter
 from app_name.event.colors import Colors
 
 
@@ -26,7 +26,7 @@ class Log:
 
     def __init__(self):
         """Initialize class."""
-        self.config = get_config_class("log")
+        self.config: LogConfig = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
 
         self.extra_fields = {"user_id", "table", "record", "wait"}
@@ -78,8 +78,8 @@ class Log:
         if self.config.json:
             self.stream_formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
         # CloudEvent formatter
-        if self.config.cloud_event:
-            self.stream_formatter = CloudEventFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
+        if self.config.cloudevents:
+            self.stream_formatter = CloudEventsFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
 
     def open(self) -> None:
         """Open both stream and file handlers."""

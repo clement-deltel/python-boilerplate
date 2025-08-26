@@ -1,6 +1,7 @@
 # cloudevents_formatter.py
 """Module providing a CloudEvent formatter for the logging system.
 
+CloudEvents specification:
 https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md
 """
 
@@ -14,17 +15,17 @@ from cloudevents.conversion import to_dict
 from cloudevents.http import CloudEvent
 
 # Local Application
-from app_name.common.config import get_config_class
+from app_name.common.config import CloudEventsConfig, get_config_class
 from app_name.event.colors import Colors
 
 
-class CloudEventFormatter(logging.Formatter):
-    """Class used to serialize log messages in CloudEvents 1.0.2 JSON format and color them."""
+class CloudEventsFormatter(logging.Formatter):
+    """Class used to serialize log messages in CloudEvents JSON format and color them."""
 
     def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False, pretty_json: bool = False) -> None:
         """Initialize class."""
         super().__init__()
-        self.config = get_config_class("cloud_event")
+        self.config: CloudEventsConfig = get_config_class("cloudevents")
 
         self.app_env = app_env
         self.level = level
@@ -47,23 +48,12 @@ class CloudEventFormatter(logging.Formatter):
         info = record.__dict__.copy()
 
         # Required
-        attributes: dict[str, Any] = {
-            # id: CloudEvent uuid randomly generated
-            "source": f"/{info['name']}/cloudevents",
-            "specversion": self.config.spec_version,
-            "type": self.config.type,
-        }
+        attributes: dict[str, Any] = {"specversion": self.config.spec_version, "type": self.config.type, "source": f"/{info['name']}/cloudevents"}
 
         # Optional
-        attributes["datacontenttype"] = self.config.data_content_type
         attributes["subject"] = f"{record.module}::{record.funcName}:{record.lineno}"
         if "subject" in info:
             attributes["subject"] = info["subject"]
-        # time: CloudEvent automatically generated
-
-        # Extension
-        attributes["environment"] = self.app_env
-        attributes["level"] = info["levelname"]
 
         # Data payload: contains message, and extra fields
         data: dict[str, Any] = {"message": record.getMessage()}
@@ -85,6 +75,15 @@ class CloudEventFormatter(logging.Formatter):
             data["lineno"] = record.lineno
 
         event = CloudEvent(attributes, data)
+        # id: uuid randomly generated
+        # time: timestamp automatically generated
+
+        # Extension
+        event["environment"] = self.app_env
+        event["level"] = info["levelname"]
+
+        # Optional - Data Content Type
+        event["datacontenttype"] = self.config.data_content_type
 
         # Improve readability if requested
         pretty_options: dict[str, Any] = {}

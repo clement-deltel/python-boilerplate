@@ -16,13 +16,21 @@ from app_name.event.log import log
 
 
 def signal_int_handler(signum, frame):  # noqa: ARG001
-    """Handle SIGINT signal for the application execution."""
+    """Handle SIGINT signal for the application execution.
+
+    Raises:
+        KeyboardInterrupt: user pressed Ctrl + C.
+    """
     log().logger.warning("You pressed Ctrl + C! Terminating gracefully...")
     raise KeyboardInterrupt
 
 
 def signal_quit_handler(signum, frame):  # noqa: ARG001
-    """Handle SIGQUIT signal for the application execution."""
+    r"""Handle SIGQUIT signal for the application execution.
+
+    Raises:
+        KeyboardInterrupt: user pressed Ctrl + \\.
+    """
     log().logger.warning("You pressed Ctrl + \\! Terminating gracefully...")
     raise KeyboardInterrupt
 

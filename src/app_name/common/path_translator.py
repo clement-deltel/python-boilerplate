@@ -43,6 +43,7 @@ class PathTranslator:
 
         Raises:
             PathTranslationError: If mappings are invalid.
+            ValueError: environment variable MAPPINGS_PATH is not formatted correctly.
         """
         colon_count = 2
         normalized = {}

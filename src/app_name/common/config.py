@@ -128,9 +128,9 @@ class LogConfig:
         self.level = environ.get("LOG_LEVEL", default="INFO")
         self.app_env = app_env
 
-        # Log file
+        # Log handlers
         self.path = translator.to_linux(environ.get("LOG_PATH", default="log"))
-        self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H:%M:%S')}.log")
+        self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
         self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
 
         # Log formatting

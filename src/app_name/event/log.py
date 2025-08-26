@@ -52,8 +52,10 @@ class Log:
         """."""
         self.set_level(self.config.level)
         self.set_formatters(self.config.level)
+        self.open_stream()
+
         if self.config.to_file:
-            self.open()
+            self.open_file(str(self.config.file_path))
         else:
             self.open_stream()
 
@@ -77,14 +79,9 @@ class Log:
         # JSON formatter
         if self.config.json:
             self.stream_formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
-        # CloudEvent formatter
+        # CloudEvents formatter
         if self.config.cloudevents:
             self.stream_formatter = CloudEventsFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
-
-    def open(self) -> None:
-        """Open both stream and file handlers."""
-        self.open_stream()
-        self.open_file(str(self.config.file_path))
 
     def close(self) -> None:
         """Close both stream and file handlers."""

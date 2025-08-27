@@ -53,6 +53,7 @@ lint = [
     "types-requests",
     "yamllint",
 ]
+observability = ["opentelemetry-distro"]
 test = ["coverage", "pytest"]
 
 # ---------------------------------------------------------------------------- #
@@ -255,7 +256,7 @@ index-out-of-bounds = "ignore"
 # https://docs.astral.sh/uv/reference/settings/#project-metadata
 
 # List of dependency-groups to install by default
-default-groups = ["dev", "lint", "test"]
+default-groups = ["dev", "lint", "observability", "test"]
 # List of supported environments against which to resolve dependencies
 environments = ["sys_platform == 'linux'"]
 # environments = ["sys_platform == 'windows'"]

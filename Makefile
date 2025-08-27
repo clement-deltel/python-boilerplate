@@ -73,6 +73,20 @@ run-uv:
 	uv run app_name
 
 # ---------------------------------------------------------------------------- #
+#               ------- Telemetry ------
+# ---------------------------------------------------------------------------- #
+init-telemetry:
+	uv run opentelemetry-bootstrap -a requirements | uv pip install --requirement -
+
+run-telemetry: init-telemetry
+	opentelemetry-instrument \
+	--service_name site-delta-comparison \
+	--logs_exporter console \
+	--traces_exporter console \
+    --metrics_exporter console \
+	python src/app_name/main.py
+
+# ---------------------------------------------------------------------------- #
 #               ------- Debug & Test ------
 # ---------------------------------------------------------------------------- #
 debug:

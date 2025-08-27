@@ -80,7 +80,7 @@ init-telemetry:
 
 run-telemetry: init-telemetry
 	opentelemetry-instrument \
-	--service_name site-delta-comparison \
+	--service_name app-name \
 	--logs_exporter console \
 	--traces_exporter console \
     --metrics_exporter console \

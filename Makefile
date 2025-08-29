@@ -29,6 +29,10 @@ init-from-scratch:
 	uv sync
 	source .venv/bin/activate
 
+init-windows:
+	uv venv --python 3.11.11
+	uv pip install --editable .
+
 init-auto-activate:
 	pyenv install 3.11.11
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_customer_app-name
@@ -47,15 +51,15 @@ requirement:
 	uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements.txt
 
 requirement-dev:
-	uv export --format requirements-txt --group dev --group lint --no-default-groups --no-emit-project --output-file requirements/requirements-dev.txt
+	uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements-dev.txt --group dev --group lint
 
 requirement-test:
-	uv export --format requirements-txt --group test --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt
+	uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt --group test
 
 requirement-all:
 	uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements.txt
-	uv export --format requirements-txt --group dev --group lint --no-default-groups --no-emit-project --output-file requirements/requirements-dev.txt
-	uv export --format requirements-txt --group test --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt
+	uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements-dev.txt --group dev --group lint
+	uv export --format requirements-txt --no-default-groups --no-emit-project --output-file requirements/requirements-test.txt --group test
 
 # ---------------------------------------------------------------------------- #
 #               ------- Run ------

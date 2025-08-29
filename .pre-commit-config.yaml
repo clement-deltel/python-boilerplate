@@ -97,7 +97,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.9
+    rev: v0.12.11
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -112,6 +112,11 @@ repos:
       - id: uv-lock
       - id: uv-export
         args: [--no-default-groups, --no-emit-project]
+
+  - repo: https://github.com/tsvikas/sync-with-uv
+    rev: v0.3.0
+    hooks:
+      - id: sync-with-uv
 
   - repo: local
     hooks:

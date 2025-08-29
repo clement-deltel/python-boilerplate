@@ -31,7 +31,7 @@ app-description
  Dockerfile              3          248          120           74           54
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
- Makefile                1          172          100           36           36
+ Makefile                1          176          103           36           37
  Python                  9         1422         1052          123          247
  Shell                   2          498          306          108           84
  Plain Text              3          433            0          433            0
@@ -42,7 +42,7 @@ app-description
  |- BASH                 4           83           78            4            1
  (Total)                           1122           78          726          318
 ===============================================================================
- Total                  27         4159         1783         1595          781
+ Total                  27         4163         1786         1595          782
 ===============================================================================
 ```
 
@@ -69,14 +69,14 @@ app-name v0.0.0
 │   └── deprecation v2.1.0
 │       └── packaging v25.0
 ├── numpy v2.3.2
-├── pandas v2.3.1
+├── pandas v2.3.2
 │   ├── numpy v2.3.2
 │   ├── python-dateutil v2.9.0.post0
 │   │   └── six v1.17.0
 │   ├── pytz v2025.2
 │   └── tzdata v2025.2
 ├── python-dotenv v1.1.1
-└── requests v2.32.4
+└── requests v2.32.5
     ├── certifi v2025.8.3
     ├── charset-normalizer v3.4.3
     ├── idna v3.10

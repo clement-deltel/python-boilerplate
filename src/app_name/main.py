@@ -6,7 +6,7 @@ import sys
 from os import environ
 from platform import system
 from re import sub
-from signal import SIGINT, SIGQUIT, signal
+from signal import SIGINT, signal
 from time import gmtime, perf_counter, strftime
 
 # Local Application
@@ -55,6 +55,9 @@ def main() -> None:
     try:
         signal(SIGINT, signal_int_handler)
         if system() == "Linux":
+            # Standard Library
+            from signal import SIGQUIT  # noqa: PLC0415
+
             signal(SIGQUIT, signal_quit_handler)
 
         load_config()

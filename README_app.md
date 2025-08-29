@@ -38,11 +38,11 @@ app-description
  TOML                    1          303          173           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                5         1039            0          722          317
+ Markdown                5         1040            0          723          317
  |- BASH                 4           83           78            4            1
- (Total)                           1122           78          726          318
+ (Total)                           1123           78          727          318
 ===============================================================================
- Total                  27         4163         1786         1595          782
+ Total                  27         4164         1786         1596          782
 ===============================================================================
 ```
 
@@ -89,13 +89,14 @@ The application configuration can be loaded as a set of environment variables in
 
 List of available environment variables:
 
-| Variable    | Type | Sensitive | Default     | Condition | Example            | Description                                                        |
-| ----------- | ---- | --------- | ----------- | --------- | ------------------ | ------------------------------------------------------------------ |
-| INPUT_PATH  | str  |           | /app/input  |           | /path/to/directory | Path to directory containing input files                           |
-| OUTPUT_PATH | str  |           | /app/output |           | /path/to/directory | Path to directory where to save output files                       |
-| LOG_LEVEL   | str  |           | INFO        |           | INFO               | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
-| LOG_PATH    | str  |           | /app/log    |           | /path/to/directory | Path to directory containing log files if enabled                  |
-| LOG_TO_FILE | bool |           | false       |           | true               | Whether to export logs to a file                                   |
+| Variable      | Type | Sensitive | Default     | Condition | Example            | Description                                                        |
+| ------------- | ---- | --------- | ----------- | --------- | ------------------ | ------------------------------------------------------------------ |
+| MAPPINGS_PATH | str  |           | \<unset>    |           | C:\:/mnt           | List of mappings of Windows paths to Linux paths                   |
+| INPUT_PATH    | str  |           | /app/input  |           | /path/to/directory | Path to directory containing input files                           |
+| OUTPUT_PATH   | str  |           | /app/output |           | /path/to/directory | Path to directory where to save output files                       |
+| LOG_LEVEL     | str  |           | INFO        |           | INFO               | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
+| LOG_PATH      | str  |           | /app/log    |           | /path/to/directory | Path to directory containing log files if enabled                  |
+| LOG_TO_FILE   | bool |           | false       |           | true               | Whether to export logs to a file                                   |
 
 > *Note*: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 
@@ -116,7 +117,7 @@ The application logs are based on the Python [logging](https://docs.python.org/3
   - **user_id**: user running the application
   - **table**: database table name
   - **record**: database record being processed
-  - **wait**: wait time value
+  - **wait**: wait time value expressed in seconds
 
 ## Quick Start
 

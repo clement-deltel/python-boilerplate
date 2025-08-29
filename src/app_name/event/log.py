@@ -17,7 +17,7 @@ from typing import Any
 
 # Local Application
 from app_name.common.config import LogConfig, get_config_class, get_config_value
-from app_name.event.cloud_event_formatter import CloudEventsFormatter
+from app_name.event.cloudevents_formatter import CloudEventsFormatter
 from app_name.event.colors import Colors
 
 

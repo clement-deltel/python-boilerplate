@@ -16,7 +16,7 @@ from sys import stderr, stdout
 from app_name.common.config import LogConfig, get_config_class, get_config_value
 from app_name.event.formatter.cloudevent import CloudEventsFormatter
 from app_name.event.formatter.custom import CustomFormatter
-from app_name.event.formatter.json import JSONFormatter
+from app_name.event.formatter.json_f import JSONFormatter
 from app_name.event.handler.amqp import AMQPFilter, AMQPLogHandler
 
 

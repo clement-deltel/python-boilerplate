@@ -57,6 +57,7 @@ class Config:
         """
         self.app = AppConfig(run_date, translator)
         self.log = LogConfig(app_env, run_date, translator)
+        self.amqp = AMQPConfig()
         self.cloudevents = CloudEventsConfig()
 
     def get_config_class(self, class_name: str, default: Any) -> Any:

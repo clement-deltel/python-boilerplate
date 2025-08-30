@@ -48,14 +48,14 @@ Here are the steps you need to follow when starting a new coding project from th
     - enable commitizen hooks (disabled by default due to lack of emojis support)
   - **app-name.code-workspace**
     - rename the file itself replacing `app-name`
-    - 1 `Application Name` occurrence
+    - 2 `Application Name` occurrence
     - 2 `app_name` occurrence
     - add launch configurations if needed
   - **CONTRIBUTING.md**
     - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 14 `app-name` occurrences
+    - 15 `app-name` occurrences
     - 2 `app_name` occurrences
     - 6 `customer_app-name` occurrences
     - check *run* and *debug* tasks to ensure they are compatible with your application
@@ -84,18 +84,22 @@ Here are the steps you need to follow when starting a new coding project from th
 
 Here are the useful libraries and modules used across all of my Python projects:
 
-- Built-in
+- **Built-in**
   - [cProfile](https://docs.python.org/3/library/profile.html)
-- Third-party
-  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
+  - [http](https://docs.python.org/3/library/http.html)
+  - [pathlib](https://docs.python.org/3/library/pathlib.html)
+- **Third-party**
+  - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
+  - [coverage](https://coverage.readthedocs.io/en/latest)
   - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
-  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
   - [mypy](https://github.com/python/mypy) - static typing. `Python`
   - [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. `Python`
-  - [ruff](https://github.com/astral-sh/ruff) - extremely fast  linter and code formatter. `Rust`
-  - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser  profile viewer. `Python`
+  - [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
+  - [pika](https://pika.readthedocs.io/en/stable/index.html)
+  - [pytest](https://docs.pytest.org/en/stable)
+  - [requests](https://requests.readthedocs.io/en/latest/api/)
+  - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
   - [ty](https://github.com/astral-sh/ty) - type checker and language server. `Rust`
-  - [uv](https://github.com/astral-sh/uv) - extremely fast package and project manager. `Rust`
   - [yapf](https://github.com/google/yapf) - formatter for files. `Python`
 
 Not using anymore:
@@ -110,6 +114,7 @@ Not using anymore:
 - [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
 - [mypy](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
+- [python-docstring-highlighter](https://marketplace.visualstudio.com/items?itemName=rodolphebarbanneau.python-docstring-highlighter)
 - [python indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
 - [ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
 - [ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty)
@@ -124,24 +129,24 @@ Here are the useful git hooks used across all of my Python projects:
 
 - Featured
   - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
-  - [commitizen](https://github.com/commitizen-tools/commitizen)
-  - [gitleaks](https://github.com/gitleaks/gitleaks)
-  - [hadolint](https://github.com/hadolint/hadolint)
-  - [isort](https://github.com/PyCQA/isort)
+  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
+  - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
+  - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
+  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
   - [pyupgrade](https://github.com/asottile/pyupgrade)
   - [refurb](https://github.com/dosisod/refurb)
-  - [ruff](https://github.com/astral-sh/ruff-pre-commit)
+  - [ruff](https://github.com/astral-sh/ruff-pre-commit) - extremely fast linter and code formatter. `Rust`
   - [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
   - [typos](https://github.com/crate-ci/typos)
-  - [uv](https://github.com/astral-sh/uv-pre-commit)
+  - [uv](https://github.com/astral-sh/uv-pre-commit) - extremely fast package and project manager. `Rust`
   - [yamllint](https://github.com/adrienverge/yamllint)
 - Custom
   - [helm-lint](https://helm.sh/docs/helm/helm_lint)
-  - [ls-lint](https://github.com/loeffel-io/ls-lint)
+  - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
   - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
   - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm)
   - [readme-update](.githooks/readme_update.py)
-  - [varlock](https://github.com/dmno-dev/varlock)
+  - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
 
 ## Coding practices
 
@@ -150,7 +155,6 @@ Here are the essential good Python practices:
 - avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)
 - use pathlib over os module
 - do not use f-strings in log statements
-- use 1 instead of "True" for infinite loops
 
 Here are the useful tips to make Python faster:
 
@@ -169,23 +173,35 @@ Here are the useful tips to make Python faster:
 Here are the useful tips to make Python code cleaner:
 
 - use a linter. As of now, ruff is the default and select the following rules:
-  - flake8
+  - [eradicate - ERA](https://docs.astral.sh/ruff/rules/#eradicate-era)
+  - **flake8**
+    - [bandit - S](https://docs.astral.sh/ruff/rules/#flake8-bandit-s)
     - [bugbear - B](https://docs.astral.sh/ruff/rules/#flake8-bugbear-b)
+    - [builtins - A](https://docs.astral.sh/ruff/rules/#flake8-builtins-a)
+    - [commas - COM](https://docs.astral.sh/ruff/rules/#flake8-commas-com)
     - [comprehensions - C4](https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4)
+    - [datetimez - DTZ](https://docs.astral.sh/ruff/rules/#flake8-datetimez-dtz)
+    - [implicit-str-concat - ISC](https://docs.astral.sh/ruff/rules/#flake8-implicit-str-concat-isc)
+    - [import-conventions - ICN](https://docs.astral.sh/ruff/rules/#flake8-import-conventions-icn)
     - [logging-format - G](https://docs.astral.sh/ruff/rules/#flake8-logging-format-g)
     - [quotes - Q](https://docs.astral.sh/ruff/rules/#flake8-quotes-q)
     - [raise - RSE](https://docs.astral.sh/ruff/rules/#flake8-raise-rse)
     - [return - RET](https://docs.astral.sh/ruff/rules/#flake8-return-ret)
     - [self - SLF](https://docs.astral.sh/ruff/rules/#flake8-self-slf)
     - [simplify - SIM](https://docs.astral.sh/ruff/rules/#flake8-simplify-sim)
+    - [tidy-imports - TID](https://docs.astral.sh/ruff/rules/#flake8-tidy-imports-tid)
+    - [unused arguments - ARG](https://docs.astral.sh/ruff/rules/#flake8-unused-arguments-arg)
     - [use-pathlib - PTH](https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth)
   - [isort - I](https://docs.astral.sh/ruff/rules/#isort-i)
   - [pandas-vet - PD](https://docs.astral.sh/ruff/rules/#pandas-vet-pd)
   - [pep8-naming - N](https://docs.astral.sh/ruff/rules/#pep8-naming-n)
+  - [perflint - PERF](https://docs.astral.sh/ruff/rules/#perflint-perf)
   - [pycodestyle - Errors - E](https://docs.astral.sh/ruff/rules/#pycodestyle-e)
   - [pydocstyle - D](https://docs.astral.sh/ruff/rules/#pydocstyle-d)
   - [Pyflakes - F](https://docs.astral.sh/ruff/rules/#pyflakes-f)
   - [Pylint - PL](https://docs.astral.sh/ruff/rules/#pylint-pl)
+  - [pyupgrade - UP](https://docs.astral.sh/ruff/rules/#pyupgrade-up)
+  - [refurb - FURB](https://docs.astral.sh/ruff/rules/#refurb-furb)
   - [Ruff-specific - RUF](https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf)
 - use a formatter
 

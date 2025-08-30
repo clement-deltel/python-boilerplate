@@ -38,11 +38,11 @@ app-description
  TOML                    1          304          174           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                5         1048            0          731          317
+ Markdown                5         1070            0          753          317
  |- BASH                 4           83           78            4            1
- (Total)                           1131           78          735          318
+ (Total)                           1153           78          757          318
 ===============================================================================
- Total                  30         4215         1779         1644          792
+ Total                  30         4237         1779         1666          792
 ===============================================================================
 ```
 
@@ -297,10 +297,15 @@ Please open an issue if anything is missing or unclear in this documentation.
 
 If you want to learn more about Python libraries used throughout this application, you can refer to the below links:
 
-- [http](https://docs.python.org/3/library/http.html)
-- [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
-- [pathlib](https://docs.python.org/3/library/pathlib.html)
-- [requests](https://requests.readthedocs.io/en/latest/api/)
+- **Built-in**
+  - [cProfile](https://docs.python.org/3/library/profile.html)
+  - [http](https://docs.python.org/3/library/http.html)
+  - [pathlib](https://docs.python.org/3/library/pathlib.html)
+- **Third-party**
+  - [cloudevents](https://github.com/cloudevents/sdk-python)
+  - [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
+  - [pika](https://pika.readthedocs.io/en/stable/index.html)
+  - [requests](https://requests.readthedocs.io/en/latest/api/)
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
 

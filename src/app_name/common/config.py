@@ -106,8 +106,8 @@ class AppConfig:
         self.run_date = run_date
 
         # Directories and files
-        self.input_path = translator.to_linux(environ.get("INPUT_PATH", default="input"))
-        self.output_path = translator.to_linux(environ.get("OUTPUT_PATH", default="output"))
+        self.input_path = translator.to_linux(environ.get("INPUT_PATH", default="/app/input"))
+        self.output_path = translator.to_linux(environ.get("OUTPUT_PATH", default="/app/output"))
         self.output_path.mkdir(parents=True, exist_ok=True)
 
 
@@ -132,6 +132,7 @@ class LogConfig:
         self.path = translator.to_linux(environ.get("LOG_PATH", default="log"))
         self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
         self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
+        self.to_amqp = env_to_bool(environ.get("LOG_TO_AMQP", default="false"))
 
         # Log formatting
         self.cloudevents = env_to_bool(environ.get("LOG_CLOUDEVENTS", default="true"))
@@ -141,6 +142,42 @@ class LogConfig:
 
         if self.to_file:
             self.path.mkdir(parents=True, exist_ok=True)
+
+
+# ---------------------------------------------------------------------------- #
+#               ------- AMQP Config ------
+# ---------------------------------------------------------------------------- #
+class AMQPConfig:
+    """Class specifying attributes and methods related to the AMQP protocol."""
+
+    def __init__(self) -> None:
+        """Initialize class."""
+        # Required
+        self.hostname = environ.get("AMQP_HOSTNAME", default="localhost")
+        self.port = env_to_int(environ.get("AMQP_PORT", default="5672"))
+        self.username = environ.get("AMQP_USERNAME", default="guest")
+        self.password = environ.get("AMQP_PASSWORD", default="guest")
+
+        self.exchange = environ.get("AMQP_EXCHANGE", default="")
+        self.exchange_type = environ.get("AMQP_EXCHANGE_TYPE", default="topic")
+        self.routing_key = environ.get("AMQP_ROUTING_KEY", default="#")
+
+        # Connection settings
+        self.virtual_host = environ.get("AMQP_VIRTUAL_HOST", default="/")
+
+        # Connection reliability
+        self.heartbeat = env_to_int(environ.get("AMQP_HEARTBEAT", default="600"))
+        self.connection_attempts = env_to_int(environ.get("AMQP_CONNECTION_ATTEMPTS", default="3"))
+        self.retry_delay = env_to_int(environ.get("AMQP_RETRY_DELAY", default="2"))
+        self.socket_timeout = env_to_int(environ.get("AMQP_SOCKET_TIMEOUT", default="10"))
+        self.blocked_connection_timeout = env_to_int(environ.get("AMQP_BLOCKED_CONNECTION_TIMEOUT", default="300"))
+
+        # Publishing
+        self.exchange_durable = env_to_bool(environ.get("AMQP_EXCHANGE_DURABLE", default="true"))
+        self.message_persistent = env_to_bool(environ.get("AMQP_MESSAGE_PERSISTENT", default="true"))
+
+        # Circuit breaker pattern
+        self.max_failed_messages = env_to_int(environ.get("AMQP_MAX_FAILED_MESSAGES", default="10"))
 
 
 # ---------------------------------------------------------------------------- #

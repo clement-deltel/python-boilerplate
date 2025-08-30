@@ -16,7 +16,7 @@ from cloudevents.http import CloudEvent
 
 # Local Application
 from app_name.common.config import CloudEventsConfig, get_config_class
-from app_name.event.colors import Colors
+from app_name.event.formatter.colors import Colors
 
 
 class CloudEventsFormatter(logging.Formatter):

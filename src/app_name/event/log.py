@@ -9,16 +9,15 @@ Typical usage example:
 
 # Standard Library
 import logging
-from datetime import UTC, datetime
 from enum import Enum
-from json import dumps
 from sys import stderr, stdout
-from typing import Any
 
 # Local Application
 from app_name.common.config import LogConfig, get_config_class, get_config_value
-from app_name.event.cloudevents_formatter import CloudEventsFormatter
-from app_name.event.colors import Colors
+from app_name.event.formatter.cloudevent import CloudEventsFormatter
+from app_name.event.formatter.custom import CustomFormatter
+from app_name.event.formatter.json import JSONFormatter
+from app_name.event.handler.amqp import AMQPFilter, AMQPLogHandler
 
 
 class Log:
@@ -34,12 +33,13 @@ class Log:
         # Logger
         self._logger = logging.getLogger(get_config_value("app", "name"))
         # Formatters
+        self.formatter = None
         self.file_formatter = None
-        self.stream_formatter = None
         # Handlers
         self.file_handler = None
         self.stream_handler_out = None
         self.stream_handler_err = None
+        self.amqp_handler = None
 
         self.initialize()
 
@@ -56,8 +56,8 @@ class Log:
 
         if self.config.to_file:
             self.open_file(str(self.config.file_path))
-        else:
-            self.open_stream()
+        if self.config.to_amqp:
+            self.open_amqp()
 
     def set_level(self, level: str) -> None:
         """Set log level.
@@ -75,43 +75,27 @@ class Log:
         """
         # Default
         self.file_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields)
-        self.stream_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields, self.config.color)
+        self.formatter = CustomFormatter(self.config.app_env, level, self.extra_fields, self.config.color)
         # JSON formatter
         if self.config.json:
-            self.stream_formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
+            self.formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
         # CloudEvents formatter
         if self.config.cloudevents:
-            self.stream_formatter = CloudEventsFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
-
-    def close(self) -> None:
-        """Close both stream and file handlers."""
-        self.close_file()
-        self.close_stream()
+            self.formatter = CloudEventsFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
 
     def open_stream(self) -> None:
         """Open the stream handlers to write log messages to stdout and stderr."""
         if self.stream_handler_out is None:
             self.stream_handler_out = logging.StreamHandler(stream=stdout)
-            self.stream_handler_out.setFormatter(self.stream_formatter)
+            self.stream_handler_out.setFormatter(self.formatter)
             self.stream_handler_out.setLevel(self.levels["DEBUG"])
             self.stream_handler_out.addFilter(ErrFilter())
             self._logger.addHandler(self.stream_handler_out)
         if self.stream_handler_err is None:
             self.stream_handler_err = logging.StreamHandler(stream=stderr)
-            self.stream_handler_err.setFormatter(self.stream_formatter)
+            self.stream_handler_err.setFormatter(self.formatter)
             self.stream_handler_err.setLevel(self.levels["ERROR"])
             self._logger.addHandler(self.stream_handler_err)
-
-    def close_stream(self) -> None:
-        """Close the stream handlers."""
-        if self.stream_handler_out is not None:
-            self._logger.removeHandler(self.stream_handler_out)
-            self.stream_handler_out.close()
-            self.stream_handler_out = None
-        if self.stream_handler_err is not None:
-            self._logger.removeHandler(self.stream_handler_err)
-            self.stream_handler_err.close()
-            self.stream_handler_err = None
 
     def open_file(self, file_path: str) -> None:
         """Open the file handler to write log messages to the log file."""
@@ -124,158 +108,73 @@ class Log:
         except FileNotFoundError:
             pass
 
+    def open_amqp(self) -> None:
+        """Open the AMQP handler to write log messages to RabbitMQ."""
+        if self.amqp_handler is None:
+            self.amqp_handler = AMQPLogHandler()
+            self.amqp_handler.setFormatter(self.formatter)
+            self.amqp_handler.setLevel(self.levels["DEBUG"])
+            self.amqp_handler.addFilter(AMQPFilter())
+            self._logger.addHandler(self.amqp_handler)
+
+    def close(self) -> None:
+        """Close stream, file, and amqp handlers."""
+        self.close_amqp()
+        self.close_file()
+        self.close_stream()
+
+    def close_stream(self) -> None:
+        """Close the stream handlers."""
+        if self.stream_handler_out is not None:
+            try:
+                self._logger.removeHandler(self.stream_handler_out)
+                self.stream_handler_out.close()
+            except Exception as err:
+                self._logger.warning("Error closing stdout stream handler: %s", err)
+            finally:
+                self.stream_handler_out = None
+
+        if self.stream_handler_err is not None:
+            try:
+                self._logger.removeHandler(self.stream_handler_err)
+                self.stream_handler_err.close()
+            except Exception as err:
+                self._logger.warning("Error closing stderr stream handler: %s", err)
+            finally:
+                self.stream_handler_err = None
+
     def close_file(self) -> None:
         """Close the file handler."""
         if self.file_handler is not None:
-            self._logger.removeHandler(self.file_handler)
-            self.file_handler.close()
-            self.file_handler = None
+            try:
+                self._logger.removeHandler(self.file_handler)
+                self.file_handler.close()
+            except Exception as err:
+                self._logger.warning("Error closing file handler: %s", err)
+            finally:
+                self.file_handler = None
 
-
-class CustomFormatter(logging.Formatter):
-    """Class used to retrieve extra and set colors for log messages."""
-
-    def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False):
-        """Initialize class."""
-        super().__init__()
-        self.app_env = app_env
-        self.level = level
-        self.extra_fields = extra_fields
-        self.color_enabled = color_enabled
-
-        self.colors = {item.name: item.value for item in Colors}
-        self.fmt = "%(asctime)-20s - %(levelname)-8s - %(message)s"
-        self.reset = "\x1b[0m"
-
-    def formatTime(self, record: logging.LogRecord, datefmt=None):  # noqa: ARG002, N802
-        """Format timestamp according to RFC3339 specification.
-
-        Args:
-            record (logging.LogRecord): an event being logged.
-            datefmt (str): ignored, RFC3339 format is always used.
-
-        Returns:
-            str: RFC3339 formatted timestamp
-        """
-        # Format with microseconds and Z suffix for UTC
-        return datetime.fromtimestamp(record.created, tz=UTC).isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-    def format(self, record: logging.LogRecord) -> str:
-        """Retrieve extra information and apply different colors to the log messages.
-
-        Args:
-            record (logging.LogRecord): an event being logged.
-
-        Returns:
-            str: record formatted as text.
-        """
-        info = record.__dict__.copy()
-        message = self.fmt.split("%")
-        # Handle extra
-        for field in self.extra_fields:
-            if field in info:
-                message[-1] += " - "
-                message.append(f"({field})s")
-        fmt = "%".join(message)
-        fmt = f"{self.app_env} - {fmt}"
-        # Add more context in a debugging scenario
-        if self.level == "DEBUG":
-            fmt = f"{fmt} (%(module)s::%(funcName)s:%(lineno)s)"
-
-        # Apply color if enabled
-        if self.color_enabled:
-            color = self.colors[record.levelname]
-            log_fmt = color + fmt + self.reset
-        else:
-            log_fmt = fmt
-
-        return logging.Formatter(log_fmt, self.datefmt).format(record)
-
-
-class JSONFormatter(logging.Formatter):
-    """Class used to serialize log messages in JSON and color them."""
-
-    def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False, pretty_json: bool = False) -> None:
-        """Initialize class."""
-        super().__init__()
-        self.app_env = app_env
-        self.level = level
-        self.extra_fields = extra_fields
-        self.color_enabled = color_enabled
-        self.pretty_json = pretty_json
-
-        self.colors = {item.name: item.value for item in Colors}
-        self.reset = "\x1b[0m"
-
-    def formatTime(self, record: logging.LogRecord, datefmt=None):  # noqa: ARG002, N802
-        """Format timestamp according to RFC3339 specification.
-
-        Args:
-            record (logging.LogRecord): an event being logged.
-            datefmt (str): ignored, RFC3339 format is always used.
-
-        Returns:
-            str: RFC3339 formatted timestamp
-        """
-        # Format with microseconds and Z suffix for UTC
-        return datetime.fromtimestamp(record.created, tz=UTC).isoformat(timespec="microseconds").replace("+00:00", "Z")
-
-    def format(self, record: logging.LogRecord) -> str:
-        """Format record to JSON, and apply colors if enabled.
-
-        Args:
-            record (logging.LogRecord): an event being logged.
-
-        Returns:
-            str: record formatted as JSON.
-        """
-        info = record.__dict__.copy()
-        message = {}
-        message["name"] = info["name"]
-        message["environment"] = self.app_env
-        message["timestamp"] = self.formatTime(record)
-        message["level"] = info["levelname"]
-        message["message"] = record.getMessage()
-
-        # Handle exception (if any) information formatting
-        if record.exc_info and record.exc_text is None:
-            message["exc_info"] = self.formatException(record.exc_info)
-        # Handle stack (if any) information formatting
-        if record.stack_info:
-            message["stack_info"] = self.formatStack(record.stack_info)
-        # Handle extra
-        for field in self.extra_fields:
-            if field in info:
-                message[field] = info[field]
-        # Add more context in a debugging scenario
-        if self.level == "DEBUG":
-            message["module"] = record.module
-            message["function"] = record.funcName
-            message["lineno"] = record.lineno
-
-        # Improve JSON readability
-        pretty_options: dict[str, Any] = {}
-        if self.pretty_json:
-            pretty_options["indent"] = 2
-
-        # Apply color if enabled
-        if self.color_enabled:
-            color = self.colors[record.levelname]
-            log_message = color + dumps(message, **pretty_options) + self.reset
-        else:
-            log_message = dumps(message, **pretty_options)
-
-        return log_message
+    def close_amqp(self) -> None:
+        """Close the AMQP handler."""
+        if self.amqp_handler is not None:
+            try:
+                self._logger.removeHandler(self.amqp_handler)
+                self.amqp_handler.close()
+            except Exception as err:
+                # Log the error but don't raise to avoid issues during shutdown
+                self._logger.warning("Error closing AMQP handler: %s", err)
+            finally:
+                self.amqp_handler = None
 
 
 class ErrFilter(logging.Filter):
     """Class used to filter log messages based on level."""
 
     def filter(self, record: logging.LogRecord) -> bool:
-        """Filter the log messages below WARNING level included.
+        """Filter in log messages below WARNING level included.
 
         Args:
-            record (logging.LogRecord): an event being logged.
+            record (logging.LogRecord): log record to filter.
 
         Returns:
             bool: if the record level is in or not.

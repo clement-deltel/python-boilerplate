@@ -32,17 +32,17 @@ app-description
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
  Makefile                1          176          103           36           37
- Python                  9         1425         1053          124          248
+ Python                 12         1432         1044          131          257
  Shell                   2          498          306          108           84
- Plain Text              3          453            0          453            0
- TOML                    1          303          173           90           40
+ Plain Text              3          465            0          465            0
+ TOML                    1          304          174           90           40
  YAML                    1           20           20            0            0
 -------------------------------------------------------------------------------
- Markdown                5         1040            0          723          317
+ Markdown                5         1048            0          731          317
  |- BASH                 4           83           78            4            1
- (Total)                           1123           78          727          318
+ (Total)                           1131           78          735          318
 ===============================================================================
- Total                  27         4187         1787         1617          783
+ Total                  30         4215         1779         1644          792
 ===============================================================================
 ```
 
@@ -75,6 +75,7 @@ app-name v0.0.0
 │   │   └── six v1.17.0
 │   ├── pytz v2025.2
 │   └── tzdata v2025.2
+├── pika v1.3.2
 ├── python-dotenv v1.1.1
 └── requests v2.32.5
     ├── certifi v2025.8.3
@@ -89,14 +90,22 @@ The application configuration can be loaded as a set of environment variables in
 
 List of available environment variables:
 
-| Variable      | Type | Sensitive | Default     | Condition | Example            | Description                                                        |
-| ------------- | ---- | --------- | ----------- | --------- | ------------------ | ------------------------------------------------------------------ |
-| MAPPINGS_PATH | str  |           | \<unset>    |           | C:\:/mnt           | List of mappings of Windows paths to Linux paths                   |
-| INPUT_PATH    | str  |           | /app/input  |           | /path/to/directory | Path to directory containing input files                           |
-| OUTPUT_PATH   | str  |           | /app/output |           | /path/to/directory | Path to directory where to save output files                       |
-| LOG_LEVEL     | str  |           | INFO        |           | INFO               | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
-| LOG_PATH      | str  |           | /app/log    |           | /path/to/directory | Path to directory containing log files if enabled                  |
-| LOG_TO_FILE   | bool |           | false       |           | true               | Whether to export logs to a file                                   |
+| Variable           | Type | Sensitive | Default     | Condition | Example             | Description                                                        |
+| ------------------ | ---- | --------- | ----------- | --------- | ------------------- | ------------------------------------------------------------------ |
+| MAPPINGS_PATH      | str  |           | \<unset>    |           | C:\:/mnt            | List of mappings of Windows paths to Linux paths                   |
+| INPUT_PATH         | str  |           | /app/input  |           | /path/to/directory  | Path to directory containing input files                           |
+| OUTPUT_PATH        | str  |           | /app/output |           | /path/to/directory  | Path to directory where to save output files                       |
+| LOG_LEVEL          | str  |           | INFO        |           | INFO                | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
+| LOG_PATH           | str  |           | /app/log    |           | /path/to/directory  | Path to directory containing log files if enabled                  |
+| LOG_TO_FILE        | bool |           | false       |           | true                | Whether to export logs to a file                                   |
+| LOG_TO_AMQP        | bool |           | false       |           | true                | Whether to export logs to RabbitMQ                                 |
+| AMQP_HOSTNAME      | str  |           | localhost   |           | rabbitmq.domain.com | RabbitMQ message broker Ip address/hostname                        |
+| AMQP_PORT          | int  |           | 5672        |           | 5672                | RabbitMQ message broker port                                       |
+| AMQP_USERNAME      | str  | x         | guest       |           | username            | RabbitMQ message broker username                                   |
+| AMQP_PASSWORD      | str  | x         | guest       |           | password            | RabbitMQ message broker password                                   |
+| AMQP_EXCHANGE      | str  |           | \<unset>    |           | exchange-name       | RabbitMQ message broker exchange name                              |
+| AMQP_EXCHANGE_TYPE | str  |           | topic       |           | topic               | RabbitMQ message broker exchange type                              |
+| AMQP_ROUTING_KEY   | str  |           | #           |           | #                   | RabbitMQ message broker routing key                                |
 
 > *Note*: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 

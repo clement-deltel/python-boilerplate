@@ -37,6 +37,7 @@ dependencies = [
     "cloudevents",
     "numpy",
     "pandas",
+    "pika",
     "python-dotenv",
     "requests",
 ]

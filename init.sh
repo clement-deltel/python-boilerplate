@@ -70,7 +70,7 @@ get_user_input() {
 
     # Application name (mandatory)
     while [[ -z "$APP_NAME" ]]; do
-        read -pr "Application name (mandatory): " APP_NAME
+        read -r -p "Application name (mandatory): " APP_NAME
         APP_NAME="$(echo "$APP_NAME" | xargs)"  # Trim whitespace
 
         if [[ -z "$APP_NAME" ]]; then
@@ -79,23 +79,23 @@ get_user_input() {
     done
 
     # Application description (optional)
-    read -pr "Application description (optional): " APP_DESCRIPTION
+    read -r -p "Application description (optional): " APP_DESCRIPTION
     APP_DESCRIPTION="$(echo "$APP_DESCRIPTION" | xargs)"
 
     # Customer name (optional)
-    read -pr "Customer name (optional): " CUSTOMER_NAME
+    read -r -p "Customer name (optional): " CUSTOMER_NAME
     CUSTOMER_NAME="$(echo "$CUSTOMER_NAME" | xargs)"
 
     # Azure DevOps User ID (optional)
-    read -pr "Azure DevOps User ID (optional): " AZURE_USER_ID
+    read -r -p "Azure DevOps User ID (optional): " AZURE_USER_ID
     AZURE_USER_ID="$(echo "$AZURE_USER_ID" | xargs)"
 
     # Azure DevOps User Story ID (optional)
-    read -pr "Azure DevOps User Story ID (optional): " AZURE_STORY_ID
+    read -r -p "Azure DevOps User Story ID (optional): " AZURE_STORY_ID
     AZURE_STORY_ID="$(echo "$AZURE_STORY_ID" | xargs)"
 
     # Remote repository URL (optional)
-    read -pr "Remote repository URL (optional): " REMOTE_URL
+    read -r -p "Remote repository URL (optional): " REMOTE_URL
     REMOTE_URL="$(echo "$REMOTE_URL" | xargs)"
 
     echo

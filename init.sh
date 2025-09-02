@@ -379,7 +379,7 @@ initialize_git_repository() {
     cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
 
     # Initialize git repository
-    git init || error_exit "Failed to initialize git repository"
+    git init --initial-branch main || error_exit "Failed to initialize git repository"
 
     # Add remote if URL provided
     if [[ -n "$REMOTE_URL" ]]; then

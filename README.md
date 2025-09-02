@@ -50,7 +50,7 @@ make pre-requisites
    - Rename files and directories based on the same replacement rules
    - Update renovate configuration
    - Create and initialize a virtual environment using uv
-   - Initialize a Git repository and add the remote (if any)
+   - Initialize a Git repository on the branch `main` and add the remote (if any)
    - Install pre-commit hooks
    - Stage the files for the initial commit
    - Run pre-commit hooks

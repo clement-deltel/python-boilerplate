@@ -171,6 +171,7 @@ copy_boilerplate() {
             --exclude='.pytest_cache' \
             --exclude='.ruff_cache' \
             --exclude='.venv' \
+            --exclude='.python-version' \
             --exclude='README.md' \
             --exclude='init.sh' \
             ./ "$TARGET_DIR/" || error_exit "Failed to copy files with rsync"
@@ -182,6 +183,7 @@ copy_boilerplate() {
             -not -name '.pytest_cache' \
             -not -name '.ruff_cache' \
             -not -name '.venv' \
+            -not -name '.python-version' \
             -not -name 'README.md' \
             -not -name 'init.sh' \
             -exec cp -r {} "$TARGET_DIR/" \; || error_exit "Failed to copy files"
@@ -355,6 +357,7 @@ setup_virtual_environment() {
     cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
 
     if [[ -f "pyproject.toml" ]]; then
+        unset VIRTUAL_ENV
         uv sync --frozen || error_exit "Failed to create virtual environment"
         print_message "$GREEN" "Virtual environment created successfully"
     else

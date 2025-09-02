@@ -43,7 +43,7 @@ make pre-requisites
 2. Run the script `init.sh` and follow the instructions throughout the different prompts.
 3. This script will perform the following steps:
 
-   - Check that `find`, `git` and `sed` are installed and available
+   - Check that `find`, `git`, `sed`, and `uv` are installed and available
    - Get user input on information listed in the [Requirements](#requirements) section
    - Create the target directory and copy the files
    - Perform replacements of application name & description, customer name in all files
@@ -53,6 +53,7 @@ make pre-requisites
    - Initialize a Git repository and add the remote (if any)
    - Install pre-commit hooks
    - Stage the files for the initial commit
+   - Run pre-commit hooks
 
 4. Once done, run the commands below:
 

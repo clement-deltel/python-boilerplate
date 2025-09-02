@@ -305,6 +305,7 @@ rename_items() {
     # Rename README file
     print_message "$BLUE" "Renaming file: README_app.md -> README.md"
     mv "$TARGET_DIR/README_app.md" "$TARGET_DIR/README.md" || error_exit "Failed to rename README_app.md"
+    sed -i "s/README_app/README/g" "$TARGET_DIR/.githooks/readme_update.py"
 
     print_message "$GREEN" "Renaming completed"
 }
@@ -398,6 +399,7 @@ install_precommit_hooks() {
     cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
 
     if [[ -f ".pre-commit-config.yaml" ]]; then
+        chmod +x -R .githooks
         uv run pre-commit install --install-hooks || error_exit "Failed to install pre-commit hooks"
         print_message "$GREEN" "Pre-commit hooks installed successfully"
     else
@@ -418,6 +420,25 @@ stage_initial_commit() {
     git add . || error_exit "Failed to stage files"
 
     print_message "$GREEN" "Files staged successfully"
+    cd - > /dev/null
+}
+
+# ---------------------------------------------------------------------------- #
+# FUNCTION: run_precommit_hooks
+# DESCRIPTION: Run pre-commit hooks on all staged files
+# ---------------------------------------------------------------------------- #
+run_precommit_hooks() {
+    print_message "$YELLOW" "Running pre-commit hooks..."
+
+    cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
+
+    if [[ -f ".pre-commit-config.yaml" ]]; then
+        uv run pre-commit run --all-files || error_exit "Failed to run pre-commit hooks"
+        print_message "$GREEN" "Pre-commit hooks run successfully"
+    else
+        print_message "$YELLOW" "No .pre-commit-config.yaml found, skipping pre-commit run"
+    fi
+
     cd - > /dev/null
 }
 
@@ -480,6 +501,7 @@ main() {
     initialize_git_repository
     install_precommit_hooks
     stage_initial_commit
+    run_precommit_hooks
 
     # Display summary
     display_summary

@@ -230,7 +230,6 @@ perform_replacements() {
     local files_to_process
     mapfile -t files_to_process < <(
         find "$TARGET_DIR" -type f \
-            -not -path "*/.*" \
             -not -path "*/node_modules/*" \
             -not -path "*/venv/*" \
             -not -path "*/__pycache__/*" \

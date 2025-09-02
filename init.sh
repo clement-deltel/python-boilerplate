@@ -165,7 +165,7 @@ copy_boilerplate() {
 
     # Use rsync if available for better performance, otherwise use cp
     if command -v rsync >/dev/null 2>&1; then
-        rsync -av \
+        rsync -a \
             --exclude='.git' \
             --exclude='.mypy_cache' \
             --exclude='.pytest_cache' \

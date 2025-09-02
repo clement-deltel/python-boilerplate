@@ -77,7 +77,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - 1 `Application Name` occurrence
   - **renovate.json**
     - 1 `azureWorkItemId` occurrence
-    - 1 `<domain>\\<user>` occurrence
+    - 1 `DOMAIN\\azure_user_id` occurrence
 - Run the following uv command: `make init-dev`
 
 ## Libraries

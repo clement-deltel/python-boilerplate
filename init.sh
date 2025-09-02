@@ -392,26 +392,6 @@ initialize_git_repository() {
 }
 
 # ---------------------------------------------------------------------------- #
-# FUNCTION: install_precommit_hooks
-# DESCRIPTION: Install pre-commit hooks using uv
-# ---------------------------------------------------------------------------- #
-install_precommit_hooks() {
-    print_message "$YELLOW" "Installing pre-commit hooks..."
-
-    cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
-
-    if [[ -f ".pre-commit-config.yaml" ]]; then
-        chmod +x -R .githooks
-        uv run pre-commit install --install-hooks || error_exit "Failed to install pre-commit hooks"
-        print_message "$GREEN" "Pre-commit hooks installed successfully"
-    else
-        print_message "$YELLOW" "No .pre-commit-config.yaml found, skipping pre-commit setup"
-    fi
-
-    cd - > /dev/null
-}
-
-# ---------------------------------------------------------------------------- #
 # FUNCTION: stage_initial_commit
 # DESCRIPTION: Stage all files for the initial commit
 # ---------------------------------------------------------------------------- #
@@ -422,6 +402,27 @@ stage_initial_commit() {
     git add . || error_exit "Failed to stage files"
 
     print_message "$GREEN" "Files staged successfully"
+    cd - > /dev/null
+}
+
+# ---------------------------------------------------------------------------- #
+# FUNCTION: install_precommit_hooks
+# DESCRIPTION: Install pre-commit hooks using uv
+# ---------------------------------------------------------------------------- #
+install_precommit_hooks() {
+    print_message "$YELLOW" "Installing pre-commit hooks..."
+
+    cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
+
+    if [[ -f ".pre-commit-config.yaml" ]]; then
+        chmod +x -R .githooks
+        git add .githooks || error_exit "Failed to stage local pre-commit hook files"
+        uv run pre-commit install --install-hooks || error_exit "Failed to install pre-commit hooks"
+        print_message "$GREEN" "Pre-commit hooks installed successfully"
+    else
+        print_message "$YELLOW" "No .pre-commit-config.yaml found, skipping pre-commit setup"
+    fi
+
     cd - > /dev/null
 }
 
@@ -501,8 +502,10 @@ main() {
     # Setup development environment
     setup_virtual_environment
     initialize_git_repository
-    install_precommit_hooks
     stage_initial_commit
+
+    # Install and run pre-commit hooks
+    install_precommit_hooks
     run_precommit_hooks
 
     # Display summary

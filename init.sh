@@ -24,6 +24,8 @@ AZURE_STORY_ID=""
 REMOTE_URL=""
 TARGET_DIR=""
 
+AZURE_DOMAIN="DOMAIN"
+
 # ---------------------------------------------------------------------------- #
 #FUNCTION: print_message
 #DESCRIPTION: Prints colored output messages to the terminal
@@ -337,7 +339,7 @@ update_renovate_config() {
 
         # Update reviewer if user ID provided
         if [[ -n "$AZURE_USER_ID" ]]; then
-            sed -i -E "s/required:<domain>\\\\<user>/required:<domain>\\\\$AZURE_USER_ID/" "$temp_file"
+            sed -i -E "s/required:$AZURE_DOMAIN\\\\\\\\azure_user_id/required:$AZURE_DOMAIN\\\\\\\\$AZURE_USER_ID/" "$temp_file"
         fi
 
         # Atomically replace the original file

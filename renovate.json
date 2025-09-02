@@ -2,6 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "azureWorkItemId": 1234,
   "reviewers": [
-    "required:<domain>\\<user>"
+    "required:DOMAIN\\azure_user_id"
   ]
 }

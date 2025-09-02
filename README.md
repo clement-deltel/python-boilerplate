@@ -51,9 +51,8 @@ make pre-requisites
    - Update renovate configuration
    - Create and initialize a virtual environment using uv
    - Initialize a Git repository on the branch `main` and add the remote (if any)
-   - Install pre-commit hooks
    - Stage the files for the initial commit
-   - Run pre-commit hooks
+   - Install & run pre-commit hooks
 
 4. Once done, run the commands below:
 

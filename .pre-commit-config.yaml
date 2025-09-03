@@ -2,6 +2,8 @@
 # https://pre-commit.com
 
 default_install_hook_types: [commit-msg, pre-commit, pre-push]
+default_stages: [pre-commit]
+
 repos:
   # -------------------------------------------------------------------------- #
   #               ------- General ------

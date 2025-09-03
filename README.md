@@ -5,6 +5,7 @@
 - [Goal](#goal)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
+- [Additional steps](#additional-steps)
 
 ## Goal
 
@@ -60,3 +61,14 @@ make pre-requisites
 cd ../app-name
 code app-name.code-workspace
 ```
+
+## Additional steps
+
+1. [Makefile](./Makefile)
+   - update the *(build|pull|push)-image* tasks based on your application's requirements
+   - update the *(create|run)-container* tasks based on your application's requirements
+2. [pyproject.toml](./pyproject.toml)
+   - `project.classifiers`: review based on the official list of [classifiers](https://pypi.org/classifiers)
+   - `tool.ty.environment.python-platform`: switch to Windows if needed
+   - `tool.uv.environments`: switch to Windows if needed
+   - `tool.uv.required-environments`: switch to Windows if needed

@@ -13,6 +13,6 @@ framework:
 output:
   - cli
   # - json
-# output-file-path: console,app_name.json
+# output-file-path: console,app-name_checkov.json
 quiet: true
 soft-fail: true

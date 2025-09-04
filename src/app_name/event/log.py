@@ -193,7 +193,7 @@ class Levels(Enum):
 
 
 # Global
-_log_instance = Log()
+_log_instance = None
 
 
 def set_log(log_instance: Log) -> None:
@@ -212,4 +212,7 @@ def log() -> Log:
     Returns:
         Log: log instance.
     """
+    global _log_instance
+    if _log_instance is None:
+        _log_instance = Log()
     return _log_instance

@@ -1,0 +1,18 @@
+# checkov.yaml
+# https://github.com/bridgecrewio/checkov
+
+compact: true
+directory: .
+framework:
+  - dockerfile
+  - helm
+  - json
+  - yaml
+  - kubernetes
+  - secrets
+output:
+  - cli
+  # - json
+# output-file-path: console,app_name.json
+quiet: true
+soft-fail: true

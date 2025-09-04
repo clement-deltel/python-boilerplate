@@ -89,6 +89,7 @@ Here are the useful libraries and modules used across all of my Python projects:
   - [http](https://docs.python.org/3/library/http.html)
   - [pathlib](https://docs.python.org/3/library/pathlib.html)
 - **Third-party**
+  - [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
   - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
   - [coverage](https://coverage.readthedocs.io/en/latest)
   - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`

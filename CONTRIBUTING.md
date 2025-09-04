@@ -23,6 +23,8 @@
     - [dive](#dive)
     - [dockle](#dockle)
     - [trivy](#trivy)
+  - [Cloud](#cloud)
+    - [checkov](#checkov)
   - [Documentation](#documentation)
     - [tokei](#tokei)
     - [csv2md](#csv2md)
@@ -397,6 +399,18 @@ Find vulnerabilities, misconfigurations, secrets in an image?
 
 ```bash
 trivy image --image-config-scanners misconfig,secret --scanners vuln,secret app-name:latest
+```
+
+### Cloud
+
+#### checkov
+
+Here are useful commands to prevent cloud misconfigurations and find vulnerabilities using [checkov](https://www.checkov.io) ([source code](https://github.com/bridgecrewio/checkov)). Do you want to:
+
+Run the tool on the repository?
+
+```bash
+checkov --config-file checkov.yaml
 ```
 
 ### Documentation

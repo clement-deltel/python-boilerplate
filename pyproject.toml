@@ -45,6 +45,7 @@ dependencies = [
 [dependency-groups]
 dev = ["commitizen", "csv2md", "pre-commit", "snakeviz"]
 lint = [
+    "checkov",
     "isort",
     "mypy",
     "pyupgrade",

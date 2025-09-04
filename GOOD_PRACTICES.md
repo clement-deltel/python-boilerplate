@@ -154,6 +154,10 @@ Here are the essential good Python practices:
 
 - avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)
 - use pathlib over os module
+- use "err" over "e" in exception handling
+- use ternary operator when possible
+- use Google-style docstrings
+- use | for type annotations if needed
 - do not use f-strings in log statements
 
 Here are the useful tips to make Python faster:
@@ -163,11 +167,11 @@ Here are the useful tips to make Python faster:
 - concatenate strings with join
 - optimize loops with code maps
 - use built-in functions
-- use concurrency, multiprocessing
 - use generator expressions instead of list comprehensions
 - use generators and keys for sorting
-- use list comprehension instead of loop
+- use list comprehension instead of loop when possible
 - use numpy arrays instead of lists
+- use concurrency, multiprocessing
 - use pypy
 
 Here are the useful tips to make Python code cleaner:

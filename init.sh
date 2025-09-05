@@ -117,6 +117,9 @@ sanitize_name() {
     fi
 
     case "$format" in
+        "camel")
+            echo "$input" | sed 's/[[:space:]_-]\+/ /g' | sed 's/\b\w/\U&/g' | sed 's/ //g' | sed 's/^\(.\)/\l\1/'
+            ;;
         "kebab")
             echo "$input" | tr '[:upper:]' '[:lower:]' | sed 's/[[:space:]_]\+/-/g'
             ;;
@@ -206,6 +209,7 @@ perform_replacements() {
     local combined_kebab combined_snake_kebab combined_pascal
 
     # Generate app name variants
+    app_camel=$(sanitize_name "$APP_NAME" "camel")
     app_kebab=$(sanitize_name "$APP_NAME" "kebab")
     app_pascal=$(sanitize_name "$APP_NAME" "pascal")
     app_snake=$(sanitize_name "$APP_NAME" "snake")
@@ -259,6 +263,7 @@ perform_replacements() {
 
         # Perform all replacements in one sed command for efficiency
         sed -E \
+            -e "s/appName/${app_camel}/g" \
             -e "s/customer-app-name/${combined_kebab}/g" \
             -e "s/customer_app-name/${combined_snake_kebab}/g" \
             -e "s/Customer__AppName/${combined_pascal}/g" \

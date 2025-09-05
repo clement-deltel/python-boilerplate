@@ -29,7 +29,8 @@ Here are the steps you need to follow when starting a new coding project from th
       - 2 `company.com` occurrences
   - *deploy directory*
     - **README.md**
-      - 6 `customer-app-name` occurrences
+      - 1 `customer-app-name` occurrence
+      - 16 `app-name` occurrences
       - all `<[a-z]*>` occurrences
   - *docker directory*
     - **compose.yaml**
@@ -59,9 +60,9 @@ Here are the steps you need to follow when starting a new coding project from th
     - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
+    - 6 `customer_app-name` occurrences
     - 15 `app-name` occurrences
     - 7 `app_name` occurrences
-    - 6 `customer_app-name` occurrences
   - **pyproject.toml**
     - 1 `app-name` occurrence
     - 7 `app_name` occurrences

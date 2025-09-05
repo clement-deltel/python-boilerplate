@@ -7,7 +7,9 @@
 - [Libraries](#libraries)
 - [Visual Studio Code extensions](#visual-studio-code-extensions)
 - [Git hooks](#git-hooks)
-- [Coding practices](#coding-practices)
+- [Good practices](#good-practices)
+  - [Python coding](#python-coding)
+  - [Docker](#docker)
 - [Future enhancements](#future-enhancements)
 - [Resources](#resources)
 
@@ -51,33 +53,38 @@ Here are the steps you need to follow when starting a new coding project from th
     - 2 `Application Name` occurrence
     - 2 `app_name` occurrence
     - add launch configurations if needed
+  - **checkov.yaml**
+    - 1 `app-name` occurrence
   - **CONTRIBUTING.md**
     - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
     - 15 `app-name` occurrences
-    - 2 `app_name` occurrences
+    - 7 `app_name` occurrences
     - 6 `customer_app-name` occurrences
-    - check *run* and *debug* tasks to ensure they are compatible with your application
-    - update the *(build|pull|push)-image* tasks based on your application's requirements
-    - update the *(create|run)-container* tasks based on your application's requirements
   - **pyproject.toml**
     - 1 `app-name` occurrence
     - 7 `app_name` occurrences
     - 1 `app-description` occurrence
     - project.authors
     - project.maintainers
-    - project.classifiers ([list of classifiers](https://pypi.org/classifiers))
-    - tool.ty.environment.python-platform (switch to Windows if needed)
-    - tool.uv.environments (switch to Windows if needed)
-    - tool.uv.required-environments (switch to Windows if needed)
-  - **README.md**
-    - 4 `app-name` occurrences
+  - **README_app.md**
+    - rename the file itself removing `_app`
+    - 5 `app-name` occurrences
     - 1 `app-description` occurrence
     - 1 `Application Name` occurrence
   - **renovate.json**
     - 1 `azureWorkItemId` occurrence
     - 1 `DOMAIN\\azure_user_id` occurrence
+- Additional checks
+  - **Makefile**
+    - update the *(build|pull|push)-image* tasks based on your application's requirements
+    - update the *(create|run)-container* tasks based on your application's requirements
+  - **pyproject.toml**
+    - `project.classifiers`: review based on the official list of [classifiers](https://pypi.org/classifiers)
+    - `tool.ty.environment.python-platform`: switch to Windows if needed
+    - `tool.uv.environments`: switch to Windows if needed
+    - `tool.uv.required-environments`: switch to Windows if needed
 - Run the following uv command: `make init-dev`
 
 ## Libraries
@@ -149,9 +156,11 @@ Here are the useful git hooks used across all of my Python projects:
   - [readme-update](.githooks/readme_update.py)
   - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
 
-## Coding practices
+## Good practices
 
-Here are the essential good Python practices:
+### Python coding
+
+Here are the essential good practices:
 
 - avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)
 - use pathlib over os module
@@ -209,6 +218,37 @@ Here are the useful tips to make Python code cleaner:
   - [refurb - FURB](https://docs.astral.sh/ruff/rules/#refurb-furb)
   - [Ruff-specific - RUF](https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf)
 - use a formatter
+
+### Docker
+
+Here are the essential good practices:
+
+- **Image Management**
+  - Pin an image version
+  - Use multi-stage builds to reduce image size
+  - Consolidate multiple RUN instructions
+  - Clean the apt/dnf/yum package cache
+  - Combine the package manager update command with the install
+  - Une `--no-install-recommends` with `apt-get`
+- **Clean**
+  - Exclude unnecessary files with .dockerignore
+  - Use `apt-get` or `apt-cache` instead of `apt`
+  - Choose one or the other: `curl` or `wget`
+  - Use absolute path for WORKDIR
+  - Use WORKDIR instead of the cd command
+  - Use JSON notation for CMD and ENTRYPOINT
+  - Ensure trailing slash for COPY commands with multiple arguments
+  - Avoid multiple CMD or ENTRYPOINT instructions
+  - Avoid multiple HEALTHCHECK instructions
+- **Security**
+  - Avoid default, root, or dynamic user
+  - Avoid exposing the SSH port
+  - Avoid overriding ARG variables in RUN commands
+  - Avoid pipe curl to bash
+  - Avoid storing secrets in ENV keys
+  - Avid using RUN with sudo
+  - Use COPY instead of ADD
+
 
 ## Future enhancements
 

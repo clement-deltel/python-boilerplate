@@ -250,7 +250,6 @@ Here are the essential good practices:
   - Avid using RUN with sudo
   - Use COPY instead of ADD
 
-
 ## Future enhancements
 
 Here is a list of tools that could be interesting and further enhance the stack:

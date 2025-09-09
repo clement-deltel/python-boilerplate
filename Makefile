@@ -17,7 +17,7 @@ init:
 
 init-dev:
 	uv sync --frozen
-	uv run pre-commit install --install-hooks
+	uv run prek install --install-hooks
 	source .venv/bin/activate
 
 init-test:
@@ -107,10 +107,10 @@ coverage:
 #               ------- Pre-commit Hooks ------
 # ---------------------------------------------------------------------------- #
 hook-install:
-	pre-commit install --install-hooks
+	prek install --install-hooks
 
 hook-run:
-	pre-commit run --all-files
+	prek run --all-files
 
 # ---------------------------------------------------------------------------- #
 #               ------- Image ------

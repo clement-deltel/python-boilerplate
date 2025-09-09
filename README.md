@@ -53,7 +53,7 @@ make pre-requisites
    - Create and initialize a virtual environment using uv
    - Initialize a Git repository on the branch `main` and add the remote (if any)
    - Stage the files for the initial commit
-   - Install & run pre-commit hooks
+   - Install & run pre-commit hooks (using [prek](https://prek.j178.dev))
 
 4. Once done, run the commands below:
 

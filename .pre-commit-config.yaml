@@ -1,7 +1,8 @@
 # .pre-commit-config.yaml
 # https://pre-commit.com
 
-default_install_hook_types: [commit-msg, pre-commit, pre-push]
+# default_install_hook_types: [commit-msg, pre-commit, pre-push]
+default_install_hook_types: [pre-commit, pre-push]
 default_stages: [pre-commit]
 
 repos:
@@ -99,7 +100,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.11
+    rev: v0.12.12
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -109,14 +110,14 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.8.11
+    rev: 0.8.15
     hooks:
       - id: uv-lock
       - id: uv-export
         args: [--no-default-groups, --no-emit-project]
 
   - repo: https://github.com/tsvikas/sync-with-uv
-    rev: v0.3.0
+    rev: v0.4.0
     hooks:
       - id: sync-with-uv
 
@@ -151,7 +152,7 @@ repos:
   #               ------- Docker ------
   # -------------------------------------------------------------------------- #
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.13.1-beta
+    rev: v2.13.1
     hooks:
       - id: hadolint
 

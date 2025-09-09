@@ -422,7 +422,7 @@ install_precommit_hooks() {
     if [[ -f ".pre-commit-config.yaml" ]]; then
         chmod +x -R .githooks
         git add .githooks || error_exit "Failed to stage local pre-commit hook files"
-        uv run pre-commit install --install-hooks || error_exit "Failed to install pre-commit hooks"
+        uv run prek install --install-hooks || error_exit "Failed to install pre-commit hooks"
         print_message "$GREEN" "Pre-commit hooks installed successfully"
     else
         print_message "$YELLOW" "No .pre-commit-config.yaml found, skipping pre-commit setup"

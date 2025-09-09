@@ -11,7 +11,7 @@
     - [uv](#uv)
     - [ruff](#ruff)
     - [ty](#ty)
-    - [pre-commit](#pre-commit)
+    - [prek](#prek)
     - [gitleaks](#gitleaks)
     - [ls-lint](#ls-lint)
     - [varlock](#varlock)
@@ -218,7 +218,7 @@ uv export --format requirements-txt --group test --no-default-groups --no-emit-p
 
 ```bash
 uv self update
-pre-commit autoupdate --repo https://github.com/astral-sh/uv-pre-commit
+prek autoupdate --repo https://github.com/astral-sh/uv-pre-commit
 ```
 
 #### ruff
@@ -253,50 +253,50 @@ Check all files in the current directory?
 ty check
 ```
 
-#### pre-commit
+#### prek
 
-Here are useful commands to manage the git hooks using [pre-commit](https://pre-commit.com) ([source code](https://github.com/pre-commit/pre-commit)). Do you want to:
+Here are useful commands to manage the git hooks using [prek](https://prek.j178.dev) ([source code](https://github.com/j178/prek)). Do you want to:
 
 Install hooks?
 
 ```bash
-pre-commit install --install-hooks
+prek install --install-hooks
 ```
 
 Auto-update hooks config to the latest repos' versions?
 
 ```bash
-pre-commit autoupdate
+prek autoupdate
 ```
 
 Run all hooks on all the files in the repository?
 
 ```bash
-pre-commit run --all-files
+prek run --all-files
 ```
 
 Run all hooks on a specific file in the repository?
 
 ```bash
-pre-commit run --files <path/to/file>
+prek run --files <path/to/file>
 ```
 
 Produce hook output independent of success?
 
 ```bash
-pre-commit run --all-files --verbose
+prek run --all-files --verbose
 ```
 
 Run a specific hook?
 
 ```bash
-pre-commit run <hook-id> --all-files --verbose
+prek run <hook-id> --all-files --verbose
 ```
 
 Uninstall hooks?
 
 ```bash
-pre-commit uninstall
+prek uninstall
 ```
 
 #### gitleaks

@@ -102,9 +102,9 @@ Here are the useful libraries and modules used across all of my Python projects:
   - [coverage](https://coverage.readthedocs.io/en/latest)
   - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
   - [mypy](https://github.com/python/mypy) - static typing. `Python`
-  - [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. `Python`
   - [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
   - [pika](https://pika.readthedocs.io/en/stable/index.html)
+  - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
   - [pytest](https://docs.pytest.org/en/stable)
   - [requests](https://requests.readthedocs.io/en/latest/api/)
   - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
@@ -114,6 +114,7 @@ Here are the useful libraries and modules used across all of my Python projects:
 Not using anymore:
 
 - [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: now using uv. `Python`
+- [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. **Reason**: now using prek. `Python`
 - [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: now using uv.
 
 ## Visual Studio Code extensions

@@ -80,7 +80,7 @@ make run
 
 ## Debug
 
-Here useful tips to debug the project's code.
+Here are useful tips to debug the project's code.
 
 Do you want to debug using builtin VSCode debugger?
 

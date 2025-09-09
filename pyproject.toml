@@ -43,12 +43,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-    "commitizen",
-    "csv2md",
-    "prek",
-    "snakeviz",
-]
+dev = ["commitizen", "csv2md", "prek", "snakeviz"]
 lint = [
     "checkov",
     "isort",

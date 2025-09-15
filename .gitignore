@@ -296,11 +296,14 @@ pyrightconfig.json
 # Chart dependencies
 **/charts/*.tgz
 
+# Helm unittest
+__snapshot__
+
 # ---------------------------------------------------------------------------- #
 #               ------- Repository ------
 # ---------------------------------------------------------------------------- #
 
 # Local directories used for testing purposes
-input/
-log/
-output/
+input
+log
+output

@@ -62,7 +62,7 @@ LABEL org.opencontainers.image.vendor="Company Inc."
 # Not persisted into the runtime image
 ARG DEBIAN_FRONTEND=noninteractive
 ARG USER="app"
-ARG ID="1000"
+ARG ID="10001"
 ARG HOME=/${USER}
 ARG VIRTUAL_ENV="${HOME}/.venv"
 

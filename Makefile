@@ -155,6 +155,9 @@ dive-image-ci:
 # ---------------------------------------------------------------------------- #
 #               ------- Scan ------
 # ---------------------------------------------------------------------------- #
+scan-clean:
+	trivy clean --all
+
 scan-repo:
 	trivy repository --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln .
 

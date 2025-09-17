@@ -2,7 +2,7 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 ARG ALPINE_VERSION=3.21
-ARG UV_VERSION=0.8.15
+ARG UV_VERSION=0.8.17
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
@@ -10,7 +10,7 @@ ARG UV_VERSION=0.8.15
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-alpine${ALPINE_VERSION} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.11.11
+ARG PYTHON_VERSION=3.11.13
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

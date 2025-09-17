@@ -7,7 +7,7 @@ ARG UV_VERSION=0.8.17
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-python3.11-${DEBIAN_VERSION} AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${DEBIAN_VERSION} AS builder
 
 # Not persisted into the builder image
 ARG PYTHON_VERSION=3.11.13

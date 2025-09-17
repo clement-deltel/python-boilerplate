@@ -2,15 +2,15 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 ARG DEBIAN_VERSION=trixie-slim
-ARG UV_VERSION=0.8.15
+ARG UV_VERSION=0.8.17
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-python3.11-${DEBIAN_VERSION} AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${DEBIAN_VERSION} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.11.11
+ARG PYTHON_VERSION=3.11.13
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1
@@ -43,7 +43,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # ---------------------------------------------------------------------------- #
 #               ------- Run Application ------
 # ---------------------------------------------------------------------------- #
-FROM debian:bookworm-slim AS runtime
+FROM debian:${DEBIAN_VERSION} AS runtime
 
 LABEL org.opencontainers.image.title="app-name"
 LABEL org.opencontainers.image.description="app-description"

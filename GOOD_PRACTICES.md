@@ -83,9 +83,11 @@ Here are the steps you need to follow when starting a new coding project from th
     - update the *(create|run)-container* tasks based on your application's requirements
   - **pyproject.toml**
     - `project.classifiers`: review based on the official list of [classifiers](https://pypi.org/classifiers)
-    - `tool.ty.environment.python-platform`: switch to Windows if needed
-    - `tool.uv.environments`: switch to Windows if needed
-    - `tool.uv.required-environments`: switch to Windows if needed
+    - Switch to Windows if needed:
+      - `tool.pyright.pythonPlatform`
+      - `tool.ty.environment.python-platform`
+      - `tool.uv.environments`
+      - `tool.uv.required-environments`
 - Run the following uv command: `make init-dev`
 
 ## Libraries

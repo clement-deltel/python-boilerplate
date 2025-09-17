@@ -8,6 +8,7 @@ from platform import system
 from re import sub
 from signal import SIGINT, signal
 from time import gmtime, perf_counter, strftime
+from types import FrameType
 
 # Local Application
 from app_name.common.config import Config, DevConfig, ProdConfig, set_config
@@ -15,7 +16,7 @@ from app_name.common.profiler import profiler
 from app_name.event.log import log
 
 
-def signal_int_handler(signum, frame):  # noqa: ARG001
+def signal_int_handler(signum: int, frame: FrameType | None) -> None:  # noqa: ARG001
     """Handle SIGINT signal for the application execution.
 
     Raises:
@@ -25,7 +26,7 @@ def signal_int_handler(signum, frame):  # noqa: ARG001
     raise KeyboardInterrupt
 
 
-def signal_quit_handler(signum, frame):  # noqa: ARG001
+def signal_quit_handler(signum: int, frame: FrameType | None) -> None:  # noqa: ARG001
     r"""Handle SIGQUIT signal for the application execution.
 
     Raises:

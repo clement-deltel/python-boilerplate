@@ -47,7 +47,7 @@ dev = ["commitizen", "csv2md", "prek", "snakeviz"]
 lint = [
     "checkov",
     "isort",
-    "mypy",
+    "pyright",
     "pyupgrade",
     "refurb",
     "ruff",
@@ -119,6 +119,28 @@ include_trailing_comma = true
 line_length = 160
 # https://pycqa.github.io/isort/docs/configuration/multi_line_output_modes.html
 multi_line_output = 3 # vertical-hanging-indent
+
+# ---------------------------------------------------------------------------- #
+#               ------- tool - pyright ------
+# ---------------------------------------------------------------------------- #
+# https://github.com/microsoft/pyright
+
+[tool.pyright]
+include = ["src", ".githooks"]
+pythonVersion = "3.11"
+
+pythonPlatform = "Linux"
+# pythonPlatform = "Windows"
+
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+analyzeUnannotatedFunctions = true
+strictParameterNoneValue = true
+enableTypeIgnoreComments = true
+deprecateTypingAliases = true
+
+typeCheckingMode = "standard"
 
 # ---------------------------------------------------------------------------- #
 #               ------- tool - refurb ------

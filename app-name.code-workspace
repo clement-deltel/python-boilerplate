@@ -27,12 +27,11 @@
             "kevinrose.vsc-python-indent",
             "ms-python.debugpy",
             "ms-python.isort",
-            "ms-python.mypy-type-checker",
             "ms-python.python",
             "ms-python.vscode-pylance",
             "njpwerner.autodocstring",
             "rodolphebarbanneau.python-docstring-highlighter",
-            // Spell Checker
+            // Syntax
             "streetsidesoftware.code-spell-checker",
             // TOML
             "tamasfe.even-better-toml"
@@ -150,6 +149,26 @@
         ],
         "ruff.nativeServer": "on",
         // Workbench
+        "workbench.colorCustomizations": {
+            "activityBar.activeBackground": "#55349b",
+            "activityBar.background": "#55349b",
+            "activityBar.foreground": "#e7e7e7",
+            "activityBar.inactiveForeground": "#e7e7e799",
+            "activityBarBadge.background": "#180d08",
+            "activityBarBadge.foreground": "#e7e7e7",
+            "commandCenter.border": "#e7e7e799",
+            "sash.hoverBorder": "#55349b",
+            "statusBar.background": "#402775",
+            "statusBar.foreground": "#e7e7e7",
+            "statusBarItem.hoverBackground": "#55349b",
+            "statusBarItem.remoteBackground": "#402775",
+            "statusBarItem.remoteForeground": "#e7e7e7",
+            "titleBar.activeBackground": "#402775",
+            "titleBar.activeForeground": "#e7e7e7",
+            "titleBar.inactiveBackground": "#40277599",
+            "titleBar.inactiveForeground": "#e7e7e799"
+        },
+        "peacock.remoteColor": "402775",
     },
     "launch": {
         // Use IntelliSense to learn about possible attributes.

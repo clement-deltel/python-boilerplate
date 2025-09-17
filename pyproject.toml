@@ -126,7 +126,7 @@ multi_line_output = 3 # vertical-hanging-indent
 # https://github.com/microsoft/pyright
 
 [tool.pyright]
-include = ["src", ".githooks"]
+include = [".githooks", "docker", "src", "test"]
 pythonVersion = "3.11"
 
 pythonPlatform = "Linux"
@@ -261,6 +261,7 @@ python-platform = "linux"
 python-version = "3.11"
 
 [tool.ty.src]
+include = [".githooks", "docker", "src", "test"]
 # Exclude files that are ignored by .ignore, .gitignore, .git/info/exclude, and global gitignore files
 respect-ignore-files = true
 

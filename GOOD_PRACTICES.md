@@ -92,48 +92,102 @@ Here are the steps you need to follow when starting a new coding project from th
 
 ## Libraries
 
-Here are the useful libraries and modules used across all of my Python projects:
+Here are the useful libraries and modules used across all of my Python projects.
+
+Code:
 
 - **Built-in**
   - [cProfile](https://docs.python.org/3/library/profile.html)
   - [http](https://docs.python.org/3/library/http.html)
   - [pathlib](https://docs.python.org/3/library/pathlib.html)
 - **Third-party**
-  - [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
   - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
-  - [coverage](https://coverage.readthedocs.io/en/latest)
-  - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
-  - [mypy](https://github.com/python/mypy) - static typing. `Python`
+  - [numpy](https://github.com/numpy/numpy) - fundamental package for scientific computing. `Python`
   - [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
   - [pika](https://pika.readthedocs.io/en/stable/index.html)
-  - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
-  - [pytest](https://docs.pytest.org/en/stable)
   - [requests](https://requests.readthedocs.io/en/latest/api/)
+
+Development:
+
+- **Third-party**
+  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
+  - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
+  - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
   - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
+
+Lint:
+
+- **Third-party**
+  - [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
+  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
+  - [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
+  - [pyupgrade](https://github.com/asottile/pyupgrade) - automatically upgrade syntax for newer versions of the language. `Python`
+  - [refurb](https://github.com/dosisod/refurb) - refurbishing and modernizing Python codebases. `Python`
+  - [ruff](https://github.com/astral-sh/ruff-pre-commit) - extremely fast linter and code formatter. `Rust`
   - [ty](https://github.com/astral-sh/ty) - type checker and language server. `Rust`
-  - [yapf](https://github.com/google/yapf) - formatter for files. `Python`
+  - [yamllint](https://github.com/adrienverge/yamllint) - linter for YAML files. `Python`
+
+Observability:
+
+- **Third-party**
+  - [opentelemetry-distro](https://github.com/open-telemetry/opentelemetry-python-contrib) - OpenTelemetry instrumentation for Python modules. `Python`
+
+Test:
+
+- **Third-party**
+  - [coverage](https://coverage.readthedocs.io/en/latest)
+  - [pytest](https://docs.pytest.org/en/stable)
 
 Not using anymore:
 
-- [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: now using uv. `Python`
-- [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. **Reason**: now using prek. `Python`
-- [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: now using uv.
+- [mypy](https://github.com/python/mypy) - static typing. **Reason**: using pyright and ty. `Python`
+- [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: using uv. `Python`
+- [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. **Reason**: using prek. `Python`
+- [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: using uv.
 
 ## Visual Studio Code extensions
 
-- [autodocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+Here are the useful Visual Studio Code used across all of my Python projects.
+
+Docker:
+
 - [hadolint](https://marketplace.visualstudio.com/items?itemName=exiasr.hadolint)
-- [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
-- [mypy](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker)
+- [vscode-containers](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
+
+Git:
+
+- [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
-- [python-docstring-highlighter](https://marketplace.visualstudio.com/items?itemName=rodolphebarbanneau.python-docstring-highlighter)
-- [python indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
+
+Markdown:
+
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=davidanson.vscode-markdownlint)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+
+Python:
+
+- [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+- [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
+- [Python Docstring Highlighter](https://marketplace.visualstudio.com/items?itemName=rodolphebarbanneau.python-docstring-highlighter)
+- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
+- [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
 - [ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty)
+
+Syntax:
+
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
+TOML:
+
+- [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 
 Not using anymore:
 
-- [poetry](https://marketplace.visualstudio.com/items?itemName=zeshuaro.vscode-python-poetry). **Reason**: now using uv.
+- [Mypy Type Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker) **Reason**: using pyright and ty.
+- [Python Poetry](https://marketplace.visualstudio.com/items?itemName=zeshuaro.vscode-python-poetry) **Reason**: now using uv.
 
 ## Git hooks
 
@@ -221,6 +275,7 @@ Here are the useful tips to make Python code cleaner:
   - [pyupgrade - UP](https://docs.astral.sh/ruff/rules/#pyupgrade-up)
   - [refurb - FURB](https://docs.astral.sh/ruff/rules/#refurb-furb)
   - [Ruff-specific - RUF](https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf)
+- use a static type checker
 - use a formatter
 
 ### Docker
@@ -257,6 +312,7 @@ Here are the essential good practices:
 
 Here is a list of tools that could be interesting and further enhance the stack:
 
+- [Algorithms - Python](https://github.com/TheAlgorithms/Python) - all algorithms. `Python`
 - [altair](https://github.com/vega/altair) - declarative visualization library. `Python`
 - [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
 - [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
@@ -269,12 +325,12 @@ Here is a list of tools that could be interesting and further enhance the stack:
 - [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
 - [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
 - [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
-- [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
 - [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
 - [streamlit](https://github.com/streamlit/streamlit) - build and share data apps. `Python` `TypeScript`
 - [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
 - [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
 - [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
+- [yapf](https://github.com/google/yapf) - formatter for files. `Python`
 
 And specifically to make Python faster:
 

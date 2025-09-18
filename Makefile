@@ -184,7 +184,7 @@ build-image: clean
 
 build-builder-image: clean
 	export DOCKER_CONTENT_TRUST=1
-	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag app-name:builder-${IMAGE_TAG} --target builder .
+	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag app-name:${IMAGE_TAG}-builder --target builder .
 
 pull-image:
 	docker pull app-name:${IMAGE_TAG}
@@ -229,7 +229,7 @@ trivy-image:
 	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:${IMAGE_TAG}
 
 trivy-builder-image:
-	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:builder-${IMAGE_TAG}
+	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:${IMAGE_TAG}-builder
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dockle ------
@@ -238,7 +238,7 @@ dockle-image-security:
 	dockle app-name:${IMAGE_TAG}
 
 dockle-builder-image-security:
-	dockle app-name:builder-${IMAGE_TAG}
+	dockle app-name:${IMAGE_TAG}-builder
 
 # ---------------------------------------------------------------------------- #
 #               ------- Checkov ------

@@ -3,7 +3,9 @@
 # ---------------------------------------------------------------------------- #
 
 # User defined
-PYTHON_TARGET_VERSION:=3.11.3
+PYTHON_TARGET_VERSION:=3.11.13
+
+UV_SOURCE_VERSION:=0.8.18
 UV_TARGET_VERSION:=0.8.18
 
 # Generated
@@ -93,12 +95,13 @@ uv-check-update:
 	uv self update --dry-run
 
 uv-update:
-	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" docker/Dockerfile
-	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" docker/alpine.Dockerfile
-	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" docker/wheel.Dockerfile
-	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" .pre-commit-config.yaml
-	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" pyproject.toml
-	git add docker/{Dockerfile,alpine.Dockerfile,wheel.Dockerfile} .pre-commit-config.yaml pyproject.toml
+	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" docker/Dockerfile
+	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" docker/alpine.Dockerfile
+	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" docker/wheel.Dockerfile
+	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" .pre-commit-config.yaml
+	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" Makefile
+	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" pyproject.toml
+	git add docker/{Dockerfile,alpine.Dockerfile,wheel.Dockerfile} .pre-commit-config.yaml Makefile pyproject.toml
 	uv self update
 
 # ---------------------------------------------------------------------------- #

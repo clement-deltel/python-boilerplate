@@ -236,11 +236,13 @@ perform_replacements() {
     local files_to_process
     mapfile -t files_to_process < <(
         find "$TARGET_DIR" -type f \
-            -not -path "*/node_modules/*" \
-            -not -path "*/venv/*" \
+            -not -path "*/.git/*" \
+            -not -path "*/.*_cache/*" \
+            -not -path "*/.venv/*" \
             -not -path "*/__pycache__/*" \
             -not -path "*/build/*" \
             -not -path "*/dist/*" \
+            -not -path "*/node_modules/*" \
             -exec file {} \; | \
         grep -E "(text|empty)" | \
         cut -d: -f1

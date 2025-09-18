@@ -98,7 +98,7 @@ uv sync --frozen
 
 > **Note**: It is also possible to just update the [Makefile](./Makefile) and run `make python-bump-patch`.
 
-1. For a **MINOR** version bump, here are the steps:
+2. For a **MINOR** version bump, here are the steps:
 
    - update the `requires-python` string in the [pyproject.toml](./pyproject.toml)
    - update the full version (e.g. **3.11.13**) in the files

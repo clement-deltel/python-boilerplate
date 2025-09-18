@@ -1,10 +1,9 @@
 # ---------------------------------------------------------------------------- #
 #               ------- VARIABLES ------
 # ---------------------------------------------------------------------------- #
-IMAGE_TAG=$(shell cz version --project)
+UV_TARGET_VERSION:=0.8.18
 
-PYTHON_VERSION=$(shell uv run python --version | sed 's/Python //')
-UV_VERSION=$(shell uv self version | sed 's/uv //')
+UV_VERSION:=$(shell uv self version | sed 's/uv //')
 
 # ---------------------------------------------------------------------------- #
 #               ------- Initialization ------
@@ -46,6 +45,21 @@ auto-activate:
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_customer_app-name
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_customer_app-name
 	pyenv local ${PYTHON_VERSION}_customer_app-name
+
+# ---------------------------------------------------------------------------- #
+#               ------- uv ------
+# ---------------------------------------------------------------------------- #
+uv-check-update:
+	uv self update --dry-run
+
+uv-update:
+	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" docker/Dockerfile
+	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" docker/alpine.Dockerfile
+	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" docker/wheel.Dockerfile
+	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" .pre-commit-config.yaml
+	sed -i "s/${UV_VERSION}/${UV_TARGET_VERSION}/g" pyproject.toml
+	git add docker/{Dockerfile,alpine.Dockerfile,wheel.Dockerfile} .pre-commit-config.yaml pyproject.toml
+	uv self update
 
 # ---------------------------------------------------------------------------- #
 #               ------- Requirements ------

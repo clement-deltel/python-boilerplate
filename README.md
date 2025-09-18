@@ -5,7 +5,8 @@
 - [Goal](#goal)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
-- [Additional steps](#additional-steps)
+- [Additional Steps](#additional-steps)
+- [Python Version Bump](#python-version-bump)
 
 ## Goal
 
@@ -62,13 +63,61 @@ cd ../app-name
 code app-name.code-workspace
 ```
 
-## Additional steps
+## Additional Steps
 
 1. [Makefile](./Makefile)
    - update the *(build|pull|push)-image* tasks based on your application's requirements
    - update the *(create|run)-container* tasks based on your application's requirements
 2. [pyproject.toml](./pyproject.toml)
    - `project.classifiers`: review based on the official list of [classifiers](https://pypi.org/classifiers)
-   - `tool.ty.environment.python-platform`: switch to Windows if needed
-   - `tool.uv.environments`: switch to Windows if needed
-   - `tool.uv.required-environments`: switch to Windows if needed
+   - Switch to Windows if needed:
+     - `tool.pyright.pythonPlatform`
+     - `tool.ty.environment.python-platform`
+     - `tool.uv.environments`
+     - `tool.uv.required-environments`
+
+## Python Version Bump
+
+Python versioning scheme is: **{MAJOR}.{MINOR}.{PATCH}**
+
+1. For a **PATCH** version bump, here are the steps:
+
+   - update the full version (e.g. **3.11.13**) in the files
+     - [docker/Dockerfile](./docker/Dockerfile)
+     - [docker/alpine.Dockerfile](./docker/alpine.Dockerfile)
+     - [docker/wheel.Dockerfile](./docker/wheel.Dockerfile)
+     - [Makefile](./Makefile)
+   - Run the commands below
+
+```bash
+rm -f .python-version || true
+rm -rf .venv
+uv python install ${PYTHON_TARGET_VERSION}
+uv sync --frozen
+```
+
+> **Note**: It is also possible to just update the [Makefile](./Makefile) and run `make python-bump-patch`.
+
+1. For a **MINOR** version bump, here are the steps:
+
+   - update the `requires-python` string in the [pyproject.toml](./pyproject.toml)
+   - update the full version (e.g. **3.11.13**) in the files
+     - [docker/Dockerfile](./docker/Dockerfile)
+     - [docker/alpine.Dockerfile](./docker/alpine.Dockerfile)
+     - [docker/wheel.Dockerfile](./docker/wheel.Dockerfile)
+     - [Makefile](./Makefile)
+   - update the shorten version (e.g. **3.11**) in the files
+     - [.pre-commit-config.yaml](./.pre-commit-config.yaml)
+     - [pyproject.toml](./pyproject.toml)
+   - update the shorten version without dot (e.g. **311**) in the files
+     - [pyproject.toml](./pyproject.toml)
+   - Run the commands below
+
+```bash
+rm -f .python-version || true
+rm -rf .venv
+uv python install ${PYTHON_TARGET_VERSION}
+uv sync --frozen
+```
+
+> **Note**: It is also possible to just update the `requires-python` string in the [pyproject.toml](./pyproject.toml), the [Makefile](./Makefile), and run `make python-bump-minor`.

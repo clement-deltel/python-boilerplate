@@ -1,7 +1,19 @@
 # ---------------------------------------------------------------------------- #
 #               ------- VARIABLES ------
 # ---------------------------------------------------------------------------- #
+
+# User defined
+PYTHON_TARGET_VERSION:=3.11.3
 UV_TARGET_VERSION:=0.8.18
+
+# Generated
+IMAGE_TAG:=$(shell cz version --project)
+
+PYTHON_VERSION:=$(shell uv run python --version | sed 's/Python //')
+PYTHON_NO_PATCH_VERSION:=$(shell echo ${PYTHON_VERSION} | cut -d. -f1-2)
+PYTHON_NO_PATCH_TARGET_VERSION:=$(shell echo ${PYTHON_TARGET_VERSION} | cut -d. -f1-2)
+PYTHON_NO_PATCH_NO_DOT_VERSION:=$(shell echo ${PYTHON_NO_PATCH_VERSION} | tr -d .)
+PYTHON_NO_PATCH_NO_DOT_TARGET_VERSION:=$(shell echo ${PYTHON_NO_PATCH_TARGET_VERSION} | tr -d .)
 
 UV_VERSION:=$(shell uv self version | sed 's/uv //')
 
@@ -35,19 +47,47 @@ init-windows:
 	uv venv --python ${PYTHON_VERSION}
 	uv pip install --editable .
 
-init-auto-activate:
+# ---------------------------------------------------------------------------- #
+#               ------- Pyenv ------
+# ---------------------------------------------------------------------------- #
+pyenv-init:
 	pyenv install ${PYTHON_VERSION}
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_customer_app-name
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_customer_app-name
-	pyenv local ${PYTHON_VERSION}_customer_app-name
 
-auto-activate:
+pyenv-activate:
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_customer_app-name
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_customer_app-name
 	pyenv local ${PYTHON_VERSION}_customer_app-name
 
 # ---------------------------------------------------------------------------- #
-#               ------- uv ------
+#               ------- Python version ------
+# ---------------------------------------------------------------------------- #
+bump-dockerfile:
+	sed -i "s/${PYTHON_VERSION}/${PYTHON_TARGET_VERSION}/g" docker/Dockerfile
+	sed -i "s/${PYTHON_VERSION}/${PYTHON_TARGET_VERSION}/g" docker/alpine.Dockerfile
+	sed -i "s/${PYTHON_VERSION}/${PYTHON_TARGET_VERSION}/g" docker/wheel.Dockerfile
+	git add docker/{Dockerfile,alpine.Dockerfile,wheel.Dockerfile}
+
+bump-pre-commit:
+	sed -i "s/${PYTHON_NO_PATCH_VERSION}/${PYTHON_NO_PATCH_TARGET_VERSION}/g" .pre-commit-config.yaml
+	git add .pre-commit-config.yaml
+
+bump-pyproject:
+	sed -i "s/${PYTHON_NO_PATCH_VERSION}\"/${PYTHON_NO_PATCH_TARGET_VERSION}\"/g" pyproject.toml
+	sed -i "s/${PYTHON_NO_PATCH_NO_DOT_VERSION}/${PYTHON_NO_PATCH_NO_DOT_TARGET_VERSION}/g" pyproject.toml
+	git add pyproject.toml
+
+bump-python:
+	rm -f .python-version || true
+	rm -rf .venv
+	uv python install ${PYTHON_TARGET_VERSION}
+	uv sync --frozen
+
+python-bump-patch: bump-dockerfile bump-python
+
+python-bump-minor: bump-dockerfile bump-pre-commit bump-pyproject bump-python
+
+# ---------------------------------------------------------------------------- #
+#               ------- Uv ------
 # ---------------------------------------------------------------------------- #
 uv-check-update:
 	uv self update --dry-run

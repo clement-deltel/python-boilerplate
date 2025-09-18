@@ -3,6 +3,9 @@
 # ---------------------------------------------------------------------------- #
 IMAGE_TAG=$(shell cz version --project)
 
+PYTHON_VERSION=$(shell uv run python --version | sed 's/Python //')
+UV_VERSION=$(shell uv self version | sed 's/uv //')
+
 # ---------------------------------------------------------------------------- #
 #               ------- Initialization ------
 # ---------------------------------------------------------------------------- #
@@ -25,24 +28,24 @@ init-test:
 	source .venv/bin/activate
 
 init-from-scratch:
-	uv init --build-backend uv --managed-python --name app-name --python 3.11.11 --vcs git
+	uv init --build-backend uv --managed-python --name app-name --python ${PYTHON_VERSION} --vcs git
 	uv sync
 	source .venv/bin/activate
 
 init-windows:
-	uv venv --python 3.11.11
+	uv venv --python ${PYTHON_VERSION}
 	uv pip install --editable .
 
 init-auto-activate:
-	pyenv install 3.11.11
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_customer_app-name
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_customer_app-name
-	pyenv local 3.11.11_customer_app-name
+	pyenv install ${PYTHON_VERSION}
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_customer_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_customer_app-name
+	pyenv local ${PYTHON_VERSION}_customer_app-name
 
 auto-activate:
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11_customer_app-name
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/3.11.11/envs/3.11.11_customer_app-name
-	pyenv local 3.11.11_customer_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_customer_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_customer_app-name
+	pyenv local ${PYTHON_VERSION}_customer_app-name
 
 # ---------------------------------------------------------------------------- #
 #               ------- Requirements ------
@@ -120,7 +123,7 @@ get-tag:
 
 build-image: clean
 	export DOCKER_CONTENT_TRUST=1
-	docker build --file docker/Dockerfile --tag app-name:${IMAGE_TAG} .
+	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag app-name:${IMAGE_TAG} .
 
 pull-image:
 	docker pull app-name:${IMAGE_TAG}

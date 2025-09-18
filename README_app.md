@@ -31,7 +31,7 @@ app-description
  Dockerfile              3          248          120           74           54
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
- Makefile                1          185          107           39           39
+ Makefile                1          188          109           39           40
  Python                 12         1437         1049          131          257
  Shell                   2          534          331          113           90
  Plain Text              3          968            0          968            0
@@ -42,7 +42,7 @@ app-description
  |- BASH                 4          106          101            4            1
  (Total)                           1399          101          912          386
 ===============================================================================
- Total                  31         5055         1840         2341          874
+ Total                  31         5058         1842         2341          875
 ===============================================================================
 ```
 
@@ -52,7 +52,7 @@ app-description
 
 The core requirements are:
 
-- Python: 3.11.11
+- Python
 
 Some extra utilities are:
 

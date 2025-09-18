@@ -1,13 +1,13 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
 # Instructions creating a new layer: ADD, COPY, RUN
 
-ARG ALPINE_VERSION=3.21
+ARG DEBIAN_VERSION=trixie-slim
 ARG UV_VERSION=0.8.17
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-alpine${ALPINE_VERSION} AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${DEBIAN_VERSION} AS builder
 
 # Not persisted into the builder image
 ARG PYTHON_VERSION=3.11.13
@@ -52,7 +52,7 @@ RUN find .venv \( \
 # ---------------------------------------------------------------------------- #
 #               ------- Run Application ------
 # ---------------------------------------------------------------------------- #
-FROM alpine:${ALPINE_VERSION} AS runtime
+FROM debian:${DEBIAN_VERSION} AS runtime
 
 LABEL org.opencontainers.image.title="app-name"
 LABEL org.opencontainers.image.description="app-description"
@@ -60,6 +60,7 @@ LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
+ARG DEBIAN_FRONTEND=noninteractive
 ARG USER="app"
 ARG ID="10001"
 ARG HOME=/${USER}
@@ -72,8 +73,13 @@ ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 WORKDIR ${HOME}
 
 # Create group, user, and home directory
-RUN addgroup -g ${ID} ${USER} && \
-    adduser -D -h ${HOME} -u ${ID} -G ${USER} ${USER}
+RUN groupadd --gid ${ID} ${USER} && \
+    useradd --create-home --home ${HOME} --uid ${ID} --gid ${ID} ${USER} && \
+# Remove setuid and setgid permissions to prevent privilege escalation
+# https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#cis-di-0008
+    chmod u-s /usr/bin/su /usr/bin/chsh /usr/bin/mount /usr/bin/chfn \
+              /usr/bin/umount /usr/bin/newgrp /usr/bin/passwd /usr/bin/gpasswd && \
+    chmod g-s /usr/bin/expiry /usr/sbin/unix_chkpwd /usr/bin/chage
 
 # Copy the Python version, the application from the builder, and the entrypoint
 COPY --from=builder --chown=python:python /python /python

@@ -310,46 +310,32 @@ Here are the essential good practices:
 
 ## Future enhancements
 
-Here is a list of tools that could be interesting and further enhance the stack:
+Here is a list of tools that could be interesting and further enhance the stack.
 
-- [Algorithms - Python](https://github.com/TheAlgorithms/Python) - all algorithms. `Python`
-- [altair](https://github.com/vega/altair) - declarative visualization library. `Python`
-- [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
-- [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
+Artificial intelligence:
+
 - [chroma](https://github.com/chroma-core/chroma) - AI-native open-source embedding database. `Rust` `Python`
+- [llmlingua](https://github.com/microsoft/LLMLingua) - speed up LLMs' inference and enhance LLM's perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss. `Python`
+
+CLI apps:
+
 - [cyclopts](https://github.com/BrianPugh/cyclopts) - intuitive CLI based on python type hints. `Python`
+- [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
+- [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
+
+Data manipulation:
+
 - [duckdb](https://github.com/duckdb/duckdb) - analytical in-process SQL database management system. `C++`
 - [ibis](https://github.com/ibis-project/ibis) -  portable dataframe library. `Python`
-- [llmlingua](https://github.com/microsoft/LLMLingua) - speed up LLMs' inference and enhance LLM's perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss. `Python`
-- [moto](https://github.com/getmoto/moto) - easily mock out tests based on AWS infrastructure. `Python`
-- [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
-- [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
-- [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
-- [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
-- [streamlit](https://github.com/streamlit/streamlit) - build and share data apps. `Python` `TypeScript`
-- [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
-- [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
-- [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
-- [yapf](https://github.com/google/yapf) - formatter for files. `Python`
 
-And specifically to make Python faster:
-
-- [cython](https://github.com/cython/cython) - most widely used Python to C compiler.
-- [pypy](https://github.com/pypy/pypy) - very fast and compliant implementation of the language.
-
-And specifically to run tasks in parallel:
-
-- [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) - launching parallel tasks.
-- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) - process-based parallelism.
-
-And specifically for data validation:
+Data validation:
 
 - [attrs](https://github.com/python-attrs/attrs) - python classes without boilerplate. `Python`
 - [cattrs](https://github.com/python-attrs/cattrs) - composable custom class converters for attrs, dataclasses and friends. `Python`
 - [msgspec](https://github.com/jcrist/msgspec) - fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML. `Python` `C`
 - [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
 
-And specifically to document the code:
+Document the code:
 
 - [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
 - [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
@@ -359,6 +345,39 @@ Drop-in replacement for pandas:
 
 - [fireducks](https://github.com/fireducks-dev/fireducks) - compiler accelerated dataframe library with fully-compatible pandas API. `C/C++`
 - [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
+
+Make Python faster:
+
+- [cython](https://github.com/cython/cython) - most widely used Python to C compiler.
+- [pypy](https://github.com/pypy/pypy) - very fast and compliant implementation of the language.
+
+Run tasks in parallel:
+
+- [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) - launching parallel tasks.
+- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) - process-based parallelism.
+
+Security:
+
+- [pyarmor](https://github.com/dashingsoft/pyarmor) - obfuscate python scripts, bind obfuscated scripts to fixed machine or expire obfuscated scripts. `Python`
+
+Type checkers:
+
+- [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
+- [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
+- [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
+- [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
+
+Other:
+
+- [Algorithms - Python](https://github.com/TheAlgorithms/Python) - all algorithms. `Python`
+- [altair](https://github.com/vega/altair) - declarative visualization library. `Python`
+- [moto](https://github.com/getmoto/moto) - easily mock out tests based on AWS infrastructure. `Python`
+- [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
+- [streamlit](https://github.com/streamlit/streamlit) - build and share data apps. `Python` `TypeScript`
+- [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
+- [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
+- [yapf](https://github.com/google/yapf) - formatter for files. `Python`
+
 
 ## Resources
 

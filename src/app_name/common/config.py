@@ -10,10 +10,10 @@ from typing import Any
 from dotenv import load_dotenv
 
 # Local Application
-from app_name.common.path_translator import PathTranslator
+from app_name.common.path_translator import to_path
 
 
-def env_to_bool(variable: str) -> bool:
+def to_bool(variable: str) -> bool:
     """Ensure that environment variable is a boolean.
 
     Args:
@@ -25,7 +25,7 @@ def env_to_bool(variable: str) -> bool:
     return variable.casefold() in ("true", "t", "1")
 
 
-def env_to_int(variable: str) -> int:
+def to_int(variable: str) -> int:
     """Ensure that environment variable is a integer.
 
     Args:
@@ -47,18 +47,22 @@ def env_to_int(variable: str) -> int:
 class Config:
     """Class specifying attributes and methods related to the configuration."""
 
-    def __init__(self, app_env: str, run_date: datetime, translator: PathTranslator) -> None:
+    def __init__(self, app_env: str, run_date: datetime) -> None:
         """Initialize class.
 
         Args:
             app_env (str): application environment.
             run_date (datetime): application run date.
-            translator (PathTranslator): path translation between Windows and Linux formats.
         """
-        self.app = AppConfig(run_date, translator)
-        self.log = LogConfig(app_env, run_date, translator)
+        name = "app-name"
+
+        # Logging
         self.amqp = AMQPConfig()
         self.cloudevents = CloudEventsConfig()
+        self.log = LogConfig(name, app_env, run_date)
+
+        # Application
+        self.app = AppConfig(name, run_date)
 
     def get_config_class(self, class_name: str, default: Any) -> Any:
         """Get class.
@@ -96,19 +100,20 @@ class Config:
 class AppConfig:
     """Class specifying attributes and methods related to the application configuration."""
 
-    def __init__(self, run_date: datetime, translator: PathTranslator) -> None:
+    def __init__(self, name: str, run_date: datetime) -> None:
         """Initialize class.
 
         Args:
+            name (str): application name.
             run_date (datetime): application run date.
             translator (PathTranslator): path translation between Windows and Linux formats.
         """
-        self.name = "app-name"
+        self.name = name
         self.run_date = run_date
 
         # Directories and files
-        self.input_path = translator.to_linux(environ.get("INPUT_PATH", default="/app/input"))
-        self.output_path = translator.to_linux(environ.get("OUTPUT_PATH", default="/app/output"))
+        self.input_path = to_path(environ.get("INPUT_PATH", default="/app/input"))
+        self.output_path = to_path(environ.get("OUTPUT_PATH", default="/app/output"))
         self.output_path.mkdir(parents=True, exist_ok=True)
 
 
@@ -118,28 +123,31 @@ class AppConfig:
 class LogConfig:
     """Class specifying attributes and methods related to the log configuration."""
 
-    def __init__(self, app_env: str, run_date: datetime, translator: PathTranslator) -> None:
+    def __init__(self, name: str, app_env: str, run_date: datetime) -> None:
         """Initialize class.
 
         Args:
+            name (str): application name.
             app_env (str): application environment.
             run_date (datetime): application run date.
             translator (PathTranslator): path translation between Windows and Linux formats.
         """
-        self.level = environ.get("LOG_LEVEL", default="INFO")
+        self.name = name
         self.app_env = app_env
 
+        self.level = environ.get("LOG_LEVEL", default="INFO")
+
         # Log handlers
-        self.path = translator.to_linux(environ.get("LOG_PATH", default="log"))
+        self.path = to_path(environ.get("LOG_PATH", default="log"))
         self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
-        self.to_file = env_to_bool(environ.get("LOG_TO_FILE", default="false"))
-        self.to_amqp = env_to_bool(environ.get("LOG_TO_AMQP", default="false"))
+        self.to_file = to_bool(environ.get("LOG_TO_FILE", default="false"))
+        self.to_amqp = to_bool(environ.get("LOG_TO_AMQP", default="false"))
 
         # Log formatting
-        self.cloudevents = env_to_bool(environ.get("LOG_CLOUDEVENTS", default="true"))
-        self.color = env_to_bool(environ.get("LOG_COLOR", default="true"))
-        self.json = env_to_bool(environ.get("LOG_JSON", default="false"))
-        self.pretty = env_to_bool(environ.get("LOG_JSON_PRETTY", default="false"))
+        self.cloudevents = to_bool(environ.get("LOG_CLOUDEVENTS", default="true"))
+        self.color = to_bool(environ.get("LOG_COLOR", default="true"))
+        self.json = to_bool(environ.get("LOG_JSON", default="false"))
+        self.pretty = to_bool(environ.get("LOG_JSON_PRETTY", default="false"))
 
         if self.to_file:
             self.path.mkdir(parents=True, exist_ok=True)
@@ -155,7 +163,7 @@ class AMQPConfig:
         """Initialize class."""
         # Required
         self.hostname = environ.get("AMQP_HOSTNAME", default="localhost")
-        self.port = env_to_int(environ.get("AMQP_PORT", default="5672"))
+        self.port = to_int(environ.get("AMQP_PORT", default="5672"))
         self.username = environ.get("AMQP_USERNAME", default="guest")
         self.password = environ.get("AMQP_PASSWORD", default="guest")
 
@@ -167,18 +175,18 @@ class AMQPConfig:
         self.virtual_host = environ.get("AMQP_VIRTUAL_HOST", default="/")
 
         # Connection reliability
-        self.heartbeat = env_to_int(environ.get("AMQP_HEARTBEAT", default="600"))
-        self.connection_attempts = env_to_int(environ.get("AMQP_CONNECTION_ATTEMPTS", default="3"))
-        self.retry_delay = env_to_int(environ.get("AMQP_RETRY_DELAY", default="2"))
-        self.socket_timeout = env_to_int(environ.get("AMQP_SOCKET_TIMEOUT", default="10"))
-        self.blocked_connection_timeout = env_to_int(environ.get("AMQP_BLOCKED_CONNECTION_TIMEOUT", default="300"))
+        self.heartbeat = to_int(environ.get("AMQP_HEARTBEAT", default="600"))
+        self.connection_attempts = to_int(environ.get("AMQP_CONNECTION_ATTEMPTS", default="3"))
+        self.retry_delay = to_int(environ.get("AMQP_RETRY_DELAY", default="2"))
+        self.socket_timeout = to_int(environ.get("AMQP_SOCKET_TIMEOUT", default="10"))
+        self.blocked_connection_timeout = to_int(environ.get("AMQP_BLOCKED_CONNECTION_TIMEOUT", default="300"))
 
         # Publishing
-        self.exchange_durable = env_to_bool(environ.get("AMQP_EXCHANGE_DURABLE", default="true"))
-        self.message_persistent = env_to_bool(environ.get("AMQP_MESSAGE_PERSISTENT", default="true"))
+        self.exchange_durable = to_bool(environ.get("AMQP_EXCHANGE_DURABLE", default="true"))
+        self.message_persistent = to_bool(environ.get("AMQP_MESSAGE_PERSISTENT", default="true"))
 
         # Circuit breaker pattern
-        self.max_failed_messages = env_to_int(environ.get("AMQP_MAX_FAILED_MESSAGES", default="10"))
+        self.max_failed_messages = to_int(environ.get("AMQP_MAX_FAILED_MESSAGES", default="10"))
 
 
 # ---------------------------------------------------------------------------- #
@@ -210,9 +218,7 @@ class DevConfig(Config):
         run_date_env = environ.get("RUN_DATE", default="")
         run_date = datetime.strptime(run_date_env, "%Y-%m-%d").astimezone(UTC) if run_date_env else datetime.now(UTC)
 
-        translator = PathTranslator(environ.get("MAPPINGS_PATH", default="C:\\:/mnt/"))
-
-        super().__init__("development", run_date, translator)
+        super().__init__("development", run_date)
 
 
 # ---------------------------------------------------------------------------- #
@@ -226,9 +232,7 @@ class ProdConfig(Config):
         load_dotenv(".env", override=True)
         run_date = datetime.now(UTC)
 
-        translator = PathTranslator(environ.get("MAPPINGS_PATH", default="C:\\:/mnt/"))
-
-        super().__init__("production", run_date, translator)
+        super().__init__("production", run_date)
 
 
 # Global

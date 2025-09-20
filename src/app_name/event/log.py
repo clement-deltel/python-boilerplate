@@ -13,7 +13,7 @@ from enum import Enum
 from sys import stderr, stdout
 
 # Local Application
-from app_name.common.config import LogConfig, get_config_class, get_config_value
+from app_name.common.config import LogConfig, get_config_class
 from app_name.event.formatter.cloudevent import CloudEventsFormatter
 from app_name.event.formatter.custom import CustomFormatter
 from app_name.event.formatter.json_f import JSONFormatter
@@ -31,7 +31,7 @@ class Log:
         self.extra_fields = {"user_id", "table", "record", "wait"}
 
         # Logger
-        self._logger = logging.getLogger(get_config_value("app", "name"))
+        self._logger = logging.getLogger(self.config.name)
         # Formatters
         self.formatter = None
         self.file_formatter = None

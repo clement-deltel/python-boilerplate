@@ -13,7 +13,7 @@ from pstats import Stats
 from dotenv import load_dotenv
 
 # Local Application
-from app_name.common.config import env_to_bool, get_config_value
+from app_name.common.config import get_config_value, to_bool
 
 
 class Profiler:
@@ -49,7 +49,7 @@ def profiler(func: Callable):
     def wrapper(*args, **kwargs):
         load_dotenv(".env", override=True)
 
-        if env_to_bool(environ.get("PROFILING", default="false")):
+        if to_bool(environ.get("PROFILING", default="false")):
             profiler = Profiler()
             profiler.start()
             result = func(*args, **kwargs)

@@ -54,14 +54,14 @@ def main() -> None:
     """Perform all the steps to run this application."""
     start = perf_counter()
     try:
+        load_config()
+
         signal(SIGINT, signal_int_handler)
         if system() == "Linux":
             # Standard Library
             from signal import SIGQUIT  # noqa: PLC0415
 
             signal(SIGQUIT, signal_quit_handler)
-
-        load_config()
 
     except KeyboardInterrupt:
         pass

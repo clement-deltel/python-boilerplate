@@ -38,11 +38,11 @@ app-description
  TOML                    1          328          188           95           45
  YAML                    2           38           33            4            1
 -------------------------------------------------------------------------------
- Markdown                6         1387            0          969          418
+ Markdown                6         1388            0          970          418
  |- BASH                 4          114          109            4            1
- (Total)                           1501          109          973          419
+ (Total)                           1502          109          974          419
 ===============================================================================
- Total                  32         5283         1978         2366          939
+ Total                  32         5284         1978         2367          939
 ===============================================================================
 ```
 
@@ -57,11 +57,11 @@ The core requirements are:
 Some extra utilities are:
 
 - [docker](https://github.com/docker) - software platform that allows to build, test, and deploy applications quickly, packages software into standardized units called containers that have everything including libraries, system tools, code, and runtime.
-- [uv](https://docs.astral.sh/uv/) - Python package and project manager. `Rust`
+- [uv](https://docs.astral.sh/uv) - Python package and project manager. `Rust`
 
 ## Dependencies
 
-The application dependencies are managed with [uv](https://docs.astral.sh/uv/). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation/). It is recommended to install and use it, even still requirements files are available and can be used.
+The application dependencies are managed with [uv](https://docs.astral.sh/uv). You can find more information on how to install it on your system [here](https://docs.astral.sh/uv/getting-started/installation). It is recommended to install and use it, even still requirements files are available and can be used.
 
 ```text
 app-name v0.0.0
@@ -294,6 +294,7 @@ If you want to learn more about Python libraries used throughout this applicatio
 
 - **Built-in**
   - [cProfile](https://docs.python.org/3/library/profile.html)
+  - [datetime](https://docs.python.org/3/library/datetime.html)
   - [http](https://docs.python.org/3/library/http.html)
   - [pathlib](https://docs.python.org/3/library/pathlib.html)
 - **Third-party**
@@ -302,8 +303,8 @@ If you want to learn more about Python libraries used throughout this applicatio
   - [pandas](https://pandas.pydata.org/docs/reference/index.html)
   - [pika](https://pika.readthedocs.io/en/stable/index.html)
   - [polars](https://github.com/pola-rs/polars)
-  - [pytest](https://docs.pytest.org/en/stable/)
-  - [requests](https://requests.readthedocs.io/en/latest/api/)
+  - [pytest](https://docs.pytest.org/en/stable)
+  - [requests](https://requests.readthedocs.io/en/latest/api)
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
 

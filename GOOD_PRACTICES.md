@@ -4,13 +4,10 @@
 
 - [Introduction](#introduction)
 - [New Project](#new-project)
-- [Libraries](#libraries)
-- [Visual Studio Code extensions](#visual-studio-code-extensions)
-- [Git hooks](#git-hooks)
 - [Good practices](#good-practices)
-  - [Python coding](#python-coding)
+  - [Naming conventions](#naming-conventions)
+  - [Coding](#coding)
   - [Docker](#docker)
-- [Future enhancements](#future-enhancements)
 - [Resources](#resources)
 
 ## Introduction
@@ -60,8 +57,8 @@ Here are the steps you need to follow when starting a new coding project from th
     - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 6 `customer_app-name` occurrences
-    - 15 `app-name` occurrences
+    - 3 `customer_app-name` occurrences
+    - 18 `app-name` occurrences
     - 7 `app_name` occurrences
   - **pyproject.toml**
     - 1 `app-name` occurrence
@@ -90,151 +87,44 @@ Here are the steps you need to follow when starting a new coding project from th
       - `tool.uv.required-environments`
 - Run the following uv command: `make init-dev`
 
-## Libraries
-
-Here are the useful libraries and modules used across all of my Python projects.
-
-Code:
-
-- **Built-in**
-  - [cProfile](https://docs.python.org/3/library/profile.html)
-  - [http](https://docs.python.org/3/library/http.html)
-  - [pathlib](https://docs.python.org/3/library/pathlib.html)
-- **Third-party**
-  - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
-  - [numpy](https://github.com/numpy/numpy) - fundamental package for scientific computing. `Python`
-  - [pika](https://pika.readthedocs.io/en/stable/index.html)
-  - [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
-  - [requests](https://requests.readthedocs.io/en/latest/api/)
-
-Development:
-
-- **Third-party**
-  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
-  - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
-  - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
-  - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
-
-Lint:
-
-- **Third-party**
-  - [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
-  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
-  - [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
-  - [pyupgrade](https://github.com/asottile/pyupgrade) - automatically upgrade syntax for newer versions of the language. `Python`
-  - [refurb](https://github.com/dosisod/refurb) - refurbishing and modernizing Python codebases. `Python`
-  - [ruff](https://github.com/astral-sh/ruff-pre-commit) - extremely fast linter and code formatter. `Rust`
-  - [ty](https://github.com/astral-sh/ty) - type checker and language server. `Rust`
-  - [yamllint](https://github.com/adrienverge/yamllint) - linter for YAML files. `Python`
-
-Observability:
-
-- **Third-party**
-  - [opentelemetry-distro](https://github.com/open-telemetry/opentelemetry-python-contrib) - OpenTelemetry instrumentation for Python modules. `Python`
-
-Test:
-
-- **Third-party**
-  - [coverage](https://coverage.readthedocs.io/en/latest)
-  - [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
-
-Not using anymore:
-
-- [mypy](https://github.com/python/mypy) - static typing. **Reason**: using pyright and ty. `Python`
-- [pandas](https://pandas.pydata.org/docs/reference/index.html) - **Reason**: using polars.
-- [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: using uv. `Python`
-- [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. **Reason**: using prek. `Python`
-- [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: using uv.
-
-## Visual Studio Code extensions
-
-Here are the useful Visual Studio Code used across all of my Python projects.
-
-Docker:
-
-- [hadolint](https://marketplace.visualstudio.com/items?itemName=exiasr.hadolint)
-- [vscode-containers](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
-
-Git:
-
-- [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)
-- [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
-
-Markdown:
-
-- [markdownlint](https://marketplace.visualstudio.com/items?itemName=davidanson.vscode-markdownlint)
-- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
-
-Python:
-
-- [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
-- [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
-- [Python Docstring Highlighter](https://marketplace.visualstudio.com/items?itemName=rodolphebarbanneau.python-docstring-highlighter)
-- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
-- [ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty)
-
-Syntax:
-
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-
-TOML:
-
-- [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
-
-Not using anymore:
-
-- [Mypy Type Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker) **Reason**: using pyright and ty.
-- [Python Poetry](https://marketplace.visualstudio.com/items?itemName=zeshuaro.vscode-python-poetry) **Reason**: now using uv.
-
-## Git hooks
-
-Here are the useful git hooks used across all of my Python projects:
-
-- Featured
-  - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
-  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
-  - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
-  - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
-  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
-  - [pyupgrade](https://github.com/asottile/pyupgrade)
-  - [refurb](https://github.com/dosisod/refurb)
-  - [ruff](https://github.com/astral-sh/ruff-pre-commit) - extremely fast linter and code formatter. `Rust`
-  - [shellcheck](https://github.com/shellcheck-py/shellcheck-py)
-  - [typos](https://github.com/crate-ci/typos)
-  - [uv](https://github.com/astral-sh/uv-pre-commit) - extremely fast package and project manager. `Rust`
-  - [yamllint](https://github.com/adrienverge/yamllint)
-- Custom
-  - [helm-lint](https://helm.sh/docs/helm/helm_lint)
-  - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
-  - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
-  - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm)
-  - [readme-update](.githooks/readme_update.py)
-  - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
-
 ## Good practices
 
-### Python coding
+### Naming conventions
 
-Here are the essential good practices:
+General:
+
+- avoid using names that are too general or too wordy, strike a good balance between the two
+- capitalize all letters of an abbreviation when using camel case names
+
+Packages & Modules:
+
+- use lower case
+- use an underscore as a separator when multiple words are needed
+- prefer to stick to 1 word names
+
+Classes:
+
+- use the UpperCaseCamelCase convention
+- end exception classes in “Error”
+
+### Coding
 
 - avoid .dot operations (`from math import sqrt` instead of `import math` and then `math.sqrt()`)
-- use pathlib over os module
+- import and use pathlib over os
+- use joinpath over "/" to concatenate paths
 - use "err" over "e" in exception handling
 - use ternary operator when possible
 - use Google-style docstrings
-- use | for type annotations if needed
+- use type annotations
+- use | over Union[] for type annotations if needed
 - do not use f-strings in log statements
 
 Here are the useful tips to make Python faster:
 
 - apply multi-assignments
 - avoid using globals
-- concatenate strings with join
-- optimize loops with code maps
+- use join to concatenate strings
+- use code maps to optimize loops
 - use built-in functions
 - use generator expressions instead of list comprehensions
 - use generators and keys for sorting
@@ -245,136 +135,40 @@ Here are the useful tips to make Python faster:
 
 Here are the useful tips to make Python code cleaner:
 
-- use a linter. As of now, ruff is the default and select the following rules:
-  - [eradicate - ERA](https://docs.astral.sh/ruff/rules/#eradicate-era)
-  - **flake8**
-    - [bandit - S](https://docs.astral.sh/ruff/rules/#flake8-bandit-s)
-    - [bugbear - B](https://docs.astral.sh/ruff/rules/#flake8-bugbear-b)
-    - [builtins - A](https://docs.astral.sh/ruff/rules/#flake8-builtins-a)
-    - [commas - COM](https://docs.astral.sh/ruff/rules/#flake8-commas-com)
-    - [comprehensions - C4](https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4)
-    - [datetimez - DTZ](https://docs.astral.sh/ruff/rules/#flake8-datetimez-dtz)
-    - [implicit-str-concat - ISC](https://docs.astral.sh/ruff/rules/#flake8-implicit-str-concat-isc)
-    - [import-conventions - ICN](https://docs.astral.sh/ruff/rules/#flake8-import-conventions-icn)
-    - [logging-format - G](https://docs.astral.sh/ruff/rules/#flake8-logging-format-g)
-    - [quotes - Q](https://docs.astral.sh/ruff/rules/#flake8-quotes-q)
-    - [raise - RSE](https://docs.astral.sh/ruff/rules/#flake8-raise-rse)
-    - [return - RET](https://docs.astral.sh/ruff/rules/#flake8-return-ret)
-    - [self - SLF](https://docs.astral.sh/ruff/rules/#flake8-self-slf)
-    - [simplify - SIM](https://docs.astral.sh/ruff/rules/#flake8-simplify-sim)
-    - [tidy-imports - TID](https://docs.astral.sh/ruff/rules/#flake8-tidy-imports-tid)
-    - [unused arguments - ARG](https://docs.astral.sh/ruff/rules/#flake8-unused-arguments-arg)
-    - [use-pathlib - PTH](https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth)
-  - [isort - I](https://docs.astral.sh/ruff/rules/#isort-i)
-  - [pandas-vet - PD](https://docs.astral.sh/ruff/rules/#pandas-vet-pd)
-  - [pep8-naming - N](https://docs.astral.sh/ruff/rules/#pep8-naming-n)
-  - [perflint - PERF](https://docs.astral.sh/ruff/rules/#perflint-perf)
-  - [pycodestyle - Errors - E](https://docs.astral.sh/ruff/rules/#pycodestyle-e)
-  - [pydocstyle - D](https://docs.astral.sh/ruff/rules/#pydocstyle-d)
-  - [Pyflakes - F](https://docs.astral.sh/ruff/rules/#pyflakes-f)
-  - [Pylint - PL](https://docs.astral.sh/ruff/rules/#pylint-pl)
-  - [pyupgrade - UP](https://docs.astral.sh/ruff/rules/#pyupgrade-up)
-  - [refurb - FURB](https://docs.astral.sh/ruff/rules/#refurb-furb)
-  - [Ruff-specific - RUF](https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf)
+- use a linter
 - use a static type checker
 - use a formatter
 
 ### Docker
 
-Here are the essential good practices:
-
 - **Image Management**
-  - Pin an image version
-  - Use multi-stage builds to reduce image size
-  - Consolidate multiple RUN instructions
-  - Clean the apt/dnf/yum package cache
-  - Combine the package manager update command with the install
-  - Une `--no-install-recommends` with `apt-get`
+  - pin an image version
+  - use multi-stage builds to reduce image size
+  - consolidate multiple RUN instructions
+  - clean the apt/dnf/yum package cache
+  - combine the package manager update command with the install
+  - use `--no-install-recommends` with `apt-get`
 - **Clean**
-  - Exclude unnecessary files with .dockerignore
-  - Use `apt-get` or `apt-cache` instead of `apt`
-  - Choose one or the other: `curl` or `wget`
-  - Use absolute path for WORKDIR
-  - Use WORKDIR instead of the cd command
-  - Use JSON notation for CMD and ENTRYPOINT
-  - Ensure trailing slash for COPY commands with multiple arguments
-  - Avoid multiple CMD or ENTRYPOINT instructions
-  - Avoid multiple HEALTHCHECK instructions
+  - exclude unnecessary files with .dockerignore
+  - use `apt-get` or `apt-cache` instead of `apt`
+  - choose one or the other: `curl` or `wget`
+  - use absolute path for WORKDIR
+  - use WORKDIR instead of the cd command
+  - use JSON notation for CMD and ENTRYPOINT
+  - ensure trailing slash for COPY commands with multiple arguments
+  - avoid multiple CMD or ENTRYPOINT instructions
+  - avoid multiple HEALTHCHECK instructions
 - **Security**
-  - Avoid default, root, or dynamic user
-  - Avoid exposing the SSH port
-  - Avoid overriding ARG variables in RUN commands
-  - Avoid pipe curl to bash
-  - Avoid storing secrets in ENV keys
-  - Avid using RUN with sudo
-  - Use COPY instead of ADD
-
-## Future enhancements
-
-Here is a list of tools that could be interesting and further enhance the stack.
-
-Artificial intelligence:
-
-- [chroma](https://github.com/chroma-core/chroma) - AI-native open-source embedding database. `Rust` `Python`
-- [llmlingua](https://github.com/microsoft/LLMLingua) - speed up LLMs' inference and enhance LLM's perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss. `Python`
-
-CLI apps:
-
-- [cyclopts](https://github.com/BrianPugh/cyclopts) - intuitive CLI based on python type hints. `Python`
-- [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
-- [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
-
-Data manipulation:
-
-- [duckdb](https://github.com/duckdb/duckdb) - analytical in-process SQL database management system. `C++`
-- [fireducks](https://github.com/fireducks-dev/fireducks) - compiler accelerated dataframe library with fully-compatible pandas API. `C/C++`
-- [ibis](https://github.com/ibis-project/ibis) -  portable dataframe library. `Python`
-
-Data validation:
-
-- [attrs](https://github.com/python-attrs/attrs) - python classes without boilerplate. `Python`
-- [cattrs](https://github.com/python-attrs/cattrs) - composable custom class converters for attrs, dataclasses and friends. `Python`
-- [msgspec](https://github.com/jcrist/msgspec) - fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML. `Python` `C`
-- [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
-
-Document the code:
-
-- [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
-- [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
-- [pydoc](https://docs.python.org/3/library/pydoc.html) - documentation generator and online help system.
-
-Make Python faster:
-
-- [cython](https://github.com/cython/cython) - most widely used Python to C compiler.
-- [pypy](https://github.com/pypy/pypy) - very fast and compliant implementation of the language.
-
-Run tasks in parallel:
-
-- [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) - launching parallel tasks.
-- [multiprocessing](https://docs.python.org/3/library/multiprocessing.html) - process-based parallelism.
-
-Security:
-
-- [pyarmor](https://github.com/dashingsoft/pyarmor) - obfuscate python scripts, bind obfuscated scripts to fixed machine or expire obfuscated scripts. `Python`
-
-Type checkers:
-
-- [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
-- [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
-- [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
-- [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
-
-Other:
-
-- [Algorithms - Python](https://github.com/TheAlgorithms/Python) - all algorithms. `Python`
-- [altair](https://github.com/vega/altair) - declarative visualization library. `Python`
-- [moto](https://github.com/getmoto/moto) - easily mock out tests based on AWS infrastructure. `Python`
-- [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
-- [streamlit](https://github.com/streamlit/streamlit) - build and share data apps. `Python` `TypeScript`
-- [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
-- [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
-- [yapf](https://github.com/google/yapf) - formatter for files. `Python`
+  - avoid default, root, or dynamic user
+  - avoid exposing the SSH port
+  - avoid overriding ARG variables in RUN commands
+  - avoid pipe curl to bash
+  - avoid storing secrets in ENV keys
+  - avoid using RUN with sudo
+  - use COPY instead of ADD
 
 ## Resources
 
 - [pyOpenSci - Python Package Guide](https://www.pyopensci.org/python-package-guide/index.html)
+- [Python Coding Conventions](https://visualgit.readthedocs.io/en/latest/index.html)
+- [Python Packaging User Guide](https://packaging.python.org/en/latest)

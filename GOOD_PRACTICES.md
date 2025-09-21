@@ -103,8 +103,8 @@ Code:
 - **Third-party**
   - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
   - [numpy](https://github.com/numpy/numpy) - fundamental package for scientific computing. `Python`
-  - [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
   - [pika](https://pika.readthedocs.io/en/stable/index.html)
+  - [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
   - [requests](https://requests.readthedocs.io/en/latest/api/)
 
 Development:
@@ -136,11 +136,12 @@ Test:
 
 - **Third-party**
   - [coverage](https://coverage.readthedocs.io/en/latest)
-  - [pytest](https://docs.pytest.org/en/stable)
+  - [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
 
 Not using anymore:
 
 - [mypy](https://github.com/python/mypy) - static typing. **Reason**: using pyright and ty. `Python`
+- [pandas](https://pandas.pydata.org/docs/reference/index.html) - **Reason**: using polars.
 - [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: using uv. `Python`
 - [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. **Reason**: using prek. `Python`
 - [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: using uv.
@@ -326,6 +327,7 @@ CLI apps:
 Data manipulation:
 
 - [duckdb](https://github.com/duckdb/duckdb) - analytical in-process SQL database management system. `C++`
+- [fireducks](https://github.com/fireducks-dev/fireducks) - compiler accelerated dataframe library with fully-compatible pandas API. `C/C++`
 - [ibis](https://github.com/ibis-project/ibis) -  portable dataframe library. `Python`
 
 Data validation:
@@ -340,11 +342,6 @@ Document the code:
 - [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
 - [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
 - [pydoc](https://docs.python.org/3/library/pydoc.html) - documentation generator and online help system.
-
-Drop-in replacement for pandas:
-
-- [fireducks](https://github.com/fireducks-dev/fireducks) - compiler accelerated dataframe library with fully-compatible pandas API. `C/C++`
-- [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
 
 Make Python faster:
 
@@ -377,7 +374,6 @@ Other:
 - [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
 - [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
 - [yapf](https://github.com/google/yapf) - formatter for files. `Python`
-
 
 ## Resources
 

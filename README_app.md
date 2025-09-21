@@ -34,15 +34,15 @@ app-description
  Makefile                1          258          150           53           55
  Python                 12         1551         1144          134          273
  Shell                   2          534          331          113           90
- Plain Text              3          968            0          968            0
+ Plain Text              3          915            0          915            0
  TOML                    1          328          188           95           45
  YAML                    2           38           33            4            1
 -------------------------------------------------------------------------------
- Markdown                5         1353            0          946          407
+ Markdown                5         1352            0          948          404
  |- BASH                 4          114          109            4            1
- (Total)                           1467          109          950          408
+ (Total)                           1466          109          952          405
 ===============================================================================
- Total                  31         5302         1978         2396          928
+ Total                  31         5248         1978         2345          925
 ===============================================================================
 ```
 
@@ -69,13 +69,8 @@ app-name v0.0.0
 │   └── deprecation v2.1.0
 │       └── packaging v23.2
 ├── numpy v2.3.2
-├── pandas v2.3.2
-│   ├── numpy v2.3.2
-│   ├── python-dateutil v2.9.0.post0
-│   │   └── six v1.17.0
-│   ├── pytz v2025.2
-│   └── tzdata v2025.2
 ├── pika v1.3.2
+├── polars v1.33.1
 ├── python-dotenv v1.1.1
 └── requests v2.32.5
     ├── certifi v2025.8.3
@@ -303,8 +298,11 @@ If you want to learn more about Python libraries used throughout this applicatio
   - [pathlib](https://docs.python.org/3/library/pathlib.html)
 - **Third-party**
   - [cloudevents](https://github.com/cloudevents/sdk-python)
-  - [pandas](https://pandas.pydata.org/docs/reference/index.html#api)
+  - [numpy](https://github.com/numpy/numpy)
+  - [pandas](https://pandas.pydata.org/docs/reference/index.html)
   - [pika](https://pika.readthedocs.io/en/stable/index.html)
+  - [polars](https://github.com/pola-rs/polars)
+  - [pytest](https://docs.pytest.org/en/stable/)
   - [requests](https://requests.readthedocs.io/en/latest/api/)
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:

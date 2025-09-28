@@ -95,6 +95,8 @@ Here are the useful pre-commit hooks used across all of my Python projects.
   - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm)
   - [readme-update](.githooks/readme_update.py)
   - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
+- Other
+  - [sync-with-uv](https://github.com/tsvikas/sync-with-uv) - sync .pre-commit-config.yaml from uv.lock. `Python`
 
 Here is a list of pre-commit hooks that could be interesting and further enhance the stack.
 
@@ -174,6 +176,10 @@ TOML:
 
 - [Even Better TOML](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 
+Visual Studio Code:
+
+- [Tasks Shell Input](https://marketplace.visualstudio.com/items?itemName=augustocdias.tasks-shell-input)
+
 Not using anymore:
 
 - [Mypy Type Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker) **Reason**: using pyright and ty.
@@ -218,6 +224,14 @@ Make Python faster:
 
 - [cython](https://github.com/cython/cython) - most widely used Python to C compiler.
 - [pypy](https://github.com/pypy/pypy) - very fast and compliant implementation of the language.
+
+Profiling:
+
+- [line-profiler](https://github.com/pyutils/line_profiler) - line-by-line profiling. `Python`
+- [memory-profiler](https://github.com/pythonprofilers/memory_profiler) - monitor memory usage of Python code. `Python`
+- [pyinstrument](https://github.com/joerick/pyinstrument) - call stack profiler. `Python` `TypeScript` `Svelte`
+- [py-spy](https://github.com/benfred/py-spy) - sampling profiler for Python programs. `Rust`
+- [scalene](https://github.com/plasma-umass/scalene) - high-performance, high-precision CPU, GPU, and memory profiler for Python with AI-powered optimization proposals. `Python` `JavaScript`
 
 Run tasks in parallel:
 

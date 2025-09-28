@@ -363,7 +363,7 @@ Here are useful commands to scan an image using [grype](https://github.com/ancho
 Find vulnerabilities in an image?
 
 ```bash
-grype site-delta-comparison:latest --scope all-layers
+grype app-name:latest --scope all-layers
 ```
 
 #### hadolint

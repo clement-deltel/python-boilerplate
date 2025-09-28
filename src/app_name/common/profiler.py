@@ -6,7 +6,6 @@ from cProfile import Profile
 from collections.abc import Callable
 from functools import wraps
 from os import environ
-from pathlib import Path
 from pstats import Stats
 
 # Third-party
@@ -14,6 +13,8 @@ from dotenv import load_dotenv
 
 # Local Application
 from app_name.common.config import get_config_value, to_bool
+
+load_dotenv(".env", override=True)
 
 
 class Profiler:
@@ -38,7 +39,7 @@ class Profiler:
         output_path = get_config_value("app", "output_path")
         name = get_config_value("app", "name")
         run_date = get_config_value("app", "run_date")
-        export_file_path = Path.joinpath(output_path, f"{run_date.strftime('%Y-%m-%dT%H%M%S')}_{name}.prof")
+        export_file_path = output_path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}_{name}.prof")
         stats.dump_stats(export_file_path)
 
 
@@ -47,8 +48,6 @@ def profiler(func: Callable):
 
     @wraps(func)
     def wrapper(*args, **kwargs):
-        load_dotenv(".env", override=True)
-
         if to_bool(environ.get("PROFILING", default="false")):
             profiler = Profiler()
             profiler.start()

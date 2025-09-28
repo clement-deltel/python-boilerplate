@@ -26,8 +26,8 @@ Here are the steps you need to follow when starting a new coding project from th
       - 2 `company.com` occurrences
   - *deploy directory*
     - **README.md**
-      - 1 `customer-app-name` occurrence
-      - 16 `app-name` occurrences
+      - 1 `customer` occurrence
+      - 17 `app-name` occurrences
       - all `<[a-z]*>` occurrences
   - *docker directory*
     - **compose.yaml**
@@ -48,7 +48,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - enable commitizen hooks (disabled by default due to lack of emojis support)
   - **app-name.code-workspace**
     - rename the file itself replacing `app-name`
-    - 2 `Application Name` occurrence
+    - 1 `Application Name` occurrence
     - 2 `app_name` occurrence
     - add launch configurations if needed
   - **checkov.yaml**
@@ -57,9 +57,9 @@ Here are the steps you need to follow when starting a new coding project from th
     - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 3 `customer_app-name` occurrences
-    - 18 `app-name` occurrences
-    - 7 `app_name` occurrences
+    - 1 `customer` occurrence
+    - 1 `app-name` occurrence
+    - 1 `app_name` occurrence
   - **pyproject.toml**
     - 1 `app-name` occurrence
     - 7 `app_name` occurrences
@@ -154,10 +154,12 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
   - MUST use multi-stage builds to reduce image size
   - MUST combine the package manager update command with the install
   - MUST use `--no-install-recommends` with `apt-get`
+  - SHOULD create reusable stages
   - SHOULD consolidate multiple RUN instructions
   - SHOULD clean the apt/dnf/yum package cache
 - **Clean**
   - MUST exclude unnecessary files with .dockerignore
+  - MUST sort multi-line arguments
   - MUST use `apt-get` or `apt-cache` instead of `apt`
   - MUST choose one or the other: `curl` or `wget`
   - MUST use absolute path for WORKDIR
@@ -177,7 +179,8 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## Resources
 
+- [PEP 8 — the Style Guide for Python Code](https://pep8.org)
 - [pyOpenSci - Python Package Guide](https://www.pyopensci.org/python-package-guide/index.html)
 - [Python Coding Conventions](https://visualgit.readthedocs.io/en/latest/index.html)
 - [Python Packaging User Guide](https://packaging.python.org/en/latest)
-- [The Hitchhiker's Guide to Python](https://docs.python-guide.org/)
+- [The Hitchhiker's Guide to Python](https://docs.python-guide.org)

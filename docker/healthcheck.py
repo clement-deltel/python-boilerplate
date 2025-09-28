@@ -35,33 +35,18 @@ def is_process_running(pattern):
         return False
 
 
-def get_expected_process(debug_entrypoint):
-    """Get the expected process pattern based on current mode."""
-    if debug_entrypoint:
-        debug_command = environ.get("DEBUG_COMMAND", default="tail -f /dev/null")
-        # Try full command first, fall back to first word
-        return debug_command.strip(), debug_command.split()[0]
-    pattern = "app_name"
-    return pattern, pattern
-
-
 def main():
     """Main health check logic."""
     try:
-        debug_entrypoint = environ.get("DEBUG_ENTRYPOINT", default="false").lower() in ("true", "t", "1")
-        primary_pattern, fallback_pattern = get_expected_process(debug_entrypoint)
-        mode = "DEBUG" if debug_entrypoint else "PRODUCTION"
+        debug = environ.get("DEBUG", default="false").lower() in ("true", "t", "1")
+        mode = "DEBUG" if debug else "PRODUCTION"
+        pattern = "app_name"
 
         print(f"Health check running in {mode} mode")
 
         # Try primary pattern first
-        if is_process_running(primary_pattern):
-            print(f"Process found with pattern '{primary_pattern}' - Health check passed")
-            sys_exit(0)
-
-        # Try fallback pattern if different from primary
-        if primary_pattern != fallback_pattern and is_process_running(fallback_pattern):
-            print(f"Process found with fallback pattern '{fallback_pattern}' - Health check passed")
+        if is_process_running(pattern):
+            print(f"Process found with pattern '{pattern}' - Health check passed")
             sys_exit(0)
 
         print("No process found matching expected patterns - Health check failed")

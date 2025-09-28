@@ -13,11 +13,12 @@ from enum import Enum
 from sys import stderr, stdout
 
 # Local Application
-from app_name.common.config import LogConfig, get_config_class
+from app_name.common.config import LogConfig, get_config_class, get_config_value
 from app_name.event.formatter.cloudevent import CloudEventsFormatter
 from app_name.event.formatter.custom import CustomFormatter
 from app_name.event.formatter.json_f import JSONFormatter
 from app_name.event.handler.amqp import AMQPFilter, AMQPLogHandler
+from app_name.event.handler.print import PrintHandler
 
 
 class Log:
@@ -36,9 +37,10 @@ class Log:
         self.formatter = None
         self.file_formatter = None
         # Handlers
-        self.file_handler = None
         self.stream_handler_out = None
         self.stream_handler_err = None
+        self.print_handler = None
+        self.file_handler = None
         self.amqp_handler = None
 
         self.initialize()
@@ -52,7 +54,11 @@ class Log:
         """."""
         self.set_level(self.config.level)
         self.set_formatters(self.config.level)
-        self.open_stream()
+
+        if get_config_value("debug", "print"):
+            self.open_print()
+        else:
+            self.open_stream()
 
         if self.config.to_file:
             self.open_file(str(self.config.file_path))
@@ -97,6 +103,14 @@ class Log:
             self.stream_handler_err.setLevel(self.levels["ERROR"])
             self._logger.addHandler(self.stream_handler_err)
 
+    def open_print(self) -> None:
+        """Open the print handler to print log messages."""
+        if self.print_handler is None:
+            self.print_handler = PrintHandler()
+            self.print_handler.setFormatter(self.formatter)
+            self.print_handler.setLevel(self.levels["DEBUG"])
+            self._logger.addHandler(self.print_handler)
+
     def open_file(self, file_path: str) -> None:
         """Open the file handler to write log messages to the log file."""
         try:
@@ -121,6 +135,7 @@ class Log:
         """Close stream, file, and amqp handlers."""
         self.close_amqp()
         self.close_file()
+        self.close_print()
         self.close_stream()
 
     def close_stream(self) -> None:
@@ -142,6 +157,17 @@ class Log:
                 self._logger.warning("Error closing stderr stream handler: %s", err)
             finally:
                 self.stream_handler_err = None
+
+    def close_print(self) -> None:
+        """Close the print handler."""
+        if self.print_handler is not None:
+            try:
+                self._logger.removeHandler(self.print_handler)
+                self.print_handler.close()
+            except Exception as err:
+                self._logger.warning("Error closing print handler: %s", err)
+            finally:
+                self.print_handler = None
 
     def close_file(self) -> None:
         """Close the file handler."""

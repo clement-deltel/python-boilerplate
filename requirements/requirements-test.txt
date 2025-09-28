@@ -29,6 +29,11 @@ coverage==7.10.6 ; sys_platform == 'linux' \
     --hash=sha256:b37201ce4a458c7a758ecc4efa92fa8ed783c66e0fa3c42ae19fc454a0792153 \
     --hash=sha256:ec98435796d2624d6905820a42f82149ee9fc4f2d45c2c5bc5a44481cc50db62 \
     --hash=sha256:f644a3ae5933a552a29dbb9aa2f90c677a875f80ebea028e5a52a4f429044b90
+debugpy==1.8.17 ; sys_platform == 'linux' \
+    --hash=sha256:60c7dca6571efe660ccb7a9508d73ca14b8796c4ed484c2002abba714226cfef \
+    --hash=sha256:c6bdf134457ae0cac6fb68205776be635d31174eeac9541e1d0c062165c6461f \
+    --hash=sha256:fd723b47a8c08892b1a16b2c6239a8b96637c62a59b94bb5dab4bac592a58a8e
+    # via app-name
 deprecation==2.1.0 ; sys_platform == 'linux' \
     --hash=sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff \
     --hash=sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a

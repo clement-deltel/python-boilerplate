@@ -34,7 +34,9 @@
             // Syntax
             "streetsidesoftware.code-spell-checker",
             // TOML
-            "tamasfe.even-better-toml"
+            "tamasfe.even-better-toml",
+            // Visual Studio Code - Tasks
+            "augustocdias.tasks-shell-input"
         ]
     },
     "settings": {
@@ -177,7 +179,7 @@
         "version": "0.2.0",
         "configurations": [
             {
-                "name": "Application Name",
+                "name": "Source Code",
                 "console": "internalConsole",
                 "internalConsoleOptions": "openOnSessionStart",
                 "cwd": "${workspaceFolder}",
@@ -191,6 +193,61 @@
                     "APP_ENV": "development",
                     "PYTHONPATH": "${workspaceFolder}",
                 },
+            },
+            {
+                "name": "Process",
+                "type": "debugpy",
+                "request": "attach",
+                "justMyCode": true,
+                "redirectOutput": true, // set DEBUGPY_PRINT to true for proper log redirection
+                "connect": {
+                    "host": "localhost",
+                    "port": 5678
+                },
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}",
+                        "remoteRoot": "${workspaceFolder}"
+                    }
+                ]
+            },
+            {
+                "name": "Docker Container",
+                "type": "docker",
+                "containerName": "app-name-debug",
+                "removeContainerAfterDebug": true,
+                "request": "launch",
+                "preLaunchTask": "docker-run",
+                "python": {
+                    "host": "localhost",
+                    "port": 5678,
+                    "justMyCode": true,
+                    "pathMappings": [
+                        {
+                            "localRoot": "${workspaceFolder}/src",
+                            "remoteRoot": "/app/src"
+                        }
+                    ]
+                },
+            },
+            {
+                "name": "Kubernetes Pod",
+                "type": "debugpy",
+                "request": "attach",
+                "justMyCode": false,
+                "preLaunchTask": "kubectl-start",
+                "postDebugTask": "",
+                "redirectOutput": true,
+                "connect": {
+                    "host": "localhost",
+                    "port": 5678
+                },
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}/src",
+                        "remoteRoot": "./.venv/lib/python3.11/site-packages"
+                    }
+                ]
             }
         ],
         "compounds": []
@@ -199,6 +256,18 @@
         // See https://go.microsoft.com/fwlink/?LinkId=733558
         // for the documentation about the tasks.json format
         "version": "2.0.0",
+        "inputs": [
+            {
+                "id": "image-tag",
+                "type": "command",
+                "command": "shellCommand.execute",
+                "args": {
+                    "command": "cz version --project",
+                    "cwd": "${workspaceFolder}",
+                    "useSingleResult": true
+                }
+            }
+        ],
         "tasks": [
             {
                 "label": "Update application environment",
@@ -208,6 +277,155 @@
                     "isDefault": true
                 },
                 "command": "uv sync",
+                "problemMatcher": []
+            },
+            {
+                "label": "docker-run",
+                "type": "docker-run",
+                "group": {
+                    "kind": "build"
+                },
+                "dockerRun": {
+                    "containerName": "app-name-debug",
+                    "env": {
+                        "DEBUGPY": "true"
+                    },
+                    "envFiles": [
+                        "${workspaceFolder}/.env"
+                    ],
+                    "image": "app-name:${input:image-tag}",
+                    "volumes": [
+                        {
+                            "localPath": "${workspaceFolder}/src",
+                            "containerPath": "/app/src",
+                        }
+                    ],
+                    "ports": [
+                        {
+                            "containerPort": 5678,
+                            "hostPort": 5678
+                        }
+                    ]
+                },
+                "python": {
+                    "file": "src/app_name/main.py"
+                }
+            },
+            {
+                "label": "docker-compose-up",
+                "type": "docker-compose",
+                "group": {
+                    "kind": "build"
+                },
+                "dockerCompose": {
+                    "up": {
+                        "detached": true,
+                        "build": false,
+                        "services": [
+                            "app"
+                        ]
+                    },
+                    "files": [
+                        "${workspaceFolder}/docker/compose.yaml"
+                    ]
+                },
+                "options": {
+                    "env": {
+                        "IMAGE_TAG": "${input:image-tag}"
+                    }
+                }
+            },
+            {
+                "label": "docker-compose-down",
+                "type": "docker-compose",
+                "group": {
+                    "kind": "build"
+                },
+                "dockerCompose": {
+                    "down": {},
+                    "files": [
+                        "${workspaceFolder}/docker/compose.yaml"
+                    ]
+                },
+                "options": {
+                    "env": {
+                        "IMAGE_TAG": "${input:image-tag}"
+                    }
+                }
+            },
+            {
+                "label": "kubectl-start",
+                "dependsOrder": "sequence",
+                "dependsOn": [
+                    "kubectl-run",
+                    "kubectl-port-forward"
+                ]
+            },
+            {
+                "label": "kubectl-run",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "kubectl",
+                "args": [
+                    "run",
+                    "app-name-debug",
+                    "--image=app-name:${input:image-tag}",
+                    "--env='DEBUGPY=true'",
+                    "--port=5678",
+                    "--restart=Never",
+                ],
+                "problemMatcher": []
+            },
+            {
+                "label": "kubectl-port-forward",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "kubectl",
+                "args": [
+                    "port-forward",
+                    "pod/app-name-debug",
+                    "5678:5678"
+                ],
+                "problemMatcher": [],
+                "isBackground": true
+            },
+            {
+                "label": "kubectl-stop",
+                "dependsOrder": "sequence",
+                "dependsOn": [
+                    "kubectl-delete-port-forward",
+                    "kubectl-delete-pod"
+                ]
+            },
+            {
+                "label": "kubectl-delete-port-forward",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "pkill",
+                "args": [
+                    "-f",
+                    "kubectl port-forward",
+                ],
+                "problemMatcher": []
+            },
+            {
+                "label": "kubectl-delete",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "kubectl",
+                "args": [
+                    "delete",
+                    "pod",
+                    "app-name-debug",
+                ],
                 "problemMatcher": []
             }
         ]

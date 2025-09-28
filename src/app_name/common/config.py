@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 # Local Application
 from app_name.common.path_translator import to_path
 
+load_dotenv(".env", override=True)
+
 
 def to_bool(variable: str) -> bool:
     """Ensure that environment variable is a boolean.
@@ -60,6 +62,9 @@ class Config:
         self.amqp = AMQPConfig()
         self.cloudevents = CloudEventsConfig()
         self.log = LogConfig(name, app_env, run_date)
+
+        # Debug
+        self.debug = DebugConfig()
 
         # Application
         self.app = AppConfig(name, run_date)
@@ -206,6 +211,22 @@ class CloudEventsConfig:
 
 
 # ---------------------------------------------------------------------------- #
+#               ------- Debug Config ------
+# ---------------------------------------------------------------------------- #
+class DebugConfig:
+    """Class specifying attributes and methods related to application debugging using debugpy."""
+
+    def __init__(self) -> None:
+        """Initialize class."""
+        self.debug = to_bool(environ.get("DEBUGPY", default="false"))
+
+        self.host = environ.get("DEBUGPY_HOST", default="localhost")
+        self.port = to_int(environ.get("DEBUGPY_PORT", default="5678"))
+        self.wait = to_bool(environ.get("DEBUGPY_WAIT", default="true"))
+        self.print = to_bool(environ.get("DEBUGPY_PRINT", default="false"))
+
+
+# ---------------------------------------------------------------------------- #
 #               ------- Development Config ------
 # ---------------------------------------------------------------------------- #
 class DevConfig(Config):
@@ -213,7 +234,6 @@ class DevConfig(Config):
 
     def __init__(self) -> None:
         """Initialize class."""
-        load_dotenv(".env", override=True)
         # Custom date specifically to tweak run date and trigger certain behaviors
         run_date_env = environ.get("RUN_DATE", default="")
         run_date = datetime.strptime(run_date_env, "%Y-%m-%d").astimezone(UTC) if run_date_env else datetime.now(UTC)
@@ -229,7 +249,6 @@ class ProdConfig(Config):
 
     def __init__(self) -> None:
         """Initialize class."""
-        load_dotenv(".env", override=True)
         run_date = datetime.now(UTC)
 
         super().__init__("production", run_date)

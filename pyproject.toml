@@ -35,6 +35,7 @@ requires-python = ">=3.11.11, <3.12.0"
 # ---------------------------------------------------------------------------- #
 dependencies = [
     "cloudevents",
+    "debugpy",
     "numpy",
     "pika",
     "polars",
@@ -43,7 +44,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["commitizen", "csv2md", "prek", "snakeviz"]
+dev = ["commitizen", "csv2md", "howdoi", "prek", "snakeviz"]
 lint = [
     "checkov",
     "isort",
@@ -52,11 +53,11 @@ lint = [
     "refurb",
     "ruff",
     "ty",
-    "types-requests",
     "yamllint",
 ]
 observability = ["opentelemetry-distro"]
 test = ["coverage", "pytest"]
+typing = ["types-requests"]
 
 # ---------------------------------------------------------------------------- #
 #               ------- entry-points ------

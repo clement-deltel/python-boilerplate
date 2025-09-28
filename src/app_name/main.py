@@ -10,10 +10,16 @@ from signal import SIGINT, signal
 from time import gmtime, perf_counter, strftime
 from types import FrameType
 
+# Third-party
+from dotenv import load_dotenv
+
 # Local Application
 from app_name.common.config import Config, DevConfig, ProdConfig, set_config
+from app_name.common.debug import debug
 from app_name.common.profiler import profiler
 from app_name.event.log import log
+
+load_dotenv(".env", override=True)
 
 
 def signal_int_handler(signum: int, frame: FrameType | None) -> None:  # noqa: ARG001
@@ -49,6 +55,7 @@ def load_config() -> Config:
     return config
 
 
+@debug
 @profiler
 def main() -> None:
     """Perform all the steps to run this application."""
@@ -56,12 +63,18 @@ def main() -> None:
     try:
         load_config()
 
-        signal(SIGINT, signal_int_handler)
-        if system() == "Linux":
+        # Python version & operating system
+        operating_system = system()
+        log().logger.debug("Python version: %s", sys.version)
+        log().logger.debug("Operating system: %s", operating_system)
+
+        # Signals
+        if operating_system == "Linux":
             # Standard Library
             from signal import SIGQUIT  # noqa: PLC0415
 
             signal(SIGQUIT, signal_quit_handler)
+        signal(SIGINT, signal_int_handler)
 
     except KeyboardInterrupt:
         pass

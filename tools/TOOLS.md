@@ -36,6 +36,7 @@ Development:
 - **Third-party**
   - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
   - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
+  - [howdoi](https://github.com/gleitz/howdoi) - instant coding answers via the command line. `Python`
   - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
   - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
 

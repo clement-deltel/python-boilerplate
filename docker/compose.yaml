@@ -13,7 +13,7 @@ services:
         max-file: 5
         max-size: 10m
     restart: unless-stopped
-    stop_grace_period: 30s
+    stop_grace_period: 10s
     volumes:
       - ../input:/app/input
       - ../log:/app/log

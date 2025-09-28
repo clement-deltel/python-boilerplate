@@ -206,7 +206,7 @@ perform_replacements() {
 
     local app_kebab app_pascal app_snake app_title
     local customer_kebab customer_pascal
-    local combined_kebab combined_snake_kebab combined_pascal
+    local combined_pascal
 
     # Generate app name variants
     app_camel=$(sanitize_name "$APP_NAME" "camel")
@@ -220,12 +220,8 @@ perform_replacements() {
         customer_kebab=$(sanitize_name "$CUSTOMER_NAME" "kebab")
         customer_pascal=$(sanitize_name "$CUSTOMER_NAME" "pascal")
 
-        combined_kebab="${customer_kebab}-${app_kebab}"
-        combined_snake_kebab="${customer_kebab}_${app_kebab}"
         combined_pascal="${customer_pascal}__${app_pascal}"
     else
-        combined_kebab="$app_kebab"
-        combined_snake_kebab="$app_kebab"
         combined_pascal="$app_pascal"
     fi
 
@@ -265,11 +261,10 @@ perform_replacements() {
 
         # Perform all replacements in one sed command for efficiency
         sed -E \
-            -e "s/appName/${app_camel}/g" \
-            -e "s/customer-app-name/${combined_kebab}/g" \
-            -e "s/customer_app-name/${combined_snake_kebab}/g" \
             -e "s/Customer__AppName/${combined_pascal}/g" \
+            -e "s/customer/${customer_kebab}/g" \
             -e "s/Application Name/${app_title}/g" \
+            -e "s/appName/${app_camel}/g" \
             -e "s/app-name/${app_kebab}/g" \
             -e "s/app_name/${app_snake}/g" \
             -e "s/app-description/${description}/g" \

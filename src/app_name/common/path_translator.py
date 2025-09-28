@@ -10,6 +10,11 @@ from os import environ
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from platform import system
 
+# Third-party
+from dotenv import load_dotenv
+
+load_dotenv(".env", override=True)
+
 
 class PathMappingError(Exception):
     """Custom exception for path mapping errors."""
@@ -79,7 +84,8 @@ class PathTranslator:
             # Normalize paths for consistent matching
             mappings[self._normalize_path(source)] = self._normalize_path(destination)
 
-        return mappings
+        reverse_mappings = {value: key for key, value in mappings.items()}
+        return mappings | reverse_mappings
 
     def _normalize_path(self, path_str: str) -> str:
         """Normalize a path string for consistent mapping lookup.
@@ -132,22 +138,22 @@ class PathTranslator:
             return self._mappings[normalized_path]
 
         # Check for prefix matches (longest match wins)
-        matching_prefixes = [
-            (prefix, mapping) for prefix, mapping in self._mappings.items() if normalized_path.startswith(prefix + "/") or normalized_path == prefix
+        matching_mappings = [
+            (source, target) for source, target in self._mappings.items() if normalized_path.startswith(source + "/") or normalized_path == source
         ]
 
-        if not matching_prefixes:
+        if not matching_mappings:
             return None
 
         # Sort by prefix length (descending) to get longest match
-        matching_prefixes.sort(key=lambda x: len(x[0]), reverse=True)
-        best_prefix, best_mapping = matching_prefixes[0]
+        matching_mappings.sort(key=lambda x: len(x[0]), reverse=True)
+        best_source, best_target = matching_mappings[0]
 
         # Replace the prefix with the mapping
-        relative_part = normalized_path[len(best_prefix) :].lstrip("/")
-        return f"{best_mapping}/{relative_part}" if relative_part else best_mapping
+        relative_part = normalized_path[len(best_source) :].lstrip("/")
+        return f"{best_target}/{relative_part}" if relative_part else best_target
 
-    def to_path(self, path: str | Path, mapping: bool, target: str = "auto") -> Path:
+    def to_path(self, path: str | Path, mapping: bool, target: str = "auto") -> str:
         """Translate path to appropriate Path object based on mapping rules, as well as native system or target.
 
         Args:
@@ -156,7 +162,7 @@ class PathTranslator:
             target (str): target system to convert input path to. Defaults to auto.
 
         Returns:
-            Path: translated Path object.
+            str: translated path as string.
 
         Raises:
             PathTranslationError: if required mapping is not found.
@@ -178,14 +184,14 @@ class PathTranslator:
                 if mapped_path:
                     path_str = mapped_path
 
-            return Path(path_str)
+            return path_str
 
         # Case 2: Cross-platform conversion required (mapping is mandatory)
         mapped_path = self._find_mapping(path_str)
         if not mapped_path:
             raise PathTranslationError(f"No {target_system.capitalize()} mapping found for {path_system.capitalize()} path: '{path_str}'")
 
-        return Path(mapped_path)
+        return mapped_path
 
 
 # Global instance for easy access
@@ -217,7 +223,7 @@ def to_path(path: str | Path, mapping: bool = False) -> Path:
     Returns:
         Path: Native system translated path.
     """
-    return translator().to_path(path, mapping=mapping)
+    return Path(translator().to_path(path, mapping=mapping))
 
 
 def to_pure_path(path: str | Path, mapping: bool = False) -> PurePosixPath | PureWindowsPath:
@@ -248,7 +254,7 @@ def to_posix(path: str | Path) -> Path:
     Returns:
         Path: Posix translated path.
     """
-    return translator().to_path(path, mapping=True, target="linux")
+    return Path(translator().to_path(path, mapping=True, target="linux"))
 
 
 def to_pure_posix(path: str | Path) -> PurePosixPath:
@@ -275,7 +281,7 @@ def to_windows(path: str | Path) -> Path:
     Returns:
         Path: Windows translated path.
     """
-    return translator().to_path(path, mapping=True, target="windows")
+    return Path(translator().to_path(path, mapping=True, target="windows"))
 
 
 def to_pure_windows(path: str | Path) -> PureWindowsPath:

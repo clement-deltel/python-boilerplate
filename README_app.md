@@ -32,7 +32,7 @@ app-description
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
  Makefile                1          338          191           74           73
- Python                 14         1659         1215          145          299
+ Python                 14         1665         1218          146          301
  Shell                   2          529          326          113           90
  Plain Text              3         1049            0         1049            0
  TOML                    1          329          189           95           45
@@ -42,7 +42,7 @@ app-description
  |- BASH                 4          115          110            4            1
  (Total)                           1526          110         1001          415
 ===============================================================================
- Total                  35         5664         2103         2573          988
+ Total                  35         5670         2106         2574          990
 ===============================================================================
 ```
 
@@ -88,7 +88,7 @@ List of available environment variables:
 
 | Variable           | Type | Sensitive | Default     | Condition | Example             | Description                                                        |
 | ------------------ | ---- | --------- | ----------- | --------- | ------------------- | ------------------------------------------------------------------ |
-| MAPPINGS_PATH      | str  |           | \<unset>    |           | C:\:/mnt            | List of mappings of Windows paths to Linux paths                   |
+| MAPPINGS_PATH      | str  |           | \<unset>    |           | C:\                 | /mnt                                                               |
 | INPUT_PATH         | str  |           | /app/input  |           | /path/to/directory  | Path to directory containing input files                           |
 | OUTPUT_PATH        | str  |           | /app/output |           | /path/to/directory  | Path to directory where to save output files                       |
 | LOG_LEVEL          | str  |           | INFO        |           | INFO                | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |

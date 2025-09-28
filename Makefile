@@ -214,7 +214,23 @@ dive-image:
 	dive app-name:${IMAGE_TAG}
 
 dive-image-ci:
-	CI=true dive app-name:${IMAGE_TAG}
+# ---------------------------------------------------------------------------- #
+#               ------- Grype ------
+# ---------------------------------------------------------------------------- #
+grype-repo:
+	grype .
+
+grype-builder-image:
+	grype ${APP_NAME}:${IMAGE_TAG}-builder --scope all-layers
+
+grype-dev-image:
+	grype ${APP_NAME}:${IMAGE_TAG}-dev --scope all-layers
+
+grype-image:
+	grype ${APP_NAME}:${IMAGE_TAG} --scope all-layers
+
+grype-update:
+	grype db update
 
 # ---------------------------------------------------------------------------- #
 #               ------- Trivy ------

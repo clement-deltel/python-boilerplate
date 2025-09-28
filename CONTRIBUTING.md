@@ -19,6 +19,7 @@
     - [cProfile](#cprofile)
   - [Containerization](#containerization)
     - [docker](#docker)
+    - [grype](#grype)
     - [hadolint](#hadolint)
     - [dive](#dive)
     - [dockle](#dockle)
@@ -353,6 +354,16 @@ Here are useful commands to manage the Docker configuration. Do you want to:
 
 ```bash
 rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
+```
+
+#### grype
+
+Here are useful commands to scan an image using [grype](https://github.com/anchore/grype) ([source code](https://github.com/anchore/grype)). Do you want to:
+
+Find vulnerabilities in an image?
+
+```bash
+grype site-delta-comparison:latest --scope all-layers
 ```
 
 #### hadolint

@@ -8,6 +8,10 @@ PYTHON_TARGET_VERSION:=3.11.13
 UV_SOURCE_VERSION:=0.8.18
 UV_TARGET_VERSION:=0.8.18
 
+CUSTOMER_NAME:=custom
+APP_NAME:=app-name
+APP_NAME_SNAKE:=app_name
+
 # Generated
 IMAGE_TAG:=$(shell cz version --project)
 
@@ -41,7 +45,7 @@ init-test:
 	source .venv/bin/activate
 
 init-from-scratch:
-	uv init --build-backend uv --managed-python --name app-name --python ${PYTHON_VERSION} --vcs git
+	uv init --build-backend uv --managed-python --name ${APP_NAME} --python ${PYTHON_VERSION} --vcs git
 	uv sync
 	source .venv/bin/activate
 
@@ -56,9 +60,9 @@ pyenv-init:
 	pyenv install ${PYTHON_VERSION}
 
 pyenv-activate:
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_customer_app-name
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_customer_app-name
-	pyenv local ${PYTHON_VERSION}_customer_app-name
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
+	pyenv local ${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Python version ------
@@ -125,16 +129,38 @@ requirement-all:
 #               ------- Run ------
 # ---------------------------------------------------------------------------- #
 run:
-	app_name
+	${APP_NAME_SNAKE}
 
 run-module:
-	python -m app_name.main
+	python -m ${APP_NAME_SNAKE}.main
 
 run-program:
-	python src/app_name/main.py
+	python src/${APP_NAME_SNAKE}/main.py
 
 run-uv:
-	uv run app_name
+	uv run ${APP_NAME_SNAKE}
+
+# ---------------------------------------------------------------------------- #
+#               ------- Debug ------
+# ---------------------------------------------------------------------------- #
+debug-module:
+	python -m pdb -m ${APP_NAME_SNAKE}.main
+
+debug-program:
+	python -m pdb src/${APP_NAME_SNAKE}/main.py
+
+debug-venv-program:
+	python -m pdb .venv/lib/python3.11/site-packages/${APP_NAME_SNAKE}/main.py
+
+# ---------------------------------------------------------------------------- #
+#               ------- Test ------
+# ---------------------------------------------------------------------------- #
+test:
+	python -m pytest --color=yes --durations=5 --verbose --config-file=test/pytest.ini test/
+
+coverage:
+	coverage run --rcfile=pyproject.toml -m pytest --color=yes --verbose --config-file=test/pytest.ini
+	coverage report --show-missing
 
 # ---------------------------------------------------------------------------- #
 #               ------- Telemetry ------
@@ -144,24 +170,11 @@ init-telemetry:
 
 run-telemetry: init-telemetry
 	opentelemetry-instrument \
-	--service_name app-name \
+	--service_name ${APP_NAME} \
 	--logs_exporter console \
 	--traces_exporter console \
     --metrics_exporter console \
-	python src/app_name/main.py
-
-# ---------------------------------------------------------------------------- #
-#               ------- Debug & Test ------
-# ---------------------------------------------------------------------------- #
-debug:
-	python -m pdb src/app_name/main.py
-
-test:
-	python -m pytest --color=yes --durations=5 --verbose --config-file=test/pytest.ini test/
-
-coverage:
-	coverage run --rcfile=pyproject.toml -m pytest --color=yes --verbose --config-file=test/pytest.ini
-	coverage report --show-missing
+	python src/${APP_NAME_SNAKE}/main.py
 
 # ---------------------------------------------------------------------------- #
 #               ------- Pre-commit Hooks ------
@@ -172,48 +185,86 @@ hook-install:
 hook-run:
 	prek run --all-files
 
+hook-update:
+	prek auto-update
+
 # ---------------------------------------------------------------------------- #
-#               ------- Image ------
+#               ------- Docker ------
 # ---------------------------------------------------------------------------- #
 get-tag:
 	echo "export IMAGE_TAG=${IMAGE_TAG}"
 
-build-image: clean
-	export DOCKER_CONTENT_TRUST=1
-	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag app-name:${IMAGE_TAG} .
-
-build-builder-image: clean
-	export DOCKER_CONTENT_TRUST=1
-	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag app-name:${IMAGE_TAG}-builder --target builder .
-
 pull-image:
-	docker pull app-name:${IMAGE_TAG}
+	docker pull ${APP_NAME}:${IMAGE_TAG}
 
 push-image:
-	docker push app-name:${IMAGE_TAG}
+	docker push ${APP_NAME}:${IMAGE_TAG}
+
+run-healthcheck:
+	docker exec ${APP_NAME} python healthcheck.py
 
 # ---------------------------------------------------------------------------- #
-#               ------- Container ------
+#               ------- Docker Build ------
+# ---------------------------------------------------------------------------- #
+build-builder-image: clean
+	export DOCKER_CONTENT_TRUST=1
+	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag ${APP_NAME}:${IMAGE_TAG}-builder --target builder .
+
+build-dev-image: clean
+	export DOCKER_CONTENT_TRUST=1
+	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag ${APP_NAME}:${IMAGE_TAG}-dev --target development .
+
+build-image: clean
+	export DOCKER_CONTENT_TRUST=1
+	docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} --build-arg UV_VERSION=${UV_VERSION} --file docker/Dockerfile --tag ${APP_NAME}:${IMAGE_TAG} --target production .
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Compose ------
+# ---------------------------------------------------------------------------- #
+compose-up:
+	export IMAGE_TAG=${IMAGE_TAG}
+	docker compose -f docker/compose.yaml up -d
+
+compose-down:
+	export IMAGE_TAG=${IMAGE_TAG}
+	docker compose -f docker/compose.yaml down -v
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Create ------
 # ---------------------------------------------------------------------------- #
 create-container:
-	docker create --env-file .env --name app-name app-name:${IMAGE_TAG}
+	docker create --env-file .env --name ${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
 
-debug-container:
-	python -m pdb .venv/lib/python3.11/site-packages/app_name/main.py
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Run ------
+# ---------------------------------------------------------------------------- #
+run-dev-container:
+	docker run --env-file .env --name ${APP_NAME} --rm  --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}-dev
 
 run-container:
-	docker run --env-file .env --name app-name --rm app-name:${IMAGE_TAG}
+	docker run --env-file .env --name ${APP_NAME} --rm  --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
 
 run-container-detach:
-	docker run --detach --env-file .env --name app-name --rm app-name:${IMAGE_TAG}
+	docker run --detach --env-file .env --name ${APP_NAME} --rm  --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Run Debug ------
+# ---------------------------------------------------------------------------- #
+run-container-pdb:
+	docker run --entrypoint python --env-file .env --interactive --name ${APP_NAME}-debug --rm  --tty --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG} -m pdb -m ${APP_NAME_SNAKE}.main
+
+run-container-debugpy:
+	docker run --env DEBUGPY=true --env-file .env --name ${APP_NAME}-debug --publish 5678:5678 --rm --volume $(shell pwd)/src:/app/src --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dive ------
 # ---------------------------------------------------------------------------- #
 dive-image:
-	dive app-name:${IMAGE_TAG}
+	dive ${APP_NAME}:${IMAGE_TAG}
 
 dive-image-ci:
+	CI=true dive ${APP_NAME}:${IMAGE_TAG}
+
 # ---------------------------------------------------------------------------- #
 #               ------- Grype ------
 # ---------------------------------------------------------------------------- #
@@ -241,20 +292,23 @@ trivy-clean:
 trivy-repo:
 	trivy repository --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln .
 
-trivy-image:
-	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:${IMAGE_TAG}
-
 trivy-builder-image:
-	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vul app-name:${IMAGE_TAG}-builder
+	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln ${APP_NAME}:${IMAGE_TAG}-builder
+
+trivy-dev-image:
+	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln ${APP_NAME}:${IMAGE_TAG}-dev
+
+trivy-image:
+	trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln ${APP_NAME}:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dockle ------
 # ---------------------------------------------------------------------------- #
 dockle-image-security:
-	dockle app-name:${IMAGE_TAG}
+	dockle ${APP_NAME}:${IMAGE_TAG}
 
 dockle-builder-image-security:
-	dockle app-name:${IMAGE_TAG}-builder
+	dockle ${APP_NAME}:${IMAGE_TAG}-builder
 
 # ---------------------------------------------------------------------------- #
 #               ------- Checkov ------
@@ -263,10 +317,20 @@ checkov:
 	checkov --config-file checkov.yaml
 
 # ---------------------------------------------------------------------------- #
+#               ------- Kubernetes ------
+# ---------------------------------------------------------------------------- #
+pod-pdb:
+	kubectl run ${APP_NAME}-debug --image=${APP_NAME}:${IMAGE_TAG} --attach --restart=Never --stdin --tty --command -- python -m pdb -m ${APP_NAME_SNAKE}.main
+
+pod-debugpy:
+	kubectl run ${APP_NAME}-debug --image=${APP_NAME}:${IMAGE_TAG} --env="DEBUGPY=true" --port=5678 --restart=Never
+	kubectl port-forward pod/${APP_NAME}-debug 5678:5678
+
+# ---------------------------------------------------------------------------- #
 #               ------- Other ------
 # ---------------------------------------------------------------------------- #
 clean:
-	find . -type f -name '*.pyc' | xargs rm -rf
+	find . -type f -name '*.py[cod]' | xargs rm -rf
 	find . -type d -name 'control' | xargs rm -rf
 	find . -type d -name '__pycache__' | xargs rm -rf
 	find . -type d -name '.mypy_cache' | xargs rm -rf

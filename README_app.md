@@ -304,7 +304,6 @@ If you want to learn more about Python libraries used throughout this applicatio
   - [pandas](https://pandas.pydata.org/docs/reference/index.html)
   - [pika](https://pika.readthedocs.io/en/stable/index.html)
   - [polars](https://github.com/pola-rs/polars)
-  - [pytest](https://docs.pytest.org/en/stable)
   - [requests](https://requests.readthedocs.io/en/latest/api)
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:

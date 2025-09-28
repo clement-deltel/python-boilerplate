@@ -28,7 +28,8 @@ The pre-requisites are:
   - ls-lint
   - tokei
   - varlock
-- readme-generator-for-helm
+- Using NPM
+  - readme-generator-for-helm
 
 ```bash
 make pre-requisites

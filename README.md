@@ -32,6 +32,8 @@ Ensure you have installed the tools listed below:
   - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
   - [tokei](https://github.com/XAMPPRocky/tokei) - count your code, quickly. `Rust`
   - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
+- Using NPM
+  - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm) - auto generate READMEs for Helm Charts. `JavaScript`
 
 Or run the command below:
 

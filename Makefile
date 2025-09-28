@@ -239,22 +239,22 @@ create-container:
 #               ------- Docker Run ------
 # ---------------------------------------------------------------------------- #
 run-dev-container:
-	docker run --env-file .env --name ${APP_NAME} --rm  --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}-dev
+	docker run --env-file .env --name ${APP_NAME} --rm  ${APP_NAME}:${IMAGE_TAG}-dev
 
 run-container:
-	docker run --env-file .env --name ${APP_NAME} --rm  --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
+	docker run --env-file .env --name ${APP_NAME} --rm  ${APP_NAME}:${IMAGE_TAG}
 
 run-container-detach:
-	docker run --detach --env-file .env --name ${APP_NAME} --rm  --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
+	docker run --detach --env-file .env --name ${APP_NAME} --rm ${APP_NAME}:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Docker Run Debug ------
 # ---------------------------------------------------------------------------- #
 run-container-pdb:
-	docker run --entrypoint python --env-file .env --interactive --name ${APP_NAME}-debug --rm  --tty --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG} -m pdb -m ${APP_NAME_SNAKE}.main
+	docker run --entrypoint python --env-file .env --interactive --name ${APP_NAME}-debug --rm  --tty ${APP_NAME}:${IMAGE_TAG} -m pdb -m ${APP_NAME_SNAKE}.main
 
 run-container-debugpy:
-	docker run --env DEBUGPY=true --env-file .env --name ${APP_NAME}-debug --publish 5678:5678 --rm --volume $(shell pwd)/src:/app/src --volume /mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME}:/mnt/naos_share/${CUSTOMER_NAME}/${APP_NAME} ${APP_NAME}:${IMAGE_TAG}
+	docker run --env DEBUGPY=true --env-file .env --name ${APP_NAME}-debug --publish 5678:5678 --rm --volume $(shell pwd)/src:/app/src ${APP_NAME}:${IMAGE_TAG}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dive ------

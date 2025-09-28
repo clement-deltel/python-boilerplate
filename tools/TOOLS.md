@@ -63,10 +63,16 @@ Test:
   - [coverage](https://coverage.readthedocs.io/en/latest)
   - [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
 
+Typing:
+
+- **Third-party**
+  - [types-requests](https://pypi.org/project/types-requests)
+
 Not using anymore:
 
 - [mypy](https://github.com/python/mypy) - static typing. **Reason**: using pyright and ty. `Python`
 - [pandas](https://pandas.pydata.org/docs/reference/index.html) - **Reason**: using polars.
+- [pandas-stubs](https://github.com/VirtusLab/pandas-stubs) - **Reason**: using polars.
 - [poetry](https://github.com/python-poetry/poetry) - packaging and dependency management made easy. **Reason**: using uv. `Python`
 - [pre-commit](https://github.com/pre-commit/pre-commit) - framework for managing and maintaining multi-language pre-commit hooks. **Reason**: using prek. `Python`
 - [pyenv](https://github.com/pyenv/pyenv) - version management. **Reason**: using uv.

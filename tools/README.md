@@ -17,7 +17,7 @@
   - [docker](#docker)
   - [hadolint](#hadolint)
   - [dive](#dive)
-    - [dockle](#dockle)
+  - [dockle](#dockle)
   - [grype](#grype)
   - [trivy](#trivy)
 - [Cloud](#cloud)
@@ -296,7 +296,7 @@ Analyze image efficiency in CI mode?
 CI=true dive app-name:latest
 ```
 
-#### dockle
+### dockle
 
 Here are useful commands to detect potential security flaws of the Docker image using [dockle](https://containers.goodwith.tech/) ([source code](https://github.com/goodwithtech/dockle)). Do you want to:
 

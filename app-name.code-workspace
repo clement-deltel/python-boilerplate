@@ -199,7 +199,7 @@
                 "type": "debugpy",
                 "request": "attach",
                 "justMyCode": true,
-                "redirectOutput": true, // set DEBUGPY_PRINT to true for proper log redirection
+                "redirectOutput": true, // set LOG_PRINT to true for proper log redirection
                 "connect": {
                     "host": "localhost",
                     "port": 5678

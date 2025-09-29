@@ -154,6 +154,9 @@ class LogConfig:
         self.json = to_bool(environ.get("LOG_JSON", default="false"))
         self.pretty = to_bool(environ.get("LOG_JSON_PRETTY", default="false"))
 
+        # Log handling
+        self.print = to_bool(environ.get("LOG_PRINT", default="false"))
+
         if self.to_file:
             self.path.mkdir(parents=True, exist_ok=True)
 
@@ -223,7 +226,6 @@ class DebugConfig:
         self.host = environ.get("DEBUGPY_HOST", default="localhost")
         self.port = to_int(environ.get("DEBUGPY_PORT", default="5678"))
         self.wait = to_bool(environ.get("DEBUGPY_WAIT", default="true"))
-        self.print = to_bool(environ.get("DEBUGPY_PRINT", default="false"))
 
 
 # ---------------------------------------------------------------------------- #

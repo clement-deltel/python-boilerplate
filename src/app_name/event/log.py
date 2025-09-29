@@ -13,7 +13,7 @@ from enum import Enum
 from sys import stderr, stdout
 
 # Local Application
-from app_name.common.config import LogConfig, get_config_class, get_config_value
+from app_name.common.config import LogConfig, get_config_class
 from app_name.event.formatter.cloudevent import CloudEventsFormatter
 from app_name.event.formatter.custom import CustomFormatter
 from app_name.event.formatter.json_f import JSONFormatter
@@ -55,7 +55,7 @@ class Log:
         self.set_level(self.config.level)
         self.set_formatters(self.config.level)
 
-        if get_config_value("debug", "print"):
+        if self.config.print:
             self.open_print()
         else:
             self.open_stream()

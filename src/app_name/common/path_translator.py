@@ -46,19 +46,19 @@ class PathTranslator:
         # Parse mappings from environment variable
         self._mappings = self._parse_mappings(mappings_env)
 
-    def _parse_mappings(self, mappings_env: str) -> dict[str, str]:
+    def _parse_mappings(self, mappings_env: str) -> dict[str, dict[str, str]]:
         """Parse path mappings.
 
         Args:
             mappings_env (str): mappings environment variable.
 
         Returns:
-            dict[str, str]: dictionary mapping source paths to destination paths.
+            dict[str, dict[str,str]]: dictionary mapping source paths to destination paths, divided by category.
 
         Raises:
             PathMappingError: if mappings format is invalid.
         """
-        mappings = {}
+        mappings = {"cross-platform": {}, "linux": {}, "windows": {}}
         pair_length = 2
 
         if not mappings_env.strip():
@@ -81,11 +81,24 @@ class PathTranslator:
             if not source or not destination:
                 raise PathMappingError(f"Empty source or destination in mapping: '{pair}'")
 
-            # Normalize paths for consistent matching
-            mappings[self._normalize_path(source)] = self._normalize_path(destination)
+            normalized_source = self._normalize_path(source)
+            normalized_destination = self._normalize_path(destination)
+            is_windows_source = self._is_path_windows(normalized_source)
+            is_windows_destination = self._is_path_windows(normalized_destination)
 
-        reverse_mappings = {value: key for key, value in mappings.items()}
-        return mappings | reverse_mappings
+            # Categorize the mapping
+            if is_windows_source != is_windows_destination:
+                category = "cross-platform"
+            elif is_windows_source and is_windows_destination:
+                category = "windows"
+            else:
+                category = "linux"
+
+            # Normalize paths for consistent matching
+            mappings[category][normalized_source] = normalized_destination
+            mappings[category][normalized_destination] = normalized_source
+
+        return mappings
 
     def _normalize_path(self, path_str: str) -> str:
         """Normalize a path string for consistent mapping lookup.
@@ -122,25 +135,25 @@ class PathTranslator:
 
         return any(windows_indicators)
 
-    def _find_mapping(self, path_str: str) -> str | None:
+    def _find_mapping(self, path_str: str, category: str = "cross-platform") -> str | None:
         """Find a mapping for the given path string.
 
         Args:
             path_str (str): path string to find mapping for.
+            category (str): category for mapping lookup. Defaults to cross-platform.
 
         Returns:
-            str: mapped path if found, None otherwise
+            str: mapped path if found, None otherwise.
         """
         normalized_path = self._normalize_path(path_str)
+        mappings = self._mappings[category]
 
         # Direct match first
-        if normalized_path in self._mappings:
-            return self._mappings[normalized_path]
+        if normalized_path in mappings:
+            return mappings[normalized_path]
 
         # Check for prefix matches (longest match wins)
-        matching_mappings = [
-            (source, target) for source, target in self._mappings.items() if normalized_path.startswith(source + "/") or normalized_path == source
-        ]
+        matching_mappings = [(source, target) for source, target in mappings.items() if normalized_path.startswith(source + "/") or normalized_path == source]
 
         if not matching_mappings:
             return None
@@ -180,14 +193,14 @@ class PathTranslator:
         # Case 1: Same system type (Linux->Linux or Windows->Windows)
         if path_system == target_system:
             if mapping:
-                mapped_path = self._find_mapping(path_str)
+                mapped_path = self._find_mapping(path_str, target)
                 if mapped_path:
                     path_str = mapped_path
 
             return path_str
 
         # Case 2: Cross-platform conversion required (mapping is mandatory)
-        mapped_path = self._find_mapping(path_str)
+        mapped_path = self._find_mapping(path_str, "cross-platform")
         if not mapped_path:
             raise PathTranslationError(f"No {target_system.capitalize()} mapping found for {path_system.capitalize()} path: '{path_str}'")
 
@@ -245,52 +258,56 @@ def to_pure_path(path: str | Path, mapping: bool = False) -> PurePosixPath | Pur
 # ---------------------------------------------------------------------------- #
 #               ------- Linux ------
 # ---------------------------------------------------------------------------- #
-def to_posix(path: str | Path) -> Path:
+def to_posix(path: str | Path, mapping: bool = True) -> Path:
     """Translate a path to Posix format.
 
     Args:
         path (str | Path): path to translate.
+        mapping (bool, optional): whether to apply mapping. Defaults to True.
 
     Returns:
         Path: Posix translated path.
     """
-    return Path(translator().to_path(path, mapping=True, target="linux"))
+    return Path(translator().to_path(path, mapping=mapping, target="linux"))
 
 
-def to_pure_posix(path: str | Path) -> PurePosixPath:
+def to_pure_posix(path: str | Path, mapping: bool = True) -> PurePosixPath:
     """Translate a path to Posix pure format.
 
     Args:
         path (str | Path): path to translate.
+        mapping (bool, optional): whether to apply mapping. Defaults to True.
 
     Returns:
         PurePosixPath: Posix translated pure path.
     """
-    return PurePosixPath(translator().to_path(path, mapping=True, target="linux"))
+    return PurePosixPath(translator().to_path(path, mapping=mapping, target="linux"))
 
 
 # ---------------------------------------------------------------------------- #
 #               ------- Windows ------
 # ---------------------------------------------------------------------------- #
-def to_windows(path: str | Path) -> Path:
+def to_windows(path: str | Path, mapping: bool = True) -> Path:
     """Translate a path to Windows format.
 
     Args:
         path (str | Path): path to translate.
+        mapping (bool, optional): whether to apply mapping. Defaults to True.
 
     Returns:
         Path: Windows translated path.
     """
-    return Path(translator().to_path(path, mapping=True, target="windows"))
+    return Path(translator().to_path(path, mapping=mapping, target="windows"))
 
 
-def to_pure_windows(path: str | Path) -> PureWindowsPath:
+def to_pure_windows(path: str | Path, mapping: bool = True) -> PureWindowsPath:
     """Translate a path to Windows pure format.
 
     Args:
         path (str | Path): path to translate.
+        mapping (bool, optional): whether to apply mapping. Defaults to True.
 
     Returns:
         PureWindowsPath: Windows translated pure path.
     """
-    return PureWindowsPath(translator().to_path(path, mapping=True, target="windows"))
+    return PureWindowsPath(translator().to_path(path, mapping=mapping, target="windows"))

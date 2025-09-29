@@ -276,7 +276,12 @@
                     "kind": "build",
                     "isDefault": true
                 },
-                "command": "uv sync",
+                "linux":{
+                    "command": "uv sync"
+                },
+                "windows":{
+                    "command": "uv pip install --editable ."
+                },
                 "problemMatcher": []
             },
             {

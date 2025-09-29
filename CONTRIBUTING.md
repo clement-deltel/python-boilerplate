@@ -21,15 +21,15 @@ The following is a set of guidelines for contributing. These are mostly guidelin
 
 The pre-requisites are:
 
-- uv
+- [uv](https://github.com/astral-sh/uv) - extremely fast package and project manager. `Rust`
 - Using Homebrew
-  - gitleaks
-  - hadolint
-  - ls-lint
-  - tokei
-  - varlock
+  - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
+  - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
+  - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
+  - [tokei](https://github.com/XAMPPRocky/tokei) - count your code, quickly. `Rust`
+  - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
 - Using NPM
-  - readme-generator-for-helm
+  - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm) - auto generate READMEs for Helm Charts. `JavaScript`
 
 ```bash
 make pre-requisites

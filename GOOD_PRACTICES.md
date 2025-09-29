@@ -44,6 +44,9 @@ Here are the steps you need to follow when starting a new coding project from th
   - *src directory*
     - rename the `app_name` directory
     - all `app_name.*` imports in the Python files
+  - *tools directory*
+    - **README.md**
+      - 5 `app-name` occurrences
   - **.pre-commit-config.yaml**
     - enable commitizen hooks (disabled by default due to lack of emojis support)
   - **app-name.code-workspace**
@@ -53,8 +56,6 @@ Here are the steps you need to follow when starting a new coding project from th
     - add launch configurations if needed
   - **checkov.yaml**
     - 1 `app-name` occurrence
-  - **CONTRIBUTING.md**
-    - 4 `app-name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
     - 1 `customer` occurrence

@@ -35,14 +35,14 @@ app-description
  Python                 14         1667         1218          147          302
  Shell                   2          529          326          113           90
  Plain Text              3         1049            0         1049            0
- TOML                    1          329          189           95           45
+ TOML                    1          330          189           96           45
  YAML                    2           38           33            4            1
 -------------------------------------------------------------------------------
- Markdown                7         1465            0         1034          431
+ Markdown                7         1458            0         1027          431
  |- BASH                 5          121          116            4            1
- (Total)                           1586          116         1038          432
+ (Total)                           1579          116         1031          432
 ===============================================================================
- Total                  35         5726         2106         2612         1008
+ Total                  35         5720         2106         2606         1008
 ===============================================================================
 ```
 
@@ -291,20 +291,12 @@ Please open an issue if anything is missing or unclear in this documentation.
 
 ## Resources
 
-If you want to learn more about Python libraries used throughout this application, you can refer to the below links:
+If you want to learn more about Python built-in libraries used throughout this application, you can refer to the below links:
 
-- **Built-in**
-  - [cProfile](https://docs.python.org/3/library/profile.html)
-  - [datetime](https://docs.python.org/3/library/datetime.html)
-  - [http](https://docs.python.org/3/library/http.html)
-  - [pathlib](https://docs.python.org/3/library/pathlib.html)
-- **Third-party**
-  - [cloudevents](https://github.com/cloudevents/sdk-python)
-  - [numpy](https://github.com/numpy/numpy)
-  - [pandas](https://pandas.pydata.org/docs/reference/index.html)
-  - [pika](https://pika.readthedocs.io/en/stable/index.html)
-  - [polars](https://github.com/pola-rs/polars)
-  - [requests](https://requests.readthedocs.io/en/latest/api)
+- [cProfile](https://docs.python.org/3/library/profile.html)
+- [datetime](https://docs.python.org/3/library/datetime.html)
+- [http](https://docs.python.org/3/library/http.html)
+- [pathlib](https://docs.python.org/3/library/pathlib.html)
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
 

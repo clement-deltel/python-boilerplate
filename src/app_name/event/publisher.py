@@ -18,7 +18,7 @@ from pika.exceptions import AMQPChannelError, AMQPConnectionError, ConnectionClo
 
 # Local Application
 from app_name.common.config import AMQPConfig, get_config_class
-from app_name.event.log import log
+from app_name.event.logger.amqp import log
 
 
 class AMQPPublisher:

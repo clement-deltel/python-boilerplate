@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 from app_name.common.config import Config, DevConfig, ProdConfig, set_config
 from app_name.common.debug import debug
 from app_name.common.profiler import profiler
-from app_name.event.log import log
+from app_name.event.logger.log import log
 
 load_dotenv(".env", override=True)
 

@@ -2,7 +2,7 @@
 """Module used to publish log messages to RabbitMQ."""
 
 # Standard Library
-from logging import Filter, Handler, LogRecord
+from logging import Handler, LogRecord
 from threading import Lock
 
 # Local Application
@@ -56,18 +56,3 @@ class AMQPLogHandler(Handler):
         """Close the handler and cleanup resources."""
         self.amqp.close()
         super().close()
-
-
-class AMQPFilter(Filter):
-    """Class used to filter log messages based on module name."""
-
-    def filter(self, record: LogRecord) -> bool:
-        """Filter out log messages from the publisher module.
-
-        Args:
-            record (logging.LogRecord): log record to filter.
-
-        Returns:
-            bool: if the record is from the publisher module or not.
-        """
-        return record.module != "publisher"

@@ -438,7 +438,7 @@ run_precommit_hooks() {
     cd "$TARGET_DIR" || error_exit "Failed to change to target directory"
 
     if [[ -f ".pre-commit-config.yaml" ]]; then
-        uv run pre-commit run --all-files || error_exit "Failed to run pre-commit hooks"
+        uv run prek run --all-files || error_exit "Failed to run pre-commit hooks"
         print_message "$GREEN" "Pre-commit hooks run successfully"
     else
         print_message "$YELLOW" "No .pre-commit-config.yaml found, skipping pre-commit run"

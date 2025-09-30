@@ -180,8 +180,12 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## Resources
 
-- [PEP 8 — the Style Guide for Python Code](https://pep8.org)
-- [pyOpenSci - Python Package Guide](https://www.pyopensci.org/python-package-guide/index.html)
-- [Python Coding Conventions](https://visualgit.readthedocs.io/en/latest/index.html)
-- [Python Packaging User Guide](https://packaging.python.org/en/latest)
-- [The Hitchhiker's Guide to Python](https://docs.python-guide.org)
+- Git
+  - [conventional commits](https://www.conventionalcommits.org)
+  - [How to Write a Git Commit Message](https://cbea.ms/git-commit)
+- Python
+  - [PEP 8 — the Style Guide for Python Code](https://pep8.org)
+  - [pyOpenSci - Python Package Guide](https://www.pyopensci.org/python-package-guide/index.html)
+  - [Python Coding Conventions](https://visualgit.readthedocs.io/en/latest/index.html)
+  - [Python Packaging User Guide](https://packaging.python.org/en/latest)
+  - [The Hitchhiker's Guide to Python](https://docs.python-guide.org)

@@ -5,7 +5,7 @@
 > - Keep it short and clear — the text below will become the body of the merge commit
 > - **PR Title**
 >   - Answer the questions: What problem does this solve? What is being changed?
->   - Use [conventional commits](https://www.conventionalcommits.org/) prefixes
+>   - Use [conventional commits](https://www.conventionalcommits.org) prefixes
 >     - `fix:` **PATCH** version digit bump
 >     - `feat:` **MINOR** version digit bump
 >     - `feat!:` or **BREAKING CHANGE** in the body: **MAJOR** version digit bump

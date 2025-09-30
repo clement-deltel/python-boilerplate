@@ -8,6 +8,7 @@
 - [Lint rules](#lint-rules)
 - [Visual Studio Code extensions](#visual-studio-code-extensions)
 - [Future enhancements](#future-enhancements)
+- [Resources](#resources)
 
 ## Introduction
 
@@ -265,3 +266,7 @@ Other:
 - [thepipe](https://github.com/emcf/thepipe) - get clean data from tricky documents, powered by vision-language models. `Python`
 - [tqdm](https://github.com/tqdm/tqdm) - fast, extensible progress bar. `Python`
 - [yapf](https://github.com/google/yapf) - formatter for files. `Python`
+
+## Resources
+
+- [Top 7 Python Profiling Tools for Performance](https://daily.dev/blog/top-7-python-profiling-tools-for-performance)

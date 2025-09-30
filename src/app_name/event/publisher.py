@@ -48,6 +48,8 @@ class AMQPPublisher:
 
         self._connection_parameters = self._get_connection_parameters()
 
+        self.extra = {"host": self._connection_parameters.host, "exchange": self.config.exchange}
+
     def _get_connection_parameters(self) -> pika.ConnectionParameters:
         """Get RabbitMQ connection parameters from config.
 
@@ -81,6 +83,7 @@ class AMQPPublisher:
                 self._close_connection()
 
                 # Establish new connection
+                log().logger.debug("Connecting to RabbitMQ...", extra=self.extra)
                 self._connection = pika.BlockingConnection(self._connection_parameters)
                 self._channel = self._connection.channel()
 
@@ -91,10 +94,10 @@ class AMQPPublisher:
                 self._reconnect_attempts = 0
 
             except (AMQPConnectionError, ConnectionClosedByBroker) as err:
-                log().logger.error("Failed to connect to RabbitMQ: %s", err, extra={"amqp_host": self._connection_parameters.host})
+                log().logger.error("Failed to connect to RabbitMQ: %s", err, extra=self.extra)
                 self._is_connected = False
             except Exception as err:
-                log().logger.error("Unexpected error during RabbitMQ connection: %s", err, extra={"amqp_host": self._connection_parameters.host})
+                log().logger.error("Unexpected error during RabbitMQ connection: %s", err, extra=self.extra)
                 self._is_connected = False
 
             return self._is_connected
@@ -106,11 +109,13 @@ class AMQPPublisher:
             bool: True if reconnection successful, False otherwise.
         """
         if self._reconnect_attempts >= self._max_reconnect_attempts:
-            log().logger.error("Max reconnection attempts (%s) exceeded", self._max_reconnect_attempts)
+            log().logger.error("Max reconnection attempts (%s) exceeded", self._max_reconnect_attempts, extra=self.extra)
             return False
 
         delay = min(self._reconnect_delay * (2 ** (self._reconnect_attempts - 1)), 60)
-        log().logger.info("Attempting to reconnect to RabbitMQ in %s seconds...(%s/%s)", delay, self._reconnect_attempts, self._max_reconnect_attempts)
+        log().logger.info(
+            "Attempting to reconnect to RabbitMQ in %s seconds...(%s/%s)", delay, self._reconnect_attempts, self._max_reconnect_attempts, extra=self.extra
+        )
         sleep(delay)
 
         self._reconnect_attempts += 1
@@ -131,7 +136,7 @@ class AMQPPublisher:
             if self._channel and not self._channel.is_closed:
                 self._channel.close()
         except Exception as err:
-            log().logger.error("Error closing channel: %s", err)
+            log().logger.error("Error closing channel: %s", err, extra=self.extra)
         finally:
             self._channel = None
 
@@ -139,7 +144,7 @@ class AMQPPublisher:
             if self._connection and not self._connection.is_closed:
                 self._connection.close()
         except Exception as err:
-            log().logger.error("Error closing connection: %s", err)
+            log().logger.error("Error closing connection: %s", err, extra=self.extra)
         finally:
             self._connection = None
             self._is_connected = False
@@ -148,6 +153,7 @@ class AMQPPublisher:
         """Close the AMQP connection and cleanup resources."""
         with self._lock:
             self._close_connection()
+        log().close()
 
     def publish_message(self, message: str) -> bool:
         """Publish a log message to RabbitMQ.
@@ -176,7 +182,7 @@ class AMQPPublisher:
                 return True
 
         except (AMQPConnectionError, AMQPChannelError, ConnectionClosedByBroker) as err:
-            log().logger.warning("AMQP connection error during publish: %s. Attempting reconnection.", err)
+            log().logger.warning("AMQP connection error during publish: %s. Attempting reconnection.", err, extra=self.extra)
             self._is_connected = False
             # Try to reconnect and republish once
             if self._reconnect():
@@ -184,5 +190,5 @@ class AMQPPublisher:
             return False
 
         except Exception as err:
-            log().logger.error("Unexpected error during message publish: %s", err)
+            log().logger.error("Unexpected error during message publish: %s", err, extra=self.extra)
             return False

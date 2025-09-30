@@ -22,7 +22,7 @@ class AMQPLog:
         self.config: LogConfig = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
 
-        self.extra_fields = {"amqp_host"}
+        self.extra_fields = {"host", "exchange"}
 
         # Logger
         self._logger = getLogger("amqp_internal")
@@ -134,7 +134,7 @@ class AMQPLog:
 
 
 # Global
-_amqp_log_instance = None
+_log_instance = None
 
 
 def set_log(log_instance: AMQPLog) -> None:

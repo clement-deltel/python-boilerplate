@@ -603,6 +603,8 @@ pyquery==2.0.1 ; sys_platform == 'linux' \
 pyright==1.1.405 ; sys_platform == 'linux' \
     --hash=sha256:5c2a30e1037af27eb463a1cc0b9f6d65fec48478ccf092c1ac28385a15c55763 \
     --hash=sha256:a2cb13700b5508ce8e5d4546034cb7ea4aedb60215c6c33f56cec7f53996035a
+pyscn==1.0.0 ; sys_platform == 'linux' \
+    --hash=sha256:2e9b36ae0f87e3577e608bffff287926a97ce850f9ee7c432816bc496aa35f26
 python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427

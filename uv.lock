@@ -112,6 +112,7 @@ dev = [
     { name = "csv2md", marker = "sys_platform == 'linux'" },
     { name = "howdoi", marker = "sys_platform == 'linux'" },
     { name = "prek", marker = "sys_platform == 'linux'" },
+    { name = "pyscn", marker = "sys_platform == 'linux'" },
     { name = "snakeviz", marker = "sys_platform == 'linux'" },
 ]
 lint = [
@@ -152,6 +153,7 @@ dev = [
     { name = "csv2md" },
     { name = "howdoi" },
     { name = "prek" },
+    { name = "pyscn" },
     { name = "snakeviz" },
 ]
 lint = [
@@ -1462,6 +1464,14 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/fb/6c/ba4bbee22e76af700ea593a1d8701e3225080956753bee9750dcc25e2649/pyright-1.1.405.tar.gz", hash = "sha256:5c2a30e1037af27eb463a1cc0b9f6d65fec48478ccf092c1ac28385a15c55763", size = 4068319, upload-time = "2025-09-04T03:37:06.776Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d5/1a/524f832e1ff1962a22a1accc775ca7b143ba2e9f5924bb6749dce566784a/pyright-1.1.405-py3-none-any.whl", hash = "sha256:a2cb13700b5508ce8e5d4546034cb7ea4aedb60215c6c33f56cec7f53996035a", size = 5905038, upload-time = "2025-09-04T03:37:04.913Z" },
+]
+
+[[package]]
+name = "pyscn"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/eb/4b/72dfbfe08742528a11e67db7d239361d90124b33a13991ae78adde815ffa/pyscn-1.0.0-py3-none-manylinux_2_17_x86_64.whl", hash = "sha256:2e9b36ae0f87e3577e608bffff287926a97ce850f9ee7c432816bc496aa35f26", size = 4737974, upload-time = "2025-10-05T12:34:27.23Z" },
 ]
 
 [[package]]

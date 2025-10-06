@@ -194,7 +194,7 @@ repos:
         language: system
         always_run: true
         pass_filenames: false
-        args: ["--command", "csv2md doc/env.csv", "--regex", '(List of available environment variables:\n\n)(.*?)(\n\n> \*Note\*:)']
+        args: ["--command", "csv2md doc/env.csv", "--regex", '(List of available environment variables:\n\n)(.*?)(\n\n> \*\*Note\*\*:)']
       - id: readme update tokei
         name: readme-update-tokei
         description: Update README.md code statistics

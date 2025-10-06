@@ -189,6 +189,12 @@ hook-update:
 	prek auto-update
 
 # ---------------------------------------------------------------------------- #
+#               ------- Pyscn ------
+# ---------------------------------------------------------------------------- #
+pyscn-run:
+	pyscn analyze src/
+
+# ---------------------------------------------------------------------------- #
 #               ------- Docker ------
 # ---------------------------------------------------------------------------- #
 get-tag:
@@ -325,6 +331,12 @@ pod-pdb:
 pod-debugpy:
 	kubectl run ${APP_NAME}-debug --image=${APP_NAME}:${IMAGE_TAG} --env="DEBUGPY=true" --port=5678 --restart=Never
 	kubectl port-forward pod/${APP_NAME}-debug 5678:5678
+
+job-create:
+	kubectl create job --from cronjob/${APP_NAME} ${APP_NAME}-debug --namespace custom-devs
+
+job-delete:
+	kubectl delete job ${APP_NAME}-debug --force --namespace custom-devs
 
 # ---------------------------------------------------------------------------- #
 #               ------- Other ------

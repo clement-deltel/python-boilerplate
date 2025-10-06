@@ -31,18 +31,18 @@ app-description
  Dockerfile              3          287          137           87           63
  INI                     1           17            5            9            3
  JSON                    1            7            7            0            0
- Makefile                1          338          191           74           73
+ Makefile                1          350          197           77           76
  Python                 16         1839         1351          160          328
  Shell                   2          529          326          113           90
- Plain Text              3         1049            0         1049            0
- TOML                    1          330          189           96           45
+ Plain Text              3         1051            0         1051            0
+ TOML                    1          445          247          137           61
  YAML                    2           38           33            4            1
 -------------------------------------------------------------------------------
- Markdown                7         1485            0         1044          441
- |- BASH                 5          121          116            4            1
- (Total)                           1606          116         1048          442
+ Markdown                7         1495            0         1050          445
+ |- BASH                 5          122          117            4            1
+ (Total)                           1617          117         1054          446
 ===============================================================================
- Total                  37         5919         2239         2636         1044
+ Total                  37         6058         2303         2688         1067
 ===============================================================================
 ```
 
@@ -103,7 +103,7 @@ List of available environment variables:
 | AMQP_EXCHANGE_TYPE | str  |           | topic       |           | topic               | RabbitMQ message broker exchange type                              |
 | AMQP_ROUTING_KEY   | str  |           | #           |           | #                   | RabbitMQ message broker routing key                                |
 
-> *Note*: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
+> **Note**: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 
 ## Logs
 
@@ -216,7 +216,7 @@ docker logs app-name
 docker compose down -v
 ```
 
-> *Note*: specifically with Docker Compose, if any of your environment variables contains a "\$" character, make sure to put the value between double quotes and escape the "$" with a "\\" character.
+> **Note**: specifically with Docker Compose, if any of your environment variables contains a "\$" character, make sure to put the value between double quotes and escape the "$" with a "\\" character.
 
 ## Production Deployment
 

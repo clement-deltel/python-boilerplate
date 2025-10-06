@@ -72,8 +72,9 @@
         "files.exclude": {
             "**/control": true,
             "**/__pycache__": true,
-            "**/*.pyc": true,
+            "**/*.py[cod]": true,
             "**/.mypy_cache": true,
+            "**/.pyscn": true,
             "**/.pytest_cache": true,
             "**/.ruff_cache": true,
             "**/.venv": true,

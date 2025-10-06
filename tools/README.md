@@ -8,6 +8,7 @@
   - [ruff](#ruff)
   - [ty](#ty)
   - [prek](#prek)
+  - [pyscn](#pyscn)
   - [gitleaks](#gitleaks)
   - [ls-lint](#ls-lint)
   - [varlock](#varlock)
@@ -212,6 +213,16 @@ Uninstall hooks?
 
 ```bash
 prek uninstall
+```
+
+### pyscn
+
+Here are useful commands to analyze the quality of Python code using [pyscn](https://github.com/ludo-technologies/pyscn) ([source code](https://github.com/ludo-technologies/pyscn)). Do you want to:
+
+Analyze some potential over complex modules, dead code, depth of dependencies, and more?
+
+```bash
+pyscn analyze /src
 ```
 
 ### gitleaks

@@ -275,10 +275,24 @@ snakeviz {date}_{app}.prof
 
 Here are useful commands to manage the Docker configuration. Do you want to:
 
-- Test the `dockerignore` file?
+Test the `dockerignore` file...
+
+- using rsync?
 
 ```bash
 rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
+```
+
+> **Note**: rsync does not support `!` negation prefix.
+
+- using a Docker image?
+
+```bash
+docker build --progress=plain --no-cache -f - . <<'EOF'
+FROM alpine
+COPY . /context
+RUN find /context -type f
+EOF
 ```
 
 ### hadolint
@@ -388,4 +402,4 @@ Update the README.md in the *helm_chart* directory?
 readme-generator --values helm_chart/values.yaml --readme helm_chart/README.md
 ```
 
-> Note: For any documentation related contribution, please use a spell checking tool like [Grammarly](https://www.grammarly.com) to avoid typographical and any other type of errors.
+> **Note**: For any documentation related contribution, please use a spell checking tool like [Grammarly](https://www.grammarly.com) to avoid typographical and any other type of errors.

@@ -56,22 +56,22 @@ The Kubernetes CronJob object is meant for performing regular scheduled actions,
 
 This application Helm chart optionally depends on a `appName.existingSecretName` for providing environment variables, including credentials and application context.
 
-- Fill out the secret template located at `./helm_chart/secret_templates/app-name.env` with the production environment variables.
+- Fill out the secret template located at `./helm_chart/secret_templates/app.env` with the production environment variables.
 - Create the corresponding Kubernetes manifest:
 
 ```bash
 kubectl create secret generic app-name \
 --dry-run=client \
---from-env-file=./helm_chart/secret_templates/app-name.env \
+--from-env-file=./helm_chart/secret_templates/app.env \
 --namespace=<namespace> \
 --output=yaml \
-> ./helm_chart/secret_templates/secret_app-name.yaml
+> ./helm_chart/secret_templates/secret.yaml
 ```
 
 - Apply the configuration to the secret resource:
 
 ```bash
-kubectl apply -f ./helm_chart/secret_templates/secret_app-name.yaml
+kubectl apply -f ./helm_chart/secret_templates/secret.yaml
 ```
 
 - Fill out the secret name into the `deploy/custom-values.yaml` file before deploying with Helm:

@@ -105,7 +105,7 @@ Every time you push some code and consequently open a merge request, do not forg
 - Update the dependency tree in the [README.md](README.md#dependencies) file using [uv](tools/TOOLS.md#uv)
 - Update the environment variables table in the [README.md](README.md#configuration) file using [csv2md](tools/TOOLS.md#csv2md)
 
-> *Note*: There are pre-commit hooks to update those section of the README file automatically.
+> **Note**: There are pre-commit hooks to update those section of the README file automatically.
 
 - Scan the repository using [checkov](tools/TOOLS.md#checkov), and [trivy](tools/TOOLS.md#trivy)
 

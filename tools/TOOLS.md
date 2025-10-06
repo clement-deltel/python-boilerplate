@@ -158,6 +158,12 @@ Git:
 - [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
 
+Kubernetes:
+
+- [Google Cloud Code](https://marketplace.visualstudio.com/items?itemName=googlecloudtools.cloudcode)
+- [Kubernetes](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools)
+- [Kubernetes Templates](https://marketplace.visualstudio.com/items?itemName=lunuan.kubernetes-templates)
+
 Markdown:
 
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=davidanson.vscode-markdownlint)
@@ -221,11 +227,19 @@ Data validation:
 - [msgspec](https://github.com/jcrist/msgspec) - fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML. `Python` `C`
 - [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
 
+Deployment:
+
+- [Score](https://github.com/score-spec/spec) - developer-centric and platform-agnostic Workload specification. `Go`
+
 Document the code:
 
 - [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
 - [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
 - [pydoc](https://docs.python.org/3/library/pydoc.html) - documentation generator and online help system.
+
+Logging:
+
+- [Logly](https://github.com/muhammad-fiaz/logly/) - simplify and enhance the logging process. `Python` `Rust`
 
 Make Python faster:
 
@@ -255,6 +269,10 @@ Type checkers:
 - [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
 - [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
 - [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
+
+Web browser automation:
+
+- [Selenium](https://pypi.org/project/selenium)
 
 Other:
 

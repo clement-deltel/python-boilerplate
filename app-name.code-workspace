@@ -18,6 +18,10 @@
             "elagil.pre-commit-helper",
             // General purpose linter
             "fnando.linter",
+            // Kubernetes
+            "googlecloudtools.cloudcode",
+            "lunuan.kubernetes-templates",
+            "ms-kubernetes-tools.vscode-kubernetes-tools",
             // Markdown
             "davidanson.vscode-markdownlint",
             "yzhang.markdown-all-in-one",

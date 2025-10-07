@@ -289,7 +289,7 @@ cython_debug/
 pyrightconfig.json
 
 # pyscn
-.pyscn
+.pyscn/
 
 # ---------------------------------------------------------------------------- #
 #               ------- Helm ------
@@ -306,7 +306,7 @@ __snapshot__
 #               ------- Repository ------
 # ---------------------------------------------------------------------------- #
 
-# Local directories used for testing purposes
-input/
-log/
-output/
+# Local directories used for testing purposes (ignore symlinks as well)
+input
+log
+output

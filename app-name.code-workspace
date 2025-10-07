@@ -236,24 +236,20 @@
                 },
             },
             {
-                "name": "Kubernetes Pod",
-                "type": "debugpy",
+                "name": "Kubernetes Job",
+                "type": "cloudcode.kubernetes",
                 "request": "attach",
-                "justMyCode": false,
-                "preLaunchTask": "kubectl-start",
-                "postDebugTask": "",
-                "redirectOutput": true,
-                "connect": {
-                    "host": "localhost",
-                    "port": 5678
+                "justMyCode": true,
+                "preLaunchTask": "kubectl-run-job",
+                "postDebugTask": "kubectl-delete-job",
+                "language": "Python",
+                "debugPort": 5678,
+                "podSelector": {
+                    "job-name": "app-name-debug"
                 },
-                "pathMappings": [
-                    {
-                        "localRoot": "${workspaceFolder}/src",
-                        "remoteRoot": "./.venv/lib/python3.11/site-packages"
-                    }
-                ]
-            }
+                "localRoot": "${workspaceFolder}/src",
+                "remoteRoot": "/app/src",
+            },
         ],
         "compounds": []
     },
@@ -362,6 +358,58 @@
                         "IMAGE_TAG": "${input:image-tag}"
                     }
                 }
+            },
+            {
+                "label": "kubectl-run-job",
+                "dependsOrder": "sequence",
+                "dependsOn": [
+                    "kubectl-create-job",
+                    "wait-for-pod"
+                ]
+            },
+            {
+                "label": "kubectl-create-job",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "kubectl",
+                "args": [
+                    "create",
+                    "job",
+                    "--from",
+                    "cronjob/app-name",
+                    "app-name-debug",
+                    "--namespace",
+                    "<namespace>"
+                ]
+            },
+            {
+                "label": "wait-for-pod",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "sleep",
+                "args": [
+                    "10"
+                ]
+            },
+            {
+                "label": "kubectl-delete-job",
+                "type": "shell",
+                "group": {
+                    "kind": "build"
+                },
+                "command": "kubectl",
+                "args": [
+                    "delete",
+                    "job",
+                    "app-name-debug",
+                    "--force",
+                    "--namespace",
+                    "<namespace>"
+                ]
             },
             {
                 "label": "kubectl-start",

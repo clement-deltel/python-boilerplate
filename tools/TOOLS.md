@@ -18,56 +18,52 @@ This document lists and describes all the tools that I use when it comes to code
 
 Here are the useful libraries and modules used across all of my Python projects.
 
+Built-in:
+
+- [cProfile](https://docs.python.org/3/library/profile.html)
+- [datetime](https://docs.python.org/3/library/datetime.html)
+- [http](https://docs.python.org/3/library/http.html)
+- [pathlib](https://docs.python.org/3/library/pathlib.html)
+
 Code:
 
-- **Built-in**
-  - [cProfile](https://docs.python.org/3/library/profile.html)
-  - [datetime](https://docs.python.org/3/library/datetime.html)
-  - [http](https://docs.python.org/3/library/http.html)
-  - [pathlib](https://docs.python.org/3/library/pathlib.html)
-- **Third-party**
-  - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
-  - [numpy](https://github.com/numpy/numpy) - fundamental package for scientific computing. `Python`
-  - [pika](https://pika.readthedocs.io/en/stable/index.html)
-  - [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
-  - [requests](https://requests.readthedocs.io/en/latest/api)
+- [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
+- [numpy](https://github.com/numpy/numpy) - fundamental package for scientific computing. `Python`
+- [pika](https://pika.readthedocs.io/en/stable/index.html)
+- [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
+- [requests](https://requests.readthedocs.io/en/latest/api)
 
 Development:
 
-- **Third-party**
-  - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
-  - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
-  - [howdoi](https://github.com/gleitz/howdoi) - instant coding answers via the command line. `Python`
-  - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
-  - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
+- [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
+- [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
+- [howdoi](https://github.com/gleitz/howdoi) - instant coding answers via the command line. `Python`
+- [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
+- [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
 
 Lint:
 
-- **Third-party**
-  - [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
-  - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
-  - [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
-  - [pyupgrade](https://github.com/asottile/pyupgrade) - automatically upgrade syntax for newer versions of the language. `Python`
-  - [refurb](https://github.com/dosisod/refurb) - refurbishing and modernizing Python codebases. `Python`
-  - [ruff](https://github.com/astral-sh/ruff-pre-commit) - extremely fast linter and code formatter. `Rust`
-  - [ty](https://github.com/astral-sh/ty) - type checker and language server. `Rust`
-  - [yamllint](https://github.com/adrienverge/yamllint) - linter for YAML files. `Python`
+- [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
+- [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
+- [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
+- [pyupgrade](https://github.com/asottile/pyupgrade) - automatically upgrade syntax for newer versions of the language. `Python`
+- [refurb](https://github.com/dosisod/refurb) - refurbishing and modernizing Python codebases. `Python`
+- [ruff](https://github.com/astral-sh/ruff-pre-commit) - extremely fast linter and code formatter. `Rust`
+- [ty](https://github.com/astral-sh/ty) - type checker and language server. `Rust`
+- [yamllint](https://github.com/adrienverge/yamllint) - linter for YAML files. `Python`
 
 Observability:
 
-- **Third-party**
-  - [opentelemetry-distro](https://github.com/open-telemetry/opentelemetry-python-contrib) - OpenTelemetry instrumentation for Python modules. `Python`
+- [opentelemetry-distro](https://github.com/open-telemetry/opentelemetry-python-contrib) - OpenTelemetry instrumentation for Python modules. `Python`
 
 Test:
 
-- **Third-party**
-  - [coverage](https://coverage.readthedocs.io/en/latest)
-  - [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
+- [coverage](https://coverage.readthedocs.io/en/latest)
+- [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
 
 Typing:
 
-- **Third-party**
-  - [types-requests](https://pypi.org/project/types-requests)
+- [types-requests](https://pypi.org/project/types-requests)
 
 Not using anymore:
 
@@ -229,17 +225,18 @@ Data validation:
 
 Deployment:
 
-- [Score](https://github.com/score-spec/spec) - developer-centric and platform-agnostic Workload specification. `Go`
+- [score](https://github.com/score-spec/spec) - developer-centric and platform-agnostic Workload specification. `Go`
 
 Document the code:
 
 - [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
 - [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
+- [pdoc](https://github.com/mitmproxy/pdoc) - API documentation for Python projects. `Python`
 - [pydoc](https://docs.python.org/3/library/pydoc.html) - documentation generator and online help system.
 
 Logging:
 
-- [Logly](https://github.com/muhammad-fiaz/logly/) - simplify and enhance the logging process. `Python` `Rust`
+- [logly](https://github.com/muhammad-fiaz/logly/) - simplify and enhance the logging process. `Python` `Rust`
 
 Make Python faster:
 
@@ -271,9 +268,10 @@ Type checkers:
 - [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
 - [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
 
-Web browser automation:
+Web:
 
-- [Selenium](https://pypi.org/project/selenium)
+- [scrapy](https://github.com/scrapy/scrapy) - fast high-level web crawling & scraping framework. `Python`
+- [selenium](https://pypi.org/project/selenium)
 
 Other:
 

@@ -232,6 +232,7 @@ ipython_config.py
 __pypackages__/
 
 # Celery stuff
+celery.*exchange
 celerybeat-schedule
 celerybeat.pid
 

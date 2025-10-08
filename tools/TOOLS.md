@@ -262,6 +262,7 @@ Run tasks in parallel:
 Security:
 
 - [pyarmor](https://github.com/dashingsoft/pyarmor) - obfuscate python scripts, bind obfuscated scripts to fixed machine or expire obfuscated scripts. `Python`
+- [pycify](https://github.com/tusharsadhwani/pycify) - convert your entire Python project from .py files to .pyc files. `Python`
 
 Type checkers:
 

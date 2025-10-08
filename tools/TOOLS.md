@@ -206,7 +206,6 @@ Artificial intelligence:
 CLI apps:
 
 - [cyclopts](https://github.com/BrianPugh/cyclopts) - intuitive CLI based on python type hints. `Python`
-- [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
 - [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
 
 Data manipulation:
@@ -260,6 +259,11 @@ Security:
 
 - [pyarmor](https://github.com/dashingsoft/pyarmor) - obfuscate python scripts, bind obfuscated scripts to fixed machine or expire obfuscated scripts. `Python`
 - [pycify](https://github.com/tusharsadhwani/pycify) - convert your entire Python project from .py files to .pyc files. `Python`
+
+Terminal:
+
+- [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
+- [textual](https://github.com/Textualize/textual) - build sophisticated user interfaces with a simple API, run your apps in the terminal and a web browser. `Python`
 
 Type checkers:
 

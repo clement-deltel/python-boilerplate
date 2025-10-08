@@ -301,6 +301,7 @@ pyrightconfig.json
 **/charts/*.tgz
 
 # Helm unittest
+helm_unittest_*
 __snapshot__
 
 # ---------------------------------------------------------------------------- #

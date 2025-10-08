@@ -58,7 +58,10 @@ lint = [
 ]
 observability = ["opentelemetry-distro"]
 test = ["coverage", "pytest"]
-typing = ["types-requests"]
+typing = [
+    # "pandas-stubs",
+    "types-requests"
+]
 
 # ---------------------------------------------------------------------------- #
 #               ------- entry-points ------

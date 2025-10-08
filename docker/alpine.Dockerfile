@@ -2,7 +2,7 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 ARG ALPINE_VERSION=3.21
-ARG UV_VERSION=0.8.18
+ARG UV_VERSION=0.9.0
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------

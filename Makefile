@@ -5,8 +5,8 @@
 # User defined
 PYTHON_TARGET_VERSION:=3.11.13
 
-UV_SOURCE_VERSION:=0.8.18
-UV_TARGET_VERSION:=0.8.18
+UV_SOURCE_VERSION:=0.9.0
+UV_TARGET_VERSION:=0.9.0
 
 CUSTOMER_NAME:=custom
 APP_NAME:=app-name
@@ -71,7 +71,7 @@ bump-dockerfile:
 	sed -i "s/${PYTHON_VERSION}/${PYTHON_TARGET_VERSION}/g" docker/Dockerfile
 	sed -i "s/${PYTHON_VERSION}/${PYTHON_TARGET_VERSION}/g" docker/alpine.Dockerfile
 	sed -i "s/${PYTHON_VERSION}/${PYTHON_TARGET_VERSION}/g" docker/wheel.Dockerfile
-	git add docker/{Dockerfile,alpine.Dockerfile,wheel.Dockerfile}
+	git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile
 
 bump-pre-commit:
 	sed -i "s/${PYTHON_NO_PATCH_VERSION}/${PYTHON_NO_PATCH_TARGET_VERSION}/g" .pre-commit-config.yaml
@@ -105,7 +105,7 @@ uv-update:
 	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" .pre-commit-config.yaml
 	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" Makefile
 	sed -i "s/${UV_SOURCE_VERSION}/${UV_TARGET_VERSION}/g" pyproject.toml
-	git add docker/{Dockerfile,alpine.Dockerfile,wheel.Dockerfile} .pre-commit-config.yaml Makefile pyproject.toml
+	git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Makefile pyproject.toml
 	uv self update
 
 # ---------------------------------------------------------------------------- #

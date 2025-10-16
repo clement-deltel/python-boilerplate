@@ -3,12 +3,12 @@
 # ---------------------------------------------------------------------------- #
 
 # User defined
-PYTHON_TARGET_VERSION:=3.11.13
+PYTHON_TARGET_VERSION:=3.11.14
 
 UV_SOURCE_VERSION:=0.9.3
 UV_TARGET_VERSION:=0.9.3
 
-CUSTOMER_NAME:=custom
+CUSTOMER_NAME:=customer
 APP_NAME:=app-name
 APP_NAME_SNAKE:=app_name
 
@@ -60,6 +60,7 @@ pyenv-init:
 	pyenv install ${PYTHON_VERSION}
 
 pyenv-activate:
+	mkdir -p ~/.pyenv/versions/${PYTHON_VERSION}/envs
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
 	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
 	pyenv local ${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}

@@ -14,7 +14,7 @@ ARG DEBIAN_DISTROLESS_VERSION=12
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${DEBIAN_VERSION} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.11.13
+ARG PYTHON_VERSION=3.11.14
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

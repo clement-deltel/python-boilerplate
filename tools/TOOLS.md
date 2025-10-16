@@ -201,7 +201,9 @@ Here is a list of tools that could be interesting and further enhance the stack.
 Artificial intelligence:
 
 - [chroma](https://github.com/chroma-core/chroma) - AI-native open-source embedding database. `Rust` `Python`
+- [gradio](https://github.com/gradio-app/gradio) - build and share delightful machine learning apps. `Python` `Svelte` `TypeScript`
 - [llmlingua](https://github.com/microsoft/LLMLingua) - speed up LLMs' inference and enhance LLM's perceive of key information, compress the prompt and KV-Cache, which achieves up to 20x compression with minimal performance loss. `Python`
+- [river](https://github.com/online-ml/river) - online machine learning. `Python`
 
 CLI apps:
 
@@ -226,8 +228,9 @@ Deployment:
 
 - [score](https://github.com/score-spec/spec) - developer-centric and platform-agnostic Workload specification. `Go`
 
-Document the code:
+Documentation:
 
+- [mermaid](https://github.com/mermaid-js/mermaid) - generation of diagrams like flowcharts or sequence diagrams from text in a similar manner as markdown. `TypeScript` `JavaScript`
 - [mkdocs](https://github.com/mkdocs/mkdocs) - project documentation with Markdown.
 - [sphinx](https://www.sphinx-doc.org/en/master) - documentation generator.
 - [pdoc](https://github.com/mitmproxy/pdoc) - API documentation for Python projects. `Python`
@@ -271,6 +274,7 @@ Type checkers:
 - [basedpyright](https://github.com/DetachHead/basedpyright) - pyright fork with various type checking improvements, improved vscode support and pylance features built into the language server. `TypeScript`
 - [pylyzer](https://github.com/mtshiba/pylyzer) - fast, feature-rich static code analyzer & language server. `Rust`
 - [pyrefly](https://github.com/facebook/pyrefly) - fast type checker and IDE. `Rust`
+- [zuban](https://github.com/zubanls/zuban) - type checker / language server. `Rust`
 
 Web:
 

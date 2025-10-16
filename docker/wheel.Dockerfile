@@ -43,8 +43,9 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # ---------------------------------------------------------------------------- #
 #               ------- Run Application ------
 # ---------------------------------------------------------------------------- #
-FROM debian:${DEBIAN_VERSION} AS runtime
+FROM docker.io/library/debian:${DEBIAN_VERSION} AS runtime
 
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.title="app-name"
 LABEL org.opencontainers.image.description="app-description"
 LABEL org.opencontainers.image.authors="Support - support@company.com"

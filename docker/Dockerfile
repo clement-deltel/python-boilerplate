@@ -56,7 +56,7 @@ RUN find .venv \( \
 # ---------------------------------------------------------------------------- #
 #               ------- Development Application ------
 # ---------------------------------------------------------------------------- #
-FROM debian:${DEBIAN_VERSION} AS development
+FROM docker.io/library/debian:${DEBIAN_VERSION} AS development
 
 # Not persisted into the runtime image
 ARG DEBIAN_FRONTEND=noninteractive

@@ -427,6 +427,8 @@ compile-bytecode = true
 # Only use results from the first index that returns a match for a given package name
 index-strategy = "first-index"
 # Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next
+# index-strategy = "unsafe-first-match"
+# Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index
 # index-strategy = "unsafe-best-match"
 
 # Whether to allow Python downloads.

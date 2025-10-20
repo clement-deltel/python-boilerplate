@@ -45,6 +45,10 @@ argcomplete==3.6.2 ; sys_platform == 'linux' \
     # via
     #   checkov
     #   commitizen
+arrow==1.2.3 ; sys_platform == 'linux' \
+    --hash=sha256:3934b30ca1b9f292376d9db15b19446088d12ec58629bc3f0da28fd55fb633a1 \
+    --hash=sha256:5a49ab92e3b7b71d96cd6bfcc4df14efefc9dfa96ea19045815914a6ab6b1fe2
+    # via gitlint-core
 asteval==1.0.6 ; sys_platform == 'linux' \
     --hash=sha256:1aa8e7304b2e171a90d64dd269b648cacac4e46fe5de54ac0db24776c0c4a19f \
     --hash=sha256:5e119ed306e39199fd99c881cea0e306b3f3807f050c9be79829fe274c6378dc
@@ -145,13 +149,14 @@ charset-normalizer==3.4.4 ; sys_platform == 'linux' \
 checkov==3.2.484 ; sys_platform == 'linux' \
     --hash=sha256:60f15622b70089e81f5685ce914f120fefa7cd256db626ea6b2ee219d6408750 \
     --hash=sha256:aa68314f351242225b77e26f179ef996e4045979ddbd186ae4661a7b5426e509
-click==8.3.0 ; sys_platform == 'linux' \
-    --hash=sha256:9b9f285302c6e3064f4330c05f05b81945b2a39544279343e6e7c5f27a9baddc \
-    --hash=sha256:e7b8232224eba16f4ebe410c25ced9f7875cb5f3263ffc93cc3e8da705e229c4
+click==8.1.3 ; sys_platform == 'linux' \
+    --hash=sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e \
+    --hash=sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48
     # via
     #   checkov
     #   click-option-group
     #   cloudsplaining
+    #   gitlint-core
     #   keep
     #   policy-sentry
     #   spdx-tools
@@ -283,6 +288,13 @@ gitdb==4.0.12 ; sys_platform == 'linux' \
     --hash=sha256:5ef71f855d191a3326fcfbc0d5da835f26b13fbcba60c32c21091c349ffdb571 \
     --hash=sha256:67073e15955400952c6565cc3e707c554a4eea2e428946f7a4c162fab9bd9bcf
     # via gitpython
+gitlint==0.19.1 ; sys_platform == 'linux' \
+    --hash=sha256:26bb085959148d99fbbc178b4e56fda6c3edd7646b7c2a24d8ee1f8e036ed85d \
+    --hash=sha256:b5b70fb894e80849b69abbb65ee7dbb3520fc3511f202a6e6b6ddf1a71ee8f61
+gitlint-core==0.19.1 ; sys_platform == 'linux' \
+    --hash=sha256:7bf977b03ff581624a9e03f65ebb8502cc12dfaa3e92d23e8b2b54bbdaa29992 \
+    --hash=sha256:f41effd1dcbc06ffbfc56b6888cce72241796f517b46bd9fd4ab1b145056988c
+    # via gitlint
 gitpython==3.1.45 ; sys_platform == 'linux' \
     --hash=sha256:85b0ee964ceddf211c41b9f27a49086010a190fd8132a24e21f362a4b36a791c \
     --hash=sha256:8908cb2e02fb3b93b7eb0f2827125cb699869470432cc885f019b8fd0fccff77
@@ -617,7 +629,9 @@ pyscn==1.1.1 ; sys_platform == 'linux' \
 python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
-    # via botocore
+    # via
+    #   arrow
+    #   botocore
 python-dotenv==1.1.1 ; sys_platform == 'linux' \
     --hash=sha256:31f23644fe2602f88ff55e1f5c79ba497e01224ee7737937930c448e4d0e24dc \
     --hash=sha256:a8a6399716257f45be6a007360200409fce5cda2661e3dec71d23dc15f6189ab
@@ -749,6 +763,9 @@ semantic-version==2.10.0 ; sys_platform == 'linux' \
     --hash=sha256:bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c \
     --hash=sha256:de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177
     # via spdx-tools
+sh==1.14.3 ; sys_platform == 'linux' \
+    --hash=sha256:e4045b6c732d9ce75d571c79f5ac2234edd9ae4f5fa9d59b09705082bdca18c7
+    # via gitlint-core
 six==1.17.0 ; sys_platform == 'linux' \
     --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
     --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81

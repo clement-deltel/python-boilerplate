@@ -48,6 +48,7 @@ dependencies = [
 dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn","snakeviz"]
 lint = [
     "checkov",
+    "gitlint",
     "isort",
     "pyright",
     "pyupgrade",

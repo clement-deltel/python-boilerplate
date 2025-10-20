@@ -64,6 +64,12 @@ repos:
   #     - id: commitizen-branch
   #       stages: [pre-push]
 
+  # - repo: https://github.com/jorisroovers/gitlint
+  #   rev:  v0.19.1
+  #   hooks:
+  #   - id: gitlint
+  #     stages: [commit-msg]
+
   - repo: local
     hooks:
       - id: pre-validate-user-email

@@ -44,6 +44,7 @@ Development:
 Lint:
 
 - [checkov](https://github.com/bridgecrewio/checkov) - prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container images and open source packages. `Python` `HCL`
+- [gitlint](https://github.com/jorisroovers/gitlint) - linting for your git commit messages. `Python`
 - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
 - [pyright](https://github.com/microsoft/pyright) - static type checker. `Python`
 - [pyupgrade](https://github.com/asottile/pyupgrade) - automatically upgrade syntax for newer versions of the language. `Python`
@@ -82,6 +83,7 @@ Here are the useful pre-commit hooks used across all of my Python projects.
   - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
   - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
   - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
+  - [gitlint](https://github.com/jorisroovers/gitlint) - linting for your git commit messages. `Python`
   - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
   - [isort](https://github.com/PyCQA/isort) - utility to sort imports. `Python`
   - [pyupgrade](https://github.com/asottile/pyupgrade)

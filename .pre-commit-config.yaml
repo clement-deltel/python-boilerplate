@@ -201,7 +201,7 @@ repos:
         always_run: true
         pass_filenames: false
         args: ["--command", "csv2md doc/env.csv", "--regex", '(List of available environment variables:\n\n)(.*?)(\n\n> \*\*Note\*\*:)']
-      - id: readme update tokei
+      - id: readme-update-tokei
         name: readme-update-tokei
         description: Update README.md code statistics
         entry: python .githooks/readme_update.py
@@ -209,7 +209,7 @@ repos:
         always_run: true
         pass_filenames: false
         args: ["--command", "tokei", "--regex", '(## Code Statistics\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
-      - id: readme update uv
+      - id: readme-update-uv
         name: readme-update-uv
         description: Update README.md dependency tree
         entry: python .githooks/readme_update.py

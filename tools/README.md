@@ -26,6 +26,7 @@
 - [Documentation](#documentation)
   - [tokei](#tokei)
   - [csv2md](#csv2md)
+  - [git-cliff](#git-cliff)
   - [readme-generator-for-helm](#readme-generator-for-helm)
 
 ## Introduction
@@ -397,6 +398,16 @@ python -m csv2md doc/env.csv
 ```
 
 - Copy the table from stdout to `README.md`
+
+### git-cliff
+
+Here are useful commands to manage the CHANGELOG file using [git-cliff](https://github.com/orhun/git-cliff). Do you want to:
+
+- Update the file `CHANGELOG.md`:
+
+```bash
+git cliff
+```
 
 ### readme-generator-for-helm
 

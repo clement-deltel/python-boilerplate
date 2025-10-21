@@ -48,7 +48,7 @@ Here are the steps you need to follow when starting a new coding project from th
     - **README.md**
       - 5 `app-name` occurrences
   - **.pre-commit-config.yaml**
-    - enable commitizen and gitlint hooks (disabled by default due to lack of emojis support)
+    - enable commitizen, commitlint and gitlint hooks (disabled by default)
   - **app-name.code-workspace**
     - rename the file itself replacing `app-name`
     - 1 `Application Name` occurrence
@@ -183,6 +183,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 - Git
   - [conventional commits](https://www.conventionalcommits.org)
   - [How to Write a Git Commit Message](https://cbea.ms/git-commit)
+  - [Semantic Versioning 2.0](https://semver.org)
 - Python
   - [PEP 8 — the Style Guide for Python Code](https://pep8.org)
   - [pyOpenSci - Python Package Guide](https://www.pyopensci.org/python-package-guide/index.html)

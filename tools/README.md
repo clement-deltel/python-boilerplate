@@ -203,6 +203,12 @@ Run a specific hook?
 prek run <hook-id> --all-files --verbose
 ```
 
+Run a specific commit-msg stage hook?
+
+```bash
+prek run <hook-id> --all-files --hook-stage commit-msg --commit-msg-filename commit.txt --verbose
+```
+
 Auto-update hooks config to the latest repos' versions?
 
 ```bash

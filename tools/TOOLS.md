@@ -82,6 +82,7 @@ Here are the useful pre-commit hooks used across all of my Python projects.
 - Featured
   - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
   - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
+  - [commitlint](https://github.com/conventional-changelog/commitlint) - lint commit messages. `TypeScript`
   - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
   - [gitlint](https://github.com/jorisroovers/gitlint) - linting for your git commit messages. `Python`
   - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
@@ -280,6 +281,7 @@ Type checkers:
 
 Web:
 
+- [reflex](https://github.com/reflex-dev/reflex) -  full-stack web apps in pure Python. `Python`
 - [scrapy](https://github.com/scrapy/scrapy) - fast high-level web crawling & scraping framework. `Python`
 - [selenium](https://pypi.org/project/selenium)
 

@@ -29,7 +29,7 @@ UV_VERSION:=$(shell uv self version | sed 's/uv //')
 pre-requisites:
 	curl -fLSs https://astral.sh/uv/install.sh | sh
 	curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-	brew install gitleaks hadolint ls-lint tokei varlock
+	brew install gitleaks git-cliff hadolint ls-lint tokei varlock
 
 init:
 	uv sync --frozen --no-default-groups

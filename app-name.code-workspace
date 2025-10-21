@@ -16,6 +16,7 @@
             // Git
             "donjayamanne.git-extension-pack",
             "elagil.pre-commit-helper",
+            "vivaxy.vscode-conventional-commits",
             // General purpose linter
             "fnando.linter",
             // Kubernetes
@@ -82,6 +83,12 @@
         "files.insertFinalNewline": true,
         "files.trimFinalNewlines": true,
         "files.trimTrailingWhitespace": true,
+        // Extension - Conventional Commits
+        "conventionalCommits.gitmoji": true,
+        "conventionalCommits.scopes": [
+            "api"
+        ],
+        "conventionalCommits.showNewVersionNotes": false,
         // Extension - Git
         "git.allowForcePush": true,
         "git.autofetch": true,

@@ -156,6 +156,7 @@ Git:
 
 - [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
+- [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits)
 
 Kubernetes:
 

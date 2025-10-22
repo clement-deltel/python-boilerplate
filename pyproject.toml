@@ -89,10 +89,12 @@ tag_format = "$version"
 version_scheme = "pep440"
 version_provider = "uv"
 
-update_changelog_on_bump = true
 bump_message = "chore: version bump for $new_version [skip ci]"
+
+# Changelog
+update_changelog_on_bump = false
 changelog_file = "CHANGELOG.md"
-changelog_incremental = true
+changelog_incremental = false
 
 # ---------------------------------------------------------------------------- #
 #               ------- tool - coverage ------

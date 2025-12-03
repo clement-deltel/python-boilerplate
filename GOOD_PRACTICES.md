@@ -136,11 +136,19 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
   - SHOULD use `join` to concatenate strings
   - SHOULD use code maps to optimize loops
   - SHOULD use built-in functions
+  - SHOULD use set for membership testing instead of list
   - SHOULD use generator expressions instead of list comprehensions
   - SHOULD use generators and keys for sorting
   - SHOULD use list comprehension instead of loop when possible
   - SHOULD use numpy arrays instead of lists
+  - SHOULD use math functions (sqrt(), sin(), cos(), exp(), log(), pi...) instead of operators
+  - SHOULD use bisect for sorted list operations
+  - SHOULD use itertools for combinatorial operations
+  - SHOULD use slots for memory efficiency
+  - SHOULD pre-allocate memory with known sizes (for instance, `result = [0] * 1000000`)
   - SHOULD NOT use globals when possible
+  - SHOULD NOT use exception handling (try-catch blocks) within loops when possible
+  - SHOULD NOT repeat function calls within loops when possible
   - MAY use concurrency, multiprocessing
   - MAY use pypy
 - **Cleaner**

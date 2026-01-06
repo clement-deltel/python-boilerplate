@@ -34,7 +34,7 @@ app-description
  Makefile                  1          358          201           80           77
  Python                   16         1839         1319          180          340
  Shell                     2          529          326          113           90
- Plain Text                3         1101            0         1101            0
+ Plain Text                3         1109            0         1109            0
  TOML                      1          568          322          181           65
  YAML                      2           38           33            4            1
 ─────────────────────────────────────────────────────────────────────────────────
@@ -42,7 +42,7 @@ app-description
  |- BASH                   5          130          125            4            1
  (Total)                             1671          125         1086          460
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    37         6417         2475         2843         1099
+ Total                    37         6425         2475         2851         1099
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -68,17 +68,17 @@ app-name v0.0.0
 ├── cloudevents v1.12.0
 │   └── deprecation v2.1.0
 │       └── packaging v23.2
-├── debugpy v1.8.17
-├── numpy v2.3.4
+├── debugpy v1.8.19
+├── numpy v2.4.0
 ├── pika v1.3.2
-├── polars v1.34.0
-│   └── polars-runtime-32 v1.34.0
-├── python-dotenv v1.1.1
+├── polars v1.36.1
+│   └── polars-runtime-32 v1.36.1
+├── python-dotenv v1.2.1
 └── requests v2.32.5
-    ├── certifi v2025.10.5
+    ├── certifi v2026.1.4
     ├── charset-normalizer v3.4.4
     ├── idna v3.11
-    └── urllib3 v1.26.20
+    └── urllib3 v2.6.2
 ```
 
 ## Configuration

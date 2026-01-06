@@ -34,7 +34,7 @@ repos:
   # -------------------------------------------------------------------------- #
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         name: gitleaks
@@ -101,7 +101,7 @@ repos:
 
   # pyupgrade - Upgrade syntax for newer versions of the language
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.0
+    rev: v3.21.2
     hooks:
       - id: pyupgrade
 
@@ -114,7 +114,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.1
+    rev: v0.14.10
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -131,7 +131,7 @@ repos:
         args: [--no-default-groups, --no-emit-project]
 
   - repo: https://github.com/tsvikas/sync-with-uv
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
       - id: sync-with-uv
 
@@ -227,6 +227,6 @@ repos:
         args: ["--command", "uv tree --no-default-groups", "--regex", '(## Dependencies\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.38.1
+    rev: v1.41.0
     hooks:
       - id: typos

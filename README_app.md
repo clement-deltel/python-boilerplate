@@ -12,7 +12,7 @@
   - [Code](#code)
   - [Docker](#docker)
   - [Docker Compose](#docker-compose)
-- [Production Deployment](#production-deployment)
+  - [Production Deployment](#production-deployment)
 - [Test](#test)
 - [Links](#links)
 - [Support and feedback](#support-and-feedback)
@@ -219,7 +219,7 @@ docker compose down -v
 
 > **Note**: specifically with Docker Compose, if any of your environment variables contains a "\$" character, make sure to put the value between double quotes and escape the "$" with a "\\" character.
 
-## Production Deployment
+### Production Deployment
 
 This application is meant to be deployed in a Kubernetes cluster. To learn more on how to deploy this application, please refer to the guides listed below:
 

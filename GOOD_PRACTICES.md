@@ -33,8 +33,8 @@ Here are the steps you need to follow when starting a new coding project from th
     - **compose.yaml**
       - 3 `app-name` occurrences
     - **Dockerfile** or **wheel.Dockerfile** based on your needs
-      - 1 `app-name` occurrence
-      - 1 `app-description` occurrence
+      - 2 `app-name` occurrences
+      - 2 `app-description` occurrences
       - image.authors
       - image.vendor
     - **entrypoint.sh**

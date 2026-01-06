@@ -54,9 +54,15 @@ RUN find .venv \( \
     \) -exec rm -rf {} + 2>/dev/null || true
 
 # ---------------------------------------------------------------------------- #
-#               ------- Development Application ------
+#               ------- Production Application ------
 # ---------------------------------------------------------------------------- #
-FROM docker.io/library/debian:${DEBIAN_VERSION} AS development
+FROM docker.io/library/debian:${DEBIAN_VERSION} AS production
+
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md
+LABEL org.opencontainers.image.title="app-name"
+LABEL org.opencontainers.image.description="app-description"
+LABEL org.opencontainers.image.authors="Support - support@company.com"
+LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
 ARG DEBIAN_FRONTEND=noninteractive
@@ -97,9 +103,9 @@ ENTRYPOINT ["app_name"]
 EXPOSE 5678
 
 # ---------------------------------------------------------------------------- #
-#               ------- Production Application ------
+#               ------- Distroless Application ------
 # ---------------------------------------------------------------------------- #
-FROM gcr.io/distroless/python3-debian${DEBIAN_DISTROLESS_VERSION}:nonroot AS production
+FROM gcr.io/distroless/python3-debian${DEBIAN_DISTROLESS_VERSION}:nonroot AS distroless
 
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.title="app-name"

@@ -6,9 +6,19 @@ from os import environ
 from pathlib import Path
 from sys import exit as sys_exit
 
+# Global variables
+PROCESS = "app_name"
 
-def is_process_running(pattern):
-    """Check if a process matching the given pattern is running using /proc."""
+
+def is_process_running(pattern: str) -> bool:
+    """Check if a process matching the given pattern is running using /proc.
+
+    Args:
+        pattern(str): process name.
+
+    Returns:
+        bool: process found running or not.
+    """
     try:
         proc_dir = Path("/proc")
         for pid_dir in proc_dir.iterdir():
@@ -36,20 +46,18 @@ def is_process_running(pattern):
 
 
 def main():
-    """Main health check logic."""
+    """Run health check."""
     try:
         debug = environ.get("DEBUG", default="false").lower() in ("true", "t", "1")
         mode = "DEBUG" if debug else "PRODUCTION"
-        pattern = "app_name"
-
         print(f"Health check running in {mode} mode")
 
         # Try primary pattern first
-        if is_process_running(pattern):
-            print(f"Process found with pattern '{pattern}' - Health check passed")
+        if is_process_running(PROCESS):
+            print(f"Process '{PROCESS}' found - Health check passed")
             sys_exit(0)
 
-        print("No process found matching expected patterns - Health check failed")
+        print(f"Process '{PROCESS}' not found - Health check failed")
         sys_exit(1)
 
     except Exception as e:

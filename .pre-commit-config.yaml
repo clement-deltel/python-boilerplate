@@ -124,7 +124,7 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.3
+    rev: 0.9.22
     hooks:
       - id: uv-lock
       - id: uv-export

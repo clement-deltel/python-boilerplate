@@ -59,7 +59,11 @@ lint = [
     "yamllint",
 ]
 observability = ["opentelemetry-distro"]
-test = ["coverage", "pytest"]
+test = [
+    "coverage",
+    "pytest",
+    "pytest-mock",
+]
 typing = [
     # "pandas-stubs",
     "types-requests"
@@ -107,7 +111,7 @@ fail_under = 80
 format = "markdown"
 
 [tool.coverage.run]
-source = "src"
+source = ["src"]
 branch = true
 omit = ["*/__pycache__/*"]
 

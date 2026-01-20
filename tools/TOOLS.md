@@ -61,6 +61,7 @@ Test:
 
 - [coverage](https://coverage.readthedocs.io/en/latest)
 - [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
+- [pytest-mock](https://github.com/pytest-dev/pytest-mock) - thin-wrapper around the mock package for easier use with pytest. `Python`
 
 Typing:
 
@@ -213,6 +214,10 @@ CLI apps:
 
 - [cyclopts](https://github.com/BrianPugh/cyclopts) - intuitive CLI based on python type hints. `Python`
 - [typer](https://github.com/fastapi/typer) - library for building CLI applications. `Python`
+
+Containerization:
+
+- [Docker Hardened Images](https://hub.docker.com/hardened-images/catalog?search=python)
 
 Data manipulation:
 

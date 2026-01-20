@@ -45,6 +45,7 @@ dependencies = [
 ]
 
 [dependency-groups]
+cve = ["aiohttp>=3.13.3", "pynacl>=1.6.2", "urllib3>=2.6.3"]
 dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn","snakeviz"]
 lint = [
     "checkov",
@@ -519,7 +520,7 @@ index-out-of-bounds = "ignore"
 # https://docs.astral.sh/uv/reference/settings/#project-metadata
 
 # List of dependency-groups to install by default
-default-groups = ["dev", "lint", "observability", "test", "typing"]
+default-groups = ["cve", "dev", "lint", "observability", "test", "typing"]
 # List of supported environments against which to resolve dependencies
 environments = ["sys_platform == 'linux'"]
 # environments = ["sys_platform == 'windows'"]

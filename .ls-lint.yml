@@ -68,8 +68,8 @@ ls:
 ignore:
   - '**/control'
   - '**/__pycache__'
+  - '**/.pytest_cache'
   - .git
   - .mypy_cache
-  - .pytest_cache
   - .ruff_cache
   - .venv

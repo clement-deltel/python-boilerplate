@@ -93,6 +93,7 @@
         "git.allowForcePush": true,
         "git.autofetch": true,
         "git.autorefresh": true,
+        // "git.branchProtection": ["main"],
         "git.showPushSuccessNotification": true,
         // Extension - Markdownlint
         "markdownlint.config": {
@@ -295,10 +296,10 @@
                     "kind": "build",
                     "isDefault": true
                 },
-                "linux":{
+                "linux": {
                     "command": "uv sync"
                 },
-                "windows":{
+                "windows": {
                     "command": "uv pip install --editable ."
                 },
                 "problemMatcher": []

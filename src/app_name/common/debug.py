@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to debug the application."""
 
 # Standard Library
@@ -16,11 +15,11 @@ from app_name.common.config import to_bool, to_int
 load_dotenv(".env", override=True)
 
 
-def debug(func: Callable):
+def debug(func: Callable) -> Callable:
     """Debug the target function."""
 
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs) -> Callable:  # noqa: ANN002,ANN003
         if to_bool(environ.get("DEBUGPY", default="false")):
             debug_host = environ.get("DEBUGPY_HOST", default="localhost")
             debug_port = to_int(environ.get("DEBUGPY_PORT", default="5678"))

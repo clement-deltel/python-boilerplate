@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
 """Module used to log all the events of the related to the AMQP protocol."""
 
 # Standard Library
-from logging import StreamHandler, getLogger
+from logging import Logger, StreamHandler, getLogger
 from sys import stderr, stdout
 
 # Local Application
@@ -17,7 +16,7 @@ from app_name.event.level import ErrFilter, Levels
 class AMQPLog:
     """Class specifying attributes and methods related to AMQP logging."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize class."""
         self.config: LogConfig = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
@@ -36,11 +35,11 @@ class AMQPLog:
         self.initialize()
 
     @property
-    def logger(self):
+    def logger(self) -> Logger:
         """Getter method for the attribute _logger."""
         return self._logger
 
-    def initialize(self):
+    def initialize(self) -> None:
         """Initialize all logging components."""
         self.set_level(self.config.level)
         self.set_formatters(self.config.level)
@@ -148,7 +147,7 @@ def set_log(log_instance: AMQPLog) -> None:
 
 
 def log() -> AMQPLog:
-    """Get global instance.
+    """Get global instance, instantiate it if None.
 
     Returns:
         AMQPLog: log instance.

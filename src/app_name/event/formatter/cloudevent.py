@@ -1,4 +1,3 @@
-# cloudevents_formatter.py
 """Module providing a CloudEvent formatter for the logging system.
 
 CloudEvents specification:

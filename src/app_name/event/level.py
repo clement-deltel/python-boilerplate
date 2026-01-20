@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to list and filter log levels."""
 
 # Standard Library

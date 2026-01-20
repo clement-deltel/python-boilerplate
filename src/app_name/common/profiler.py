@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to run the profiler."""
 
 # Standard Library
@@ -43,11 +42,11 @@ class Profiler:
         stats.dump_stats(export_file_path)
 
 
-def profiler(func: Callable):
+def profiler(func: Callable) -> Callable:
     """Enable profiling on the target function."""
 
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs) -> Callable:  # noqa: ANN002, ANN003
         if to_bool(environ.get("PROFILING", default="false")):
             profiler = Profiler()
             profiler.start()

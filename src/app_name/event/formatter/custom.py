@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to customize the format of log messages."""
 
 # Standard Library
@@ -12,7 +11,7 @@ from app_name.event.formatter.colors import Colors
 class CustomFormatter(Formatter):
     """Class specifying attributes and methods related to log messages custom formatting."""
 
-    def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False):
+    def __init__(self, app_env: str, level: str, extra_fields: set, color_enabled: bool = False) -> None:
         """Initialize class."""
         super().__init__()
         self.app_env = app_env
@@ -24,7 +23,7 @@ class CustomFormatter(Formatter):
         self.fmt = "%(asctime)-20s - %(levelname)-8s - %(message)s"
         self.reset = "\x1b[0m"
 
-    def formatTime(self, record: LogRecord, datefmt=None):  # noqa: ARG002, N802
+    def formatTime(self, record: LogRecord, datefmt: str | None = None) -> str:  # noqa: ARG002, N802
         """Format timestamp according to RFC3339 specification.
 
         Args:

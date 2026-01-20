@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to list the colors for all the events of the application execution."""
 
 # Standard Library

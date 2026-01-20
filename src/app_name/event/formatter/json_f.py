@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to customize the format of log messages."""
 
 # Standard Library
@@ -26,7 +25,7 @@ class JSONFormatter(Formatter):
         self.colors = {item.name: item.value for item in Colors}
         self.reset = "\x1b[0m"
 
-    def formatTime(self, record: LogRecord, datefmt=None):  # noqa: ARG002, N802
+    def formatTime(self, record: LogRecord, datefmt: str | None = None) -> str:  # noqa: ARG002, N802
         """Format timestamp according to RFC3339 specification.
 
         Args:

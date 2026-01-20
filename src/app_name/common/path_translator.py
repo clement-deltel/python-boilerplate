@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to map paths between Linux and Windows systems.
 
 This module provides utilities for translating paths between Linux and Windows formats using configurable path mappings. It handles cross-platform path
@@ -19,13 +18,9 @@ load_dotenv(".env", override=True)
 class PathMappingError(Exception):
     """Custom exception for path mapping errors."""
 
-    pass
-
 
 class PathTranslationError(Exception):
     """Custom exception for path translation errors."""
-
-    pass
 
 
 class PathTranslator:
@@ -69,17 +64,20 @@ class PathTranslator:
 
         for pair in mapping_pairs:
             if "," not in pair:
-                raise PathMappingError(f"Invalid mapping format: '{pair}'. Expected 'source,destination'")
+                message = f"Invalid mapping format: '{pair}'. Expected 'source,destination'"
+                raise PathMappingError(message)
 
             # Split on comma
             parts = pair.split(",", 1)
             if len(parts) != pair_length:
-                raise PathMappingError(f"Invalid mapping format: '{pair}'. Expected 'source,destination'")
+                message = f"Invalid mapping format: '{pair}'. Expected 'source,destination'"
+                raise PathMappingError(message)
 
             source, destination = parts[0].strip(), parts[1].strip()
 
             if not source or not destination:
-                raise PathMappingError(f"Empty source or destination in mapping: '{pair}'")
+                message = f"Empty source or destination in mapping: '{pair}'"
+                raise PathMappingError(message)
 
             normalized_source = self._normalize_path(source)
             normalized_destination = self._normalize_path(destination)
@@ -182,10 +180,12 @@ class PathTranslator:
         """
         path_str = str(path) if isinstance(path, Path) else path
         if not path_str:
-            raise PathTranslationError("Path must be a non-empty string")
+            message = "Path must be a non-empty string"
+            raise PathTranslationError(message)
 
         if target not in self._valid_targets:
-            raise PathTranslationError(f"Invalid target: '{target}'. Must be one of {self._valid_targets}")
+            message = f"Invalid target: '{target}'. Must be one of {self._valid_targets}"
+            raise PathTranslationError(message)
 
         path_system = "windows" if self._is_path_windows(path_str) else "linux"
         target_system = self._system if target == "auto" else target
@@ -202,7 +202,8 @@ class PathTranslator:
         # Case 2: Cross-platform conversion required (mapping is mandatory)
         mapped_path = self._find_mapping(path_str, "cross-platform")
         if not mapped_path:
-            raise PathTranslationError(f"No {target_system.capitalize()} mapping found for {path_system.capitalize()} path: '{path_str}'")
+            message = f"No {target_system.capitalize()} mapping found for {path_system.capitalize()} path: '{path_str}'"
+            raise PathTranslationError(message)
 
         return mapped_path
 

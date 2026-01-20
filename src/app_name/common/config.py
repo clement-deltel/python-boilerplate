@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to interact with the configuration."""
 
 # Standard Library
@@ -94,7 +93,8 @@ class Config:
         """
         config_class = getattr(self, class_name, None)
         if config_class is None:
-            raise ValueError(f"Config class '{class_name}' not found")
+            message = f"Config class '{class_name}' not found"
+            raise ValueError(message)
 
         return getattr(config_class, attribute, default)
 
@@ -271,7 +271,7 @@ def set_config(config: Config) -> None:
 
 
 def get_config() -> Config:
-    """Get global instance.
+    """Get global instance, instantiate it if None.
 
     Returns:
         Config: config instance, whether ProdConfig or DevConfig.

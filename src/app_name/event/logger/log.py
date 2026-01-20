@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to log all the events of the application execution.
 
 Typical usage example:
@@ -8,7 +7,7 @@ Typical usage example:
 """
 
 # Standard Library
-from logging import FileHandler, StreamHandler, getLogger
+from logging import FileHandler, Logger, StreamHandler, getLogger
 from sys import stderr, stdout
 
 # Local Application
@@ -24,7 +23,7 @@ from app_name.event.level import ErrFilter, Levels
 class Log:
     """Class specifying attributes and methods related to logging."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize class."""
         self.config: LogConfig = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
@@ -46,11 +45,11 @@ class Log:
         self.initialize()
 
     @property
-    def logger(self):
+    def logger(self) -> Logger:
         """Getter method for the attribute _logger."""
         return self._logger
 
-    def initialize(self):
+    def initialize(self) -> None:
         """Initialize all logging components."""
         self.set_level(self.config.level)
         self.set_formatters(self.config.level)
@@ -207,7 +206,7 @@ def set_log(log_instance: Log) -> None:
 
 
 def log() -> Log:
-    """Get global instance.
+    """Get global instance, instantiate it if None.
 
     Returns:
         Log: log instance.

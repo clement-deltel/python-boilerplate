@@ -125,6 +125,7 @@
             "Q002", // bad-quotes-docstring
             "Q003", // avoidable-escaped-quote
             // --- //
+            "ANN401", // any-type
             "D203", // incorrect-blank-line-before-class
             "D213", // multi-line-summary-second-line
             "PLR0913", // too-many-arguments
@@ -132,21 +133,30 @@
         ],
         "ruff.lint.select": [
             "ERA", // eradicate
+            "ANN", // flake8-annotations
             "S", // flake8-bandit
             "B", // flake8-bugbear
             "A", // flake8-builtins
             "COM", // flake8-commas
             "C4", // flake8-comprehensions
             "DTZ", // flake8-datetimez
+            "EM", // flake8-errmsg
+            "EXE", // flake8-executable
+            "INT", // flake8-gettext
             "ISC", // flake8-implicit-str-concat
             "ICN", // flake8-import-conventions
+            "LOG", // flake8-logging
             "G", // flake8-logging-format
+            "PIE", // flake8-pie
+            "PYI", // flake8-pyi
+            "PT", // flake8-pytest-style
             "Q", // flake8-quotes
             "RSE", // flake8-raise
             "RET", // flake8-return
             "SLF", // flake8-self
             "SIM", // flake8-simplify
             "TID", // flake8-tidy-imports
+            "TC", // flake8-type-checking
             "ARG", // flake8-unused-arguments
             "PTH", // flake8-use-pathlib
             "I", // isort
@@ -154,6 +164,7 @@
             "N", // pep8-naming
             "PERF", // perflint
             "E", // pycodestyle
+            "DOC", // pydoclint
             "D", // pydocstyle
             "F", // Pyflakes
             "PL", // Pylint

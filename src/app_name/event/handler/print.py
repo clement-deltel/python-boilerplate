@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to print log messages."""
 
 # Standard Library

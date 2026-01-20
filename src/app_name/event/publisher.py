@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Module used to publish log messages to RabbitMQ.
 
 Typical usage example:

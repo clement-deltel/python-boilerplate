@@ -1,4 +1,4 @@
-# Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
+# Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker
 # Instructions creating a new layer: ADD, COPY, RUN
 
 # https://github.com/astral-sh/uv/pkgs/container/uv

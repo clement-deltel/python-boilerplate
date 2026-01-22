@@ -45,7 +45,7 @@ def is_process_running(pattern: str) -> bool:
         return False
 
 
-def main():
+def main() -> None:
     """Run health check."""
     try:
         debug = environ.get("DEBUG", default="false").lower() in ("true", "t", "1")

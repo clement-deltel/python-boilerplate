@@ -25,7 +25,9 @@ ENV UV_PYTHON_PREFERENCE=only-managed
 WORKDIR /app
 
 # Install Python before the application for caching
-RUN uv python install ${PYTHON_VERSION}
+RUN uv python install ${PYTHON_VERSION} && \
+# Solve High CVE https://github.com/advisories/GHSA-58pv-8j8x-9vj2
+    uv pip uninstall --break-system-packages --system setuptools
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \

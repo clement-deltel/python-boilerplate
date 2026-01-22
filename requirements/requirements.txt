@@ -110,14 +110,14 @@ multidict==6.7.0 ; sys_platform == 'linux' \
     # via
     #   aiohttp
     #   yarl
-numpy==2.4.0 ; sys_platform == 'linux' \
-    --hash=sha256:0feafc9e03128074689183031181fac0897ff169692d8492066e949041096548 \
-    --hash=sha256:32ed06d0fe9cae27d8fb5f400c63ccee72370599c75e683a6358dd3a4fb50aaf \
-    --hash=sha256:57c540ed8fb1f05cb997c6761cd56db72395b0d6985e90571ff660452ade4f98 \
-    --hash=sha256:6e504f7b16118198f138ef31ba24d985b124c2c469fe8467007cf30fd992f934 \
-    --hash=sha256:927ccf5cd17c48f801f4ed43a7e5673a2724bd2171460be3e3894e6e332ef83a \
-    --hash=sha256:a8fdfed3deaf1928fb7667d96e0567cdf58c2b370ea2ee7e586aa383ec2cb346 \
-    --hash=sha256:e06a922a469cae9a57100864caf4f8a97a1026513793969f8ba5b63137a35d25
+numpy==2.4.1 ; sys_platform == 'linux' \
+    --hash=sha256:2023ef86243690c2791fd6353e5b4848eedaa88ca8a2d129f462049f6d484696 \
+    --hash=sha256:4f9c360ecef085e5841c539a9a12b883dff005fbd7ce46722f5e9cef52634d82 \
+    --hash=sha256:538bf4ec353709c765ff75ae616c34d3c3dca1a68312727e8f2676ea644f8509 \
+    --hash=sha256:8361ea4220d763e54cff2fbe7d8c93526b744f7cd9ddab47afeff7e14e8503be \
+    --hash=sha256:a1ceafc5042451a858231588a104093474c6a5c57dcc724841f5c888d237d690 \
+    --hash=sha256:a92f227dbcdc9e4c3e193add1a189a9909947d4f8504c576f4a732fd0b54240a \
+    --hash=sha256:ac08c63cb7779b85e9d5318e6c3518b424bc1f364ac4cb2c6136f12e5ff2dccc
     # via app-name
 packaging==23.2 ; sys_platform == 'linux' \
     --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
@@ -127,14 +127,16 @@ pika==1.3.2 ; sys_platform == 'linux' \
     --hash=sha256:0779a7c1fafd805672796085560d290213a465e4f6f76a6fb19e378d8041a14f \
     --hash=sha256:b2a327ddddf8570b4965b3576ac77091b850262d34ce8c1d8cb4e4146aa4145f
     # via app-name
-polars==1.36.1 ; sys_platform == 'linux' \
-    --hash=sha256:12c7616a2305559144711ab73eaa18814f7aa898c522e7645014b68f1432d54c \
-    --hash=sha256:853c1bbb237add6a5f6d133c15094a9b727d66dd6a4eb91dbb07cdb056b2b8ef
+polars==1.37.1 ; sys_platform == 'linux' \
+    --hash=sha256:0309e2a4633e712513401964b4d95452f124ceabf7aec6db50affb9ced4a274e \
+    --hash=sha256:377fed8939a2f1223c1563cfabdc7b4a3d6ff846efa1f2ddeb8644fafd9b1aff
     # via app-name
-polars-runtime-32==1.36.1 ; sys_platform == 'linux' \
-    --hash=sha256:201c2cfd80ceb5d5cd7b63085b5fd08d6ae6554f922bcb941035e39638528a09 \
-    --hash=sha256:899b9ad2e47ceb31eb157f27a09dbc2047efbf4969a923a6b1ba7f0412c3e64c \
-    --hash=sha256:d9d077bb9df711bc635a86540df48242bb91975b353e53ef261c6fae6cb0948f
+polars-runtime-32==1.37.1 ; sys_platform == 'linux' \
+    --hash=sha256:04f5d5a2f013dca7391b7d8e7672fa6d37573a87f1d45d3dd5f0d9b5565a4b0f \
+    --hash=sha256:68779d4a691da20a5eb767d74165a8f80a2bdfbde4b54acf59af43f7fa028d8f \
+    --hash=sha256:a8362d11ac5193b994c7e9048ffe22ccfb976699cfbf6e128ce0302e06728894 \
+    --hash=sha256:fbfde7c0ca8209eeaed546e4a32cca1319189aa61c5f0f9a2b4494262bd0c689 \
+    --hash=sha256:fc82b5bbe70ca1a4b764eed1419f6336752d6ba9fc1245388d7f8b12438afa2c
     # via polars
 propcache==0.4.1 ; sys_platform == 'linux' \
     --hash=sha256:2bb07ffd7eaad486576430c89f9b215f9e4be68c4866a96e97db9e97fead85dc \
@@ -151,9 +153,9 @@ propcache==0.4.1 ; sys_platform == 'linux' \
     # via
     #   aiohttp
     #   yarl
-pycparser==2.23 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy' and sys_platform == 'linux' \
-    --hash=sha256:78816d4f24add8f10a06d6f05b4d424ad9e96cfebf68a4ddc99c65c0720d00c2 \
-    --hash=sha256:e5c6e8d3fbad53479cab09ac03729e0a9faf2bee3db8208a550daf5af81a5934
+pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy' and sys_platform == 'linux' \
+    --hash=sha256:600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29 \
+    --hash=sha256:b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992
     # via cffi
 pynacl==1.6.2 ; sys_platform == 'linux' \
     --hash=sha256:018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c \

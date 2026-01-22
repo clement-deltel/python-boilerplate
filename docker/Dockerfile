@@ -3,7 +3,7 @@
 
 # https://github.com/astral-sh/uv/pkgs/container/uv
 ARG DEBIAN_VERSION=bookworm-slim
-ARG UV_VERSION=0.9.22
+ARG UV_VERSION=0.9.26
 
 # https://github.com/GoogleContainerTools/distroless
 ARG DEBIAN_DISTROLESS_VERSION=12

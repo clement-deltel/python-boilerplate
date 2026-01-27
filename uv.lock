@@ -108,8 +108,6 @@ dependencies = [
 
 [package.dev-dependencies]
 cve = [
-    { name = "aiohttp", marker = "sys_platform == 'linux'" },
-    { name = "pynacl", marker = "sys_platform == 'linux'" },
     { name = "urllib3", marker = "sys_platform == 'linux'" },
 ]
 dev = [
@@ -155,11 +153,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-cve = [
-    { name = "aiohttp", specifier = ">=3.13.3" },
-    { name = "pynacl", specifier = ">=1.6.2" },
-    { name = "urllib3", specifier = ">=2.6.3" },
-]
+cve = [{ name = "urllib3", specifier = ">=2.6.3" }]
 dev = [
     { name = "commitizen" },
     { name = "csv2md" },

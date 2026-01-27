@@ -49,10 +49,8 @@ dependencies = [
 # https://www.cve.org/
 # https://github.com/advisories
 
-# aiohttp: CVE-2025-69223, CVE-2025-69230, CVE-2025-69230
-# pynacl: CVE-2025-69277
 # urllib: CVE-2025-50181, CVE-2025-50182
-cve = ["aiohttp>=3.13.3", "pynacl>=1.6.2", "urllib3>=2.6.3"]
+cve = ["urllib3>=2.6.3"]
 
 dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn","snakeviz"]
 lint = [

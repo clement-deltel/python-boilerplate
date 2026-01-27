@@ -203,6 +203,10 @@ Not using anymore:
 
 Here is a list of tools that could be interesting and further enhance the stack.
 
+Online list:
+
+- [awesome-python](https://github.com/vinta/awesome-python) - opinionated list of awesome Python frameworks, libraries, software and resources. `Python`
+
 Artificial intelligence:
 
 - [chroma](https://github.com/chroma-core/chroma) - AI-native open-source embedding database. `Rust` `Python`
@@ -232,6 +236,10 @@ Data validation:
 - [cattrs](https://github.com/python-attrs/cattrs) - composable custom class converters for attrs, dataclasses and friends. `Python`
 - [msgspec](https://github.com/jcrist/msgspec) - fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML. `Python` `C`
 - [pydantic](https://github.com/pydantic/pydantic) - data validation using type hints. `Python`
+
+Debugging:
+
+- [debugwand](https://github.com/savannahostrowski/debugwand) - experimental zero-preparation remote debugger for Python applications running in local Kubernetes clusters or Docker containers. `Python`
 
 Deployment:
 

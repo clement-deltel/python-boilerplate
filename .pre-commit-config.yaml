@@ -49,7 +49,7 @@ repos:
         name: varlock
         description: Ensure project env file structure meets standards using varlock
         entry: .githooks/varlock.sh
-        language: script
+        language: unsupported_script
         always_run: true
         pass_filenames: false
 
@@ -84,7 +84,7 @@ repos:
         name: pre-validate-user-email
         description: Check user email against company approved domains
         entry: .githooks/pre-validate-user-email.sh
-        language: script
+        language: unsupported_script
         always_run: true
         pass_filenames: false
 
@@ -141,7 +141,7 @@ repos:
         name: uv-requirements
         description: Ensure all project requirements.txt are up-to-date
         entry: .githooks/uv-requirements.sh
-        language: script
+        language: unsupported_script
         always_run: true
         pass_filenames: false
 
@@ -179,7 +179,7 @@ repos:
         name: helm-chart
         description: Examine a chart for possible issues and update chart README file
         entry: .githooks/helm-chart.sh
-        language: script
+        language: unsupported_script
         always_run: true
         pass_filenames: false
 
@@ -192,7 +192,7 @@ repos:
         name: ls-lint
         description: Ensure project directory & file structure meets standards using ls-lint
         entry: ls-lint
-        language: system
+        language: unsupported
         always_run: true
         pass_filenames: false
 
@@ -205,15 +205,22 @@ repos:
         name: readme-update-env
         description: Update README.md environment variables table
         entry: python .githooks/readme_update.py
-        language: system
+        language: unsupported
         always_run: true
         pass_filenames: false
         args: ["--command", "csv2md doc/env.csv", "--regex", '(List of available environment variables:\n\n)(.*?)(\n\n> \*\*Note\*\*:)']
+      - id: readme-freeze
+        name: readme-freeze
+        description: Update README.md screenshots
+        entry: .githooks/freeze.sh
+        language: unsupported_script
+        always_run: true
+        pass_filenames: false
       - id: readme-update-tokei
         name: readme-update-tokei
         description: Update README.md code statistics
         entry: python .githooks/readme_update.py
-        language: system
+        language: unsupported
         always_run: true
         pass_filenames: false
         args: ["--command", "tokei", "--regex", '(## Code Statistics\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
@@ -221,7 +228,7 @@ repos:
         name: readme-update-uv
         description: Update README.md dependency tree
         entry: python .githooks/readme_update.py
-        language: system
+        language: unsupported
         always_run: true
         pass_filenames: false
         args: ["--command", "uv tree --no-default-groups", "--regex", '(## Dependencies\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']

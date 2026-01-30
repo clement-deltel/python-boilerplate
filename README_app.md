@@ -22,6 +22,10 @@
 
 app-description
 
+![Application Presentation](doc/app_presentation.svg =600x)
+
+*generated using [onefetch](https://github.com/o2sh/onefetch).*
+
 ## Code Statistics
 
 ```text
@@ -34,15 +38,16 @@ app-description
  Makefile                  1          358          201           80           77
  Python                   19         3631         2577          407          647
  Shell                     2          529          326          113           90
+ SVG                       1           15           15            0            0
  Plain Text                3         1122            0         1122            0
  TOML                      1          590          338          184           68
  YAML                      2           38           33            4            1
 ─────────────────────────────────────────────────────────────────────────────────
- Markdown                  7         1554            0         1089          465
+ Markdown                  7         1560            0         1093          467
  |- BASH                   5          130          125            4            1
- (Total)                             1684          125         1093          466
+ (Total)                             1690          125         1097          468
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    40         8277         3756         3105         1416
+ Total                    41         8298         3771         3109         1418
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

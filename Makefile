@@ -51,7 +51,14 @@ init-from-scratch:
 
 init-windows:
 	uv venv --python ${PYTHON_VERSION}
+	.venv/Scripts/activate
 	uv pip install --editable .
+
+init-windows-dev:
+	uv venv --python ${PYTHON_VERSION}
+	.venv/Scripts/activate
+	uv pip install --editable .
+	uv pip install --group dev --group lint
 
 # ---------------------------------------------------------------------------- #
 #               ------- Pyenv ------

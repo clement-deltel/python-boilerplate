@@ -24,6 +24,7 @@
 - [Cloud](#cloud)
   - [checkov](#checkov)
 - [Documentation](#documentation)
+  - [onefetch](#onefetch)
   - [tokei](#tokei)
   - [csv2md](#csv2md)
   - [git-cliff](#git-cliff)
@@ -371,6 +372,26 @@ checkov --config-file checkov.yaml
 ```
 
 ## Documentation
+
+### onefetch
+
+Here are useful commands to generate a general presentation for the application using [onefetch](https://github.com/o2sh/onefetch).
+
+```bash
+onefetch --disabled-fields head authors last-change url lines-of-code churn --no-title
+```
+
+It can be combine with the utility [freeze](https://github.com/charmbracelet/freeze) to save a screenshot out of the output and reference it in the README:
+
+```bash
+freeze --execute "onefetch --disabled-fields head authors last-change url lines-of-code churn --no-title" --border.width 10 --output doc/app_presentation.svg
+```
+
+- Add to the README file the line
+
+```markdown
+![Application Presentation](doc/app_presentation.svg =600x)
+```
 
 ### tokei
 

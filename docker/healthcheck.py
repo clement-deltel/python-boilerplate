@@ -28,7 +28,7 @@ def is_process_running(pattern: str) -> bool:
             try:
                 # Read the command line of the process
                 cmdline_file = pid_dir / "cmdline"
-                with cmdline_file.open("r") as f:
+                with cmdline_file.open(mode="r", encoding="utf-8") as f:
                     cmdline = f.read().replace("\0", " ").strip()
 
                 if pattern in cmdline:

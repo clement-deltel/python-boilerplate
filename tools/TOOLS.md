@@ -96,6 +96,7 @@ Here are the useful pre-commit hooks used across all of my Python projects.
   - [uv](https://github.com/astral-sh/uv-pre-commit) - extremely fast package and project manager. `Rust`
   - [yamllint](https://github.com/adrienverge/yamllint)
 - Custom
+  - [freeze](https://github.com/charmbracelet/freeze) - generate images of code and terminal output. `Go`
   - [helm-lint](https://helm.sh/docs/helm/helm_lint)
   - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
   - [pre-validate-user-email](.githooks/pre-validate-user-email.sh)
@@ -115,21 +116,30 @@ Here are the useful lint rules applied across all of my Python projects.
 
 - [eradicate - ERA](https://docs.astral.sh/ruff/rules/#eradicate-era)
 - **flake8**
+  - [annotations - ANN](https://docs.astral.sh/ruff/rules/#flake8-annotations-ann)
   - [bandit - S](https://docs.astral.sh/ruff/rules/#flake8-bandit-s)
   - [bugbear - B](https://docs.astral.sh/ruff/rules/#flake8-bugbear-b)
   - [builtins - A](https://docs.astral.sh/ruff/rules/#flake8-builtins-a)
   - [commas - COM](https://docs.astral.sh/ruff/rules/#flake8-commas-com)
   - [comprehensions - C4](https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4)
   - [datetimez - DTZ](https://docs.astral.sh/ruff/rules/#flake8-datetimez-dtz)
+  - [errmsg - EM](https://docs.astral.sh/ruff/rules/#flake8-errmsg-em)
+  - [executable - EXE](https://docs.astral.sh/ruff/rules/#flake8-executable-exe)
+  - [gettext - INT](https://docs.astral.sh/ruff/rules/#flake8-gettext-int)
   - [implicit-str-concat - ISC](https://docs.astral.sh/ruff/rules/#flake8-implicit-str-concat-isc)
   - [import-conventions - ICN](https://docs.astral.sh/ruff/rules/#flake8-import-conventions-icn)
+  - [logging - LOG](https://docs.astral.sh/ruff/rules/#flake8-logging-log)
   - [logging-format - G](https://docs.astral.sh/ruff/rules/#flake8-logging-format-g)
+  - [pie - PIE](https://docs.astral.sh/ruff/rules/#flake8-pie-pie)
+  - [pyi - PYI](https://docs.astral.sh/ruff/rules/#flake8-pyi-pyi)
+  - [pytest-style - PT](https://docs.astral.sh/ruff/rules/#flake8-pytest-style-pt)
   - [quotes - Q](https://docs.astral.sh/ruff/rules/#flake8-quotes-q)
   - [raise - RSE](https://docs.astral.sh/ruff/rules/#flake8-raise-rse)
   - [return - RET](https://docs.astral.sh/ruff/rules/#flake8-return-ret)
   - [self - SLF](https://docs.astral.sh/ruff/rules/#flake8-self-slf)
   - [simplify - SIM](https://docs.astral.sh/ruff/rules/#flake8-simplify-sim)
   - [tidy-imports - TID](https://docs.astral.sh/ruff/rules/#flake8-tidy-imports-tid)
+  - [type-checking - TC](https://docs.astral.sh/ruff/rules/#flake8-type-checking-tc)
   - [unused arguments - ARG](https://docs.astral.sh/ruff/rules/#flake8-unused-arguments-arg)
   - [use-pathlib - PTH](https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth)
 - [isort - I](https://docs.astral.sh/ruff/rules/#isort-i)
@@ -158,6 +168,10 @@ Git:
 - [Git Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack)
 - [pre-commit](https://marketplace.visualstudio.com/items?itemName=elagil.pre-commit-helper)
 - [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits)
+
+Justfile:
+
+- [vscode-just](https://marketplace.visualstudio.com/items?itemName=nefrob.vscode-just-syntax)
 
 Kubernetes:
 

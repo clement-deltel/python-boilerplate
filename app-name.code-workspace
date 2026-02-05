@@ -19,6 +19,8 @@
             "vivaxy.vscode-conventional-commits",
             // General purpose linter
             "fnando.linter",
+            // Justfile
+            "nefrob.vscode-just-syntax",
             // Kubernetes
             "googlecloudtools.cloudcode",
             "lunuan.kubernetes-templates",

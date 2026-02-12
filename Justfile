@@ -278,16 +278,24 @@ lint-env:
 # ---------------------------------------------------------------------------- #
 #               ------- Test ------
 # ---------------------------------------------------------------------------- #
+# https://docs.pytest.org/en/stable/reference/reference.html
+# https://pytest-xdist.readthedocs.io/en/stable/index.html
+# Python 3.12+ coverage option: $COVERAGE_CORE="sysmon"
 
 # Run tests with pytest
 [group("test")]
 test:
-    python -m pytest --color=yes --durations=5 --verbose --config-file=test/pytest.ini test/
+    pytest --config-file=pyproject.toml --verbose
+
+# Run tests with pytest in parallel
+[group("test")]
+test-parallel:
+    pytest --config-file=pyproject.toml --dist worksteal -n auto --verbose
 
 # Run coverage
 [group("test")]
 coverage:
-    coverage run --rcfile=pyproject.toml -m pytest --color=yes --verbose --config-file=test/pytest.ini
+    coverage run --rcfile=pyproject.toml -m pytest --config-file=pyproject.toml --numprocesses=auto --verbose
     coverage report --show-missing
 
 # ---------------------------------------------------------------------------- #
@@ -505,6 +513,17 @@ dockle tag_suffix="":
 [group("checkov")]
 checkov:
     checkov --config-file checkov.yaml
+
+# ---------------------------------------------------------------------------- #
+#               ------- Renovate ------
+# ---------------------------------------------------------------------------- #
+# https://github.com/renovatebot/renovate
+
+# Run renovate dependency security scan
+[group("renovate")]
+renovate RENOVATE_CONFIG_FILE="~/home/.config/renovate/config.yaml":
+    LOG_LEVEL=debug renovate --dry-run-full --platform=local
+
 
 # ---------------------------------------------------------------------------- #
 #               ------- Kubernetes ------

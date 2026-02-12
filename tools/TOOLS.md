@@ -62,6 +62,8 @@ Test:
 - [coverage](https://coverage.readthedocs.io/en/latest)
 - [pytest](https://docs.pytest.org/en/stable) -  framework to write small, readable tests, and scale to support complex functional testing for applications and libraries. `Python`
 - [pytest-mock](https://github.com/pytest-dev/pytest-mock) - thin-wrapper around the mock package for easier use with pytest. `Python`
+- [pytest-sugar](https://github.com/Teemu/pytest-sugar) - change the default look and feel of pytest (e.g. progressbar, show tests that fail instantly). `Python`
+- [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) - distributed testing and loop-on-failures testing modes. `Python`
 
 Typing:
 
@@ -299,6 +301,14 @@ Terminal:
 - [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
 - [textual](https://github.com/Textualize/textual) - build sophisticated user interfaces with a simple API, run your apps in the terminal and a web browser. `Python`
 
+Test:
+
+- [awesome-pytest-speedup](https://github.com/zupo/awesome-pytest-speedup) - collection of tips, tricks and links to help you speed up your pytest suite. `Python`
+- [pytest-incremental](https://github.com/pytest-dev/pytest-incremental) - an incremental test runner. `Python`
+- [pytest-monitor](https://github.com/CFMTech/pytest-monitor) - plugin for analyzing resource usage during test sessions. `Python`
+- [pytest-profiling](https://github.com/man-group/pytest-plugins/tree/master/pytest-profiling) - profiling plugin for pytest, with tabular and heat graph output. `Python`
+- [pytest-testmon](https://github.com/tarpas/pytest-testmon) - selects tests affected by changed files. `Python`
+
 Type checkers:
 
 - [basedmypy](https://github.com/KotlinIsland/basedmypy) - based Python static type checker with baseline, sane default settings and based typing features. `Python`
@@ -326,4 +336,5 @@ Other:
 
 ## Resources
 
+- [PyTest Plugins](https://docs.pytest.org/en/stable/reference/plugin_list.html)
 - [Top 7 Python Profiling Tools for Performance](https://daily.dev/blog/top-7-python-profiling-tools-for-performance)

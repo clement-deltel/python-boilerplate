@@ -163,9 +163,12 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
   - MUST use multi-stage builds to reduce image size
   - MUST combine the package manager update command with the install
   - MUST use `--no-install-recommends` with `apt-get`
+  - MUST use EXPOSE to indicate the ports on which a container listens for connections
   - SHOULD create reusable stages
   - SHOULD consolidate multiple RUN instructions
   - SHOULD clean the apt/dnf/yum package cache
+  - SHOULD use ENV to set commonly used version numbers so that version bumps are easier to maintain
+  - SHOULD use labels from the *Open Container Initiative* specification
 - **Clean**
   - MUST exclude unnecessary files with .dockerignore
   - MUST sort multi-line arguments
@@ -177,6 +180,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
   - MUST NOT use multiple HEALTHCHECK instructions
   - SHOULD use JSON notation for CMD and ENTRYPOINT
   - SHOULD ensure trailing slash for COPY commands with multiple arguments
+  - SHOULD split long or complex RUN statements on multiple lines separated with backslashes
 - **Security**
   - MUST use COPY instead of ADD
   - MUST NOT use default, root, or dynamic user

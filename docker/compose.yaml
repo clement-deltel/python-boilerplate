@@ -3,6 +3,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+      target: production
     container_name: app-name
     env_file: ../.env
     hostname: app-name

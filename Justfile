@@ -169,7 +169,7 @@ uv-check:
 # Update uv version in files and self-update uv
 [arg("source", pattern='^(\d)\.(\d{1,2})\.(\d{1,2})$')]
 [group("uv")]
-uv-update source="0.9.30":
+uv-update source="0.10.2":
     uv self update
     sed -i "s/{{ source }}/{{ uv_version }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
     git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
@@ -364,7 +364,7 @@ get-tag:
 # Build Docker image. Targets: builder, distroless. Tag suffixes: -builder, -distroless
 [group("docker"), arg("target", pattern='^(production|builder|distroless)$'), arg("tag_suffix", pattern='^(-builder|-distroless)?$')]
 build-image target="production" tag_suffix="" $DOCKER_CONTENT_TRUST="1": clean
-    docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION=0.9.30 --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
+    docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION=0.10.2 --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
 
 # Pull Docker image
 [group("docker")]
@@ -419,6 +419,11 @@ run-container-debugpy:
 # ---------------------------------------------------------------------------- #
 #               ------- Docker Compose ------
 # ---------------------------------------------------------------------------- #
+
+# Build Docker Compose services
+[group("docker-compose")]
+compose-build $IMAGE_TAG=`cz version --project`:
+    docker compose -f docker/compose.yaml build
 
 # Bring up Docker Compose services
 [group("docker-compose")]

@@ -114,7 +114,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.0
+    rev: v0.15.1
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -124,7 +124,7 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.30
+    rev: 0.10.2
     hooks:
       - id: uv-lock
       - id: uv-export
@@ -234,6 +234,6 @@ repos:
         args: ["--command", "uv tree --no-default-groups", "--regex", '(## Dependencies\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.43.1
+    rev: v1.43.4
     hooks:
       - id: typos

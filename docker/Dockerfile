@@ -8,6 +8,10 @@ ARG UV_VERSION=0.10.2
 # https://github.com/GoogleContainerTools/distroless
 ARG DEBIAN_DISTROLESS_VERSION=13
 
+# https://hub.docker.com/hardened-images/catalog/dhi/python/images
+ARG DEBIAN_HARDENED_VERSION=13
+ARG PYTHON_HARDENED_VERSION=3.11.14
+
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
@@ -110,6 +114,45 @@ EXPOSE 5678
 #               ------- Distroless Application ------
 # ---------------------------------------------------------------------------- #
 FROM gcr.io/distroless/python3-debian${DEBIAN_DISTROLESS_VERSION}:nonroot AS distroless
+
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md
+LABEL org.opencontainers.image.title="app-name"
+LABEL org.opencontainers.image.description="app-description"
+LABEL org.opencontainers.image.authors="Support - support@company.com"
+LABEL org.opencontainers.image.vendor="Company Inc."
+
+# Not persisted into the runtime image
+ARG USER="nonroot"
+# ARG ID="65532"
+ARG HOME=/app
+ARG VIRTUAL_ENV="${HOME}/.venv"
+ARG MODE=505
+
+# Place executables in the environment at the front of the path
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+
+# Set working directory
+WORKDIR ${HOME}
+
+# Copy Python installation and application virtual env from the builder, as well as healthcheck
+COPY --from=builder --chmod=${MODE} /python /python
+COPY --from=builder --chmod=${MODE} ${HOME}/.venv ${HOME}/.venv
+COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
+
+USER ${USER}
+
+# hadolint unsupported flag: --start-interval=10s
+# See https://github.com/hadolint/hadolint/issues/978
+HEALTHCHECK --interval=60s --timeout=10s --start-period=10s --retries=3 \
+    CMD python healthcheck.py || exit 1
+
+ENTRYPOINT ["app_name"]
+EXPOSE 5678
+
+# ---------------------------------------------------------------------------- #
+#               ------- Docker Hardened Application ------
+# ---------------------------------------------------------------------------- #
+FROM dhi.io/python:${PYTHON_HARDENED_VERSION}-debian${DEBIAN_HARDENED_VERSION} AS dhi
 
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.title="app-name"

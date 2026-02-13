@@ -362,7 +362,7 @@ get-tag:
     @echo "export IMAGE_TAG={{ image_tag }}"
 
 # Build Docker image. Targets: builder, distroless. Tag suffixes: -builder, -distroless
-[group("docker"), arg("target", pattern='^(production|builder|distroless)$'), arg("tag_suffix", pattern='^(-builder|-distroless)?$')]
+[group("docker"), arg("target", pattern='^(production|builder|distroless|dhi)$'), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 build-image target="production" tag_suffix="" $DOCKER_CONTENT_TRUST="1": clean
     docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION=0.10.2 --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
 

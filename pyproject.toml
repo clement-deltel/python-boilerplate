@@ -49,8 +49,9 @@ dependencies = [
 # https://www.cve.org/
 # https://github.com/advisories
 
+# cryptography: CVE-2026-26007
 # urllib: CVE-2025-50181, CVE-2025-50182
-cve = ["urllib3>=2.6.3"]
+cve = ["cryptography>=46.0.5", "urllib3>=2.6.3"]
 
 dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn","snakeviz"]
 lint = [

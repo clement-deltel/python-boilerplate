@@ -296,6 +296,10 @@ Security:
 - [pyarmor](https://github.com/dashingsoft/pyarmor) - obfuscate python scripts, bind obfuscated scripts to fixed machine or expire obfuscated scripts. `Python`
 - [pycify](https://github.com/tusharsadhwani/pycify) - convert your entire Python project from .py files to .pyc files. `Python`
 
+Tasks:
+
+- [pyinvoke](https://github.com/pyinvoke/invoke) - pythonic task management & command execution. `Python`
+
 Terminal:
 
 - [rich](https://github.com/Textualize/rich) - rich text and beautiful formatting in the terminal. `Python`
@@ -308,6 +312,7 @@ Test:
 - [pytest-monitor](https://github.com/CFMTech/pytest-monitor) - plugin for analyzing resource usage during test sessions. `Python`
 - [pytest-profiling](https://github.com/man-group/pytest-plugins/tree/master/pytest-profiling) - profiling plugin for pytest, with tabular and heat graph output. `Python`
 - [pytest-testmon](https://github.com/tarpas/pytest-testmon) - selects tests affected by changed files. `Python`
+- [rut](https://github.com/schettino72/rut) - run unit tests. `Python`
 
 Type checkers:
 

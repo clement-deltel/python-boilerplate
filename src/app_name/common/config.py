@@ -143,8 +143,6 @@ class LogConfig:
         self.level = environ.get("LOG_LEVEL", default="INFO")
 
         # Log handlers
-        self.path = to_path(environ.get("LOG_PATH", default="log"))
-        self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
         self.to_file = to_bool(environ.get("LOG_TO_FILE", default="false"))
         self.to_amqp = to_bool(environ.get("LOG_TO_AMQP", default="false"))
 
@@ -157,8 +155,11 @@ class LogConfig:
         # Log handling
         self.print = to_bool(environ.get("LOG_PRINT", default="false"))
 
+        # File mode
         if self.to_file:
+            self.path = to_path(environ.get("LOG_PATH", default="log"))
             self.path.mkdir(parents=True, exist_ok=True)
+            self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
 
 
 # ---------------------------------------------------------------------------- #

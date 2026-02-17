@@ -211,7 +211,36 @@ update-groups:
 
 # Update all dependency groups as well as pre-commit hooks
 [group("dependencies")]
-update: update-groups hook-update
+update: update-groups uv-update hook-update
+
+# ---------------------------------------------------------------------------- #
+#               ------- Clean ------
+# ---------------------------------------------------------------------------- #
+
+# Clean Python cache files and directories
+[group("clean")]
+clean:
+    @find . -type f -name '*.py[cod]' | xargs rm -rf
+    @find . -type f -name '.coverage' | xargs rm -rf
+    @find . -type d -name '__pycache__' | xargs rm -rf
+    @find . -type d -name '.eggs' | xargs rm -rf
+    @find . -type d -name '.egg-info' | xargs rm -rf
+    @find . -type d -name '.mypy_cache' | xargs rm -rf
+    @find . -type d -name '.pytest_cache' | xargs rm -rf
+    @find . -type d -name '.ruff_cache' | xargs rm -rf
+    @find . -type d -name 'build' | xargs rm -rf
+    @find . -type d -name 'control' | xargs rm -rf
+    @find . -type d -name 'dist' | xargs rm -rf
+
+# Remove also the virtual environment
+[group("clean")]
+pristine: clean
+    rm -rf .venv
+
+# Compress Git database and remove unreferenced objects
+[group("clean")]
+git-prune:
+    git gc --prune=now --aggressive
 
 # ---------------------------------------------------------------------------- #
 #               ------- Run ------
@@ -564,17 +593,3 @@ job-delete:
 [group("helm")]
 helm-test:
     helm unittest -o helm_chart/tests/helm_unittest_results.xml -t JUnit -v helm_chart/values.yaml helm_chart/
-
-# ---------------------------------------------------------------------------- #
-#               ------- Other ------
-# ---------------------------------------------------------------------------- #
-
-# Clean Python cache files and directories
-[group("other")]
-clean:
-    @find . -type f -name '*.py[cod]' | xargs rm -rf
-    @find . -type d -name 'control' | xargs rm -rf
-    @find . -type d -name '__pycache__' | xargs rm -rf
-    @find . -type d -name '.mypy_cache' | xargs rm -rf
-    @find . -type d -name '.pytest_cache' | xargs rm -rf
-    @find . -type d -name '.ruff_cache' | xargs rm -rf

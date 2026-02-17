@@ -146,9 +146,9 @@ charset-normalizer==3.4.4 ; sys_platform == 'linux' \
     #   checkov
     #   commitizen
     #   requests
-checkov==3.2.501 ; sys_platform == 'linux' \
-    --hash=sha256:414f009eafc6478024fa9022f8e14eef54bd7f5a6570fe9129950632a03c3db7 \
-    --hash=sha256:5736fd1de924eaf017f7d422f184949db59b1283a9345b47dde1b5dc61f4c0c6
+checkov==3.2.502 ; sys_platform == 'linux' \
+    --hash=sha256:277aa51545c2b8ac4ffd747aa6d15bda75bed4ab0984ed1757d2c60abfdd343c \
+    --hash=sha256:2e0bfccfaa3b7bcc6539a31dd7179a012019f66596427c6868f496d2c5110e9a
 click==8.1.3 ; sys_platform == 'linux' \
     --hash=sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e \
     --hash=sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48
@@ -512,19 +512,19 @@ policy-sentry==0.13.2 ; sys_platform == 'linux' \
     --hash=sha256:db2b39f92989077f83fc4dd1d064e3ff20b69cfed82168ebdc060e7dce292e77 \
     --hash=sha256:e82c3bc1783606449399c4221f67d05f6b08d8a184ba2fee87d04541d7282b86
     # via cloudsplaining
-prek==0.3.2 ; sys_platform == 'linux' \
-    --hash=sha256:0161b5f584f9e7f416d6cf40a17b98f17953050ff8d8350ec60f20fe966b86b6 \
-    --hash=sha256:07ab237a5415a3e8c0db54de9d63899bcd947624bdd8820d26f12e65f8d19eb7 \
-    --hash=sha256:0ced19701d69c14a08125f14a5dd03945982edf59e793c73a95caf4697a7ac30 \
-    --hash=sha256:1998db3d0cbe243984736c82232be51318f9192e2433919a6b1c5790f600b5fd \
-    --hash=sha256:4e641e8533bca38797eebb49aa89ed0e8db0e61225943b27008c257e3af4d631 \
-    --hash=sha256:4f352f9c3fc98aeed4c8b2ec4dbf16fc386e45eea163c44d67e5571489bd8e6f \
-    --hash=sha256:539dcb90ad9b20837968539855df6a29493b328a1ae87641560768eed4f313b0 \
-    --hash=sha256:cfca1810d49d3f9ef37599c958c4e716bc19a1d78a7e88cbdcb332e0b008994f \
-    --hash=sha256:dce0074ff1a21290748ca567b4bda7553ee305a8c7b14d737e6c58364a499364 \
-    --hash=sha256:e5d69d754299a95a85dc20196f633232f306bee7e7c8cba61791f49ce70404ec \
-    --hash=sha256:f63134b3eea14421789a7335d86f99aee277cb520427196f2923b9260c60e5c5 \
-    --hash=sha256:ffb28189f976fa111e770ee94e4f298add307714568fb7d610c8a7095cb1ce59
+prek==0.3.3 ; sys_platform == 'linux' \
+    --hash=sha256:0f035667a8bd0a77b2bfa2b2e125da8cb1793949e9eeef0d8daab7f8ac8b57fe \
+    --hash=sha256:117bd46ebeb39def24298ce021ccc73edcf697b81856fcff36d762dd56093f6f \
+    --hash=sha256:3acdf13a018f685beaff0a71d4b0d2ccbab4eaa1aced6d08fd471c1a654183eb \
+    --hash=sha256:553515da9586d9624dc42db32b744fdb91cf62b053753037a0cadb3c2d8d82a2 \
+    --hash=sha256:60e0fa15da5020a03df2ee40268145ec5b88267ec2141a205317ad4df8c992d6 \
+    --hash=sha256:856c2b55c51703c366bb4ce81c6a91102b70573a9fc8637db2ac61c66e4565f9 \
+    --hash=sha256:9512cf370e0d1496503463a4a65621480efb41b487841a9e9ff1661edf14b238 \
+    --hash=sha256:a3dc7720b580c07c0386e17af2486a5b4bc2f6cc57034a288a614dcbc4abe555 \
+    --hash=sha256:ae09736149815b26e64a9d350ca05692bab32c2afdf2939114d3211aaad68a3e \
+    --hash=sha256:c0c3ffac16e37a9daba43a7e8316778f5809b70254be138761a8b5b9ef0df28e \
+    --hash=sha256:d09b2ad14332eede441d977de08eb57fb3f61226ed5fd2ceb7aadf5afcdb6794 \
+    --hash=sha256:e8629cac4bdb131be8dc6e5a337f0f76073ad34a8305f3fe2bc1ab6201ede0a4
 prettytable==3.17.0 ; sys_platform == 'linux' \
     --hash=sha256:59f2590776527f3c9e8cf9fe7b66dd215837cca96a9c39567414cbc632e8ddb0 \
     --hash=sha256:aad69b294ddbe3e1f95ef8886a060ed1666a0b83018bbf56295f6f226c43d287
@@ -632,8 +632,8 @@ pyquery==2.0.1 ; sys_platform == 'linux' \
 pyright==1.1.408 ; sys_platform == 'linux' \
     --hash=sha256:090b32865f4fdb1e0e6cd82bf5618480d48eecd2eb2e70f960982a3d9a4c17c1 \
     --hash=sha256:f28f2321f96852fa50b5829ea492f6adb0e6954568d1caa3f3af3a5f555eb684
-pyscn==1.10.2 ; sys_platform == 'linux' \
-    --hash=sha256:be54a39fb4150f2e7bbe9c2a7de2de6ae0519c23a7cd520516828be292618633
+pyscn==1.11.0 ; sys_platform == 'linux' \
+    --hash=sha256:4c61f735fa230a397fd9e3586e4e906a4808b9be38ef8a667082742d6c80c92f
 python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427

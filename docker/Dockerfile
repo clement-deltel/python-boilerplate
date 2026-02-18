@@ -107,7 +107,7 @@ USER ${USER}
 HEALTHCHECK --interval=60s --timeout=10s --start-period=10s --retries=3 \
     CMD python healthcheck.py || exit 1
 
-ENTRYPOINT ["app_name"]
+ENTRYPOINT ["app-name"]
 EXPOSE 5678
 
 # ---------------------------------------------------------------------------- #
@@ -146,7 +146,7 @@ USER ${USER}
 HEALTHCHECK --interval=60s --timeout=10s --start-period=10s --retries=3 \
     CMD python healthcheck.py || exit 1
 
-ENTRYPOINT ["app_name"]
+ENTRYPOINT ["app-name"]
 EXPOSE 5678
 
 # ---------------------------------------------------------------------------- #
@@ -185,5 +185,5 @@ USER ${USER}
 HEALTHCHECK --interval=60s --timeout=10s --start-period=10s --retries=3 \
     CMD python healthcheck.py || exit 1
 
-ENTRYPOINT ["app_name"]
+ENTRYPOINT ["app-name"]
 EXPOSE 5678

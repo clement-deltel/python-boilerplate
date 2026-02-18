@@ -33,14 +33,14 @@ Here are the steps you need to follow when starting a new coding project from th
     - **compose.yaml**
       - 3 `app-name` occurrences
     - **Dockerfile** or **wheel.Dockerfile** based on your needs
-      - 2 `app-name` occurrences
-      - 2 `app-description` occurrences
+      - 6 `app-name` occurrences
+      - 3 `app-description` occurrences
       - image.authors
       - image.vendor
     - **entrypoint.sh**
-      - 1 `app_name` occurrence
+      - 1 `app-name` occurrence
     - **healthcheck.py**
-      - 1 `app_name` occurrence (use underscore over hyphen if multiple words)
+      - 1 `app-name` occurrence (use underscore over hyphen if multiple words)
   - *src directory*
     - rename the `app_name` directory
     - all `app_name.*` imports in the Python files
@@ -52,18 +52,23 @@ Here are the steps you need to follow when starting a new coding project from th
   - **app-name.code-workspace**
     - rename the file itself replacing `app-name`
     - 1 `Application Name` occurrence
-    - 2 `app_name` occurrence
+    - 11 `app-name` occurrences
+    - 3 `app_name` occurrence
     - add launch configurations if needed
   - **checkov.yaml**
     - 1 `app-name` occurrence
+  - **Justfile**
+    - 1 `customer` occurrence
+    - 1 `app-name` occurrence
+    - 1 `app_name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
     - 1 `customer` occurrence
     - 1 `app-name` occurrence
     - 1 `app_name` occurrence
   - **pyproject.toml**
-    - 1 `app-name` occurrence
-    - 7 `app_name` occurrences
+    - 2 `app-name` occurrence
+    - 6 `app_name` occurrences
     - 1 `app-description` occurrence
     - project.authors
     - project.maintainers
@@ -86,7 +91,7 @@ Here are the steps you need to follow when starting a new coding project from th
       - `tool.ty.environment.python-platform`
       - `tool.uv.environments`
       - `tool.uv.required-environments`
-- Run the following uv command: `make init-dev`
+- Run the following uv command: `just init-dev`
 
 ## Good practices
 

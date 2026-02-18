@@ -7,7 +7,7 @@ from pathlib import Path
 from sys import exit as sys_exit
 
 # Global variables
-PROCESS = "app_name"
+PROCESS = "app-name"
 
 
 def is_process_running(pattern: str) -> bool:

@@ -332,6 +332,7 @@ Other:
 
 - [Algorithms - Python](https://github.com/TheAlgorithms/Python) - all algorithms. `Python`
 - [altair](https://github.com/vega/altair) - declarative visualization library. `Python`
+- [copier-astral](https://github.com/ritwiktiwari/copier-astral) - Python project template with astral's toolchain and more. `Jinja` `Python`
 - [moto](https://github.com/getmoto/moto) - easily mock out tests based on AWS infrastructure. `Python`
 - [pillow](https://github.com/python-pillow/Pillow) - Python imaging library. `Python`
 - [streamlit](https://github.com/streamlit/streamlit) - build and share data apps. `Python` `TypeScript`

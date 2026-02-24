@@ -94,7 +94,7 @@ repos:
 
   # isort - Imports Sorting
   - repo: https://github.com/pycqa/isort
-    rev: 7.0.0
+    rev: 8.0.0
     hooks:
       - id: isort
         name: isort (python)
@@ -107,14 +107,14 @@ repos:
 
   # refurb - Refurbishing and modernizing Python codebases.
   - repo: https://github.com/dosisod/refurb
-    rev: v2.2.0
+    rev: v2.3.0
     hooks:
       - id: refurb
         args: [--python-version, "3.11"]
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.1
+    rev: v0.15.2
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -124,7 +124,7 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.10.3
+    rev: 0.10.5
     hooks:
       - id: uv-lock
       - id: uv-export

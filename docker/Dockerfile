@@ -3,7 +3,7 @@
 
 # https://github.com/astral-sh/uv/pkgs/container/uv
 ARG DEBIAN_VERSION=trixie-slim
-ARG UV_VERSION=0.10.3
+ARG UV_VERSION=0.10.5
 
 # https://github.com/GoogleContainerTools/distroless
 ARG DEBIAN_DISTROLESS_VERSION=13

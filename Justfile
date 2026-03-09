@@ -94,8 +94,8 @@ init-pyenv:
 # Create symlinks to have venv auto-activation with pyenv
 [group("pyenv")]
 activate:
-    ln -s ${pwd}/.venv ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
-    ln -s ${pwd}/.venv ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
+    ln -s `pwd`/.venv ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
+    ln -s ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }} ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
     pyenv local {{ python_version }}_{{ customer }}_{{ name }}
 
 # Initialize environment as a developer and create symlinks to have venv auto-activation with pyenv
@@ -390,7 +390,7 @@ pyscn-run:
 get-tag:
     @echo "export IMAGE_TAG={{ image_tag }}"
 
-# Build Docker image. Targets: builder, distroless. Tag suffixes: -builder, -distroless
+# Build Docker image. Targets: builder, distroless, dhi. Tag suffixes: -builder, -distroless, -dhi
 [group("docker"), arg("target", pattern='^(production|builder|distroless|dhi)$'), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 build-image target="production" tag_suffix="" $DOCKER_CONTENT_TRUST="1": clean
     docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION=0.10.5 --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
@@ -426,8 +426,8 @@ create-container:
 # just run-container --detach
 # just run-container --tag-suffix -distroless
 
-# Run Docker container. Tag suffixes: -builder, -distroless
-[group("docker"), arg("tag_suffix", long="tag-suffix", pattern='^(-builder|-distroless)?$')]
+# Run Docker container. Tag suffixes: -builder, -distroless, -dhi
+[group("docker"), arg("tag_suffix", long="tag-suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 run-container detach="" tag_suffix="":
     docker run {{ detach }} --env-file .env --name {{ name }} --rm  --volume /mnt/naos_share/{{ customer }}/{{ name }}:/mnt/naos_share/{{ customer }}/{{ name }} {{ name }}:{{ image_tag }}{{ tag_suffix }}
 
@@ -443,7 +443,7 @@ run-container-pdb:
 # Run Docker production container in debug mode with debugpy
 [group("docker")]
 run-container-debugpy:
-    docker run --env DEBUGPY=true --env-file .env --name {{ name }}-debug --publish 5678:5678 --rm --volume ${pwd}/src:/app/src --volume /mnt/naos_share/{{ customer }}/{{ name }}:/mnt/naos_share/{{ customer }}/{{ name }} {{ name }}:{{ image_tag }}
+    docker run --env DEBUGPY=true --env-file .env --name {{ name }}-debug --publish 5678:5678 --rm --volume `pwd`/src:/app/src --volume /mnt/naos_share/{{ customer }}/{{ name }}:/mnt/naos_share/{{ customer }}/{{ name }} {{ name }}:{{ image_tag }}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Docker Compose ------
@@ -487,8 +487,8 @@ dive-ci:
 # just grype -builder
 # just grype -distroless
 
-# Run grype vulnerability scan on image. Tag suffixes: -builder, -distroless
-[group("grype"), arg("tag_suffix", pattern='^(-builder|-distroless)?$')]
+# Run grype vulnerability scan on image. Tag suffixes: -builder, -distroless, -dhi
+[group("grype"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 grype tag_suffix="":
     grype {{ name }}:{{ image_tag }}{{ tag_suffix }} --scope all-layers
 
@@ -510,8 +510,8 @@ grype-update:
 # just trivy -builder
 # just trivy -distroless
 
-# Run trivy vulnerability scan on image. Tag suffixes: -builder, -distroless
-[group("trivy"), arg("tag_suffix", pattern='^(-builder|-distroless)?$')]
+# Run trivy vulnerability scan on image. Tag suffixes: -builder, -distroless, -dhi
+[group("trivy"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 trivy tag_suffix="":
     trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln {{ name }}:{{ image_tag }}{{ tag_suffix }}
 
@@ -533,8 +533,8 @@ trivy-clean:
 # just dockle -builder
 # just dockle -distroless
 
-# Run dockle security scan on image. Tag suffixes: -builder, -distroless
-[group("dockle"), arg("tag_suffix", pattern='^(-builder|-distroless)?$')]
+# Run dockle security scan on image. Tag suffixes: -builder, -distroless, -dhi
+[group("dockle"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 dockle tag_suffix="":
     dockle {{ name }}:{{ image_tag }}{{ tag_suffix }}
 

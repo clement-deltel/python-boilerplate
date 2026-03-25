@@ -36,6 +36,7 @@
             "ms-python.isort",
             "ms-python.python",
             "ms-python.vscode-pylance",
+            "ms-python.vscode-python-envs",
             "njpwerner.autodocstring",
             "rodolphebarbanneau.python-docstring-highlighter",
             // Syntax
@@ -111,6 +112,7 @@
         "python.terminal.activateEnvironment": true,
         "python.testing.pytestEnabled": true,
         "python.testing.unittestEnabled": true,
+        "python.useEnvironmentsExtension": true,
         // Extensions - Python Indent
         "pythonIndent.trimLinesWithOnlyWhitespace": true,
         // Ruff

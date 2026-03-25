@@ -278,6 +278,10 @@ Make Python faster:
 - [cython](https://github.com/cython/cython) - most widely used Python to C compiler.
 - [pypy](https://github.com/pypy/pypy) - very fast and compliant implementation of the language.
 
+ORM:
+
+- [oxyde](https://github.com/mr-fatalyst/oxyde) - type-safe, Pydantic-centric asynchronous ORM with a high-performance core designed for clarity, speed, and reliability. `Python` `Rust`
+
 Profiling:
 
 - [line-profiler](https://github.com/pyutils/line_profiler) - line-by-line profiling. `Python`

@@ -37,7 +37,7 @@ dependencies = [
     "cloudevents",   # https://github.com/cloudevents/sdk-python
     "debugpy",       # https://github.com/microsoft/debugpy
     "numpy",         # https://github.com/numpy/numpy
-    # "pandas",        # https://pandas.pydata.org/docs/reference/index.html
+    # "pandas",      # https://pandas.pydata.org/docs/reference/index.html
     "pika",          # https://pika.readthedocs.io/en/stable/index.html
     "polars",        # https://github.com/pola-rs/polars
     "python-dotenv",
@@ -50,10 +50,13 @@ dependencies = [
 # https://github.com/advisories
 
 # cryptography: CVE-2026-26007
+# orjson: CVE-2025-67221
+# pyjwt: CVE-2026-32597
+# tornado: GHSA-78cv-mqj4-43f7
 # urllib: CVE-2025-50181, CVE-2025-50182
-cve = ["cryptography>=46.0.5", "urllib3>=2.6.3"]
+cve = ["cryptography>=46.0.5", "orjson>=3.11.6", "pyjwt>=2.12.0", "tornado>=6.5.5", "urllib3>=2.6.3"]
 
-dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn","snakeviz"]
+dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn", "snakeviz"]
 lint = [
     "checkov",
     "gitlint",
@@ -633,7 +636,7 @@ python-install-mirror = "https://github.com/astral-sh/python-build-standalone/re
 # Whether to prefer using Python installations that are already present on the system, or those that are downloaded and installed by uv
 python-preference = "managed"
 # Enforce a requirement on the version of uv
-required-version = ">=0.10.9"
+required-version = ">=0.11.1"
 # Strategy to use when selecting between the different compatible versions for a given package requirement
 resolution = "highest"
 

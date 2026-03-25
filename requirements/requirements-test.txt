@@ -35,19 +35,19 @@ cloudevents==1.12.0 ; sys_platform == 'linux' \
     --hash=sha256:49196267f5f963d87ae156f93fc0fa32f4af69485f2c8e62e0db8b0b4b8b8921 \
     --hash=sha256:ebd5544ceb58c8378a0787b657a2ae895e929b80a82d6675cba63f0e8c5539e0
     # via app-name
-coverage==7.13.4 ; sys_platform == 'linux' \
-    --hash=sha256:1af1641e57cf7ba1bd67d677c9abdbcd6cc2ab7da3bca7fa1e2b7e50e65f2ad0 \
-    --hash=sha256:3998e5a32e62fdf410c0dbd3115df86297995d6e3429af80b8798aad894ca7aa \
-    --hash=sha256:65dfcbe305c3dfe658492df2d85259e0d79ead4177f9ae724b6fb245198f55d6 \
-    --hash=sha256:71ca20079dd8f27fcf808817e281e90220475cd75115162218d0e27549f95fef \
-    --hash=sha256:8e264226ec98e01a8e1054314af91ee6cde0eacac4f465cc93b03dbe0bce2fd7 \
-    --hash=sha256:94eb63f9b363180aff17de3e7c8760c3ba94664ea2695c52f10111244d16a299 \
-    --hash=sha256:a3aa4e7b9e416774b21797365b358a6e827ffadaaca81b69ee02946852449f00 \
-    --hash=sha256:b507778ae8a4c915436ed5c2e05b4a6cecfa70f734e19c22a005152a11c7b6a9 \
-    --hash=sha256:d65b2d373032411e86960604dc4edac91fdfb5dca539461cf2cbe78327d1e64f \
-    --hash=sha256:e2f25215f1a359ab17320b47bcdaca3e6e6356652e8256f2441e4ef972052903 \
-    --hash=sha256:e5c8f6ed1e61a8b2dcdf31eb0b9bbf0130750ca79c1c49eb898e2ad86f5ccc91 \
-    --hash=sha256:e856bf6616714c3a9fbc270ab54103f4e685ba236fa98c054e8f87f266c93505
+coverage==7.13.5 ; sys_platform == 'linux' \
+    --hash=sha256:0672854dc733c342fa3e957e0605256d2bf5934feeac328da9e0b5449634a642 \
+    --hash=sha256:0e3c426ffc4cd952f54ee9ffbdd10345709ecc78a3ecfd796a57236bfad0b9b8 \
+    --hash=sha256:34b02417cf070e173989b3db962f7ed56d2f644307b2cf9d5a0f258e13084a61 \
+    --hash=sha256:3ad050321264c49c2fa67bb599100456fc51d004b82534f379d16445da40fb75 \
+    --hash=sha256:4d2afbc5cc54d286bfb54541aa50b64cdb07a718227168c87b9e2fb8f25e1743 \
+    --hash=sha256:7300c8a6d13335b29bb76d7651c66af6bd8658517c43499f110ddc6717bfc209 \
+    --hash=sha256:7c8d4bc913dd70b93488d6c496c77f3aff5ea99a07e36a18f865bca55adef8bd \
+    --hash=sha256:9adb6688e3b53adffefd4a52d72cbd8b02602bfb8f74dcd862337182fd4d1a4e \
+    --hash=sha256:be3d4bbad9d4b037791794ddeedd7d64a56f5933a2c1373e18e9e568b9141686 \
+    --hash=sha256:c81f6515c4c40141f83f502b07bbfa5c240ba25bbe73da7b33f1e5b6120ff179 \
+    --hash=sha256:eb07647a5738b89baab047f14edd18ded523de60f3b30e75c2acc826f79c839a \
+    --hash=sha256:ec10e2a42b41c923c2209b846126c6582db5e43a33157e9870ba9fb70dc7854b
 cryptography==46.0.5 ; sys_platform == 'linux' \
     --hash=sha256:039917b0dc418bb9f6edce8a906572d69e74bd330b0b3fea4f79dab7f8ddd235 \
     --hash=sha256:2ae6971afd6246710480e3f15824ed3029a60fc16991db250034efd0b9fb4356 \
@@ -106,6 +106,18 @@ numpy==2.4.1 ; sys_platform == 'linux' \
     --hash=sha256:a92f227dbcdc9e4c3e193add1a189a9909947d4f8504c576f4a732fd0b54240a \
     --hash=sha256:ac08c63cb7779b85e9d5318e6c3518b424bc1f364ac4cb2c6136f12e5ff2dccc
     # via app-name
+orjson==3.11.7 ; sys_platform == 'linux' \
+    --hash=sha256:0527a4510c300e3b406591b0ba69b5dc50031895b0a93743526a3fc45f59d26e \
+    --hash=sha256:136dcd6a2e796dfd9ffca9fc027d778567b0b7c9968d092842d3c323cef88aa8 \
+    --hash=sha256:411ebaf34d735e25e358a6d9e7978954a9c9d58cfb47bc6683cdc3964cd2f910 \
+    --hash=sha256:7ba61079379b0ae29e117db13bda5f28d939766e410d321ec1624afc6a0b0504 \
+    --hash=sha256:91c81ef070c8f3220054115e1ef468b1c9ce8497b4e526cb9f68ab4dc0a7ac62 \
+    --hash=sha256:9b1a67243945819ce55d24a30b59d6a168e86220452d2c96f4d1f093e71c0c49 \
+    --hash=sha256:9c0b51672e466fd7e56230ffbae7f1639e18d0ce023351fb75da21b71bc2c960 \
+    --hash=sha256:a16bcd08ab0bcdfc7e8801d9c4a9cc17e58418e4d48ddc6ded4e9e4b1a94062b \
+    --hash=sha256:a709e881723c9b18acddcfb8ba357322491ad553e277cf467e1e7e20e2d90561 \
+    --hash=sha256:b8d14b71c0b12963fe8a62aac87119f1afdf4cb88a400f61ca5ae581449efcb5 \
+    --hash=sha256:c2e85fe4698b6a56d5e2ebf7ae87544d668eb6bde1ad1226c13f44663f20ec9e
 packaging==23.2 ; sys_platform == 'linux' \
     --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
     --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
@@ -139,6 +151,9 @@ pygments==2.19.2 ; sys_platform == 'linux' \
     --hash=sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887 \
     --hash=sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b
     # via pytest
+pyjwt==2.12.1 ; sys_platform == 'linux' \
+    --hash=sha256:28ca37c070cad8ba8cd9790cd940535d40274d22f80ab87f3ac6a713e6e8454c \
+    --hash=sha256:c74a7a2adf861c04d002db713dd85f84beb242228e671280bf709d765b03672b
 pytest==9.0.2 ; sys_platform == 'linux' \
     --hash=sha256:711ffd45bf766d5264d487b917733b453d917afd2b0ad65223959f59089f875b \
     --hash=sha256:75186651a92bd89611d1d9fc20f0b4345fd827c41ccd5c299a868a05d70edf11
@@ -167,6 +182,12 @@ termcolor==2.3.0 ; sys_platform == 'linux' \
     --hash=sha256:3afb05607b89aed0ffe25202399ee0867ad4d3cb4180d98aaf8eefa6a5f7d475 \
     --hash=sha256:b5b08f68937f138fe92f6c089b99f1e2da0ae56c52b78bf7075fd95420fd9a5a
     # via pytest-sugar
+tornado==6.5.5 ; sys_platform == 'linux' \
+    --hash=sha256:192b8f3ea91bd7f1f50c06955416ed76c6b72f96779b962f07f911b91e8d30e9 \
+    --hash=sha256:36abed1754faeb80fbd6e64db2758091e1320f6bba74a4cf8c09cd18ccce8aca \
+    --hash=sha256:3f54aa540bdbfee7b9eb268ead60e7d199de5021facd276819c193c0fb28ea4e \
+    --hash=sha256:435319e9e340276428bbdb4e7fa732c2d399386d1de5686cb331ec8eee754f07 \
+    --hash=sha256:e74c92e8e65086b338fd56333fb9a68b9f6f2fe7ad532645a290a464bcf46be5
 urllib3==2.6.3 ; sys_platform == 'linux' \
     --hash=sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed \
     --hash=sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4

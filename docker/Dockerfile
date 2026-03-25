@@ -2,20 +2,25 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 # https://github.com/astral-sh/uv/pkgs/container/uv
+ARG UV_DEBIAN_VERSION=trixie
+ARG UV_VERSION=0.11.1
+# Supported types: dhi (Docker Hardened Image), slim
+ARG UV_TYPE=slim
+
+# https://hub.docker.com/_/debian
 ARG DEBIAN_VERSION=trixie-slim
-ARG UV_VERSION=0.10.9
 
 # https://github.com/GoogleContainerTools/distroless
-ARG DEBIAN_DISTROLESS_VERSION=13
+ARG DISTROLESS_DEBIAN_VERSION=13
 
 # https://hub.docker.com/hardened-images/catalog/dhi/python/images
-ARG DEBIAN_HARDENED_VERSION=13
-ARG PYTHON_HARDENED_VERSION=3.11.14
+ARG DHI_DEBIAN_VERSION=13
+ARG DHI_PYTHON_VERSION=3.11.14
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${DEBIAN_VERSION} AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_DEBIAN_VERSION}-${UV_TYPE} AS builder
 
 # Not persisted into the builder image
 ARG PYTHON_VERSION=3.11.14
@@ -113,7 +118,7 @@ EXPOSE 5678
 # ---------------------------------------------------------------------------- #
 #               ------- Distroless Application ------
 # ---------------------------------------------------------------------------- #
-FROM gcr.io/distroless/python3-debian${DEBIAN_DISTROLESS_VERSION}:nonroot AS distroless
+FROM gcr.io/distroless/python3-debian${DISTROLESS_DEBIAN_VERSION}:nonroot AS distroless
 
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.title="app-name"
@@ -152,7 +157,7 @@ EXPOSE 5678
 # ---------------------------------------------------------------------------- #
 #               ------- Docker Hardened Application ------
 # ---------------------------------------------------------------------------- #
-FROM dhi.io/python:${PYTHON_HARDENED_VERSION}-debian${DEBIAN_HARDENED_VERSION} AS dhi
+FROM dhi.io/python:${DHI_PYTHON_VERSION}-debian${DHI_DEBIAN_VERSION} AS dhi
 
 # https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.title="app-name"

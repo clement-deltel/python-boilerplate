@@ -114,7 +114,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.6
+    rev: v0.15.7
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -124,7 +124,7 @@ repos:
 
   # uv - Dependency Management
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.10.9
+    rev: 0.11.1
     hooks:
       - id: uv-lock
       - id: uv-export

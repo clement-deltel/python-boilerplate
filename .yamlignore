@@ -1,1 +1,4 @@
+deploy/custom_values.yaml
 helm_chart/templates
+helm_chart/tests
+helm_chart/values.yaml

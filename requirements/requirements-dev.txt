@@ -512,19 +512,19 @@ policy-sentry==0.13.2 ; sys_platform == 'linux' \
     --hash=sha256:db2b39f92989077f83fc4dd1d064e3ff20b69cfed82168ebdc060e7dce292e77 \
     --hash=sha256:e82c3bc1783606449399c4221f67d05f6b08d8a184ba2fee87d04541d7282b86
     # via cloudsplaining
-prek==0.3.8 ; sys_platform == 'linux' \
-    --hash=sha256:1000f7029696b4fe712fb1fefd4c55b9c4de72b65509c8e50296370a06f9dc3f \
-    --hash=sha256:2e1e5e206ff7b31bd079cce525daddc96cd6bc544d20dc128921ad92f7a4c85d \
-    --hash=sha256:434a214256516f187a3ab15f869d950243be66b94ad47987ee4281b69643a2d9 \
-    --hash=sha256:48efc28f2f53b5b8087efca9daaed91572d62df97d5f24a1c7a087fecb5017de \
-    --hash=sha256:4d25e647e9682f6818ab5c31e7a4b842993c14782a6ffcd128d22b784e0d677f \
-    --hash=sha256:4fb087ac0ffda3ac65bbbae9a38326a7fd27ee007bb4a94323ce1eb539d8bbec \
-    --hash=sha256:6d660f1c25a126e6d9f682fe61449441226514f412a4469f5d71f8f8cad56db2 \
-    --hash=sha256:6fb646ada60658fa6dd7771b2e0fb097f005151be222f869dada3eb26d79ed33 \
-    --hash=sha256:6ff0bed0e2c1286522987d982168a86cbbd0d069d840506a46c9fda983515517 \
-    --hash=sha256:dcea3fe23832a4481bccb7c45f55650cb233be7c805602e788bb7dba60f2d861 \
-    --hash=sha256:de528b82935e33074815acff3c7c86026754d1212136295bc88fe9c43b4231d5 \
-    --hash=sha256:f6ca9d63bacbc448a5c18e955c78d3ac5176c3a17c3baacdd949b1a623e08a36
+prek==0.3.6 ; sys_platform == 'linux' \
+    --hash=sha256:1713119cf0c390486786f4c84450ea584bcdf43979cc28e1350ec62e5d9a41ed \
+    --hash=sha256:3d9e3b5031608657bec5d572fa45a41b6c7ddbe98f925f8240addbf57af55ea7 \
+    --hash=sha256:3f8121060b4610411a936570ebb03b0f78c1b637c25d4914885b3bba127cb554 \
+    --hash=sha256:5bbba688c5283c8e8c907fb00f7c79fce630129f27f77cbee67e356fcfdedea8 \
+    --hash=sha256:5dfe26bc2675114734fa626e7dc635f76e53a28fed7470ba6f32caf2f29cc21f \
+    --hash=sha256:61de3f019f5a082688654139fd9a3e03f74dbd4a09533667714d28833359114d \
+    --hash=sha256:6ef02ce9d2389daae85f099fd4f34aa5537e3670b5e2a3174c9110ce69958c10 \
+    --hash=sha256:8a38d8061caae4ffd757316b9ef65409d808ae92482386385413365bad033c26 \
+    --hash=sha256:a581d2903be460a236748fb3cfcb5b7dbe5b4af2409f06c0427b637676d4b78a \
+    --hash=sha256:bdf5c1e13ba0c04c2f488c5f90b1fd97a72aa740dc373b17fbbfc51898fa0377 \
+    --hash=sha256:cbc7f0b344432630e990a6c6dd512773fbb7253c8df3c3f78eedd80b115ed3c9 \
+    --hash=sha256:d663f1c467dccbd414ab0caa323230f33aa27797c575d98af1013866e1f83a12
 prettytable==3.17.0 ; sys_platform == 'linux' \
     --hash=sha256:59f2590776527f3c9e8cf9fe7b66dd215837cca96a9c39567414cbc632e8ddb0 \
     --hash=sha256:aad69b294ddbe3e1f95ef8886a060ed1666a0b83018bbf56295f6f226c43d287
@@ -632,8 +632,8 @@ pyquery==2.0.1 ; sys_platform == 'linux' \
 pyright==1.1.408 ; sys_platform == 'linux' \
     --hash=sha256:090b32865f4fdb1e0e6cd82bf5618480d48eecd2eb2e70f960982a3d9a4c17c1 \
     --hash=sha256:f28f2321f96852fa50b5829ea492f6adb0e6954568d1caa3f3af3a5f555eb684
-pyscn==1.13.0 ; sys_platform == 'linux' \
-    --hash=sha256:5a5c56ea028551a99fea3efcd09c463f0af9dd9da1a876dc4c1af1642cb16dae
+pyscn==1.12.0 ; sys_platform == 'linux' \
+    --hash=sha256:2ae8aee81ba2134556bc77f8c63f350463cbb57cdb60901d6e730f2ab3e2d3bd
 python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
@@ -833,22 +833,22 @@ tqdm==4.67.1 ; sys_platform == 'linux' \
     --hash=sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2 \
     --hash=sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2
     # via checkov
-ty==0.0.25 ; sys_platform == 'linux' \
-    --hash=sha256:18a5443e4ef339c1bd8c57fc13112c22080617ea582bfc22b497d82d65361325 \
-    --hash=sha256:26d6d5aede5d54fb055779460f896d9c1473c6fb996716bd11cb90f027d8fee7 \
-    --hash=sha256:2d4336aa5381eb4eab107c3dec75fe22943a648ef6646f5a8431ef1c8cdabb66 \
-    --hash=sha256:781150e23825dc110cd5e1f50ca3d61664f7a5db5b4a55d5dbf7d3b1e246b917 \
-    --hash=sha256:7ad98da1393161096235a387cc36abecd31861060c68416761eccdb7c1bc326b \
-    --hash=sha256:7fc1ef49cd6262eb9223ccf6e258ac899aaa53e7dc2151ba65a2c9fa248dfa75 \
-    --hash=sha256:814870b7f347b5d0276304cddb98a0958f08de183bf159abc920ebe321247ad4 \
-    --hash=sha256:8ae3891be17dfb6acab51a2df3a8f8f6c551eb60ea674c10946dc92aae8d4401 \
-    --hash=sha256:aca04e9ed9b61c706064a1c0b71a247c3f92f373d0222103f3bc54b649421796 \
-    --hash=sha256:e10ed39564227de2b7bd89398250b65daaedbef15a25cef8eee70078f5d9e0b2 \
-    --hash=sha256:f03c5c5b5c10355ea030cbe3cd93b2e759b9492c66688288ea03a68086069f2e \
-    --hash=sha256:ffc81ff2a0143911321251dc81d1c259fa5cdc56d043019a733c845d55409e2a
-types-requests==2.32.4.20260324 ; sys_platform == 'linux' \
-    --hash=sha256:33a2a9ccb1de7d4e4da36e347622c35418f6761269014cc32857acabd5df739e \
-    --hash=sha256:f83ef2deb284fe99a249b8b0b0a3e4b9809e01ff456063c4df0aac7670c07ab9
+ty==0.0.24 ; sys_platform == 'linux' \
+    --hash=sha256:0c94c25d0500939fd5f8f16ce41cbed5b20528702c1d649bf80300253813f0a2 \
+    --hash=sha256:1ab4f1f61334d533a3fdf5d9772b51b1300ac5da4f3cdb0be9657a3ccb2ce3e7 \
+    --hash=sha256:438ecbf1608a9b16dd84502f3f1b23ef2ef32bbd0ab3e0ca5a82f0e0d1cd41ea \
+    --hash=sha256:5674a1146d927ab77ff198a88e0c4505134ced342a0e7d1beb4a076a728b7496 \
+    --hash=sha256:7981df5c709c054da4ac5d7c93f8feb8f45e69e829e4461df4d5f0988fe67d04 \
+    --hash=sha256:89cbe7bc7df0fab02dbd8cda79b737df83f1ef7fb573b08c0ee043dc68cffb08 \
+    --hash=sha256:9fe42f6b98207bdaef51f71487d6d087f2cb02555ee3939884d779b2b3cc8bfc \
+    --hash=sha256:a52b7f589c3205512a9c50ba5b2b1e8c0698b72e51b8b9285c90420c06f1cae8 \
+    --hash=sha256:b2860151ad95a00d0f0280b8fef79900d08dcd63276b57e6e5774f2c055979c5 \
+    --hash=sha256:ba44512db5b97c3bbd59d93e11296e8548d0c9a3bdd1280de36d7ff22d351896 \
+    --hash=sha256:db2c5d269bcc9b764850c99f457b5018a79b3ef40ecfbc03344e65effd6cf743 \
+    --hash=sha256:ddeed3098dd92a83964e7aa7b41e509ba3530eb539fc4cd8322ff64a09daf1f5
+types-requests==2.32.4.20260107 ; sys_platform == 'linux' \
+    --hash=sha256:018a11ac158f801bfa84857ddec1650750e393df8a004a8a9ae2a9bec6fcb24f \
+    --hash=sha256:b703fe72f8ce5b31ef031264fe9395cac8f46a04661a79f7ed31a80fb308730d
 typing-extensions==4.15.0 ; sys_platform == 'linux' \
     --hash=sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466 \
     --hash=sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548

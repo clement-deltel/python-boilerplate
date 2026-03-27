@@ -249,7 +249,7 @@ git-prune:
 # Run application
 [group("run")]
 run:
-    {{ name_snake }}
+    {{ name }}
 
 # Run application using module
 [group("run")]
@@ -264,7 +264,7 @@ run-program:
 # Run application using uv
 [group("run")]
 run-uv:
-    uv run {{ name_snake }}
+    uv run {{ name }}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Debug ------

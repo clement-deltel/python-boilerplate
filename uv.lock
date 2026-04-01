@@ -12,7 +12,7 @@ required-markers = [
 ]
 
 [options]
-exclude-newer = "2026-03-18T22:01:23.007909386Z"
+exclude-newer = "2026-03-18T22:41:42.688972686Z"
 exclude-newer-span = "P2W"
 
 [options.exclude-newer-package]

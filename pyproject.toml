@@ -619,7 +619,9 @@ required-environments = [
 # Compile Python files to bytecode after installation
 compile-bytecode = true
 # Limit candidate packages to those that were uploaded prior to the given date
-exclude-newer = "1 week"
+exclude-newer = "2 weeks"
+# Limit candidate packages for specific packages to those that were uploaded prior to the given date
+exclude-newer-package = { ruff = false, ty = false }
 # Extra URLs of package indexes to use, in addition to --index-url
 # extra-index-url = ["https://download.pytorch.org/whl/cpu"]
 

@@ -167,7 +167,7 @@ helm template app-name --namespace <namespace> --values ./deploy/custom-values.y
 Deploy the application in the Kubernetes cluster using the chart stored in the registry:
 
 ```sh
-helm upgrade app-name  oci://<registry>/customer-app-name --history-max 2 --install --namespace <namespace> --values ./deploy/custom-values.yaml --version <version>
+helm upgrade app-name  oci://<registry>/customer-name-app-name --history-max 2 --install --namespace <namespace> --values ./deploy/custom-values.yaml --version <version>
 ```
 
 Uninstall the application:

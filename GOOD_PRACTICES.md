@@ -26,7 +26,7 @@ Here are the steps you need to follow when starting a new coding project from th
       - 2 `company.com` occurrences
   - *deploy directory*
     - **README.md**
-      - 1 `customer` occurrence
+      - 1 `customer-name` occurrence
       - 13 `app-name` occurrences
       - all `<[a-z]*>` occurrences
   - *docker directory*
@@ -44,30 +44,37 @@ Here are the steps you need to follow when starting a new coding project from th
   - *src directory*
     - rename the `app_name` directory
     - all `app_name.*` imports in the Python files
+    - *common directory*
+      - **config.py**
+        - 1 `app_name` occurrence
+        - 1 `customer-name` occurrence
   - *tools directory*
     - **README.md**
       - 5 `app-name` occurrences
+  - **.env.schema**
+    - 1 `app_name` occurrence
+    - 1 `customer-name` occurrence
   - **.pre-commit-config.yaml**
     - enable commitizen, commitlint and gitlint hooks (disabled by default)
   - **app-name.code-workspace**
     - rename the file itself replacing `app-name`
     - 1 `Application Name` occurrence
     - 11 `app-name` occurrences
-    - 3 `app_name` occurrence
+    - 3 `app_name` occurrences
     - add launch configurations if needed
   - **checkov.yaml**
     - 1 `app-name` occurrence
   - **Justfile**
-    - 1 `customer` occurrence
+    - 1 `customer-name` occurrence
     - 1 `app-name` occurrence
     - 1 `app_name` occurrence
   - **LICENSE**: delete this file
   - **Makefile**
-    - 1 `customer` occurrence
+    - 1 `customer-name` occurrence
     - 1 `app-name` occurrence
     - 1 `app_name` occurrence
   - **pyproject.toml**
-    - 2 `app-name` occurrence
+    - 2 `app-name` occurrences
     - 6 `app_name` occurrences
     - 1 `app-description` occurrence
     - project.authors

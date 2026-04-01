@@ -262,7 +262,7 @@ perform_replacements() {
         # Perform all replacements in one sed command for efficiency
         sed -E \
             -e "s/Customer__AppName/${combined_pascal}/g" \
-            -e "s/customer/${customer_kebab}/g" \
+            -e "s/customer-name/${customer_kebab}/g" \
             -e "s/Application Name/${app_title}/g" \
             -e "s/appName/${app_camel}/g" \
             -e "s/app-name/${app_kebab}/g" \

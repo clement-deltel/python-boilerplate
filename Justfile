@@ -15,7 +15,7 @@ default:
 # ---------------------------------------------------------------------------- #
 # User defined
 
-customer := "customer"
+customer := "customer-name"
 name := "app-name"
 name_snake := "app_name"
 

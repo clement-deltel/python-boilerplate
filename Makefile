@@ -8,7 +8,7 @@ PYTHON_TARGET_VERSION:=3.11.14
 UV_SOURCE_VERSION:=0.9.26
 UV_TARGET_VERSION:=0.9.26
 
-CUSTOMER_NAME:=customer
+CUSTOMER:=customer-name
 APP_NAME:=app-name
 APP_NAME_SNAKE:=app_name
 
@@ -68,9 +68,9 @@ pyenv-init:
 
 pyenv-activate:
 	mkdir -p ~/.pyenv/versions/${PYTHON_VERSION}/envs
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
-	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
-	pyenv local ${PYTHON_VERSION}_${CUSTOMER_NAME}_${APP_NAME}
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}_${CUSTOMER}_${APP_NAME}
+	ln -s $(shell pwd)/.venv ~/.pyenv/versions/${PYTHON_VERSION}/envs/${PYTHON_VERSION}_${CUSTOMER}_${APP_NAME}
+	pyenv local ${PYTHON_VERSION}_${CUSTOMER}_${APP_NAME}
 
 # ---------------------------------------------------------------------------- #
 #               ------- Python version ------

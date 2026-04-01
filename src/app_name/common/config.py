@@ -208,7 +208,7 @@ class CloudEventsConfig:
         """Initialize class."""
         # Required
         self.spec_version = environ.get("CLOUDEVENTS_SPEC_VERSION", default="1.0")
-        self.type = environ.get("CLOUDEVENTS_TYPE", default="com.customer.app_name.v1")
+        self.type = environ.get("CLOUDEVENTS_TYPE", default="com.customer-name.app_name.v1")
 
         # Optional
         self.data_content_type = environ.get("CLOUDEVENTS_DATA_CONTENT_TYPE", default="application/json")

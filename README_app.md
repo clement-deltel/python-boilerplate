@@ -39,16 +39,16 @@ app-description
  Python                   19         3632         2577          408          647
  Shell                     2          529          326          113           90
  SVG                       1           15           15            0            0
- Plain Text                3         1266            0         1266            0
+ Plain Text                3         1283            0         1283            0
  TOML                      1          652          360          214           78
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
- Markdown                  7         1631            0         1149          482
+ Markdown                  7         1633            0         1151          482
  |- BASH                   5          132          127            4            1
  |- Markdown               1            1            0            1            0
- (Total)                             1764          127         1154          483
+ (Total)                             1766          127         1156          483
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    41         9219         4115         3550         1554
+ Total                    41         9238         4115         3569         1554
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -71,9 +71,11 @@ The application dependencies are managed with [uv](https://docs.astral.sh/uv). Y
 
 ```text
 app-name v0.0.0
-├── cloudevents v1.12.0
-│   └── deprecation v2.1.0
-│       └── packaging v23.2
+├── cloudevents v2.0.0
+│   ├── deprecation v2.1.0
+│   │   └── packaging v23.2
+│   └── python-dateutil v2.9.0.post0
+│       └── six v1.17.0
 ├── debugpy v1.8.19
 ├── numpy v2.4.1
 ├── pika v1.3.2

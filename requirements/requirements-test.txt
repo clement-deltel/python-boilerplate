@@ -31,9 +31,9 @@ charset-normalizer==3.4.4 ; sys_platform == 'linux' \
     --hash=sha256:d9e45d7faa48ee908174d8fe84854479ef838fc6a705c9315372eacbc2f02897 \
     --hash=sha256:ebf3e58c7ec8a8bed6d66a75d7fb37b55e5015b03ceae72a8e7c74495551e224
     # via requests
-cloudevents==1.12.0 ; sys_platform == 'linux' \
-    --hash=sha256:49196267f5f963d87ae156f93fc0fa32f4af69485f2c8e62e0db8b0b4b8b8921 \
-    --hash=sha256:ebd5544ceb58c8378a0787b657a2ae895e929b80a82d6675cba63f0e8c5539e0
+cloudevents==2.0.0 ; sys_platform == 'linux' \
+    --hash=sha256:3224851b2ac902b868ed4bc1aa10772ada8cdf85f180322b12968d90a1dceef2 \
+    --hash=sha256:babb257989a933b18312897c3bf3a7cc65e270831227822f2db10b50d1278546
     # via app-name
 coverage==7.13.5 ; sys_platform == 'linux' \
     --hash=sha256:0672854dc733c342fa3e957e0605256d2bf5934feeac328da9e0b5449634a642 \
@@ -170,6 +170,10 @@ pytest-sugar==1.1.1 ; sys_platform == 'linux' \
 pytest-xdist==3.8.0 ; sys_platform == 'linux' \
     --hash=sha256:202ca578cfeb7370784a8c33d6d05bc6e13b4f25b5053c30a152269fd10f0b88 \
     --hash=sha256:7e578125ec9bc6050861aa93f2d59f1d8d085595d6551c2c90b6f4fad8d3a9f1
+python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
+    --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
+    --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
+    # via cloudevents
 python-dotenv==1.2.1 ; sys_platform == 'linux' \
     --hash=sha256:42667e897e16ab0d66954af0e60a9caa94f0fd4ecf3aaf6d2d260eec1aa36ad6 \
     --hash=sha256:b81ee9561e9ca4004139c6cbba3a238c32b03e4894671e181b671e8cb8425d61
@@ -178,6 +182,10 @@ requests==2.32.5 ; sys_platform == 'linux' \
     --hash=sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6 \
     --hash=sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf
     # via app-name
+six==1.17.0 ; sys_platform == 'linux' \
+    --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
+    --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81
+    # via python-dateutil
 termcolor==2.3.0 ; sys_platform == 'linux' \
     --hash=sha256:3afb05607b89aed0ffe25202399ee0867ad4d3cb4180d98aaf8eefa6a5f7d475 \
     --hash=sha256:b5b08f68937f138fe92f6c089b99f1e2da0ae56c52b78bf7075fd95420fd9a5a

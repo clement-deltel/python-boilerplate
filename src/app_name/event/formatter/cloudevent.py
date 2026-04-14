@@ -10,8 +10,8 @@ from json import dumps
 from typing import Any
 
 # Third-party
-from cloudevents.conversion import to_dict
-from cloudevents.http import CloudEvent
+from cloudevents.v1.conversion import to_dict
+from cloudevents.v1.http import CloudEvent
 
 # Local Application
 from app_name.common.config import CloudEventsConfig, get_config_class

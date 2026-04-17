@@ -555,9 +555,8 @@ checkov:
 
 # Run renovate dependency security scan
 [group("renovate")]
-renovate RENOVATE_CONFIG_FILE="~/home/.config/renovate/config.yaml":
-    LOG_LEVEL=debug renovate --dry-run-full --platform=local
-
+renovate $LOG_FORMAT="json" $LOG_LEVEL="debug" $RENOVATE_TOKEN="dummy":
+    RENOVATE_CONFIG_FILE=~/.config/renovate/config.json renovate --dry-run=full --platform=local 2>&1 | jq -r 'select(.msg | test("vuln|CVE|GHSA"; "i")) | [.time, .msg] | @tsv'
 
 # ---------------------------------------------------------------------------- #
 #               ------- Kubernetes ------

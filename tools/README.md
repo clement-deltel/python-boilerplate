@@ -296,11 +296,7 @@ rsync --archive --dry-run --exclude-from .dockerignore --verbose . /dev/shm
 - using a Docker image?
 
 ```bash
-docker build --progress=plain --no-cache -f - . <<'EOF'
-FROM alpine
-COPY . /context
-RUN find /context -type f
-EOF
+echo -e "FROM alpine\nCOPY . /context\nRUN find /context -type f" | docker build --progress=plain --no-cache -f - .
 ```
 
 ### hadolint

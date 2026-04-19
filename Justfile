@@ -10,6 +10,10 @@
 default:
     @just --choose
 
+[private]
+list:
+    just --list --unsorted
+
 # ---------------------------------------------------------------------------- #
 #               ------- VARIABLES ------
 # ---------------------------------------------------------------------------- #
@@ -81,6 +85,72 @@ init-dev:
     uv venv --python {{ python_version }}
     uv pip install --group dev --group lint --editable .
     .venv/Scripts/activate
+
+# ---------------------------------------------------------------------------- #
+#               ------- Run ------
+# ---------------------------------------------------------------------------- #
+
+# Run application
+[group("run")]
+run:
+    {{ name }}
+
+# Run application using module
+[group("run")]
+run-module:
+    python -m {{ name_snake }}.main
+
+# Run application program directly
+[group("run")]
+run-program:
+    python src/{{ name_snake }}/main.py
+
+# Run application using uv
+[group("run")]
+run-uv:
+    uv run {{ name }}
+
+# ---------------------------------------------------------------------------- #
+#               ------- Debug ------
+# ---------------------------------------------------------------------------- #
+
+# Run application in debug mode with pdb
+[group("debug")]
+debug:
+    python -m pdb -m {{ name_snake }}.main
+
+# Run application program in debug mode with pdb
+[group("debug")]
+debug-program:
+    python -m pdb src/{{ name_snake }}/main.py
+
+# Run application program in debug mode with pdb from venv
+[group("debug")]
+debug-program-venv:
+    PYTHON_SHORT_VERSION=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2` && python -m pdb .venv/lib/python${PYTHON_SHORT_VERSION}/site-packages/{{ name_snake }}/main.py
+
+# ---------------------------------------------------------------------------- #
+#               ------- Test ------
+# ---------------------------------------------------------------------------- #
+# https://docs.pytest.org/en/stable/reference/reference.html
+# https://pytest-xdist.readthedocs.io/en/stable/index.html
+# Python 3.12+ coverage option: $COVERAGE_CORE="sysmon"
+
+# Run tests with pytest
+[group("test")]
+test:
+    pytest --config-file=pyproject.toml --verbose
+
+# Run tests with pytest in parallel
+[group("test")]
+test-parallel:
+    pytest --config-file=pyproject.toml --dist worksteal -n auto --verbose
+
+# Run coverage
+[group("test")]
+coverage:
+    coverage run --rcfile=pyproject.toml -m pytest --config-file=pyproject.toml --numprocesses=auto --verbose
+    coverage report --show-missing
 
 # ---------------------------------------------------------------------------- #
 #               ------- Pyenv ------
@@ -243,140 +313,14 @@ git-prune:
     git gc --prune=now --aggressive
 
 # ---------------------------------------------------------------------------- #
-#               ------- Run ------
+#               ------- Docker Ignore ------
 # ---------------------------------------------------------------------------- #
 
-# Run application
-[group("run")]
-run:
-    {{ name }}
-
-# Run application using module
-[group("run")]
-run-module:
-    python -m {{ name_snake }}.main
-
-# Run application program directly
-[group("run")]
-run-program:
-    python src/{{ name_snake }}/main.py
-
-# Run application using uv
-[group("run")]
-run-uv:
-    uv run {{ name }}
-
-# ---------------------------------------------------------------------------- #
-#               ------- Debug ------
-# ---------------------------------------------------------------------------- #
-
-# Run application in debug mode with pdb
-[group("debug")]
-debug:
-    python -m pdb -m {{ name_snake }}.main
-
-# Run application program in debug mode with pdb
-[group("debug")]
-debug-program:
-    python -m pdb src/{{ name_snake }}/main.py
-
-# Run application program in debug mode with pdb from venv
-[group("debug")]
-debug-program-venv:
-    PYTHON_SHORT_VERSION=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2` && python -m pdb .venv/lib/python${PYTHON_SHORT_VERSION}/site-packages/{{ name_snake }}/main.py
-
-# ---------------------------------------------------------------------------- #
-#               ------- Lint ------
-# ---------------------------------------------------------------------------- #
-
-# Lint code with ruff and fix issues
-[group("lint")]
-lint:
-    ruff check --fix
-
-# Lint repository directories with ls-lint
-[group("lint")]
-lint-dir:
-    ls-lint
-
-# Lint environment file with varlock
-[group("lint")]
-lint-env:
-    varlock load
-
-# ---------------------------------------------------------------------------- #
-#               ------- Test ------
-# ---------------------------------------------------------------------------- #
-# https://docs.pytest.org/en/stable/reference/reference.html
-# https://pytest-xdist.readthedocs.io/en/stable/index.html
-# Python 3.12+ coverage option: $COVERAGE_CORE="sysmon"
-
-# Run tests with pytest
-[group("test")]
-test:
-    pytest --config-file=pyproject.toml --verbose
-
-# Run tests with pytest in parallel
-[group("test")]
-test-parallel:
-    pytest --config-file=pyproject.toml --dist worksteal -n auto --verbose
-
-# Run coverage
-[group("test")]
-coverage:
-    coverage run --rcfile=pyproject.toml -m pytest --config-file=pyproject.toml --numprocesses=auto --verbose
-    coverage report --show-missing
-
-# ---------------------------------------------------------------------------- #
-#               ------- Telemetry ------
-# ---------------------------------------------------------------------------- #
-# https://opentelemetry.io/
-
-# Initialize telemetry dependencies
-[group("telemetry")]
-init-telemetry:
-    uv run opentelemetry-bootstrap -a requirements | uv pip install --requirement -
-
-# Run application program with OpenTelemetry instrumentation
-[group("telemetry")]
-run-telemetry: init-telemetry
-    opentelemetry-instrument \
-    --service_name {{ name }} \
-    --logs_exporter console \
-    --traces_exporter console \
-    --metrics_exporter console \
-    python src/{{ name_snake }}/main.py
-
-# ---------------------------------------------------------------------------- #
-#               ------- Pre-commit Hooks ------
-# ---------------------------------------------------------------------------- #
-# https://github.com/j178/prek
-
-# Install pre-commit hooks
-[group("hooks")]
-hook-install:
-    prek install --install-hooks
-
-# Run pre-commit hooks against all files
-[group("hooks")]
-hook-run:
-    prek run --all-files
-
-# Update pre-commit hooks and stage config
-[group("hooks")]
-hook-update:
-    prek auto-update
-    git add .pre-commit-config.yaml
-
-# ---------------------------------------------------------------------------- #
-#               ------- Pyscn ------
-# ---------------------------------------------------------------------------- #
-# https://github.com/ludo-technologies/pyscn
-
-# Run pyscn analysis
-[group("pyscn")]
-pyscn-run:
-    pyscn analyze src/
+# Test .dockerignore using an alpine image
+[group("docker")]
+test-dockerignore:
+    #!/usr/bin/env bash
+    echo -e "FROM alpine\nCOPY . /context\nRUN find /context -type f" | docker build --progress=plain --no-cache -f - .
 
 # ---------------------------------------------------------------------------- #
 #               ------- Docker ------
@@ -427,7 +371,7 @@ create-container:
 # just run-container --tag-suffix -distroless
 
 # Run Docker container. Tag suffixes: -builder, -distroless, -dhi
-[group("docker"), arg("tag_suffix", long="tag-suffix", pattern='^(-builder|-distroless|-dhi)?$')]
+[group("docker-run"), arg("tag_suffix", long="tag-suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 run-container detach="" tag_suffix="":
     docker run {{ detach }} --env-file .env --name {{ name }} --rm  --volume /mnt/naos_share/{{ customer }}/{{ name }}:/mnt/naos_share/{{ customer }}/{{ name }} {{ name }}:{{ image_tag }}{{ tag_suffix }}
 
@@ -436,12 +380,12 @@ run-container detach="" tag_suffix="":
 # ---------------------------------------------------------------------------- #
 
 # Run Docker production container in debug mode with pdb
-[group("docker")]
+[group("docker-run")]
 run-container-pdb:
     docker run --entrypoint python --env-file .env --interactive --name {{ name }}-debug --rm  --tty --volume /mnt/naos_share/{{ customer }}/{{ name }}:/mnt/naos_share/{{ customer }}/{{ name }} {{ name }}:{{ image_tag }} -m pdb -m {{ name_snake }}.main
 
 # Run Docker production container in debug mode with debugpy
-[group("docker")]
+[group("docker-run")]
 run-container-debugpy:
     docker run --env DEBUGPY=true --env-file .env --name {{ name }}-debug --publish 5678:5678 --rm --volume `pwd`/src:/app/src --volume /mnt/naos_share/{{ customer }}/{{ name }}:/mnt/naos_share/{{ customer }}/{{ name }} {{ name }}:{{ image_tag }}
 
@@ -463,6 +407,111 @@ compose-up $IMAGE_TAG=`cz version --project`:
 [group("docker-compose")]
 compose-down $IMAGE_TAG=`cz version --project`:
     docker compose -f docker/compose.yaml down -v
+
+# ---------------------------------------------------------------------------- #
+#               ------- Kubernetes ------
+# ---------------------------------------------------------------------------- #
+
+# Run application pod in debug mode with pdb
+[group("kubernetes")]
+pod-pdb:
+    kubectl run {{ name }}-debug --image {{ name }}:{{ image_tag }} --attach --restart Never --rm --stdin --tty --command -- python -m pdb -m {{ name_snake }}.main
+    kubectl attach -it {{ name }}-debug --namespace default
+
+# Run application pod in debug mode with debugpy
+[group("kubernetes")]
+pod-debugpy:
+    kubectl run {{ name }}-debug --image {{ name }}:{{ image_tag }} --env "DEBUGPY=true" --port=5678 --restart=Never --rm
+    kubectl port-forward pod/{{ name }}-debug 5678:5678 --namespace default
+
+# Create Kubernetes Job object from CronJob
+[group("kubernetes")]
+job-create:
+    kubectl create job --from cronjob/{{ name }} {{ name }}-debug --namespace default
+
+# Delete Kubernetes Job object
+[group("kubernetes")]
+job-delete:
+    kubectl delete job {{ name }}-debug --force --namespace default
+
+# ---------------------------------------------------------------------------- #
+#               ------- Helm ------
+# ---------------------------------------------------------------------------- #
+
+# Run Helm unittest
+[group("helm")]
+helm-test:
+    helm unittest -o helm_chart/tests/helm_unittest_results.xml -t JUnit -v helm_chart/values.yaml helm_chart/
+
+# ---------------------------------------------------------------------------- #
+#               ------- Telemetry ------
+# ---------------------------------------------------------------------------- #
+# https://opentelemetry.io/
+
+# Initialize telemetry dependencies
+[group("telemetry")]
+init-telemetry:
+    uv run opentelemetry-bootstrap -a requirements | uv pip install --requirement -
+
+# Run application program with OpenTelemetry instrumentation
+[group("telemetry")]
+run-telemetry: init-telemetry
+    opentelemetry-instrument \
+    --service_name {{ name }} \
+    --logs_exporter console \
+    --traces_exporter console \
+    --metrics_exporter console \
+    python src/{{ name_snake }}/main.py
+
+# ---------------------------------------------------------------------------- #
+#               ------- Pre-commit Hooks ------
+# ---------------------------------------------------------------------------- #
+# https://github.com/j178/prek
+
+# Install pre-commit hooks
+[group("hooks")]
+hook-install:
+    prek install --install-hooks
+
+# Run pre-commit hooks against all files
+[group("hooks")]
+hook-run:
+    prek run --all-files
+
+# Update pre-commit hooks and stage config
+[group("hooks")]
+hook-update:
+    prek auto-update
+    git add .pre-commit-config.yaml
+
+# ---------------------------------------------------------------------------- #
+#               ------- Lint ------
+# ---------------------------------------------------------------------------- #
+
+# Lint code with ruff and fix issues
+[group("lint")]
+lint:
+    ruff check --fix
+
+# Lint repository directories with ls-lint
+[group("lint")]
+lint-dir:
+    ls-lint
+
+# Lint environment file with varlock
+[group("lint")]
+lint-env:
+    varlock load
+
+# ---------------------------------------------------------------------------- #
+#               ------- Pyscn ------
+# ---------------------------------------------------------------------------- #
+# https://github.com/ludo-technologies/pyscn
+
+# Run pyscn analysis
+[group("pyscn")]
+pyscn-run:
+    pyscn analyze src/
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dive ------
@@ -512,8 +561,8 @@ grype-update:
 
 # Run trivy vulnerability scan on image. Tag suffixes: -builder, -distroless, -dhi
 [group("trivy"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
-trivy tag_suffix="":
-    trivy image --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln {{ name }}:{{ image_tag }}{{ tag_suffix }}
+trivy ignore_unfixed="" tag_suffix="":
+    trivy image {{ ignore_unfixed }} --image-config-scanners misconfig,secret --misconfig-scanners dockerfile,helm,kubernetes --scanners misconfig,secret,vuln {{ name }}:{{ image_tag }}{{ tag_suffix }}
 
 # Run trivy vulnerability scan on repository
 [group("trivy")]
@@ -559,36 +608,10 @@ renovate $LOG_FORMAT="json" $LOG_LEVEL="debug" $RENOVATE_TOKEN="dummy":
     RENOVATE_CONFIG_FILE=~/.config/renovate/config.json renovate --dry-run=full --platform=local 2>&1 | jq -r 'select(.msg | test("vuln|CVE|GHSA"; "i")) | [.time, .msg] | @tsv'
 
 # ---------------------------------------------------------------------------- #
-#               ------- Kubernetes ------
+#               ------- Pull Request ------
 # ---------------------------------------------------------------------------- #
 
-# Run application pod in debug mode with pdb
-[group("kubernetes")]
-pod-pdb:
-    kubectl run {{ name }}-debug --image {{ name }}:{{ image_tag }} --attach --restart Never --rm --stdin --tty --command -- python -m pdb -m {{ name_snake }}.main
-    kubectl attach -it {{ name }}-debug --namespace default
-
-# Run application pod in debug mode with debugpy
-[group("kubernetes")]
-pod-debugpy:
-    kubectl run {{ name }}-debug --image {{ name }}:{{ image_tag }} --env "DEBUGPY=true" --port=5678 --restart=Never --rm
-    kubectl port-forward pod/{{ name }}-debug 5678:5678 --namespace default
-
-# Create Kubernetes Job object from CronJob
-[group("kubernetes")]
-job-create:
-    kubectl create job --from cronjob/{{ name }} {{ name }}-debug --namespace default
-
-# Delete Kubernetes Job object
-[group("kubernetes")]
-job-delete:
-    kubectl delete job {{ name }}-debug --force --namespace default
-
-# ---------------------------------------------------------------------------- #
-#               ------- Helm ------
-# ---------------------------------------------------------------------------- #
-
-# Run Helm unittest
-[group("helm")]
-helm-test:
-    helm unittest -o helm_chart/tests/helm_unittest_results.xml -t JUnit -v helm_chart/values.yaml helm_chart/
+# Run different scans prior opening a new pull request
+[group("pr")]
+pr-scan: build-image (trivy "--ignore-unfixed") renovate
+    docker image rm {{ name }}:{{ image_tag }}

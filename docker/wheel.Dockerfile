@@ -2,7 +2,7 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 ARG DEBIAN_VERSION=trixie-slim
-ARG UV_VERSION=0.11.3
+ARG UV_VERSION=0.11.7
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------

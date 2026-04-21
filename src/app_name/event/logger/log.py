@@ -28,8 +28,6 @@ class Log:
         self.config: LogConfig = get_config_class("log")
         self.levels = {item.name: item.value for item in Levels}
 
-        self.extra_fields = {"user_id", "table", "record", "wait"}
-
         # Logger
         self._logger = getLogger(self.config.name)
         # Formatters
@@ -79,14 +77,14 @@ class Log:
             level (str): log level.
         """
         # Default
-        self.file_formatter = CustomFormatter(self.config.app_env, level, self.extra_fields)
-        self.formatter = CustomFormatter(self.config.app_env, level, self.extra_fields, self.config.color)
+        self.file_formatter = CustomFormatter(self.config.app_env, level, self.config.extra_fields)
+        self.formatter = CustomFormatter(self.config.app_env, level, self.config.extra_fields, self.config.color)
         # JSON formatter
         if self.config.json:
-            self.formatter = JSONFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
+            self.formatter = JSONFormatter(self.config.app_env, level, self.config.extra_fields, self.config.color, self.config.pretty)
         # CloudEvents formatter
         if self.config.cloudevents:
-            self.formatter = CloudEventsFormatter(self.config.app_env, level, self.extra_fields, self.config.color, self.config.pretty)
+            self.formatter = CloudEventsFormatter(self.config.app_env, level, self.config.extra_fields, self.config.color, self.config.pretty)
 
     def open_stream(self) -> None:
         """Open the stream handlers to write log messages to stdout and stderr."""

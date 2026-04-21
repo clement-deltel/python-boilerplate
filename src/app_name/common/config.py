@@ -145,6 +145,7 @@ class LogConfig:
         # Log handlers
         self.to_file = to_bool(environ.get("LOG_TO_FILE", default="false"))
         self.to_amqp = to_bool(environ.get("LOG_TO_AMQP", default="false"))
+        self.print = to_bool(environ.get("LOG_PRINT", default="false"))
 
         # Log formatting
         self.cloudevents = to_bool(environ.get("LOG_CLOUDEVENTS", default="true"))
@@ -152,14 +153,14 @@ class LogConfig:
         self.json = to_bool(environ.get("LOG_JSON", default="false"))
         self.pretty = to_bool(environ.get("LOG_JSON_PRETTY", default="false"))
 
-        # Log handling
-        self.print = to_bool(environ.get("LOG_PRINT", default="false"))
-
         # File mode
         if self.to_file:
             self.path = to_path(environ.get("LOG_PATH", default="log"))
             self.path.mkdir(parents=True, exist_ok=True)
             self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
+
+        # Extra fields
+        self.extra_fields = {"user_id", "table", "record", "wait"}
 
 
 # ---------------------------------------------------------------------------- #

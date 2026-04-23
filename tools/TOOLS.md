@@ -329,6 +329,7 @@ Type checkers:
 Web:
 
 - [reflex](https://github.com/reflex-dev/reflex) -  full-stack web apps in pure Python. `Python`
+- [scrapling](https://github.com/D4Vinci/Scrapling) - adaptive web scraping framework that handles everything from a single request to a full-scale crawl. `Python`
 - [scrapy](https://github.com/scrapy/scrapy) - fast high-level web crawling & scraping framework. `Python`
 - [selenium](https://pypi.org/project/selenium)
 

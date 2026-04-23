@@ -131,6 +131,7 @@
             "Q003", // avoidable-escaped-quote
             // --- //
             "ANN401", // any-type
+            "TD003", // missing-todo-link
             "D203", // incorrect-blank-line-before-class
             "D213", // multi-line-summary-second-line
             "PLR0913", // too-many-arguments
@@ -162,9 +163,12 @@
             "SIM", // flake8-simplify
             "TID", // flake8-tidy-imports
             "TC", // flake8-type-checking
+            "TD", // flake8-todos
             "ARG", // flake8-unused-arguments
             "PTH", // flake8-use-pathlib
+            "FLY", // flynt
             "I", // isort
+            "NPY", // numpy-specific
             "PD", // pandas-vet
             "N", // pep8-naming
             "PERF", // perflint

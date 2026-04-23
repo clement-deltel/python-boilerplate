@@ -43,12 +43,12 @@ app-description
  TOML                      1          648          360          210           78
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
- Markdown                  7         1633            0         1151          482
+ Markdown                  7         1636            0         1154          482
  |- BASH                   5          128          123            4            1
  |- Markdown               1            1            0            1            0
- (Total)                             1762          123         1156          483
+ (Total)                             1765          123         1159          483
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    41         9127         4120         3450         1557
+ Total                    41         9130         4120         3453         1557
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -129,6 +129,9 @@ The application logs are based on the Python [logging](https://docs.python.org/3
 - **datacontenttype**
 - **data**
   - **user_id**: user running the application
+  - **csv**: input csv file name
+  - **database_type**: type of database, either PostgreSQL or Oracle
+  - **database_mode**: Oracle-specific, thin or thick mode
   - **table**: database table name
   - **record**: database record being processed
   - **wait**: wait time value expressed in seconds

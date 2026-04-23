@@ -142,12 +142,12 @@ class LogConfig:
 
         self.level = environ.get("LOG_LEVEL", default="INFO")
 
-        # Log handlers
+        # Handlers
         self.to_file = to_bool(environ.get("LOG_TO_FILE", default="false"))
         self.to_amqp = to_bool(environ.get("LOG_TO_AMQP", default="false"))
         self.print = to_bool(environ.get("LOG_PRINT", default="false"))
 
-        # Log formatting
+        # Formatters
         self.cloudevents = to_bool(environ.get("LOG_CLOUDEVENTS", default="true"))
         self.color = to_bool(environ.get("LOG_COLOR", default="true"))
         self.json = to_bool(environ.get("LOG_JSON", default="false"))
@@ -160,7 +160,7 @@ class LogConfig:
             self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
 
         # Extra fields
-        self.extra_fields = {"user_id", "table", "record", "wait"}
+        self.extra_fields = {"user_id", "csv", "database_type", "database_mode", "table", "record", "wait"}
 
 
 # ---------------------------------------------------------------------------- #

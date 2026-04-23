@@ -59,8 +59,8 @@ repos:
   # - repo: https://github.com/commitizen-tools/commitizen
   #   rev: v4.9.1
   #   hooks:
-  #     - id: commitizen
-  #       stages: [commit-msg]
+  #     # - id: commitizen
+  #     #   stages: [commit-msg]
   #     - id: commitizen-branch
   #       stages: [pre-push]
 
@@ -70,7 +70,7 @@ repos:
   #     - id: commitlint
   #       stages: [commit-msg]
   #       entry: commitlint --edit
-  #       additional_dependencies: ["@commitlint/config-conventional", "@commitlint/format", "conventional-changelog-atom"]
+  #       additional_dependencies: ["@commitlint/config-conventional", "@commitlint/format", "conventional-changelog-conventionalcommits"]
 
   # - repo: https://github.com/jorisroovers/gitlint
   #   rev:  v0.19.1

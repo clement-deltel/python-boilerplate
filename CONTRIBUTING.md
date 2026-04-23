@@ -38,7 +38,7 @@ make pre-requisites
 
 git clone https://github.com/bitnami/readme-generator-for-helm
 npm install ./readme-generator-for-helm
-npm install --global @commitlint/cli @commitlint/config-conventional @commitlint/format conventional-changelog-atom
+npm install --global @commitlint/cli @commitlint/config-conventional @commitlint/format conventional-changelog-conventionalcommits
 ```
 
 Here are the steps to set up a development environment to run this application.

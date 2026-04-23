@@ -4,8 +4,8 @@
 # https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional
 extends: "@commitlint/config-conventional"
 
-# Resolve and load conventional-changelog-atom from node_modules
-parserPreset: "conventional-changelog-atom"
+# Resolve and load conventional-changelog-conventionalcommits from node_modules
+parserPreset: "conventional-changelog-conventionalcommits"
 
 # Resolve and load @commitlint/format from node_modules
 formatter: "@commitlint/format"

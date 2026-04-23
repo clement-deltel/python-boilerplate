@@ -46,15 +46,11 @@ dependencies = [
 
 [dependency-groups]
 
-# https://www.cve.org/
+# https://www.cve.org
+# https://nvd.nist.gov/vuln/search#/nvd/home
 # https://github.com/advisories
 
-# cryptography: CVE-2026-26007
-# orjson: CVE-2025-67221
-# pyjwt: CVE-2026-32597
-# tornado: GHSA-78cv-mqj4-43f7
-# urllib: CVE-2025-50181, CVE-2025-50182
-cve = ["cryptography>=46.0.5", "orjson>=3.11.6", "pyjwt>=2.12.0", "tornado>=6.5.5", "urllib3>=2.6.3"]
+cve = []
 
 dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn", "snakeviz"]
 lint = [

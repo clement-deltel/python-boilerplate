@@ -22,7 +22,9 @@ aiohttp==3.13.3 ; sys_platform == 'linux' \
     --hash=sha256:e636b3c5f61da31a92bf0d91da83e58fdfa96f178ba682f11d24f31944cdd28c \
     --hash=sha256:f33ed1a2bf1997a36661874b017f5c4b760f41266341af36febaf271d179f6d7 \
     --hash=sha256:f9444f105664c4ce47a2a7171a2418bce5b7bae45fb610f4e2c36045d85911d3
-    # via checkov
+    # via
+    #   checkov
+    #   openai
 aiomultiprocess==0.9.1 ; sys_platform == 'linux' \
     --hash=sha256:3a7b3bb3c38dbfb4d9d1194ece5934b6d32cf0280e8edbe64a7d215bba1322c6 \
     --hash=sha256:f0231dbe0291e15325d7896ebeae0002d95a4f2675426ca05eb35f24c60e495b
@@ -49,10 +51,6 @@ arrow==1.2.3 ; sys_platform == 'linux' \
     --hash=sha256:3934b30ca1b9f292376d9db15b19446088d12ec58629bc3f0da28fd55fb633a1 \
     --hash=sha256:5a49ab92e3b7b71d96cd6bfcc4df14efefc9dfa96ea19045815914a6ab6b1fe2
     # via gitlint-core
-asteval==1.0.6 ; sys_platform == 'linux' \
-    --hash=sha256:1aa8e7304b2e171a90d64dd269b648cacac4e46fe5de54ac0db24776c0c4a19f \
-    --hash=sha256:5e119ed306e39199fd99c881cea0e306b3f3807f050c9be79829fe274c6378dc
-    # via checkov
 attrs==25.4.0 ; sys_platform == 'linux' \
     --hash=sha256:16d5969b87f0859ef33a48b35d55ac1be6e42ae49d5e853b597db70c35c57e11 \
     --hash=sha256:adcf7e2a1fb3b36ac48d97835bb6d8ade15b8dcce26aba8bf1d14847b57a3373
@@ -60,17 +58,17 @@ attrs==25.4.0 ; sys_platform == 'linux' \
     #   aiohttp
     #   jsonschema
     #   referencing
-bc-detect-secrets==1.5.47 ; sys_platform == 'linux' \
-    --hash=sha256:46f88c710b0fd8c5f2e54b361d793b5e1469197884da73cfc6f488b614366fc3 \
-    --hash=sha256:a9be28a2e564f2b19731991df39e63ae6372cc84d828ee24e50c094cbb4c154c
+bc-detect-secrets==1.4.30 ; sys_platform == 'linux' \
+    --hash=sha256:53154e5aee4c3415f20d5be327c9dad240804b113196ec6346c0b5390a7ed52d \
+    --hash=sha256:99fd6a7e5033ea3a4532d3ccc11b3f669c447da0109e0cb9d66998f4131dba0c
     # via checkov
 bc-jsonpath-ng==1.6.1 ; sys_platform == 'linux' \
     --hash=sha256:2c85bb1d194376808fe1fc49558dd484e39024b15c719995e22de811e6ba4dc8 \
     --hash=sha256:6ea4e379c4400a511d07605b8d981950292dd098a5619d143328af4e841a2320
     # via checkov
-bc-python-hcl2==0.4.3 ; sys_platform == 'linux' \
-    --hash=sha256:b0cce4cea16823f7da7fefa0f8177dfb91f51a1befe64ef59d8fe4d5ac616eec \
-    --hash=sha256:fae62b2a41a675ad330d134d82576526db755f72bbd0e5a850de3d85fc24c40e
+bc-python-hcl2==0.4.2 ; sys_platform == 'linux' \
+    --hash=sha256:90d2afbaa2c7e77b7b30bf58180084e11d95287f7c3e19c5bfbdb54ab2fd80e9 \
+    --hash=sha256:ac8ff59fb9bd437ea29b89a7d7c507fd0a1e957845bae9aeac69f2892b8d681e
     # via checkov
 beartype==0.22.9 ; sys_platform == 'linux' \
     --hash=sha256:8f82b54aa723a2848a56008d18875f91c1db02c32ef6a62319a002e3e25a975f \
@@ -146,9 +144,9 @@ charset-normalizer==3.4.4 ; sys_platform == 'linux' \
     #   checkov
     #   commitizen
     #   requests
-checkov==3.2.517 ; sys_platform == 'linux' \
-    --hash=sha256:685a2daa46d053afb537ef2ecafaf029363595616738f87cc339ae0bbaf95025 \
-    --hash=sha256:fad940f0b8d47f5ca4c5213bea76fa164282d32d826dc9996158c59f9cc1e283
+checkov==3.1.47 ; sys_platform == 'linux' \
+    --hash=sha256:8b7648964d04e919cb1935baf65f460f778eba0668d20e8619d136596548ca1b \
+    --hash=sha256:c7d412f6ae6fadf0508b74c92057db7541c7f6305db702f8f3e90f4e8c848670
 click==8.1.3 ; sys_platform == 'linux' \
     --hash=sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e \
     --hash=sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48
@@ -179,9 +177,9 @@ colorama==0.4.6 ; sys_platform == 'linux' \
     #   checkov
     #   commitizen
     #   howdoi
-commitizen==4.13.9 ; sys_platform == 'linux' \
-    --hash=sha256:2b4567ed50555e10920e5bd804a6a4e2c42ec70bb74f14a83f2680fe9eaf9727 \
-    --hash=sha256:d2af3d6a83cacec9d5200e17768942c5de6266f93d932c955986c60c4285f2db
+commitizen==4.13.10 ; sys_platform == 'linux' \
+    --hash=sha256:402b5bcd466be69ba79a3f380be6ba5b55ac658c7d2a93e82fc99668a6eb2673 \
+    --hash=sha256:95a281317990ac613501fdfe65745cec1fa4042bc5d003a72d332a74926e3039
 configargparse==1.7.1 ; sys_platform == 'linux' \
     --hash=sha256:79c2ddae836a1e5914b71d58e4b9adbd9f7779d4e6351a637b7d2d9b6c46d3d9 \
     --hash=sha256:8b586a31f9d873abd1ca527ffbe58863c99f36d896e2829779803125e83be4b6
@@ -228,9 +226,9 @@ cssselect==1.3.0 ; sys_platform == 'linux' \
 csv2md==1.5.0 ; sys_platform == 'linux' \
     --hash=sha256:8f8024c885e27e54b614cad6d7ac526c77105881d93bd46f913f36c2eb94076c \
     --hash=sha256:9800d95e1446f05711d6d218fcbb61c4022d16f06f2f7d463e0b74b7e66bcd24
-cyclonedx-python-lib==7.6.2 ; sys_platform == 'linux' \
-    --hash=sha256:31186c5725ac0cfcca433759a407b1424686cdc867b47cc86e6cf83691310903 \
-    --hash=sha256:c42fab352cc0f7418d1b30def6751d9067ebcf0e8e4be210fc14d6e742a9edcc
+cyclonedx-python-lib==5.2.0 ; sys_platform == 'linux' \
+    --hash=sha256:1b43065205cdc53490c825fcfbda73142b758aa40ca169c968e342e88d06734f \
+    --hash=sha256:b9ebf2c0520721d2f8ee16aadc2bbb9d4e015862c84ab1691a49b177f3014d99
     # via checkov
 debugpy==1.8.19 ; sys_platform == 'linux' \
     --hash=sha256:360ffd231a780abbc414ba0f005dad409e71c78637efe8f2bd75837132a41d38 \
@@ -308,6 +306,15 @@ idna==3.11 ; sys_platform == 'linux' \
     # via
     #   requests
     #   yarl
+igraph==0.10.8 ; sys_platform == 'linux' \
+    --hash=sha256:00ae729d928d2218822a1f1f07d1286918456f9d587691a4c1c743b2206dadd6 \
+    --hash=sha256:03f5ab062e2caa092da901266258193963cc38690964e4c75b5ef2b457b86f35 \
+    --hash=sha256:15927b565094bd5d3ec3a89ce4abd6087c3d07bf03dd6d506dd05f2678de963d \
+    --hash=sha256:89fca31ca33957dae5df4ecf032c08eb1e897cbc5856cdaad52b67c6ace3f074 \
+    --hash=sha256:d3b7893573060d117917e4f2121e524ed849bbf9f9a63a082001e1a4c5225b46 \
+    --hash=sha256:d7bd3455c93486b2f443f6f177792a358540207334b66dc73681d63972e1f1d9 \
+    --hash=sha256:e5c692fce053ba79b9d4b82b40e092b83a2bd14e04a09871c8e4a68c39932010
+    # via checkov
 importlib-metadata==7.2.1 ; sys_platform == 'linux' \
     --hash=sha256:509ecb2ab77071db5137c655e24ceb3eee66e7bbc6574165d0d114d9fc4bbe68 \
     --hash=sha256:ffef94b0b66046dd8ea2d619b701fe978d9264d38f3998bc4c27ec3b146a87c8
@@ -455,6 +462,10 @@ numpy==2.4.1 ; sys_platform == 'linux' \
     # via
     #   app-name
     #   rustworkx
+openai==0.28.1 ; sys_platform == 'linux' \
+    --hash=sha256:4be1dad329a65b4ce1a660fe6d5431b438f429b5855c883435f0f7fcb6d2dcc8 \
+    --hash=sha256:d18690f9e3d31eedb66b57b88c2165d760b24ea0a01f150dd3f068155088ce68
+    # via checkov
 orjson==3.11.7 ; sys_platform == 'linux' \
     --hash=sha256:0527a4510c300e3b406591b0ba69b5dc50031895b0a93743526a3fc45f59d26e \
     --hash=sha256:136dcd6a2e796dfd9ffca9fc027d778567b0b7c9968d092842d3c323cef88aa8 \
@@ -474,9 +485,9 @@ packageurl-python==0.13.4 ; sys_platform == 'linux' \
     # via
     #   checkov
     #   cyclonedx-python-lib
-packaging==23.2 ; sys_platform == 'linux' \
-    --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
-    --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
+packaging==26.0 ; sys_platform == 'linux' \
+    --hash=sha256:00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4 \
+    --hash=sha256:b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529
     # via
     #   checkov
     #   commitizen
@@ -491,10 +502,6 @@ pika==1.3.2 ; sys_platform == 'linux' \
     --hash=sha256:0779a7c1fafd805672796085560d290213a465e4f6f76a6fb19e378d8041a14f \
     --hash=sha256:b2a327ddddf8570b4965b3576ac77091b850262d34ce8c1d8cb4e4146aa4145f
     # via app-name
-platformdirs==4.9.4 ; sys_platform == 'linux' \
-    --hash=sha256:1ec356301b7dc906d83f371c8f487070e99d3ccf9e501686456394622a01a934 \
-    --hash=sha256:68a9a4619a666ea6439f2ff250c12a853cd1cbd5158d258bd824a7df6be2f868
-    # via checkov
 ply==3.11 ; sys_platform == 'linux' \
     --hash=sha256:00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3 \
     --hash=sha256:096f9b8350b65ebd2fd1346b12452efe5b9607f7482813ffca50c22722a807ce
@@ -516,19 +523,19 @@ policy-sentry==0.13.2 ; sys_platform == 'linux' \
     --hash=sha256:db2b39f92989077f83fc4dd1d064e3ff20b69cfed82168ebdc060e7dce292e77 \
     --hash=sha256:e82c3bc1783606449399c4221f67d05f6b08d8a184ba2fee87d04541d7282b86
     # via cloudsplaining
-prek==0.3.8 ; sys_platform == 'linux' \
-    --hash=sha256:1000f7029696b4fe712fb1fefd4c55b9c4de72b65509c8e50296370a06f9dc3f \
-    --hash=sha256:2e1e5e206ff7b31bd079cce525daddc96cd6bc544d20dc128921ad92f7a4c85d \
-    --hash=sha256:434a214256516f187a3ab15f869d950243be66b94ad47987ee4281b69643a2d9 \
-    --hash=sha256:48efc28f2f53b5b8087efca9daaed91572d62df97d5f24a1c7a087fecb5017de \
-    --hash=sha256:4d25e647e9682f6818ab5c31e7a4b842993c14782a6ffcd128d22b784e0d677f \
-    --hash=sha256:4fb087ac0ffda3ac65bbbae9a38326a7fd27ee007bb4a94323ce1eb539d8bbec \
-    --hash=sha256:6d660f1c25a126e6d9f682fe61449441226514f412a4469f5d71f8f8cad56db2 \
-    --hash=sha256:6fb646ada60658fa6dd7771b2e0fb097f005151be222f869dada3eb26d79ed33 \
-    --hash=sha256:6ff0bed0e2c1286522987d982168a86cbbd0d069d840506a46c9fda983515517 \
-    --hash=sha256:dcea3fe23832a4481bccb7c45f55650cb233be7c805602e788bb7dba60f2d861 \
-    --hash=sha256:de528b82935e33074815acff3c7c86026754d1212136295bc88fe9c43b4231d5 \
-    --hash=sha256:f6ca9d63bacbc448a5c18e955c78d3ac5176c3a17c3baacdd949b1a623e08a36
+prek==0.3.9 ; sys_platform == 'linux' \
+    --hash=sha256:039ecaf87c63a3e67cca645ebd5bc5eb6aafa6c9d929e9a27b2921e7849d7ef9 \
+    --hash=sha256:0dfb5d5171d7523271909246ee306b4dc3d5b63752e7dd7c7e8a8908fc9490d1 \
+    --hash=sha256:28a0960a21543563e2c8e19aaad176cc8423a87aac3c914d0f313030d7a9244a \
+    --hash=sha256:3bde2a3d045705095983c7f78ba04f72a7565fe1c2b4e85f5628502a254754ff \
+    --hash=sha256:3ed793d51bfaa27bddb64d525d7acb77a7c8644f549412d82252e3eb0b88aad8 \
+    --hash=sha256:5517e46e761367a3759b3168eabc120840ffbca9dfbc53187167298a98f87dc4 \
+    --hash=sha256:6eac6d2f736b041118f053a1487abed468a70dd85a8688eaf87bb42d3dcecf20 \
+    --hash=sha256:82b791bd36c1430c84d3ae7220a85152babc7eaf00f70adcb961bd594e756ba3 \
+    --hash=sha256:92024778cf78683ca32687bb249ab6a7d5c33887b5ee1d1a9f6d0c14228f4cf3 \
+    --hash=sha256:aaf639f95b7301639298311d8d44aad0d0b4864e9736083ad3c71ce9765d37ab \
+    --hash=sha256:f82b92d81f42f1f90a47f5fbbf492373e25ef1f790080215b2722dd6da66510e \
+    --hash=sha256:ff104863b187fa443ea8451ca55d51e2c6e94f99f00d88784b5c3c4c623f1ebe
 prettytable==3.17.0 ; sys_platform == 'linux' \
     --hash=sha256:59f2590776527f3c9e8cf9fe7b66dd215837cca96a9c39567414cbc632e8ddb0 \
     --hash=sha256:aad69b294ddbe3e1f95ef8886a060ed1666a0b83018bbf56295f6f226c43d287
@@ -554,9 +561,9 @@ propcache==0.4.1 ; sys_platform == 'linux' \
     # via
     #   aiohttp
     #   yarl
-py-serializable==1.1.2 ; sys_platform == 'linux' \
-    --hash=sha256:801be61b0a1ba64c3861f7c624f1de5cfbbabf8b458acc9cdda91e8f7e5effa1 \
-    --hash=sha256:89af30bc319047d4aa0d8708af412f6ce73835e18bacf1a080028bb9e2f42bdb
+py-serializable==0.15.0 ; sys_platform == 'linux' \
+    --hash=sha256:8fc41457d8ee5f5c5a12f41fd87bf1a4f2ecf9da39fee92059b728e78f320771 \
+    --hash=sha256:d3f1201b33420c481aa83f7860c7bf2c2f036ba3ea82b6e15a96696457c36cd2
     # via cyclonedx-python-lib
 pycares==4.11.0 ; sys_platform == 'linux' \
     --hash=sha256:0aed0974eab3131d832e7e84a73ddb0dddbc57393cd8c0788d68a759a78c4a7b \
@@ -569,9 +576,9 @@ pycares==4.11.0 ; sys_platform == 'linux' \
     --hash=sha256:cb711a66246561f1cae51244deef700eef75481a70d99611fd3c8ab5bd69ab49 \
     --hash=sha256:d5fe089be67bc5927f0c0bd60c082c79f22cf299635ee3ddd370ae2a6e8b4ae0
     # via aiodns
-pycep-parser==0.5.1 ; sys_platform == 'linux' \
-    --hash=sha256:683bb001077c09f98408285b1b6ba10cfb3941610966c45d0638a0e1a5e1d2a4 \
-    --hash=sha256:8c3f99c0dc1301193b1bcbe0a44c6b2763f6d2daf24964ca48dcdfbb73087fa0
+pycep-parser==0.4.1 ; sys_platform == 'linux' \
+    --hash=sha256:27c87ad875538eb17d696002b266d921ce8eb3f7fa3b7fc09c1b3c085009527f \
+    --hash=sha256:a3edd1c3d280c283d614c865a854a693daf56c35cd4095b373016c214baa76dd
     # via checkov
 pycparser==3.0 ; implementation_name != 'PyPy' and sys_platform == 'linux' \
     --hash=sha256:600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29 \
@@ -636,8 +643,8 @@ pyquery==2.0.1 ; sys_platform == 'linux' \
 pyright==1.1.408 ; sys_platform == 'linux' \
     --hash=sha256:090b32865f4fdb1e0e6cd82bf5618480d48eecd2eb2e70f960982a3d9a4c17c1 \
     --hash=sha256:f28f2321f96852fa50b5829ea492f6adb0e6954568d1caa3f3af3a5f555eb684
-pyscn==1.14.0 ; sys_platform == 'linux' \
-    --hash=sha256:fe208df0313082e8bca9dab25721a6029cdf0f7257a2c343de3a14d6891acc58
+pyscn==1.15.0 ; sys_platform == 'linux' \
+    --hash=sha256:8b093d2b8d52c1942dac8c09e5306508d0168b7ef32f3379eadb7de4738139e3
 python-dateutil==2.9.0.post0 ; sys_platform == 'linux' \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
@@ -707,8 +714,10 @@ requests==2.32.5 ; sys_platform == 'linux' \
     #   docker
     #   howdoi
     #   keep
+    #   openai
     #   policy-sentry
     #   pygithub
+    #   update-checker
 rich==14.2.0 ; sys_platform == 'linux' \
     --hash=sha256:73ff50c7c0c1c77c8243079283f4edb376f0f6442433aecb8ce7e6d0b92d1fe4 \
     --hash=sha256:76bc51fe2e57d2b1be1f96c524b890b816e334ab4c1e45888799bfaab0021edd
@@ -738,20 +747,20 @@ rpds-py==0.30.0 ; sys_platform == 'linux' \
     # via
     #   jsonschema
     #   referencing
-ruff==0.15.11 ; sys_platform == 'linux' \
-    --hash=sha256:030d921a836d7d4a12cf6e8d984a88b66094ccb0e0f17ddd55067c331191bf19 \
-    --hash=sha256:06f483d6646f59eaffba9ae30956370d3a886625f511a3108994000480621d1c \
-    --hash=sha256:0e783b599b4577788dbbb66b9addcef87e9a8832f4ce0c19e34bf55543a2f890 \
-    --hash=sha256:195072c0c8e1fc8f940652073df082e37a5d9cb43b4ab1e4d0566ab8977a13b7 \
-    --hash=sha256:1bef2cb556d509259f1fe440bb9cd33c756222cf0a7afe90d15edf0866702431 \
-    --hash=sha256:1f111d62e3c983ed20e0ca2e800f8d77433a5b1161947df99a5c2a3fb60514f0 \
-    --hash=sha256:3b17c886fb88203ced3afe7f14e8d5ae96e9d2f4ccc0ee66aa19f2c2675a27e4 \
-    --hash=sha256:49fafa220220afe7758a487b048de4c8f9f767f37dfefad46b9dd06759d003eb \
-    --hash=sha256:a3a0996d486af3920dec930a2e7daed4847dfc12649b537a9335585ada163e9e \
-    --hash=sha256:ae90592246625ba4a34349d68ec28d4400d75182b71baa196ddb9f82db025ef5 \
-    --hash=sha256:e927cfff503135c558eb581a0c9792264aae9507904eb27809cdcff2f2c847b7 \
-    --hash=sha256:f092b21708bf0e7437ce9ada249dfe688ff9a0954fc94abab05dcea7dcd29c33 \
-    --hash=sha256:f2ab8427e74a00d93b8bda1307b1e60970d40f304af38bccb218e056c220120d
+ruff==0.15.12 ; sys_platform == 'linux' \
+    --hash=sha256:01da3988d225628b709493d7dc67c3b9b12c0210016b08690ef9bd27970b262b \
+    --hash=sha256:2849ea9f3484c3aca43a82f484210370319e7170df4dfe4843395ddf6c57bc33 \
+    --hash=sha256:83b2f4f2f3b1026b5fb449b467d9264bf22067b600f7b6f41fc5958909f449d0 \
+    --hash=sha256:84a1630093121375a3e2a95b4a6dc7b59e2b4ee76216e32d81aae550a832d002 \
+    --hash=sha256:9ba3b8f1afd7e2e43d8943e55f249e13f9682fde09711644a6e7290eb4f3e339 \
+    --hash=sha256:9cae0f92bd5700d1213188b31cd3bdd2b315361296d10b96b8e2337d3d11f53e \
+    --hash=sha256:9e77c7e51c07fe396826d5969a5b846d9cd4c402535835fb6e21ce8b28fef847 \
+    --hash=sha256:b0c862b172d695db7598426b8af465e7e9ac00a3ea2a3630ee67eb82e366aaa6 \
+    --hash=sha256:dd8aed930da53780d22fc70bdf84452c843cf64f8cb4eb38984319c24c5cd5fd \
+    --hash=sha256:e852ba9fdc890655e1d78f2df1499efbe0e54126bd405362154a75e2bde159c5 \
+    --hash=sha256:ecea26adb26b4232c0c2ca19ccbc0083a68344180bba2a600605538ce51a40a6 \
+    --hash=sha256:f86f176e188e94d6bdbc09f09bfd9dc729059ad93d0e7390b5a73efe19f8861c \
+    --hash=sha256:fb129f40f114f089ebe0ca56c0d251cf2061b17651d464bb6478dc01e69f11f5
 rustworkx==0.17.1 ; sys_platform == 'linux' \
     --hash=sha256:246cc252053f89e36209535b9c58755960197e6ae08d48d3973760141c62ac95 \
     --hash=sha256:42170075d8a7319e89ff63062c2f1d1116ced37b6f044f3bf36d10b60a107aa4 \
@@ -776,7 +785,9 @@ schema==0.7.5 ; sys_platform == 'linux' \
 semantic-version==2.10.0 ; sys_platform == 'linux' \
     --hash=sha256:bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c \
     --hash=sha256:de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177
-    # via spdx-tools
+    # via
+    #   checkov
+    #   spdx-tools
 sh==1.14.3 ; sys_platform == 'linux' \
     --hash=sha256:e4045b6c732d9ce75d571c79f5ac2234edd9ae4f5fa9d59b09705082bdca18c7
     # via gitlint-core
@@ -819,6 +830,10 @@ terminaltables3==4.0.0 ; sys_platform == 'linux' \
     --hash=sha256:4e3eefe209aa89005a0a34d1525739424569729ee29b5e64a8dd51c5ebdab77f \
     --hash=sha256:93b4c722f35400a7869cd630e2bbab616b129d1c47c628765c7f47baab2ca270
     # via keep
+texttable==1.7.0 ; sys_platform == 'linux' \
+    --hash=sha256:2d2068fb55115807d3ac77a4ca68fa48803e84ebb0ee2340f858107a36522638 \
+    --hash=sha256:72227d592c82b3d7f672731ae73e4d1f88cd8e2ef5b075a7a7f01a23a3743917
+    # via igraph
 tokenize-rt==6.2.0 ; sys_platform == 'linux' \
     --hash=sha256:8439c042b330c553fdbe1758e4a05c0ed460dbbbb24a606f11f0dee75da4cad6 \
     --hash=sha256:a152bf4f249c847a66497a4a95f63376ed68ac6abf092a2f7cfb29d044ecff44
@@ -837,7 +852,9 @@ tornado==6.5.5 ; sys_platform == 'linux' \
 tqdm==4.67.1 ; sys_platform == 'linux' \
     --hash=sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2 \
     --hash=sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2
-    # via checkov
+    # via
+    #   checkov
+    #   openai
 ty==0.0.32 ; sys_platform == 'linux' \
     --hash=sha256:06f17ada3e069cba6148342ef88e9929156beca8473e8d4f101b68f66c75643e \
     --hash=sha256:2850561f9b018ae33d7e5bbfa0ac414d3c518513edcffe43877dc9801446b9c5 \
@@ -851,9 +868,9 @@ ty==0.0.32 ; sys_platform == 'linux' \
     --hash=sha256:dacbc2f6cd698d488ae7436838ff929570455bf94bfa4d9fe57a630c552aff83 \
     --hash=sha256:e44ebe1bb4143a5628bc4db67ac0dfebe14594af671e4ee66f6f2e983da56501 \
     --hash=sha256:e96e60fa556cec04f15d7ea62d2ceee5982bd389233e961ab9fd42304e278175
-types-requests==2.33.0.20260402 ; sys_platform == 'linux' \
-    --hash=sha256:1bdd3ada9b869741c5c4b887d2c8b4e38284a1449751823b5ebbccba3eefd9da \
-    --hash=sha256:c98372d7124dd5d10af815ee25c013897592ff92af27b27e22c98984102c3254
+types-requests==2.33.0.20260408 ; sys_platform == 'linux' \
+    --hash=sha256:81f31d5ea4acb39f03be7bc8bed569ba6d5a9c5d97e89f45ac43d819b68ca50f \
+    --hash=sha256:95b9a86376807a216b2fb412b47617b202091c3ea7c078f47cc358d5528ccb7b
 typing-extensions==4.15.0 ; sys_platform == 'linux' \
     --hash=sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466 \
     --hash=sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548
@@ -877,6 +894,10 @@ unidiff==0.7.5 ; sys_platform == 'linux' \
     --hash=sha256:2e5f0162052248946b9f0970a40e9e124236bf86c82b70821143a6fc1dea2574 \
     --hash=sha256:c93bf2265cc1ba2a520e415ab05da587370bc2a3ae9e0414329f54f0c2fc09e8
     # via bc-detect-secrets
+update-checker==0.18.0 ; sys_platform == 'linux' \
+    --hash=sha256:6a2d45bb4ac585884a6b03f9eade9161cedd9e8111545141e9aa9058932acb13 \
+    --hash=sha256:cbba64760a36fe2640d80d85306e8fe82b6816659190993b7bdabadee4d4bbfd
+    # via checkov
 uritools==6.0.1 ; sys_platform == 'linux' \
     --hash=sha256:2f9e9cb954e7877232b2c863f724a44a06eb98d9c7ebdd69914876e9487b94f8 \
     --hash=sha256:d9507b82206c857d2f93d8fcc84f3b05ae4174096761102be690aa76a360cc1b
@@ -886,7 +907,6 @@ urllib3==2.6.3 ; sys_platform == 'linux' \
     --hash=sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4
     # via
     #   botocore
-    #   checkov
     #   docker
     #   pygithub
     #   requests

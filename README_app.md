@@ -39,7 +39,7 @@ app-description
  Python                   19         3631         2577          408          646
  Shell                     2          529          326          113           90
  SVG                       1           15           15            0            0
- Plain Text                3         1159            0         1159            0
+ Plain Text                3         1179            0         1179            0
  TOML                      1          652          364          210           78
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
@@ -48,7 +48,7 @@ app-description
  |- Markdown               1            1            0            1            0
  (Total)                             1767          123         1161          483
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    41         9136         4124         3455         1557
+ Total                    41         9156         4124         3475         1557
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -73,7 +73,7 @@ The application dependencies are managed with [uv](https://docs.astral.sh/uv). Y
 app-name v0.0.0
 ├── cloudevents v2.0.0
 │   ├── deprecation v2.1.0
-│   │   └── packaging v23.2
+│   │   └── packaging v26.0
 │   └── python-dateutil v2.9.0.post0
 │       └── six v1.17.0
 ├── debugpy v1.8.19

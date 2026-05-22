@@ -123,6 +123,46 @@ class AppConfig:
 
 
 # ---------------------------------------------------------------------------- #
+#               ------- Database Config ------
+# ---------------------------------------------------------------------------- #
+class DatabaseConfig:
+    """Class specifying attributes and methods related to the database configuration."""
+
+    def __init__(self) -> None:
+        """Initialize class."""
+        # Type
+        # Options: oracle, postgres
+        self.type = environ.get("DATABASE_TYPE", default="oracle")
+
+        # Common
+        self.username = environ.get("DATABASE_USERNAME")
+        self.password = environ.get("DATABASE_PASSWORD")
+        self.schema = environ.get("DATABASE_SCHEMA", default="")
+
+        match self.type:
+            case "oracle":
+                self.mode = environ.get("DATABASE_MODE", default="thin")
+                self.alias = environ.get("DATABASE_ALIAS")
+
+                # Oracle - TNS
+                self.tns = to_bool(environ.get("DATABASE_TNS", default="true"))
+                self.tns_path = to_path(environ.get("DATABASE_TNS_PATH", default="/app/input/database/tns"))
+                self.tns_alias = environ.get("DATABASE_TNS_ALIAS")
+
+            case "postgres":
+                self.name = environ.get("DATABASE_NAME")
+                self.host = environ.get("DATABASE_HOST")
+                self.port = to_int(environ.get("DATABASE_PORT", default="5432"))
+
+        # Error logic
+        self.stop_on_error = to_bool(environ.get("DATABASE_STOP_ON_ERROR", default="true"))
+
+        # Retry logic
+        self.retry_max = to_int(environ.get("DATABASE_RETRY_MAX", default="3"))
+        self.retry_delay = to_int(environ.get("DATABASE_RETRY_DELAY", default="5"))
+
+
+# ---------------------------------------------------------------------------- #
 #               ------- Log Config ------
 # ---------------------------------------------------------------------------- #
 class LogConfig:
@@ -160,7 +200,10 @@ class LogConfig:
             self.file_path = self.path.joinpath(f"{run_date.strftime('%Y-%m-%dT%H%M%S')}.log")
 
         # Extra fields
-        self.extra_fields = {"user_id", "csv", "database_type", "database_mode", "table", "record", "wait"}
+        general_fields = {"user_id", "csv", "wait"}
+        database_fields = {"database_type", "database_mode", "table", "record"}
+
+        self.extra_fields = general_fields | database_fields
 
 
 # ---------------------------------------------------------------------------- #

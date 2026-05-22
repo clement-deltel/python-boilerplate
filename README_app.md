@@ -43,12 +43,12 @@ app-description
  TOML                      1          653          365          210           78
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
- Markdown                  7         1643            0         1161          482
+ Markdown                  7         1652            0         1170          482
  |- BASH                   5          128          123            4            1
  |- Markdown               1            1            0            1            0
- (Total)                             1772          123         1166          483
+ (Total)                             1781          123         1175          483
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    42         9570         4355         3612         1603
+ Total                    42         9579         4355         3621         1603
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -100,22 +100,31 @@ The application configuration can be loaded as a set of environment variables in
 
 List of available environment variables:
 
-| Variable           | Type | Sensitive | Default     | Condition | Example             | Description                                                        |
-| ------------------ | ---- | --------- | ----------- | --------- | ------------------- | ------------------------------------------------------------------ |
-| MAPPINGS_PATH      | str  |           | \<unset>    |           | C:\                 | /mnt                                                               |
-| INPUT_PATH         | str  |           | /app/input  |           | /path/to/directory  | Path to directory containing input files                           |
-| OUTPUT_PATH        | str  |           | /app/output |           | /path/to/directory  | Path to directory where to save output files                       |
-| LOG_LEVEL          | str  |           | INFO        |           | INFO                | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL |
-| LOG_PATH           | str  |           | /app/log    |           | /path/to/directory  | Path to directory containing log files if enabled                  |
-| LOG_TO_FILE        | bool |           | false       |           | true                | Whether to export logs to a file                                   |
-| LOG_TO_AMQP        | bool |           | false       |           | true                | Whether to export logs to RabbitMQ                                 |
-| AMQP_HOSTNAME      | str  |           | localhost   |           | rabbitmq.domain.com | RabbitMQ message broker Ip address/hostname                        |
-| AMQP_PORT          | int  |           | 5672        |           | 5672                | RabbitMQ message broker port                                       |
-| AMQP_USERNAME      | str  | x         | guest       |           | username            | RabbitMQ message broker username                                   |
-| AMQP_PASSWORD      | str  | x         | guest       |           | password            | RabbitMQ message broker password                                   |
-| AMQP_EXCHANGE      | str  |           | \<unset>    |           | exchange-name       | RabbitMQ message broker exchange name                              |
-| AMQP_EXCHANGE_TYPE | str  |           | topic       |           | topic               | RabbitMQ message broker exchange type                              |
-| AMQP_ROUTING_KEY   | str  |           | #           |           | #                   | RabbitMQ message broker routing key                                |
+| Variable             | Type | Sensitive | Default                 | Condition | Example                      | Description                                                             |
+| -------------------- | ---- | --------- | ----------------------- | --------- | ---------------------------- | ----------------------------------------------------------------------- |
+| MAPPINGS_PATH        | str  |           | \<unset>                |           | C:\,/mnt                     | List of mappings of Windows paths to Linux paths                        |
+| INPUT_PATH           | str  |           | /app/input              |           | /path/to/directory           | Path to directory containing input files                                |
+| OUTPUT_PATH          | str  |           | /app/output             |           | /path/to/directory           | Path to directory where to save output files                            |
+| DATABASE_USERNAME    | str  | x         | \<unset>                |           | username                     | Database username                                                       |
+| DATABASE_PASSWORD    | str  | x         | \<unset>                |           | password                     | Database password                                                       |
+| DATABASE_SCHEMA      | str  |           | SCHEMA_VIEWS            |           | SCHEMA_VIEWS                 | Database schema to open the document from                               |
+| DATABASE_ALIAS       | str  |           | \<unset>                |           | oracle.domain.com:1521/radio | Oracle database alias                                                   |
+| DATABASE_TNS         | bool |           | true                    |           | false                        | Whether to use an Oracle database TNS alias                             |
+| DATABASE_TNS_PATH    | str  |           | /app/input/database/tns |           | /path/to/directory           | Path to directory containing Oracle database TNS configuration file     |
+| DATABASE_TNS_ALIAS   | str  |           | TNS_ALIAS               |           | TNS_ALIAS                    | Oracle database TNS alias                                               |
+| DATABASE_RETRY_MAX   | int  |           | 3                       |           | 3                            | Number of retries in case of connection failure                         |
+| DATABASE_RETRY_DELAY | int  |           | 5                       |           | 30                           | Delay before attempting a new database connection, expressed in seconds |
+| LOG_LEVEL            | str  |           | INFO                    |           | INFO                         | Log level. Supported values: DEBUG, INFO, ERROR, WARNING, CRITICAL      |
+| LOG_PATH             | str  |           | /app/log                |           | /path/to/directory           | Path to directory containing log files if enabled                       |
+| LOG_TO_FILE          | bool |           | false                   |           | true                         | Whether to export logs to a file                                        |
+| LOG_TO_AMQP          | bool |           | false                   |           | true                         | Whether to export logs to RabbitMQ                                      |
+| AMQP_HOSTNAME        | str  |           | localhost               |           | rabbitmq.domain.com          | RabbitMQ message broker Ip address/hostname                             |
+| AMQP_PORT            | int  |           | 5672                    |           | 5672                         | RabbitMQ message broker port                                            |
+| AMQP_USERNAME        | str  | x         | guest                   |           | username                     | RabbitMQ message broker username                                        |
+| AMQP_PASSWORD        | str  | x         | guest                   |           | password                     | RabbitMQ message broker password                                        |
+| AMQP_EXCHANGE        | str  |           | \<unset>                |           | exchange-name                | RabbitMQ message broker exchange name                                   |
+| AMQP_EXCHANGE_TYPE   | str  |           | topic                   |           | topic                        | RabbitMQ message broker exchange type                                   |
+| AMQP_ROUTING_KEY     | str  |           | #                       |           | #                            | RabbitMQ message broker routing key                                     |
 
 > **Note**: for production, it is recommended to store all configuration parameters marked as sensitive with a secrets manager service.
 

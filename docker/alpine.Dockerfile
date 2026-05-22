@@ -25,11 +25,7 @@ ENV UV_PYTHON_PREFERENCE=only-managed
 WORKDIR /app
 
 # Install Python before the application for caching
-RUN uv python install ${PYTHON_VERSION} && \
-# Solve CVEs
-# pip: CVE-2026-1703 (Low)
-# setuptools: CVE-2026-23949 (High)
-    uv pip uninstall --break-system-packages --system pip setuptools
+RUN uv python install ${PYTHON_VERSION}
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -88,9 +84,7 @@ COPY --chmod=500 --chown=${USER}:${USER} docker/healthcheck.py ${HOME}/healthche
 
 USER ${USER}
 
-# hadolint unsupported flag: --start-interval=10s
-# See https://github.com/hadolint/hadolint/issues/978
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-interval=10s --start-period=5s --retries=3 \
     CMD python healthcheck.py || exit 1
 
 ENTRYPOINT ["./entrypoint.sh"]

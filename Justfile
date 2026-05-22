@@ -168,6 +168,15 @@ activate:
     ln -s ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }} ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
     pyenv local {{ python_version }}_{{ customer }}_{{ name }}
 
+# Create symlinks to have venv auto-activation with pyenv
+[group("pyenv")]
+pyenv-update-symlinks target="3.11.14":
+    rm -f ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
+    rm -f ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
+    ln -s `pwd`/.venv ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }}
+    ln -s ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }} ~/.pyenv/versions/{{ target }}_{{ customer }}_{{ name }}
+    pyenv local {{ target }}_{{ customer }}_{{ name }}
+
 # Initialize environment as a developer and create symlinks to have venv auto-activation with pyenv
 [group("pyenv")]
 init-activate: init-dev activate
@@ -214,12 +223,12 @@ update-python target="3.11.14":
 # Update Python version PATCH digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-patch target="3.11.14": (update-python target) activate
+update-patch target="3.11.14": (update-python target) (pyenv-update-symlinks target)
 
 # update Python version MINOR digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-minor target="3.11.14": (update-python target) update-pre-commit update-pyproject activate
+update-minor target="3.11.14": (update-python target) update-pre-commit update-pyproject (pyenv-update-symlinks target)
 
 # ---------------------------------------------------------------------------- #
 #               ------- Uv ------
@@ -236,10 +245,15 @@ build:
 uv-check:
     uv self update --dry-run
 
+# Check for application outdated dependencies
+[group("uv")]
+uv-outdated:
+    uv pip list --outdated
+
 # Update uv version in files and self-update uv
 [arg("source", pattern='^(\d)\.(\d{1,2})\.(\d{1,2})$')]
 [group("uv")]
-uv-update source="0.11.8":
+uv-update source="0.11.16":
     uv self update
     sed -i "s/{{ source }}/{{ uv_version }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
     git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
@@ -336,8 +350,8 @@ get-tag:
 
 # Build Docker image. Targets: builder, distroless, dhi. Tag suffixes: -builder, -distroless, -dhi
 [group("docker"), arg("target", pattern='^(production|builder|distroless|dhi)$'), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
-build-image target="production" tag_suffix="" $DOCKER_CONTENT_TRUST="1": clean
-    docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION=0.11.8 --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
+build-image target="production" tag_suffix="" uv_build_version="0.11.16" $DOCKER_CONTENT_TRUST="1": clean
+    docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION={{ uv_build_version }} --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
 
 # Pull Docker image
 [group("docker")]
@@ -348,6 +362,11 @@ pull-image:
 [group("docker")]
 push-image:
     docker push {{ name }}:{{ image_tag }}
+
+# Remove Docker image
+[group("docker")]
+remove-image:
+    docker image rm {{ name }}:{{ image_tag }}
 
 # Test Docker container healthcheck
 [group("docker")]
@@ -604,7 +623,7 @@ checkov:
 
 # Run renovate dependency security scan
 [group("renovate")]
-renovate $LOG_FORMAT="json" $LOG_LEVEL="debug" $RENOVATE_TOKEN="dummy":
+renovate $LOG_FORMAT="json" $LOG_LEVEL="DEBUG" $RENOVATE_TOKEN="dummy":
     RENOVATE_CONFIG_FILE=~/.config/renovate/config.json renovate --dry-run=full --platform=local 2>&1 | jq -r 'select(.msg | test("vuln|CVE|GHSA"; "i")) | [.time, .msg] | @tsv'
 
 # ---------------------------------------------------------------------------- #
@@ -613,5 +632,4 @@ renovate $LOG_FORMAT="json" $LOG_LEVEL="debug" $RENOVATE_TOKEN="dummy":
 
 # Run different scans prior opening a new pull request
 [group("pr")]
-pr-scan: build-image (trivy "--ignore-unfixed") renovate
-    docker image rm {{ name }}:{{ image_tag }}
+pr-scan: build-image (trivy "--ignore-unfixed") renovate remove-image

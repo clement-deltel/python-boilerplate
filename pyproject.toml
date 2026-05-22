@@ -37,6 +37,7 @@ dependencies = [
     "cloudevents",   # https://github.com/cloudevents/sdk-python
     "debugpy",       # https://github.com/microsoft/debugpy
     "numpy",         # https://github.com/numpy/numpy
+    "oracledb",      # https://oracle.github.io/python-oracledb
     # "pandas",      # https://pandas.pydata.org/docs/reference/index.html
     "pika",          # https://pika.readthedocs.io/en/stable/index.html
     "polars",        # https://github.com/pola-rs/polars

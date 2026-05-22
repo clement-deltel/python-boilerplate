@@ -38,7 +38,7 @@ Ensure you have installed the tools listed below:
 Or run the command below:
 
 ```bash
-make pre-requisites
+just pre-requisites
 ```
 
 ## Getting Started
@@ -84,10 +84,11 @@ Python versioning scheme is: **{MAJOR}.{MINOR}.{PATCH}**
 
 1. For a **PATCH** version bump, here are the steps:
 
-   - update the full version (e.g. **3.11.13**) in the files
+   - update the full version (e.g. **3.11.15**) in the files
      - [docker/Dockerfile](./docker/Dockerfile)
      - [docker/alpine.Dockerfile](./docker/alpine.Dockerfile)
      - [docker/wheel.Dockerfile](./docker/wheel.Dockerfile)
+     - [Justfile](./Justfile)
      - [Makefile](./Makefile)
    - Run the commands below
 
@@ -98,15 +99,16 @@ uv python install ${PYTHON_TARGET_VERSION}
 uv sync --frozen
 ```
 
-> **Note**: It is also possible to just update the [Makefile](./Makefile) and run `make python-bump-patch`.
+> **Note**: It is also possible to just update the [Justfile](./Justfile) and run `just update-patch`.
 
 2. For a **MINOR** version bump, here are the steps:
 
    - update the `requires-python` string in the [pyproject.toml](./pyproject.toml)
-   - update the full version (e.g. **3.11.13**) in the files
+   - update the full version (e.g. **3.11.15**) in the files
      - [docker/Dockerfile](./docker/Dockerfile)
      - [docker/alpine.Dockerfile](./docker/alpine.Dockerfile)
      - [docker/wheel.Dockerfile](./docker/wheel.Dockerfile)
+     - [Justfile](./Justfile)
      - [Makefile](./Makefile)
    - update the shorten version (e.g. **3.11**) in the files
      - [.pre-commit-config.yaml](./.pre-commit-config.yaml)
@@ -122,4 +124,4 @@ uv python install ${PYTHON_TARGET_VERSION}
 uv sync --frozen
 ```
 
-> **Note**: It is also possible to just update the `requires-python` string in the [pyproject.toml](./pyproject.toml), the [Makefile](./Makefile), and run `make python-bump-minor`.
+> **Note**: It is also possible to just update the `requires-python` string in the [pyproject.toml](./pyproject.toml), the [Justfile](./Justfile), and run `just update-minor`.

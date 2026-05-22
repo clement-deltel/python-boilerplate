@@ -34,7 +34,7 @@ The pre-requisites are:
   - [readme-generator-for-helm](https://github.com/bitnami/readme-generator-for-helm) - auto generate READMEs for Helm Charts. `JavaScript`
 
 ```bash
-make pre-requisites
+just pre-requisites
 
 git clone https://github.com/bitnami/readme-generator-for-helm
 npm install ./readme-generator-for-helm
@@ -48,7 +48,7 @@ Here are the steps to set up a development environment to run this application.
 
 ```bash
 # uv, and then pre-commit installation
-make init-dev
+just init-dev
 ```
 
 3. Fill in the `.env.schema` file with your configuration.
@@ -56,10 +56,10 @@ make init-dev
 5. Run the application:
 
 ```bash
-make run
+just run
 ```
 
-> **Note**: for virtual environment auto activation when opening the project using pyenv, run `make pyenv-init` and then `make pyenv-activate`.
+> **Note**: for virtual environment auto activation when opening the project using pyenv, run `just init-pyenv` and then `just activate`.
 
 ## Debug
 
@@ -79,25 +79,25 @@ Here are useful tips to debug the project's code.
 Do you want to run pdb on a module?
 
 ```bash
-make debug-module
+just debug
 ```
 
 Do you want to run pdb on a program?
 
 ```bash
-make debug-program
+just debug-program
 ```
 
 Do you want to run pdb on a program installed in the virtual environment?
 
 ```bash
-make debug-venv-program
+just debug-program-venv
 ```
 
 Do you want to run pdb in a container?
 
 ```bash
-make run-container-pdb
+just run-container-pdb
 ```
 
 ## Merge Request
@@ -113,15 +113,15 @@ Every time you push some code and consequently open a merge request, do not forg
 - Scan the repository using [checkov](tools/TOOLS.md#checkov), and [trivy](tools/TOOLS.md#trivy)
 
 ```bash
-make checkov
-make trivy-repo
+just checkov
+just trivy-repo
 ```
 
 - Build an image of the app and scan it using [dockle](tools/TOOLS.md#dockle), [grype](tools/TOOLS.md#grype), and [trivy](tools/TOOLS.md#trivy)
 
 ```bash
-make build-image
-make dockle-image-security
-make grype-image
-make trivy-image
+just build-image
+just dockle
+just grype
+just trivy
 ```

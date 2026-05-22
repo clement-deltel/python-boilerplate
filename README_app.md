@@ -43,12 +43,12 @@ app-description
  TOML                      1          653          365          210           78
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
- Markdown                  7         1652            0         1170          482
+ Markdown                  7         1654            0         1172          482
  |- BASH                   5          128          123            4            1
  |- Markdown               1            1            0            1            0
- (Total)                             1781          123         1175          483
+ (Total)                             1783          123         1177          483
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    42         9559         4352         3604         1603
+ Total                    42         9561         4352         3606         1603
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -160,7 +160,7 @@ There are four ways to run this application:
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
-make init
+just init
 ```
 
 If using pip, you have to manually:
@@ -178,7 +178,7 @@ pip install -r requirements/requirements.txt
 5. Run the application:
 
 ```bash
-make run
+just run
 ```
 
 ### Docker
@@ -187,7 +187,7 @@ make run
 2. Build the Docker image:
 
 ```bash
-make build-image
+just build-image
 ```
 
 3. Fill in the `.env.schema` file with your configuration.
@@ -197,14 +197,14 @@ make build-image
 - Run a container:
 
 ```bash
-make run-container
+just run-container
 ```
 
 - Create and then run a container:
 
 ```bash
 # Create
-make create-container
+just create-container
 # Start
 docker start app-name
 # or (if you need to attach to the application process)
@@ -264,13 +264,13 @@ If you want to test this application using the released Docker image, follow the
 3. Pull the image:
 
 ```bash
-make pull-image
+just pull-image
 ```
 
 4. Run a container:
 
 ```bash
-make run-container
+just run-container
 ```
 
 Otherwise, for more in-depth testing and a peak at the code, follow the steps below:
@@ -279,7 +279,7 @@ Otherwise, for more in-depth testing and a peak at the code, follow the steps be
 2. Let uv initialize the Python virtual environment and install the dependencies:
 
 ```bash
-make init-test
+just init-test
 ```
 
 If using pip, you have to manually:
@@ -297,13 +297,13 @@ pip install -r requirements/requirements-test.txt
 - Unit tests:
 
 ```bash
-make test
+just test
 ```
 
 - Full coverage report:
 
 ```bash
-make coverage
+just coverage
 ```
 
 ## Links

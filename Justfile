@@ -170,7 +170,7 @@ activate:
 
 # Create symlinks to have venv auto-activation with pyenv
 [group("pyenv")]
-pyenv-update-symlinks target="3.11.14":
+pyenv-update-symlinks target="3.11.15":
     rm -f ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
     rm -f ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
     ln -s `pwd`/.venv ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }}
@@ -190,7 +190,7 @@ init-activate: init-dev activate
 # Update Python version in .pre-commit-config.yaml
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-pre-commit target="3.11.14":
+update-pre-commit target="3.11.15":
     #!/usr/bin/env bash
     SOURCE=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2`
     TARGET=`echo {{ target }} | cut -d. -f1-2`
@@ -200,7 +200,7 @@ update-pre-commit target="3.11.14":
 # Update Python version in pyproject.toml
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-pyproject target="3.11.14":
+update-pyproject target="3.11.15":
     #!/usr/bin/env bash
     SOURCE=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2`
     TARGET=`echo {{ target }} | cut -d. -f1-2`
@@ -212,7 +212,7 @@ update-pyproject target="3.11.14":
 # Update Python version, recreate venv, and sync dependencies
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-python target="3.11.14":
+update-python target="3.11.15":
     @rm -f .python-version || true
     @rm -rf .venv
     uv python install {{ target }}
@@ -223,12 +223,12 @@ update-python target="3.11.14":
 # Update Python version PATCH digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-patch target="3.11.14": (update-python target) (pyenv-update-symlinks target)
+update-patch target="3.11.15": (update-python target) (pyenv-update-symlinks target)
 
 # update Python version MINOR digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 [group("python")]
-update-minor target="3.11.14": (update-python target) update-pre-commit update-pyproject (pyenv-update-symlinks target)
+update-minor target="3.11.15": (update-python target) update-pre-commit update-pyproject (pyenv-update-symlinks target)
 
 # ---------------------------------------------------------------------------- #
 #               ------- Uv ------

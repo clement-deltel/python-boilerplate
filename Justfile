@@ -538,14 +538,30 @@ pyscn-run:
 # https://github.com/wagoodman/dive
 
 # Dive into Docker image
-[group("dive")]
-dive:
-    dive {{ name }}:{{ image_tag }}
+[group("dive"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
+dive tag_suffix="":
+    dive {{ name }}:{{ image_tag }}{{ tag_suffix }}
 
 # Dive into Docker image in CI mode
-[group("dive")]
-dive-ci:
-    CI=true dive {{ name }}:{{ image_tag }}
+[group("dive"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
+dive-ci tag_suffix="":
+    CI=true dive {{ name }}:{{ image_tag }}{{ tag_suffix }}
+
+# ---------------------------------------------------------------------------- #
+#               ------- Syft ------
+# ---------------------------------------------------------------------------- #
+# https://github.com/anchore/syft
+# just syft
+# just syft -builder
+# just syft -distroless
+
+# Run syft to generate a Software Bill of Materials. Tag suffixes: -builder, -distroless, -dhi
+[group("syft"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
+syft tag_suffix="":
+    mkdir -p sboms
+    syft {{ name }}:{{ image_tag }}{{ tag_suffix }} --output cyclonedx-json=sboms/{{ name }}.cdx.json --output spdx-json=sboms/{{ name }}.spdx.json
+    jq . sboms/{{ name }}.cdx.json > tmp.json && mv -f tmp.json sboms/{{ name }}.cdx.json
+    jq . sboms/{{ name }}.spdx.json > tmp.json && mv -f tmp.json sboms/{{ name }}.spdx.json
 
 # ---------------------------------------------------------------------------- #
 #               ------- Grype ------
@@ -564,6 +580,11 @@ grype tag_suffix="":
 [group("grype")]
 grype-repo:
     grype .
+
+# Run grype vulnerability scan on existing SBOM
+[group("grype"), arg("sbom", pattern='^(cdx|spdx)$')]
+grype-sbom sbom="cdx":
+    grype sboms/{{ name }}.{{ sbom }}.json
 
 # Update grype vulnerability database
 [group("grype")]

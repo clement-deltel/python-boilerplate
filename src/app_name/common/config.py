@@ -3,6 +3,7 @@
 # Standard Library
 from datetime import UTC, datetime
 from os import environ
+from pathlib import Path
 from typing import Any
 
 # Third-party
@@ -118,8 +119,42 @@ class AppConfig:
 
         # Directories and files
         self.input_path = to_path(environ.get("INPUT_PATH", default="/app/input"))
-        self.output_path = to_path(environ.get("OUTPUT_PATH", default="/app/output"))
+        self.output_path = to_path(environ.get("OUTPUT_PATH", default="/app/output"), exists=False)
+
         self.output_path.mkdir(parents=True, exist_ok=True)
+
+        config_path = environ.get("CONFIG_PATH", default="")
+        if config_path == "":
+            self.config_path = self.input_path.joinpath("config")
+        else:
+            self.config_path = to_path(config_path)
+
+    def get_filepath(self, key: str, file: str, root_path: Path | None = None) -> Path:
+        """Get file path.
+
+        Build path based on root path if not specified.
+
+        Args:
+            key (str): environment variable name.
+            file (str): file name.
+            root_path (Path | None, optional): root directory path. Defaults to None.
+
+        Returns:
+            Path: file path.
+        """
+        if root_path is None:
+            root_path = self.config_path
+
+        path_str = environ.get(key, default="")
+        if path_str == "":
+            path = root_path.joinpath(file)
+            if not path.exists():
+                message = f"No such file or directory: {path_str}"
+                raise FileNotFoundError(message)
+        else:
+            path = to_path(path_str)
+
+        return path
 
 
 # ---------------------------------------------------------------------------- #
@@ -135,23 +170,23 @@ class DatabaseConfig:
         self.type = environ.get("DATABASE_TYPE", default="oracle")
 
         # Common
-        self.username = environ.get("DATABASE_USERNAME")
-        self.password = environ.get("DATABASE_PASSWORD")
+        self.username = environ.get("DATABASE_USERNAME", default="")
+        self.password = environ.get("DATABASE_PASSWORD", default="")
         self.schema = environ.get("DATABASE_SCHEMA", default="")
 
         match self.type:
             case "oracle":
                 self.mode = environ.get("DATABASE_MODE", default="thin")
-                self.alias = environ.get("DATABASE_ALIAS")
+                self.alias = environ.get("DATABASE_ALIAS", default="")
 
                 # Oracle - TNS
                 self.tns = to_bool(environ.get("DATABASE_TNS", default="true"))
                 self.tns_path = to_path(environ.get("DATABASE_TNS_PATH", default="/app/input/database/tns"))
-                self.tns_alias = environ.get("DATABASE_TNS_ALIAS")
+                self.tns_alias = environ.get("DATABASE_TNS_ALIAS", default="")
 
             case "postgres":
-                self.name = environ.get("DATABASE_NAME")
-                self.host = environ.get("DATABASE_HOST")
+                self.name = environ.get("DATABASE_NAME", default="")
+                self.host = environ.get("DATABASE_HOST", default="")
                 self.port = to_int(environ.get("DATABASE_PORT", default="5432"))
 
         # Error logic

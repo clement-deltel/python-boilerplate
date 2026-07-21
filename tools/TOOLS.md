@@ -149,6 +149,7 @@ Here are the tools that could be interesting and further enhance the stack.
 
 #### Deployment
 
+- [pyinfra](https://github.com/pyinfra-dev/pyinfra) -  turn code into shell commands and run them on your servers, execute ad-hoc commands and write declarative operations, target SSH servers, local machine and Docker containers. `Python`
 - [score](https://github.com/score-spec/spec) - developer-centric and platform-agnostic Workload specification. `Go`
 
 #### Documentation
@@ -176,6 +177,7 @@ Here are the tools that could be interesting and further enhance the stack.
 
 - [line-profiler](https://github.com/pyutils/line_profiler) - line-by-line profiling. `Python`
 - [memory-profiler](https://github.com/pythonprofilers/memory_profiler) - monitor memory usage of Python code. `Python`
+- [memray](https://github.com/bloomberg/memray) - memory profiler for Python. `Python` `C++`
 - [pyinstrument](https://github.com/joerick/pyinstrument) - call stack profiler. `Python` `TypeScript` `Svelte`
 - [py-spy](https://github.com/benfred/py-spy) - sampling profiler for Python programs. `Rust`
 - [scalene](https://github.com/plasma-umass/scalene) - high-performance, high-precision CPU, GPU, and memory profiler for Python with AI-powered optimization proposals. `Python` `JavaScript`

@@ -490,7 +490,7 @@ run-telemetry: init-telemetry
 # Install pre-commit hooks
 [group("hooks")]
 hook-install:
-    prek install --install-hooks
+    prek install --prepare-hooks
 
 # Run pre-commit hooks against all files
 [group("hooks")]
@@ -500,7 +500,7 @@ hook-run:
 # Update pre-commit hooks and stage config
 [group("hooks")]
 hook-update:
-    prek auto-update
+    prek update
     git add .pre-commit-config.yaml
 
 # ---------------------------------------------------------------------------- #

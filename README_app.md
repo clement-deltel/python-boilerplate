@@ -22,7 +22,7 @@
 
 app-description
 
-![Application Presentation](doc/app_presentation.svg =600x)
+![Application Presentation](doc/app_presentation.svg)
 
 *generated using [onefetch](https://github.com/o2sh/onefetch).*
 
@@ -33,14 +33,14 @@ app-description
  Language              Files        Lines         Code     Comments       Blanks
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Dockerfile                3          335          164           96           75
- JSON                      1            7            7            0            0
+ JSON                      1           26           26            0            0
  Just                      1          656          325          219          112
  Makefile                  1          365          207           80           78
  Python                   20         3906         2795          422          689
  Shell                     2          529          326          113           90
  SVG                       1           15           15            0            0
  Plain Text                3         1294            0         1294            0
- TOML                      1          658          366          214           78
+ TOML                      1          664          369          217           78
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
  Markdown                  7         1708            0         1220          488
@@ -48,7 +48,7 @@ app-description
  |- Markdown               1            1            0            1            0
  (Total)                             1837          123         1225          489
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    42         9641         4362         3667         1612
+ Total                    42         9666         4384         3670         1612
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -79,7 +79,7 @@ app-name v0.0.0
 ├── debugpy v1.8.19
 ├── numpy v2.4.1
 ├── oracledb v4.0.0
-│   ├── cryptography v46.0.5
+│   ├── cryptography v49.0.0
 │   │   └── cffi v2.0.0
 │   │       └── pycparser v3.0
 │   └── typing-extensions v4.15.0
@@ -90,8 +90,8 @@ app-name v0.0.0
 └── requests v2.33.1
     ├── certifi v2026.1.4
     ├── charset-normalizer v3.4.4
-    ├── idna v3.11
-    └── urllib3 v2.6.3
+    ├── idna v3.18
+    └── urllib3 v2.7.0
 ```
 
 ## Configuration

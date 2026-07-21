@@ -1,6 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "azureWorkItemId": 1234,
+  "ignorePaths": [
+    "requirements/requirements-dev.txt",
+    "requirements/requirements-test.txt"
+  ],
+  "packageRules": [
+    {
+      "description": "Non-production dependency-groups: not shipped in the Docker image, so being excluded from CVE scanning",
+      "enabled": false,
+      "matchDepTypes": [
+        "dependency-groups"
+      ],
+      "matchManagers": [
+        "pep621"
+      ],
+      "vulnerabilityAlerts": {
+        "enabled": false
+      }
+    }
+  ],
   "reviewers": [
     "required:DOMAIN\\azure_user_id"
   ]

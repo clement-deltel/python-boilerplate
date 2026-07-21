@@ -253,7 +253,7 @@ uv-outdated:
 # Update uv version in files and self-update uv
 [arg("source", pattern='^(\d)\.(\d{1,2})\.(\d{1,2})$')]
 [group("uv")]
-uv-update source="0.11.16":
+uv-update source="0.11.30":
     uv self update
     sed -i "s/{{ source }}/{{ uv_version }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
     git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
@@ -350,7 +350,7 @@ get-tag:
 
 # Build Docker image. Targets: builder, distroless, dhi. Tag suffixes: -builder, -distroless, -dhi
 [group("docker"), arg("target", pattern='^(production|builder|distroless|dhi)$'), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
-build-image target="production" tag_suffix="" uv_build_version="0.11.16" $DOCKER_CONTENT_TRUST="1": clean
+build-image target="production" tag_suffix="" uv_build_version="0.11.30" $DOCKER_CONTENT_TRUST="1": clean
     docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION={{ uv_build_version }} --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
 
 # Pull Docker image

@@ -61,7 +61,8 @@ cve = [
     # urllib: CVE-2025-50181 (MEDIUM), CVE-2025-50182 (MEDIUM), CVE-2026-44431 (HIGH), CVE-2026-44432 (HIGH)
     "urllib3>=2.7.0,<3.0.0"]
 
-dev = ["commitizen", "csv2md", "howdoi", "prek", "pyscn", "snakeviz"]
+dev = ["commitizen", "howdoi", "prek", "pyscn", "snakeviz"]
+doc = ["csv2md", "interrogate"]
 lint = [
     "checkov",
     "gitlint",
@@ -247,6 +248,36 @@ topo_order_commits = true
 sort_commits = "oldest"
 # Process submodules commits
 recurse_submodules = false
+
+# ---------------------------------------------------------------------------- #
+#               ------- tool - interrogate ------
+# ---------------------------------------------------------------------------- #
+# https://interrogate.readthedocs.io/en/latest
+
+[tool.interrogate]
+ignore-init-method = false
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = false
+ignore-setters = false
+ignore-overloaded-functions = false
+
+fail-under = 100
+exclude = ["test"]
+
+# possible values: sphinx (default), google
+style = "google"
+# possible values: 0 (minimal output), 1 (-v), 2 (-vv)
+verbose = 1
+
+# output file location
+generate-badge = "doc/docstring_coverage.svg"
+badge-format = "svg"
 
 # ---------------------------------------------------------------------------- #
 #               ------- tool - isort ------
@@ -609,7 +640,7 @@ certifi="certifi"
 # https://docs.astral.sh/uv/reference/settings/#project-metadata
 
 # List of dependency-groups to install by default
-default-groups = ["cve", "dev", "lint", "observability", "test", "typing"]
+default-groups = ["cve", "dev", "doc", "lint", "observability", "test", "typing"]
 # List of supported environments against which to resolve dependencies
 environments = ["sys_platform == 'linux'"]
 # environments = ["sys_platform == 'windows'"]
@@ -633,7 +664,7 @@ compile-bytecode = true
 # Limit candidate packages to those that were uploaded prior to the given date
 exclude-newer = "2 weeks"
 # Limit candidate packages for specific packages to those that were uploaded prior to the given date
-exclude-newer-package = { ruff = false, ty = false }
+exclude-newer-package = { cryptography = false, ruff = false, ty = false, urllib3 = false }
 # Extra URLs of package indexes to use, in addition to --index-url
 # extra-index-url = ["https://download.pytorch.org/whl/cpu"]
 

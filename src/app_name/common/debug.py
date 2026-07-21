@@ -20,6 +20,7 @@ def debug(func: Callable) -> Callable:
 
     @wraps(func)
     def wrapper(*args, **kwargs) -> Callable:  # noqa: ANN002,ANN003
+        """Run application debugging."""
         if to_bool(environ.get("DEBUGPY", default="false")):
             debug_host = environ.get("DEBUGPY_HOST", default="localhost")
             debug_port = to_int(environ.get("DEBUGPY_PORT", default="5678"))

@@ -93,6 +93,12 @@ repos:
   #               ------- Python ------
   # -------------------------------------------------------------------------- #
 
+  # interrogate - Docstring Coverage
+  - repo: https://github.com/econchick/interrogate
+    rev: 1.7.0
+    hooks:
+      - id: interrogate
+
   # isort - Imports Sorting
   - repo: https://github.com/pycqa/isort
     rev: 8.0.1
@@ -115,7 +121,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.22
+    rev: v0.15.21
     hooks:
       - id: ruff-check
         types_or: [python, pyi]

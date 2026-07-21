@@ -15,4 +15,4 @@ rules:
     max: 160
     level: warning
 
-ignore-from-file: [.gitignore, .yamlignore]
+ignore-from-file: [.gitignore, config/.yamlignore]

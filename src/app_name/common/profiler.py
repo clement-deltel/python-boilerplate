@@ -46,7 +46,7 @@ def profiler(func: Callable) -> Callable:
     """Enable profiling on the target function."""
 
     @wraps(func)
-    def wrapper(*args, **kwargs) -> Callable:  # noqa: ANN002, ANN003
+    def wrapper(*args: tuple, **kwargs: dict) -> Callable:
         """Run application profiling."""
         if to_bool(environ.get("PROFILING", default="false")):
             profiler = Profiler()

@@ -7,8 +7,7 @@ from time import sleep
 from typing import Any
 
 # Third-party
-import oracledb
-from oracledb import Cursor, Error
+from oracledb import Cursor, Error, ProgrammingError, connect, init_oracle_client
 
 # Local Application
 from app_name.common.config import DatabaseConfig, get_config_class
@@ -141,18 +140,22 @@ class Oracle:
             config_dir = str(tns_path)
 
         try:
-            oracledb.init_oracle_client(config_dir=config_dir)
-        except oracledb.ProgrammingError as exc:
+            init_oracle_client(config_dir=config_dir)
+        except ProgrammingError as exc:
             # Safe to ignore if already initialized in the same Python process
             if "init_oracle_client() has already been called" not in str(exc):
                 raise
 
     def connect(self) -> None:
-        """Connect to database."""
+        """Connect to database.
+
+        Raises:
+            Exception: if all attempts to connect to the database failed.
+        """
         log().logger.info("Connecting to database...", extra=self.extra)
         for attempt in range(1, self.config.retry_max + 1):
             try:
-                self.connection = oracledb.connect(dsn=self.alias, user=self.config.username, password=self.config.password)
+                self.connection = connect(dsn=self.alias, user=self.config.username, password=self.config.password)
             except Error as err:
                 log().logger.error("Error connecting to database: %s", err, extra=self.extra)
             else:
@@ -178,7 +181,7 @@ class Oracle:
             finally:
                 self.connection = None
 
-    def execute_sql(self, cursor: Cursor, query: str) -> None:
+    def execute(self, cursor: Cursor, query: str) -> None:
         """Execute a SQL query.
 
         Args:
@@ -200,11 +203,11 @@ class Oracle:
 
     @staticmethod
     def cursor_required(func: Callable) -> Callable:
-        """Ensure there is a cursor available to run a SQL query."""
+        """Ensure a database cursor is available."""
 
         @wraps(func)
-        def wrapper(self, *args, **kwargs) -> list:  # noqa: ANN001,ANN002,ANN003
-            """."""
+        def wrapper(self, *args: tuple, **kwargs: dict) -> list:  # noqa: ANN001
+            """Run the query using the database cursor."""
             cursor = None
             try:
                 cursor = self.connection.cursor()
@@ -212,7 +215,7 @@ class Oracle:
                 cursor.close()
                 return result
             except Error as err:
-                log().logger.error(err)
+                log().logger.error(err, extra=self.extra)
                 if cursor:
                     cursor.close()
                 if not self.connection:
@@ -226,7 +229,33 @@ class Oracle:
         return cursor.fetchall() if cursor else []
 
     @cursor_required
-    def select(self, cursor: Cursor, query: str, **params) -> list:  # noqa:ANN003
+    def select(self, cursor: Cursor, query: str, **params: dict) -> list:
         """."""
-        self.execute_sql(cursor, query, **params)
+        self.execute(cursor, query, **params)
         return self.fetch_all(cursor)
+
+
+# Global
+_database_instance = None
+
+
+def set_database(database: Oracle) -> None:
+    """Set global instance.
+
+    Args:
+        database (Oracle): database instance.
+    """
+    global _database_instance
+    _database_instance = database
+
+
+def get_database() -> Oracle:
+    """Get global instance, instantiate it if None.
+
+    Returns:
+        Oracle: database instance.
+    """
+    global _database_instance
+    if _database_instance is None:
+        _database_instance = Oracle()
+    return _database_instance

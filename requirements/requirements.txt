@@ -110,6 +110,17 @@ polars-runtime-32==1.37.1 ; sys_platform == 'linux' \
     --hash=sha256:fbfde7c0ca8209eeaed546e4a32cca1319189aa61c5f0f9a2b4494262bd0c689 \
     --hash=sha256:fc82b5bbe70ca1a4b764eed1419f6336752d6ba9fc1245388d7f8b12438afa2c
     # via polars
+psycopg2-binary==2.9.12 ; sys_platform == 'linux' \
+    --hash=sha256:0dc9228d47c46bda253d2ecd6bb93b56a9f2d7ad33b684a1fa3622bf74ffe30c \
+    --hash=sha256:29d4d134bd0ab46ffb04e94aa3c5fa3ef582e9026609165e2f758ff76fc3a3be \
+    --hash=sha256:3d999bd982a723113c1a45b55a7a6a90d64d0ed2278020ed625c490ff7bef96c \
+    --hash=sha256:4766ab678563054d3f1d064a4db19cc4b5f9e3a8d9018592a8285cf200c248f3 \
+    --hash=sha256:5a0253224780c978746cb9be55a946bcdaf40fe3519c0f622924cdabdafe2c39 \
+    --hash=sha256:5ac9444edc768c02a6b6a591f070b8aae28ff3a99be57560ac996001580f294c \
+    --hash=sha256:c6528cefc8e50fcc6f4a107e27a672058b36cc5736d665476aeb413ba88dbb06 \
+    --hash=sha256:e4e184b1fb6072bf05388aa41c697e1b2d01b3473f107e7ec44f186a32cfd0b8 \
+    --hash=sha256:f921f3cd87035ef7df233383011d7a53ea1d346224752c1385f1edfd790ceb6a
+    # via app-name
 pycparser==3.0 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy' and sys_platform == 'linux' \
     --hash=sha256:600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29 \
     --hash=sha256:b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992

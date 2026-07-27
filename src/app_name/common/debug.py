@@ -19,7 +19,7 @@ def debug(func: Callable) -> Callable:
     """Debug the target function."""
 
     @wraps(func)
-    def wrapper(*args, **kwargs) -> Callable:  # noqa: ANN002,ANN003
+    def wrapper(*args: tuple, **kwargs: dict) -> Callable:
         """Run application debugging."""
         if to_bool(environ.get("DEBUGPY", default="false")):
             debug_host = environ.get("DEBUGPY_HOST", default="localhost")

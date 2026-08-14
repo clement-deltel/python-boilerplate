@@ -666,7 +666,7 @@ compile-bytecode = true
 # Limit candidate packages to those that were uploaded prior to the given date
 exclude-newer = "2 weeks"
 # Limit candidate packages for specific packages to those that were uploaded prior to the given date
-exclude-newer-package = { cryptography = false, ruff = false, ty = false, urllib3 = false }
+exclude-newer-package = { cryptography = false, prek = false, ruff = false, ty = false, urllib3 = false, uv = false }
 # Extra URLs of package indexes to use, in addition to --index-url
 # extra-index-url = ["https://download.pytorch.org/whl/cpu"]
 

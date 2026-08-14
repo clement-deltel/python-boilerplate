@@ -172,7 +172,8 @@
             "PD", // pandas-vet
             "N", // pep8-naming
             "PERF", // perflint
-            "E", // pycodestyle
+            "E", // pycodestyle-error
+            "W", // pycodestyle-warning
             "DOC", // pydoclint
             "D", // pydocstyle
             "F", // Pyflakes

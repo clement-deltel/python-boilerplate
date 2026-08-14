@@ -9,6 +9,7 @@ Here is a list of all the tools that I use when it comes to code in Python.
     - [Built-in](#built-in)
     - [Code](#code)
     - [Development](#development)
+    - [Documentation](#documentation)
     - [Lint](#lint)
     - [Observability](#observability)
     - [Test](#test)
@@ -20,7 +21,7 @@ Here is a list of all the tools that I use when it comes to code in Python.
     - [Data Validation](#data-validation)
     - [Debugging](#debugging)
     - [Deployment](#deployment)
-    - [Documentation](#documentation)
+    - [Documentation](#documentation-1)
     - [Logging](#logging)
     - [ORM](#orm)
     - [Performance](#performance)
@@ -80,10 +81,14 @@ Here are the useful libraries and modules used across all of my Python projects.
 #### Development
 
 - [commitizen](https://github.com/commitizen-tools/commitizen) - committing rules for projects, auto bump versions, and changelog generation. `Python`
-- [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
 - [howdoi](https://github.com/gleitz/howdoi) - instant coding answers via the command line. `Python`
 - [prek](https://github.com/j178/prek) - pre-commit re-engineered. `Rust`
 - [snakeviz](https://github.com/jiffyclub/snakeviz) - in-browser profile viewer. `Python`
+
+#### Documentation
+
+- [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
+- [interrogate](https://github.com/econchick/interrogate) - interrogate a codebase for docstring coverage. `Python`
 
 #### Lint
 

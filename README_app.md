@@ -41,7 +41,7 @@ app-description
  Python                   21         4182         3022          431          729
  Shell                     2          529          326          113           90
  SVG                       2           73           73            0            0
- Plain Text                3         1486            0         1486            0
+ Plain Text                3         1525            0         1525            0
  TOML                      1          705          397          224           84
  YAML                      2           39           34            4            1
 ─────────────────────────────────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ app-description
  |- Markdown               1            1            0            1            0
  (Total)                             1847          123         1232          492
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Total                    44        10292         4718         3904         1670
+ Total                    44        10331         4718         3943         1670
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -73,28 +73,28 @@ The application dependencies are managed with [uv](https://docs.astral.sh/uv). Y
 
 ```text
 app-name v0.0.0
-├── cloudevents v2.0.0
+├── cloudevents v2.2.0
 │   ├── deprecation v2.1.0
 │   │   └── packaging v26.0
 │   └── python-dateutil v2.9.0.post0
 │       └── six v1.17.0
-├── debugpy v1.8.19
-├── numpy v2.4.1
-├── oracledb v4.0.0
-│   ├── cryptography v49.0.0
+├── debugpy v1.8.22
+├── numpy v2.5.4
+├── oracledb v4.0.2
+│   ├── cryptography v50.0.2
 │   │   └── cffi v2.0.0
 │   │       └── pycparser v3.0
 │   └── typing-extensions v4.15.0
-├── pika v1.3.2
-├── polars v1.37.1
-│   └── polars-runtime-32 v1.37.1
+├── pika v1.4.4
+├── polars v1.44.2
+│   └── polars-runtime-32 v1.44.2
 ├── psycopg2-binary v2.9.12
 ├── python-dotenv v1.2.2
-└── requests v2.33.1
+└── requests v2.34.2
     ├── certifi v2026.1.4
     ├── charset-normalizer v3.4.4
     ├── idna v3.18
-    └── urllib3 v2.7.0
+    └── urllib3 v2.8.0
 ```
 
 ## Configuration

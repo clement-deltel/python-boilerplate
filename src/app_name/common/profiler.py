@@ -6,6 +6,7 @@ from collections.abc import Callable
 from functools import wraps
 from os import environ
 from pstats import Stats
+from typing import Any
 
 # Third-party
 from dotenv import load_dotenv
@@ -43,11 +44,19 @@ class Profiler:
 
 
 def profiler(func: Callable) -> Callable:
-    """Enable profiling on the target function."""
+    """Enable profiling on the target function.
+
+    Returns:
+        Callable: the result of the wrapped function.
+    """
 
     @wraps(func)
-    def wrapper(*args: tuple, **kwargs: dict) -> Callable:
-        """Run application profiling."""
+    def wrapper(*args: Any, **kwargs: Any) -> Callable:
+        """Run application profiling.
+
+        Returns:
+            Callable: the result of the wrapped function.
+        """
         if to_bool(environ.get("PROFILING", default="false")):
             profiler = Profiler()
             profiler.start()

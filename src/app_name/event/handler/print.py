@@ -16,6 +16,9 @@ class PrintHandler(Handler):
 
         Args:
             record (logging.LogRecord): log record to emit.
+
+        Raises:
+            Exception: if an error occurs while handling- the log record.
         """
         try:
             log_message = self.format(record)

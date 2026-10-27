@@ -22,6 +22,20 @@ from app_name.event.logger.log import log
 load_dotenv(".env", override=True)
 
 
+def get_python_and_os() -> str:
+    """Get both Python version and operating system.
+
+    Returns:
+        str: operating system.
+    """
+    # Python version & operating system
+    operating_system = system()
+    log().logger.debug("Python version: %s", sys.version)
+    log().logger.debug("Operating system: %s", operating_system)
+
+    return operating_system
+
+
 def signal_int_handler(signum: int, frame: FrameType | None) -> None:  # noqa: ARG001
     """Handle SIGINT signal for the application execution.
 
@@ -40,6 +54,21 @@ def signal_quit_handler(signum: int, frame: FrameType | None) -> None:  # noqa: 
     """
     log().logger.warning("You pressed Ctrl + \\! Terminating gracefully...")
     raise KeyboardInterrupt
+
+
+def set_signals(operating_system: str) -> None:
+    """Initialize SIGINT and SIGQUIT.
+
+    Args:
+        operating_system (str): operating system name.
+    """
+    signal(SIGINT, signal_int_handler)
+
+    if operating_system == "Linux":
+        # Standard Library
+        from signal import SIGQUIT  # noqa: PLC0415
+
+        signal(SIGQUIT, signal_quit_handler)
 
 
 def load_config() -> Config:
@@ -61,20 +90,10 @@ def main() -> None:
     """Perform all the steps to run this application."""
     start = perf_counter()
     try:
+        operating_system = get_python_and_os()
+        set_signals(operating_system)
+
         load_config()
-
-        # Python version & operating system
-        operating_system = system()
-        log().logger.debug("Python version: %s", sys.version)
-        log().logger.debug("Operating system: %s", operating_system)
-
-        # Signals
-        if operating_system == "Linux":
-            # Standard Library
-            from signal import SIGQUIT  # noqa: PLC0415
-
-            signal(SIGQUIT, signal_quit_handler)
-        signal(SIGINT, signal_int_handler)
 
     except KeyboardInterrupt:
         pass

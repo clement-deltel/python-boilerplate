@@ -37,7 +37,7 @@ class PathTranslator:
 
         # Detect current operating system
         operating_system = system()
-        self._system = "linux" if operating_system in ("Linux", "Darwin") else "windows"
+        self._system = "linux" if operating_system in {"Linux", "Darwin"} else "windows"
 
         # Parse mappings from environment variable
         self._mappings = self._parse_mappings(mappings_env)
@@ -262,7 +262,7 @@ def to_pure_path(path: str | Path, mapping: bool = False, exists: bool = True) -
     Returns:
         Path: Native system translated pure path.
     """
-    target_system = "linux" if system() in ("Linux", "Darwin") else "windows"
+    target_system = "linux" if system() in {"Linux", "Darwin"} else "windows"
     if target_system == "windows":
         return PureWindowsPath(translator().to_path(path, mapping=mapping, exists=exists))
     return PurePosixPath(translator().to_path(path, mapping=mapping, exists=exists))
@@ -347,7 +347,7 @@ def to_uri(path: str | Path, mapping: bool = True, exists: bool = False, target:
     """
     path_str = translator().to_path(path, mapping=mapping, exists=exists, target=target)
 
-    operating_system = "linux" if system() in ("Linux", "Darwin") else "windows"
+    operating_system = "linux" if system() in {"Linux", "Darwin"} else "windows"
     target_system = operating_system if target == "auto" else target
 
     return Path(path_str).as_uri() if operating_system == target_system else f"file:///{quote(path_str, safe='/:@')}"

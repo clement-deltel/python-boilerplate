@@ -4,6 +4,7 @@
 from collections.abc import Callable
 from functools import wraps
 from os import environ
+from typing import Any
 
 # Third-party
 from debugpy import listen, wait_for_client
@@ -16,11 +17,19 @@ load_dotenv(".env", override=True)
 
 
 def debug(func: Callable) -> Callable:
-    """Debug the target function."""
+    """Debug the target function.
+
+    Returns:
+        Callable: the result of the wrapped function.
+    """
 
     @wraps(func)
-    def wrapper(*args: tuple, **kwargs: dict) -> Callable:
-        """Run application debugging."""
+    def wrapper(*args: Any, **kwargs: Any) -> Callable:
+        """Run application debugging.
+
+        Returns:
+            Callable: the result of the wrapped function.
+        """
         if to_bool(environ.get("DEBUGPY", default="false")):
             debug_host = environ.get("DEBUGPY_HOST", default="localhost")
             debug_port = to_int(environ.get("DEBUGPY_PORT", default="5678"))

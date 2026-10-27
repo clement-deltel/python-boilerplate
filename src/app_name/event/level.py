@@ -27,4 +27,4 @@ class ErrFilter(Filter):
         Returns:
             bool: if the record level is in or not.
         """
-        return record.levelno in (DEBUG, INFO, WARNING)
+        return record.levelno in {DEBUG, INFO, WARNING}

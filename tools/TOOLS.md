@@ -74,8 +74,10 @@ Here are the useful libraries and modules used across all of my Python projects.
 
 - [cloudevents](https://github.com/cloudevents/sdk-python) - python SDK for CloudEvents. `Python`
 - [numpy](https://github.com/numpy/numpy) - fundamental package for scientific computing. `Python`
+- [openpyxl](https://foss.heptapod.net/openpyxl/openpyxl) - read/write Excel files. `Python`
 - [pika](https://pika.readthedocs.io/en/stable/index.html)
 - [polars](https://github.com/pola-rs/polars) - DataFrames powered by a multithreaded, vectorized query engine. `Rust`
+- [python-calamine](https://github.com/dimastbk/python-calamine) - binding for Rust's library calamine, used for reading excel and of file. `Rust` `Python`
 - [requests](https://requests.readthedocs.io/en/latest/api)
 
 #### Development

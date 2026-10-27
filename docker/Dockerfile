@@ -2,10 +2,9 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 # https://github.com/astral-sh/uv/pkgs/container/uv
-ARG UV_DEBIAN_VERSION=trixie
 ARG UV_VERSION=0.13.5
-# Supported types: dhi (Docker Hardened Image), slim
-ARG UV_TYPE=slim
+# Supported types: python3.14-dhi (Docker Hardened Image), python3.14-trixie-slim, trixie-slim
+ARG UV_TYPE=trixie-slim
 
 # https://hub.docker.com/_/debian
 ARG DEBIAN_VERSION=trixie-slim
@@ -18,9 +17,14 @@ ARG DHI_DEBIAN_VERSION=13
 ARG DHI_PYTHON_VERSION=3.11.15
 
 # ---------------------------------------------------------------------------- #
+#               ------- UV Binary ------
+# ---------------------------------------------------------------------------- #
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_TYPE} AS uv
+
+# ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_DEBIAN_VERSION}-${UV_TYPE} AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_TYPE} AS builder
 
 # Not persisted into the builder image
 ARG PYTHON_VERSION=3.11.15
@@ -38,7 +42,12 @@ ENV UV_PYTHON_PREFERENCE=only-managed
 WORKDIR /app
 
 # Install Python before the application for caching
-RUN uv python install ${PYTHON_VERSION}
+RUN uv python install ${PYTHON_VERSION} && \
+# Solve CVEs
+# msgpack: GHSA-6v7p-g79w-8964 (HIGH)
+# setuptools: CVE-2025-47273 (HIGH)
+# urllib3: CVE-2026-97687 (HIGH), CVE-2026-97689 (HIGH)
+    uv pip uninstall --break-system-packages --system pip
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -53,15 +62,6 @@ COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-default-groups --no-editable
 
-# Clean up unnecessary files to reduce size
-RUN find .venv \( \
-    -name "*.pyc" -o \
-    -name "*.pyo" -o \
-    -name "*.pyd" -o \
-    -name "__pycache__" -o \
-    -name "test" \
-    \) -exec rm -rf {} + 2>/dev/null || true
-
 # ---------------------------------------------------------------------------- #
 #               ------- Production Application ------
 # ---------------------------------------------------------------------------- #
@@ -75,8 +75,8 @@ LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
 ARG DEBIAN_FRONTEND=noninteractive
-ARG USER="app"
-ARG ID="10001"
+ARG USER=nonroot
+ARG ID=65532
 ARG HOME=/app
 ARG VIRTUAL_ENV="${HOME}/.venv"
 ARG MODE=505
@@ -96,7 +96,7 @@ RUN groupadd --gid ${ID} ${USER} && \
               /usr/bin/umount /usr/bin/newgrp /usr/bin/passwd /usr/bin/gpasswd && \
     chmod g-s /usr/bin/expiry /usr/sbin/unix_chkpwd /usr/bin/chage
 
-# Copy Python installation and application virtual env from the builder, as well as entrypoint and healthcheck
+# Copy Python installation and application virtual env from the builder, as well as the healthcheck
 COPY --from=builder --chmod=${MODE} /python /python
 COPY --from=builder --chmod=${MODE} ${HOME}/.venv ${HOME}/.venv
 COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
@@ -121,8 +121,8 @@ LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
-ARG USER="nonroot"
-# ARG ID="65532"
+ARG USER=nonroot
+ARG ID=65532
 ARG HOME=/app
 ARG VIRTUAL_ENV="${HOME}/.venv"
 ARG MODE=505
@@ -133,7 +133,7 @@ ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 # Set working directory
 WORKDIR ${HOME}
 
-# Copy Python installation and application virtual env from the builder, as well as healthcheck
+# Copy Python installation and application virtual env from the builder, as well as the healthcheck
 COPY --from=builder --chmod=${MODE} /python /python
 COPY --from=builder --chmod=${MODE} ${HOME}/.venv ${HOME}/.venv
 COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
@@ -147,6 +147,37 @@ ENTRYPOINT ["app-name"]
 EXPOSE 5678
 
 # ---------------------------------------------------------------------------- #
+#               ------- Build Application - DHI ------
+# ---------------------------------------------------------------------------- #
+FROM dhi.io/python:${DHI_PYTHON_VERSION}-debian${DHI_DEBIAN_VERSION}-dev AS builder-dhi
+
+COPY --from=uv /usr/local/bin/uv /usr/local/bin/uvx /bin/
+
+# Ensure that all commands within the Dockerfile compile bytecode
+ENV UV_COMPILE_BYTECODE=1
+# Cache mount used to improve performance across builds
+ENV UV_LINK_MODE=copy
+# Only use the system Python version
+ENV UV_PYTHON_PREFERENCE=only-system
+ENV UV_PYTHON_DOWNLOADS=never
+
+# Set working directory to the `app` directory
+WORKDIR /app
+
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --group cve --no-default-groups --no-install-project
+
+# Copy application code into the image
+COPY . .
+
+# Install application
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --group cve --no-default-groups --no-editable
+
+# ---------------------------------------------------------------------------- #
 #               ------- Docker Hardened Application ------
 # ---------------------------------------------------------------------------- #
 FROM dhi.io/python:${DHI_PYTHON_VERSION}-debian${DHI_DEBIAN_VERSION} AS dhi
@@ -158,8 +189,8 @@ LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
-ARG USER="nonroot"
-# ARG ID="65532"
+ARG USER=nonroot
+ARG ID=65532
 ARG HOME=/app
 ARG VIRTUAL_ENV="${HOME}/.venv"
 ARG MODE=505
@@ -170,9 +201,8 @@ ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 # Set working directory
 WORKDIR ${HOME}
 
-# Copy Python installation and application virtual env from the builder, as well as healthcheck
-COPY --from=builder --chmod=${MODE} /python /python
-COPY --from=builder --chmod=${MODE} ${HOME}/.venv ${HOME}/.venv
+# Copy Python installation and application virtual env from the builder, as well as the healthcheck
+COPY --from=builder-dhi --chmod=${MODE} ${HOME}/.venv ${HOME}/.venv
 COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
 
 USER ${USER}

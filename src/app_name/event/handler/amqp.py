@@ -31,6 +31,9 @@ class AMQPLogHandler(Handler):
 
         Args:
             record (logging.LogRecord): log record to emit.
+
+        Raises:
+            Exception: if an error occurs while handling the log record.
         """
         try:
             with self._lock:

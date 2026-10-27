@@ -35,6 +35,9 @@ def to_int(variable: str) -> int:
 
     Returns:
         int: environment variable integer value.
+
+    Raises:
+        Exception: if the conversion to int fails.
     """
     try:
         return int(variable)
@@ -91,6 +94,9 @@ class Config:
 
         Returns:
             Any: configuration attribute.
+
+        Raises:
+            ValueError: if the config class is not found.
         """
         config_class = getattr(self, class_name, None)
         if config_class is None:
@@ -112,7 +118,6 @@ class AppConfig:
         Args:
             name (str): application name.
             run_date (datetime): application run date.
-            translator (PathTranslator): path translation between Windows and Linux formats.
         """
         self.name = name
         self.run_date = run_date
@@ -124,7 +129,7 @@ class AppConfig:
         self.output_path.mkdir(parents=True, exist_ok=True)
 
         config_path = environ.get("CONFIG_PATH", default="")
-        if config_path == "":
+        if not config_path:
             self.config_path = self.input_path.joinpath("config")
         else:
             self.config_path = to_path(config_path)
@@ -141,12 +146,15 @@ class AppConfig:
 
         Returns:
             Path: file path.
+
+        Raises:
+            FileNotFoundError: if the file does not exist.
         """
         if root_path is None:
             root_path = self.config_path
 
         path_str = environ.get(key, default="")
-        if path_str == "":
+        if not path_str:
             path = root_path.joinpath(file)
             if not path.exists():
                 message = f"No such file or directory: {path_str}"
@@ -210,7 +218,6 @@ class LogConfig:
             name (str): application name.
             app_env (str): application environment.
             run_date (datetime): application run date.
-            translator (PathTranslator): path translation between Windows and Linux formats.
         """
         self.name = name
         self.app_env = app_env

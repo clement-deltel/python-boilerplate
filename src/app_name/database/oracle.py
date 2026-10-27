@@ -24,6 +24,9 @@ def to_literal(variable: Any) -> str:
 
     Returns:
         str: variable SQL literal formatted.
+
+    Raises:
+        TypeError: if the variable type is not supported.
     """
     match variable:
         case bool():
@@ -123,7 +126,12 @@ class Oracle:
             self.init_client()
 
     def init_client(self) -> None:
-        """Initialize Oracle client, optionally using a tnsnames.ora configuration file."""
+        """Initialize Oracle client, optionally using a tnsnames.ora configuration file.
+
+        Raises:
+            FileNotFoundError: if the tnsnames.ora file or directory is not found.
+            ProgrammingError: if the Oracle client initialization fails for reasons other than already being initialized.
+        """
         config_dir = None
 
         if self.config.tns:
@@ -187,9 +195,6 @@ class Oracle:
         Args:
             cursor (Cursor): database cursor.
             query (str): SQL query.
-
-        Returns:
-            list: result of the query, list of records.
         """
         if self.connection is None:
             log().logger.error("No active database connection. Please connect first.", extra=self.extra)
@@ -203,11 +208,19 @@ class Oracle:
 
     @staticmethod
     def cursor_required(func: Callable) -> Callable:
-        """Ensure a database cursor is available."""
+        """Ensure a database cursor is available.
+
+        Returns:
+            Callable: the wrapped function with cursor management.
+        """
 
         @wraps(func)
         def wrapper(self, *args: tuple, **kwargs: dict) -> list:  # noqa: ANN001
-            """Run the query using the database cursor."""
+            """Run the query using the database cursor.
+
+            Returns:
+                list: result of the query, list of records.
+            """
             cursor = None
             try:
                 cursor = self.connection.cursor()
@@ -225,12 +238,20 @@ class Oracle:
         return wrapper
 
     def fetch_all(self, cursor: Cursor) -> list:
-        """."""
+        """Fetch all records from the cursor.
+
+        Returns:
+            list: list of records fetched from the cursor.
+        """
         return cursor.fetchall() if cursor else []
 
     @cursor_required
     def select(self, cursor: Cursor, query: str, **params: dict) -> list:
-        """."""
+        """Select records from the database.
+
+        Returns:
+            list: result of the query, list of records.
+        """
         self.execute(cursor, query, **params)
         return self.fetch_all(cursor)
 

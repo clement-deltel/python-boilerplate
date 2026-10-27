@@ -94,7 +94,11 @@ class Postgres:
 
     @staticmethod
     def cursor_required(func: Callable) -> Callable:
-        """Ensure a database cursor is available."""
+        """Ensure a database cursor is available.
+
+        Returns:
+            Callable: the wrapped function with cursor management.
+        """
 
         @wraps(func)
         def wrapper(self, *args: tuple, **kwargs: dict) -> Callable:  # noqa: ANN001

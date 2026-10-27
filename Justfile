@@ -23,7 +23,7 @@ customer := "customer-name"
 name := "app-name"
 name_snake := "app_name"
 python_version := "3.14.8"
-uv_app_version := "0.13.5"
+uv_app_version := "0.13.6"
 uv_type := "trixie-slim"
 
 # Generated

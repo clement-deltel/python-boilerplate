@@ -2,7 +2,7 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 # https://github.com/astral-sh/uv/pkgs/container/uv
-ARG UV_VERSION=0.13.5
+ARG UV_VERSION=0.13.6
 # Supported types: python3.14-dhi (Docker Hardened Image), python3.14-trixie-slim, trixie-slim
 ARG UV_TYPE=trixie-slim
 

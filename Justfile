@@ -22,12 +22,14 @@ list:
 customer := "customer-name"
 name := "app-name"
 name_snake := "app_name"
-app_uv_version := "0.13.5"
+uv_app_version := "0.13.5"
+uv_type := "trixie-slim"
 
 # Generated
 
 image_tag := `cz version --project`
 python_version := `uv run -qq python --version | sed 's/Python //'`
+python_version_minor := `uv run -qq python --version | sed 's/Python //' | cut -d. -f1,2`
 uv_version := `uv self version --short`
 
 # ---------------------------------------------------------------------------- #
@@ -39,7 +41,8 @@ uv_version := `uv self version --short`
 pre-requisites:
     curl -fLSs https://astral.sh/uv/install.sh | sh
     curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-    brew install charmbracelet/tap/freeze gitleaks git-cliff hadolint ls-lint onefetch tokei varlock
+    brew tap charmbracelet/tap dmno-dev/tap
+    brew install freeze gitleaks git-cliff hadolint ls-lint onefetch tokei varlock
 
 # Initialize environment as a user
 [group("initialization")]
@@ -85,6 +88,14 @@ init:
 init-dev:
     uv venv --python {{ python_version }}
     uv pip install --group dev --group lint --editable .
+    .venv/Scripts/activate
+
+# Initialize environment when there is a proxy enabled
+[group("initialization")]
+[windows]
+init-proxy:
+    uv venv --python {{ python_version }}  --allow-insecure-host https://github.com
+    uv pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org --editable .
     .venv/Scripts/activate
 
 # ---------------------------------------------------------------------------- #
@@ -159,8 +170,9 @@ coverage:
 
 # Install Python version using pyenv
 [group("pyenv")]
-init-pyenv:
-    pyenv install {{ python_version }}
+pyenv-install target="3.11.15":
+    pyenv install --skip-existing {{ target }}
+    mkdir -p ~/.pyenv/versions/{{ target }}/envs
 
 # Create symlinks to have venv auto-activation with pyenv
 [group("pyenv")]
@@ -169,9 +181,15 @@ activate:
     ln -s ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }} ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
     pyenv local {{ python_version }}_{{ customer }}_{{ name }}
 
-# Create symlinks to have venv auto-activation with pyenv
+# Remove symlinks
 [group("pyenv")]
-pyenv-update-symlinks target="3.11.15":
+remove-symlinks:
+    rm -f ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
+    rm -f ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
+
+# Update symlinks to point to the new Python version
+[group("pyenv")]
+update-symlinks target="3.11.15":
     rm -f ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
     rm -f ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
     ln -s `pwd`/.venv ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }}
@@ -188,48 +206,42 @@ init-activate: init-dev activate
 # just update-patch 3.11.15
 # just update-minor 3.12.0
 
-# Update Python version in .pre-commit-config.yaml
-[arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-[group("python")]
-update-pre-commit target="3.11.15":
+# Update Python version in .pre-commit-config.yaml and pyproject.toml
+[group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
+update-files target="3.11.15":
     #!/usr/bin/env bash
-    SOURCE=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2`
+    # Version update for Python full version
+    sed -i "s/{{ python_version }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
+    # Version update for Python minor
     TARGET=`echo {{ target }} | cut -d. -f1-2`
-    sed -i "s/${SOURCE}/${TARGET}/g" .pre-commit-config.yaml
-    git add .pre-commit-config.yaml
-
-# Update Python version in pyproject.toml
-[arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-[group("python")]
-update-pyproject target="3.11.15":
-    #!/usr/bin/env bash
-    SOURCE=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2`
-    TARGET=`echo {{ target }} | cut -d. -f1-2`
-    sed -i "s/${SOURCE}\"/${TARGET}\"/g" pyproject.toml
-    SOURCE:=`uv run -qq python --version | sed 's/Python //' | cut -d. -f1-2 | tr -d .`
-    TARGET=`echo {{ target }} | cut -d. -f1-2 | tr -d .` && sed -i "s/${SOURCE}/${TARGET}/g" pyproject.toml
-    git add pyproject.toml
+    sed -i "s/{{ python_version_minor }}/${TARGET}/g" .pre-commit-config.yaml pyproject.toml
+    # Version update for Python upper bound
+    SOURCE_UPPER_BOUND=`echo {{ python_version_minor }} | awk -F. '{print $1 "." $2+1 ".0"}'`
+    TARGET_UPPER_BOUND=`echo ${TARGET} | awk -F. '{print $1 "." $2+1 ".0"}'`
+    sed -i "s/${SOURCE_UPPER_BOUND}/${TARGET_UPPER_BOUND}/g" Justfile pyproject.toml
+    # Version update for Python compact form (without dots)
+    SOURCE=`echo {{ python_version_minor }} | tr -d .`
+    TARGET=`echo ${TARGET} | tr -d .`
+    sed -i "s/${SOURCE}/${TARGET}/g" pyproject.toml
+    git add .pre-commit-config.yaml Justfile pyproject.toml
 
 # Update Python version, recreate venv, and sync dependencies
-[arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-[group("python")]
-update-python target="3.11.15":
+[group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
+update-venv target="3.11.15":
+    sed -i "s/{{ python_version }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
     @rm -f .python-version || true
     @rm -rf .venv
     uv python install {{ target }}
-    uv sync --frozen
-    sed -i "s/{{ python_version }}/{{ target }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile Justfile
-    git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile Justfile
+    uv sync
+    git add docker/Dockerfile Justfile pyproject.toml uv.lock
 
 # Update Python version PATCH digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
-[arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-[group("python")]
-update-patch target="3.11.15": (update-python target) (pyenv-update-symlinks target)
+[group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
+update-patch target="3.11.15": (update-venv target) (pyenv-install target) (update-symlinks target)
 
 # update Python version MINOR digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
-[arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-[group("python")]
-update-minor target="3.11.15": (update-python target) update-pre-commit update-pyproject (pyenv-update-symlinks target)
+[group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
+update-minor target="3.11.15": (update-files target) (update-venv target) (pyenv-install target) (update-symlinks target)
 
 # ---------------------------------------------------------------------------- #
 #               ------- Uv ------
@@ -243,7 +255,7 @@ build:
 
 # Check for uv updates
 [group("uv")]
-uv-check:
+check:
     uv self update --dry-run
 
 # Check for application outdated dependencies
@@ -255,8 +267,8 @@ uv-outdated:
 [group("uv")]
 uv-update:
     uv self update
-    sed -i "s/{{ app_uv_version }}/{{ uv_version }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
-    git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
+    sed -i "s/{{ uv_app_version }}/{{ uv_version }}/g" docker/Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
+    git add docker/Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dependencies ------
@@ -267,11 +279,13 @@ uv-update:
 update-groups:
     # dev
     uv sync --upgrade-package commitizen
-    uv sync --upgrade-package csv2md
     uv sync --upgrade-package howdoi
     uv sync --upgrade-package prek
     uv sync --upgrade-package pyscn
     uv sync --upgrade-package snakeviz
+    # doc
+    uv sync --upgrade-package csv2md
+    uv sync --upgrade-package interrogate
     # lint
     uv sync --upgrade-package checkov
     uv sync --upgrade-package gitlint
@@ -288,6 +302,8 @@ update-groups:
     uv sync --upgrade-package coverage
     uv sync --upgrade-package pytest
     uv sync --upgrade-package pytest-mock
+    uv sync --upgrade-package pytest-sugar
+    uv sync --upgrade-package pytest-xdist
     # typing
     # uv sync --upgrade-package pandas-stubs
     uv sync --upgrade-package types-requests
@@ -341,7 +357,7 @@ test-dockerignore:
 # ---------------------------------------------------------------------------- #
 # just build-image
 # just build-image builder -builder
-# just build-image distroless -distroless
+# just build-image dhi -dhi
 
 # Get Docker image tag
 [group("docker")]
@@ -351,7 +367,7 @@ get-tag:
 # Build Docker image. Targets: builder, distroless, dhi. Tag suffixes: -builder, -distroless, -dhi
 [group("docker"), arg("target", pattern='^(production|builder|distroless|dhi)$'), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
 build-image target="production" tag_suffix="" $DOCKER_CONTENT_TRUST="1": clean
-    docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION={{ app_uv_version }} --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
+    docker build --build-arg PYTHON_VERSION={{ python_version }} --build-arg UV_VERSION={{ uv_app_version }} --file docker/Dockerfile --tag {{ name }}:{{ image_tag }}{{ tag_suffix }} --target {{ target }} .
 
 # Pull Docker image
 [group("docker")]
@@ -364,9 +380,9 @@ push-image:
     docker push {{ name }}:{{ image_tag }}
 
 # Remove Docker image
-[group("docker")]
-remove-image:
-    docker image rm {{ name }}:{{ image_tag }}
+[group("docker"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
+remove-image tag_suffix="":
+    docker image rm {{ name }}:{{ image_tag }}{{ tag_suffix }}
 
 # Test Docker container healthcheck
 [group("docker")]
@@ -387,7 +403,7 @@ create-container:
 # ---------------------------------------------------------------------------- #
 # just run-container
 # just run-container --detach
-# just run-container --tag-suffix -distroless
+# just run-container --tag-suffix -dhi
 
 # Run Docker container. Tag suffixes: -builder, -distroless, -dhi
 [group("docker-run"), arg("tag_suffix", long="tag-suffix", pattern='^(-builder|-distroless|-dhi)?$')]
@@ -553,7 +569,7 @@ dive-ci tag_suffix="":
 # https://github.com/anchore/syft
 # just syft
 # just syft -builder
-# just syft -distroless
+# just syft -dhi
 
 # Run syft to generate a Software Bill of Materials. Tag suffixes: -builder, -distroless, -dhi
 [group("syft"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
@@ -569,7 +585,7 @@ syft tag_suffix="":
 # https://github.com/anchore/grype
 # just grype
 # just grype -builder
-# just grype -distroless
+# just grype -dhi
 
 # Run grype vulnerability scan on image. Tag suffixes: -builder, -distroless, -dhi
 [group("grype"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
@@ -597,7 +613,7 @@ grype-update:
 # https://github.com/aquasecurity/trivy
 # just trivy
 # just trivy -builder
-# just trivy -distroless
+# just trivy -dhi
 
 # Run trivy vulnerability scan on image. Tag suffixes: -builder, -distroless, -dhi
 [group("trivy"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
@@ -620,7 +636,7 @@ trivy-clean:
 # https://github.com/goodwithtech/dockle
 # just dockle
 # just dockle -builder
-# just dockle -distroless
+# just dockle -dhi
 
 # Run dockle security scan on image. Tag suffixes: -builder, -distroless, -dhi
 [group("dockle"), arg("tag_suffix", pattern='^(-builder|-distroless|-dhi)?$')]
@@ -654,3 +670,6 @@ renovate $LOG_FORMAT="json" $LOG_LEVEL="DEBUG" $RENOVATE_TOKEN="dummy":
 # Run different scans prior opening a new pull request
 [group("pr")]
 pr-scan: build-image (trivy "--ignore-unfixed") renovate remove-image
+
+[group("pr")]
+pr-scan-dhi: (build-image "dhi" "-dhi") (trivy "--ignore-unfixed" "-dhi") renovate (remove-image "-dhi")

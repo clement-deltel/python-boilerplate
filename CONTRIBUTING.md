@@ -27,6 +27,7 @@ The pre-requisites are:
   - [gitleaks](https://github.com/gitleaks/gitleaks) - tool for detecting secrets like passwords, API keys, and tokens in git repos. `Go`
   - [hadolint](https://github.com/hadolint/hadolint) - Dockerfile linter, validate inline bash. `Haskell`
   - [ls-lint](https://github.com/loeffel-io/ls-lint) - directory and filename linter, bring some structure to the project filesystem. `Go`
+  - [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2) - CLI for linting Markdown/CommonMark files with the markdownlint library. `JavaScript`
   - [onefetch](https://github.com/o2sh/onefetch) - CLI git information tool. `Rust`
   - [tokei](https://github.com/XAMPPRocky/tokei) - count your code, quickly. `Rust`
   - [varlock](https://github.com/dmno-dev/varlock) - .env files built for sharing powered by @env-spec decorator comments. `TypeScript` `JavaScript`
@@ -38,7 +39,7 @@ just pre-requisites
 
 git clone https://github.com/bitnami/readme-generator-for-helm
 npm install ./readme-generator-for-helm
-npm install --global @commitlint/cli @commitlint/config-conventional @commitlint/format conventional-changelog-conventionalcommits
+npm install --global @commitlint/cli @commitlint/config-conventional @commitlint/format conventional-changelog-conventionalcommits@^9
 ```
 
 Here are the steps to set up a development environment to run this application.

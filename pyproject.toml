@@ -299,6 +299,21 @@ line_length = 160
 multi_line_output = 3 # vertical-hanging-indent
 
 # ---------------------------------------------------------------------------- #
+#               ------- tool - markdownlint ------
+# ---------------------------------------------------------------------------- #
+# https://github.com/DavidAnson/markdownlint
+
+[tool.markdownlint-cli2]
+noProgress = true
+
+[tool.markdownlint-cli2.config]
+MD013 = false # line-length
+MD024 = false # no-duplicate-heading
+MD029 = false # ol-prefix
+MD034 = false # no-bare-urls
+MD059 = false # descriptive-link-text
+
+# ---------------------------------------------------------------------------- #
 #               ------- tool - pyright ------
 # ---------------------------------------------------------------------------- #
 # https://github.com/microsoft/pyright

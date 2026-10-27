@@ -52,22 +52,22 @@
             "editor.defaultFormatter": "ms-azuretools.vscode-containers"
         },
         "[markdown]": {
-            "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
-            "editor.formatOnSave": true
+            "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
         },
         "[python]": {
             "editor.codeActionsOnSave": {
                 "source.fixAll": "explicit",
                 "source.organizeImports": "explicit"
             },
-            "editor.defaultFormatter": "charliermarsh.ruff",
-            "editor.formatOnSave": true
+            "editor.defaultFormatter": "charliermarsh.ruff"
         },
         // Extension - Autodocstring
         "autoDocstring.docstringFormat": "google",
         // Extension - Debugpy
         "debugpy.debugJustMyCode": false,
         // Editor
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
         "editor.guides.bracketPairs": "active",
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
@@ -99,16 +99,14 @@
         // "git.branchProtection": ["main"],
         "git.showPushSuccessNotification": true,
         // Extension - Markdownlint
-        "markdownlint.config": {
-            "MD029": false, // ordered-list-item-prefix
-            "MD059": false // link-text-should-be-descriptive
-        },
+        "markdownlint.configFile": "pyproject.toml",
+        "markdownlint.configPointer": "/tool/markdownlint-cli2",
         // Extension - Python
         "python.analysis.autoFormatStrings": true,
         "python.analysis.autoImportCompletions": true,
         "python.analysis.completeFunctionParens": true,
         "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-        "python.envFile": "{workspaceFolder}/.vsenv",
+        "python.envFile": "${workspaceFolder}/.env.schema",
         "python.terminal.activateEnvironment": true,
         "python.testing.pytestEnabled": true,
         "python.testing.unittestEnabled": true,

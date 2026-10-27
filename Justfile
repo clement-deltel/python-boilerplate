@@ -41,7 +41,7 @@ pre-requisites:
     curl -fLSs https://astral.sh/uv/install.sh | sh
     curl -fLSs https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
     brew tap charmbracelet/tap dmno-dev/tap
-    brew install freeze gitleaks git-cliff hadolint ls-lint onefetch tokei varlock
+    brew install freeze gitleaks git-cliff hadolint ls-lint markdownlint-cli2 onefetch tokei varlock
 
 # Initialize environment as a user
 [group("initialization")]

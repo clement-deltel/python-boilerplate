@@ -10,7 +10,7 @@ ARG UV_VERSION=0.13.6
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-alpine${ALPINE_VERSION} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.14.8
+ARG PYTHON_VERSION=3.14.9
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

@@ -15,7 +15,7 @@ ARG DEBIAN_VERSION=trixie-slim
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_TYPE} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.14.8
+ARG PYTHON_VERSION=3.14.9
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

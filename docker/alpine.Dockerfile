@@ -10,7 +10,7 @@ ARG UV_VERSION=0.13.5
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-alpine${ALPINE_VERSION} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.11.15
+ARG PYTHON_VERSION=3.14.8
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1
@@ -25,7 +25,12 @@ ENV UV_PYTHON_PREFERENCE=only-managed
 WORKDIR /app
 
 # Install Python before the application for caching
-RUN uv python install ${PYTHON_VERSION}
+RUN uv python install ${PYTHON_VERSION} && \
+# Solve CVEs
+# msgpack: GHSA-6v7p-g79w-8964 (HIGH)
+# setuptools: CVE-2025-47273 (HIGH)
+# urllib3: CVE-2026-97687 (HIGH), CVE-2026-97689 (HIGH)
+    uv pip uninstall --break-system-packages --system pip
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
@@ -40,15 +45,6 @@ COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-default-groups --no-editable
 
-# Clean up unnecessary files to reduce size
-RUN find .venv \( \
-    -name "*.pyc" -o \
-    -name "*.pyo" -o \
-    -name "*.pyd" -o \
-    -name "__pycache__" -o \
-    -name "test" \
-    \) -exec rm -rf {} + 2>/dev/null || true
-
 # ---------------------------------------------------------------------------- #
 #               ------- Run Application ------
 # ---------------------------------------------------------------------------- #
@@ -61,8 +57,8 @@ LABEL org.opencontainers.image.authors="Support - support@company.com"
 LABEL org.opencontainers.image.vendor="Company Inc."
 
 # Not persisted into the runtime image
-ARG USER="app"
-ARG ID="10001"
+ARG USER=nonroot
+ARG ID=65532
 ARG HOME=/${USER}
 ARG VIRTUAL_ENV="${HOME}/.venv"
 

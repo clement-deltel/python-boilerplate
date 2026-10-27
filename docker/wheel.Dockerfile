@@ -1,16 +1,21 @@
 # Using uv in Docker: https://docs.astral.sh/uv/guides/integration/docker/
 # Instructions creating a new layer: ADD, COPY, RUN
 
-ARG DEBIAN_VERSION=trixie-slim
+# https://github.com/astral-sh/uv/pkgs/container/uv
 ARG UV_VERSION=0.13.5
+# Supported types: python3.14-dhi (Docker Hardened Image), python3.14-trixie-slim, trixie-slim
+ARG UV_TYPE=trixie-slim
+
+# https://hub.docker.com/_/debian
+ARG DEBIAN_VERSION=trixie-slim
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
 # ---------------------------------------------------------------------------- #
-FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${DEBIAN_VERSION} AS builder
+FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_TYPE} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.11.15
+ARG PYTHON_VERSION=3.14.8
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

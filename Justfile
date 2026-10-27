@@ -210,7 +210,7 @@ init-activate: init-dev activate
 update-files source="3.14.8" target="3.14.8":
     #!/usr/bin/env bash
     # Version update for Python full version
-    sed -i "s/{{ source }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
+    sed -i "s/{{ source }}/{{ target }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile Justfile pyproject.toml
     # Version update for Python minor
     SOURCE=`echo {{ source }} | cut -d. -f1-2`
     TARGET=`echo {{ target }} | cut -d. -f1-2`
@@ -228,12 +228,12 @@ update-files source="3.14.8" target="3.14.8":
 # Update Python version, recreate venv, and sync dependencies
 [group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
 update-venv source="3.14.8" target="3.14.8":
-    sed -i "s/{{ source }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
+    sed -i "s/{{ source }}/{{ target }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile Justfile pyproject.toml
     @rm -f .python-version || true
     @rm -rf .venv
     uv python install {{ target }}
     uv sync
-    git add docker/Dockerfile Justfile pyproject.toml uv.lock
+    git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile Justfile pyproject.toml uv.lock
 
 # Update Python version PATCH digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
@@ -267,8 +267,8 @@ uv-outdated:
 [group("uv")]
 uv-update:
     uv self update
-    sed -i "s/{{ uv_app_version }}/{{ uv_version }}/g" docker/Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
-    git add docker/Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
+    sed -i "s/{{ uv_app_version }}/{{ uv_version }}/g" docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
+    git add docker/Dockerfile docker/alpine.Dockerfile docker/wheel.Dockerfile .pre-commit-config.yaml Justfile pyproject.toml
 
 # ---------------------------------------------------------------------------- #
 #               ------- Dependencies ------

@@ -208,9 +208,12 @@
             "activityBarTop.inactiveForeground": "#e7e7e799",
             "commandCenter.foreground": "#e7e7e7",
             "statusBar.debuggingBackground": "#402775",
-            "statusBar.debuggingForeground": "#e7e7e7"
+            "statusBar.debuggingForeground": "#e7e7e7",
+            "activityBar.activeBorder": "#e7e7e7",
+            "activityBarTop.activeBorder": "#e7e7e7",
+            "statusBar.inactiveBackground": "#402775"
         },
-        "peacock.remoteColor": "402775",
+        "peacock.remoteColor": "#402775",
     },
     "launch": {
         // Use IntelliSense to learn about possible attributes.

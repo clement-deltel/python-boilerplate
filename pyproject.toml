@@ -55,6 +55,8 @@ dependencies = [
 # https://github.com/advisories
 
 cve = [
+    # certifi: GHSA-6q48-6c7w-9gw2 (CRITICAL)
+    "certifi>=2026.10.23",
     # cryptography: CVE-2024-12797, GHSA-h4gh-qq45-vh27, CVE-2026-26007 (HIGH), CVE-2026-34073 (LOW), CVE-2026-39892 (MEDIUM), GHSA-537c-gmf6-5ccf (HIGH), CVE-2026-69247 (HIGH)
     "cryptography>=50.0.0,<51.0.0",
     # idna: CVE-2026-45409 (MEDIUM)
@@ -689,7 +691,7 @@ compile-bytecode = true
 # Limit candidate packages to those that were uploaded prior to the given date
 exclude-newer = "2 weeks"
 # Limit candidate packages for specific packages to those that were uploaded prior to the given date
-exclude-newer-package = { cryptography = false, prek = false, ruff = false, ty = false, urllib3 = false, uv = false }
+exclude-newer-package = { certifi = false, cryptography = false, prek = false, ruff = false, ty = false, urllib3 = false, uv = false }
 # Extra URLs of package indexes to use, in addition to --index-url
 # extra-index-url = ["https://download.pytorch.org/whl/cpu"]
 

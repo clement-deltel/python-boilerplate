@@ -22,14 +22,13 @@ list:
 customer := "customer-name"
 name := "app-name"
 name_snake := "app_name"
+python_version := "3.14.8"
 uv_app_version := "0.13.5"
 uv_type := "trixie-slim"
 
 # Generated
 
 image_tag := `cz version --project`
-python_version := `uv run -qq python --version | sed 's/Python //'`
-python_version_minor := `uv run -qq python --version | sed 's/Python //' | cut -d. -f1,2`
 uv_version := `uv self version --short`
 
 # ---------------------------------------------------------------------------- #
@@ -170,16 +169,16 @@ coverage:
 
 # Install Python version using pyenv
 [group("pyenv")]
-pyenv-install target="3.11.15":
+pyenv-install target="3.14.8":
     pyenv install --skip-existing {{ target }}
     mkdir -p ~/.pyenv/versions/{{ target }}/envs
 
 # Create symlinks to have venv auto-activation with pyenv
 [group("pyenv")]
-activate:
-    ln -s `pwd`/.venv ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
-    ln -s ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }} ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
-    pyenv local {{ python_version }}_{{ customer }}_{{ name }}
+activate target="3.14.8":
+    ln -s `pwd`/.venv ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }}
+    ln -s ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }} ~/.pyenv/versions/{{ target }}_{{ customer }}_{{ name }}
+    pyenv local {{ target }}_{{ customer }}_{{ name }}
 
 # Remove symlinks
 [group("pyenv")]
@@ -189,7 +188,7 @@ remove-symlinks:
 
 # Update symlinks to point to the new Python version
 [group("pyenv")]
-update-symlinks target="3.11.15":
+update-symlinks target="3.14.8":
     rm -f ~/.pyenv/versions/{{ python_version }}/envs/{{ python_version }}_{{ customer }}_{{ name }}
     rm -f ~/.pyenv/versions/{{ python_version }}_{{ customer }}_{{ name }}
     ln -s `pwd`/.venv ~/.pyenv/versions/{{ target }}/envs/{{ target }}_{{ customer }}_{{ name }}
@@ -203,32 +202,33 @@ init-activate: init-dev activate
 # ---------------------------------------------------------------------------- #
 #               ------- Python ------
 # ---------------------------------------------------------------------------- #
-# just update-patch 3.11.15
-# just update-minor 3.12.0
+# just update-patch 3.14.8
+# just update-minor 3.15.0
 
 # Update Python version in .pre-commit-config.yaml and pyproject.toml
 [group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-update-files target="3.11.15":
+update-files source="3.14.8" target="3.14.8":
     #!/usr/bin/env bash
     # Version update for Python full version
-    sed -i "s/{{ python_version }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
+    sed -i "s/{{ source }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
     # Version update for Python minor
+    SOURCE=`echo {{ source }} | cut -d. -f1-2`
     TARGET=`echo {{ target }} | cut -d. -f1-2`
-    sed -i "s/{{ python_version_minor }}/${TARGET}/g" .pre-commit-config.yaml pyproject.toml
+    sed -i "s/${SOURCE}/${TARGET}/g" .pre-commit-config.yaml pyproject.toml
     # Version update for Python upper bound
-    SOURCE_UPPER_BOUND=`echo {{ python_version_minor }} | awk -F. '{print $1 "." $2+1 ".0"}'`
+    SOURCE_UPPER_BOUND=`echo ${SOURCE} | awk -F. '{print $1 "." $2+1 ".0"}'`
     TARGET_UPPER_BOUND=`echo ${TARGET} | awk -F. '{print $1 "." $2+1 ".0"}'`
     sed -i "s/${SOURCE_UPPER_BOUND}/${TARGET_UPPER_BOUND}/g" Justfile pyproject.toml
     # Version update for Python compact form (without dots)
-    SOURCE=`echo {{ python_version_minor }} | tr -d .`
-    TARGET=`echo ${TARGET} | tr -d .`
-    sed -i "s/${SOURCE}/${TARGET}/g" pyproject.toml
+    SOURCE_COMPACT=`echo ${SOURCE} | tr -d .`
+    TARGET_COMPACT=`echo ${TARGET} | tr -d .`
+    sed -i "s/${SOURCE_COMPACT}/${TARGET_COMPACT}/g" pyproject.toml
     git add .pre-commit-config.yaml Justfile pyproject.toml
 
 # Update Python version, recreate venv, and sync dependencies
 [group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-update-venv target="3.11.15":
-    sed -i "s/{{ python_version }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
+update-venv source="3.14.8" target="3.14.8":
+    sed -i "s/{{ source }}/{{ target }}/g" docker/Dockerfile Justfile pyproject.toml
     @rm -f .python-version || true
     @rm -rf .venv
     uv python install {{ target }}
@@ -237,11 +237,11 @@ update-venv target="3.11.15":
 
 # Update Python version PATCH digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-update-patch target="3.11.15": (update-venv target) (pyenv-install target) (update-symlinks target)
+update-patch source="3.14.8" target="3.14.9": (update-venv source target) (pyenv-install target) (update-symlinks target)
 
 # update Python version MINOR digit everywhere, recreate venv, sync dependencies, and create symlinks for pyenv venv auto-activation
 [group("python"), arg("target", pattern='^([23])\.(\d{1,2})\.(\d{1,2})$')]
-update-minor target="3.11.15": (update-files target) (update-venv target) (pyenv-install target) (update-symlinks target)
+update-minor source="3.14.8" target="3.15.0": (update-files source target) (update-venv source target) (pyenv-install target) (update-symlinks target)
 
 # ---------------------------------------------------------------------------- #
 #               ------- Uv ------

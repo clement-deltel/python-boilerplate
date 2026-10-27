@@ -14,7 +14,7 @@ ARG DISTROLESS_DEBIAN_VERSION=13
 
 # https://hub.docker.com/hardened-images/catalog/dhi/python/images
 ARG DHI_DEBIAN_VERSION=13
-ARG DHI_PYTHON_VERSION=3.11.15
+ARG DHI_PYTHON_VERSION=3.14.8
 
 # ---------------------------------------------------------------------------- #
 #               ------- UV Binary ------
@@ -27,7 +27,7 @@ FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_TYPE} AS uv
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-${UV_TYPE} AS builder
 
 # Not persisted into the builder image
-ARG PYTHON_VERSION=3.11.15
+ARG PYTHON_VERSION=3.14.8
 
 # Ensure that all commands within the Dockerfile compile bytecode
 ENV UV_COMPILE_BYTECODE=1

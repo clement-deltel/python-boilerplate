@@ -25,10 +25,10 @@ classifiers = [
     "Intended Audience :: Telecommunications Industry",
     # "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
-requires-python = ">=3.11.15, <3.12.0"
+requires-python = ">=3.14.8, <3.15.0"
 
 # ---------------------------------------------------------------------------- #
 #               ------- dependencies ------
@@ -305,7 +305,7 @@ multi_line_output = 3 # vertical-hanging-indent
 
 [tool.pyright]
 include = [".githooks", "docker", "src", "test"]
-pythonVersion = "3.11"
+pythonVersion = "3.14"
 
 pythonPlatform = "Linux"
 # pythonPlatform = "Windows"
@@ -502,7 +502,7 @@ indent-width = 4
 line-length = 160
 # Whether to automatically exclude files that are ignored by .gitignore
 respect-gitignore = true
-target-version = "py311"
+target-version = "py314"
 
 [tool.ruff.format]
 # https://docs.astral.sh/ruff/formatter
@@ -621,7 +621,7 @@ python = "./.venv"
 python-platform = "linux"
 # python-platform = "win32"
 # Version of Python that will be used to analyze the source code
-python-version = "3.11"
+python-version = "3.14"
 
 [tool.ty.src]
 include = [".githooks", "docker", "src", "test"]

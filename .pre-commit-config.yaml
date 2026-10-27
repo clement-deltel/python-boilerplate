@@ -117,7 +117,7 @@ repos:
     rev: v2.3.1
     hooks:
       - id: refurb
-        args: [--python-version, "3.11"]
+        args: [--python-version, "3.14"]
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit

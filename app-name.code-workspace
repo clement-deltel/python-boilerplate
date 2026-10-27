@@ -120,6 +120,7 @@
         "ruff.lint.ignore": [
             "COM812", // missing-trailing-comma
             "COM819", // prohibited-trailing-comma
+            "D203", // incorrect-blank-line-before-class
             "D206", // docstring-tab-indentation
             "D300", // triple-single-quotes
             "E111", // indentation-with-invalid-multiple
@@ -129,13 +130,17 @@
             "Q001", // bad-quotes-multiline-string
             "Q002", // bad-quotes-docstring
             "Q003", // avoidable-escaped-quote
+            "Q004", // unnecessary-escaped-quote
+            "W191", // tab-indentation
             // --- //
             "ANN401", // any-type
-            "TD003", // missing-todo-link
             "D203", // incorrect-blank-line-before-class
             "D213", // multi-line-summary-second-line
-            "PLR0913", // too-many-arguments
             "PLW0603", // global-statement
+            "TC001", // typing-only-first-party-import
+            "TC002", // typing-only-third-party-import
+            "TC003", // typing-only-standard-library-import
+            "TD003", // missing-todo-link
         ],
         "ruff.lint.select": [
             "ERA", // eradicate
@@ -162,8 +167,8 @@
             "SLF", // flake8-self
             "SIM", // flake8-simplify
             "TID", // flake8-tidy-imports
-            "TC", // flake8-type-checking
             "TD", // flake8-todos
+            "TC", // flake8-type-checking
             "ARG", // flake8-unused-arguments
             "PTH", // flake8-use-pathlib
             "FLY", // flynt
@@ -182,7 +187,6 @@
             "FURB", // refurb
             "RUF", // Ruff-specific rules
         ],
-        "ruff.nativeServer": "on",
         // Workbench
         "workbench.colorCustomizations": {
             "activityBar.activeBackground": "#55349b",

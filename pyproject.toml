@@ -566,10 +566,11 @@ select = [
     "RUF",  # Ruff-specific rules
 ]
 
-# Lint rules in conflict with the formatter: COM812, COM819, D206, D300, E111, E114, E117, Q000, Q001, Q002, Q003
+# Lint rules in conflict with the formatter: COM812, COM819, D203, D206, D300, E111, E114, E117, Q000, Q001, Q002, Q003, Q004, W191
 ignore = [
     "COM812", # missing-trailing-comma
     "COM819", # prohibited-trailing-comma
+    "D203",   # incorrect-blank-line-before-class
     "D206",   # docstring-tab-indentation
     "D300",   # triple-single-quotes
     "E111",   # indentation-with-invalid-multiple
@@ -579,13 +580,17 @@ ignore = [
     "Q001",   # bad-quotes-multiline-string
     "Q002",   # bad-quotes-docstring
     "Q003",   # avoidable-escaped-quote
+    "Q004",   # unnecessary-escaped-quote
+    "W191",   # tab-indentation
     # ------#
     "ANN401",  # any-type
-    "TD003",   # missing-todo-link
     "D203",    # incorrect-blank-line-before-class
     "D213",    # multi-line-summary-second-line
-    "PLR0913", # too-many-arguments
     "PLW0603", # global-statement
+    "TC001",   # typing-only-first-party-import
+    "TC002",   # typing-only-third-party-import
+    "TC003",   # typing-only-standard-library-import
+    "TD003",   # missing-todo-link
 ]
 
 [tool.ruff.lint.isort]
@@ -600,6 +605,9 @@ split-on-trailing-comma = false
 convention = "google"
 # Ignore missing documentation for *args and **kwargs parameters.
 ignore-var-parameters = true
+
+[tool.ruff.lint.pylint]
+max-args = 7
 
 # ---------------------------------------------------------------------------- #
 #               ------- tool - ty ------

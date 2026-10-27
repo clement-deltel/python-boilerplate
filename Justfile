@@ -22,7 +22,7 @@ list:
 customer := "customer-name"
 name := "app-name"
 name_snake := "app_name"
-app_uv_version := "0.11.30"
+app_uv_version := "0.13.5"
 
 # Generated
 

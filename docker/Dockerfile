@@ -3,7 +3,7 @@
 
 # https://github.com/astral-sh/uv/pkgs/container/uv
 ARG UV_DEBIAN_VERSION=trixie
-ARG UV_VERSION=0.11.30
+ARG UV_VERSION=0.13.5
 # Supported types: dhi (Docker Hardened Image), slim
 ARG UV_TYPE=slim
 
@@ -104,7 +104,7 @@ COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
 USER ${USER}
 
 HEALTHCHECK --interval=60s --timeout=10s --start-interval=10s --start-period=10s --retries=3 \
-    CMD python healthcheck.py || exit 1
+    CMD ["python healthcheck.py || exit 1"]
 
 ENTRYPOINT ["app-name"]
 EXPOSE 5678
@@ -141,7 +141,7 @@ COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
 USER ${USER}
 
 HEALTHCHECK --interval=60s --timeout=10s --start-interval=10s --start-period=10s --retries=3 \
-    CMD python healthcheck.py || exit 1
+    CMD ["python healthcheck.py || exit 1"]
 
 ENTRYPOINT ["app-name"]
 EXPOSE 5678
@@ -178,7 +178,7 @@ COPY --chmod=${MODE} docker/healthcheck.py ${HOME}/healthcheck.py
 USER ${USER}
 
 HEALTHCHECK --interval=60s --timeout=10s --start-interval=10s --start-period=10s --retries=3 \
-    CMD python healthcheck.py || exit 1
+    CMD ["python healthcheck.py || exit 1"]
 
 ENTRYPOINT ["app-name"]
 EXPOSE 5678

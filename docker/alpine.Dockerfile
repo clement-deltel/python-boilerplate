@@ -2,7 +2,7 @@
 # Instructions creating a new layer: ADD, COPY, RUN
 
 ARG ALPINE_VERSION=3.21
-ARG UV_VERSION=0.11.30
+ARG UV_VERSION=0.13.5
 
 # ---------------------------------------------------------------------------- #
 #               ------- Build Application ------
@@ -85,6 +85,6 @@ COPY --chmod=500 --chown=${USER}:${USER} docker/healthcheck.py ${HOME}/healthche
 USER ${USER}
 
 HEALTHCHECK --interval=30s --timeout=10s --start-interval=10s --start-period=5s --retries=3 \
-    CMD python healthcheck.py || exit 1
+    CMD ["python healthcheck.py || exit 1"]
 
 ENTRYPOINT ["./entrypoint.sh"]

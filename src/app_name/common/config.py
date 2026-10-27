@@ -24,7 +24,7 @@ def to_bool(variable: str) -> bool:
     Returns:
         bool: environment variable boolean value.
     """
-    return variable.casefold() in ("true", "t", "1")
+    return variable.casefold() in {"true", "t", "1"}
 
 
 def to_int(variable: str) -> int:

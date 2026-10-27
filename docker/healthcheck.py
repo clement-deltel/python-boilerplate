@@ -48,7 +48,7 @@ def is_process_running(pattern: str) -> bool:
 def main() -> None:
     """Run health check."""
     try:
-        debug = environ.get("DEBUG", default="false").lower() in ("true", "t", "1")
+        debug = environ.get("DEBUG", default="false").lower() in {"true", "t", "1"}
         mode = "DEBUG" if debug else "PRODUCTION"
         print(f"Health check running in {mode} mode")
 

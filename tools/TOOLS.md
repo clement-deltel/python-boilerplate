@@ -89,6 +89,10 @@ Here are the useful libraries and modules used across all of my Python projects.
 
 - [csv2md](https://github.com/lzakharov/csv2md) - command line tool for converting CSV files into Markdown tables. `Python`
 - [interrogate](https://github.com/econchick/interrogate) - interrogate a codebase for docstring coverage. `Python`
+- [markitdown](https://github.com/microsoft/markitdown) - tool for converting files and office documents to Markdown. `Python`
+- [pymupdf](https://github.com/pymupdf/pymupdf) - high performance library for data extraction, analysis, conversion & manipulation of PDF (and other) documents. `Python`
+- [python-docx](https://github.com/python-openxml/python-DOCX) - create and modify Word documents. `Python`
+- [rapidocr](https://github.com/rapidai/rapidocr) - OCR toolkits based on ONNX Runtime, OpenVINO, MNN, PaddlePaddle, TensorRT and PyTorch. `Python`
 
 #### Lint
 

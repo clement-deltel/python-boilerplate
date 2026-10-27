@@ -63,7 +63,7 @@ cve = [
     "urllib3>=2.8.0,<3.0.0"]
 
 dev = ["commitizen", "howdoi", "prek", "pyscn", "snakeviz"]
-doc = ["csv2md", "interrogate"]
+doc = ["csv2md", "interrogate", "markitdown[docx,pdf]", "markitdown-ocr", "onnxruntime", "pymupdf", "python-docx", "rapidocr"]
 lint = [
     "checkov",
     "gitlint",

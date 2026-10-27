@@ -286,6 +286,12 @@ update-groups:
     # doc
     uv sync --upgrade-package csv2md
     uv sync --upgrade-package interrogate
+    uv sync --upgrade-package markitdown[docx,pdf]
+    uv sync --upgrade-package markitdown-ocr
+    uv sync --upgrade-package onnxruntime
+    uv sync --upgrade-package pymupdf
+    uv sync --upgrade-package python-docx
+    uv sync --upgrade-package rapidocr
     # lint
     uv sync --upgrade-package checkov
     uv sync --upgrade-package gitlint

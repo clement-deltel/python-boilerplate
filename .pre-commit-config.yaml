@@ -57,7 +57,7 @@ repos:
   #               ------- Version Control ------
   # -------------------------------------------------------------------------- #
   # - repo: https://github.com/commitizen-tools/commitizen
-  #   rev: v4.16.4
+  #   rev: v4.19.2
   #   hooks:
   #     # - id: commitizen
   #     #   stages: [commit-msg]
@@ -65,12 +65,12 @@ repos:
   #       stages: [pre-push]
 
   # - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-  #   rev: v9.26.0
+  #   rev: v9.27.0
   #   hooks:
   #     - id: commitlint
   #       stages: [commit-msg]
   #       entry: commitlint --edit
-  #       additional_dependencies: ["@commitlint/config-conventional", "@commitlint/format", "conventional-changelog-conventionalcommits"]
+  #       additional_dependencies: ["@commitlint/config-conventional", "@commitlint/format", "conventional-changelog-conventionalcommits@^9"]
 
   # - repo: https://github.com/jorisroovers/gitlint
   #   rev:  v0.19.1
@@ -101,14 +101,14 @@ repos:
 
   # isort - Imports Sorting
   - repo: https://github.com/pycqa/isort
-    rev: 8.0.1
+    rev: 9.0.2
     hooks:
       - id: isort
         name: isort (python)
 
   # pyupgrade - Upgrade syntax for newer versions of the language
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.2
+    rev: v3.22.0
     hooks:
       - id: pyupgrade
 
@@ -121,7 +121,7 @@ repos:
 
   # ruff - Linter & Formatter
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.3
+    rev: v0.17.3
     hooks:
       - id: ruff-check
         types_or: [python, pyi]
@@ -173,7 +173,7 @@ repos:
   #               ------- Docker ------
   # -------------------------------------------------------------------------- #
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.14.0
+    rev: v2.15.1
     hooks:
       - id: hadolint
 
@@ -241,6 +241,6 @@ repos:
         args: ["--command", "uv tree --no-default-groups", "--regex", '(## Dependencies\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.48.0
+    rev: v1.51.1
     hooks:
       - id: typos

@@ -240,6 +240,12 @@ repos:
         pass_filenames: false
         args: ["--command", "uv tree --no-default-groups", "--regex", '(## Dependencies\s*\n.*?```text\s*\n)(.*?)(\n```\s*\n)']
 
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.3
+    hooks:
+      - id: markdownlint-cli2
+        args: ["--config", "pyproject.toml", "--configPointer", "/tool/markdownlint-cli2"]
+
   - repo: https://github.com/crate-ci/typos
     rev: v1.51.1
     hooks:
